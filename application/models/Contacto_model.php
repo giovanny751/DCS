@@ -5,6 +5,11 @@ class Contacto_model extends CI_Model {
         parent::__construct();
     }
     function save_contacto($post){
+        
+        if(!isset($post['contacto_llaves']))
+            $this->db->set('contacto_llaves','NO');
+        if(!isset($post['contacto_cuidador']))
+            $this->db->set('contacto_cuidador','NO');
         if(isset($post['campo'])){ 
         $this->db->where($post["campo"],$post[$post["campo"]]);
             unset($post['campo']);

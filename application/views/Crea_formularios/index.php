@@ -8,7 +8,7 @@
                 <option></option>
                 <?php
                 foreach ($tablas as $value) {
-                    ?><option value="<?php echo $value->Tables_in_gyy ?>"><?php echo $value->Tables_in_gyy ?></option><?php
+                    ?><option value="<?php echo $value->Tables_in_dcs ?>"><?php echo $value->Tables_in_dcs ?></option><?php
                 }
                 ?>
             </select>

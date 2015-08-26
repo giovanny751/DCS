@@ -1,5 +1,5 @@
 
-<h1>Examenes</h1>
+<h1>Variables</h1>
 <form action="<?php echo base_url('index.php/')."/Variables/save_variables"; ?>" method="post" onsubmit="return campos()">
     <div>
     <div class="row">

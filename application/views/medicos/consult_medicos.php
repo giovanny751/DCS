@@ -1,20 +1,15 @@
-
+<h1>Medicos</h1>
 <form action="<?php echo base_url('index.php/').'/Medicos/consult_medicos'; ?>" method="post" >
-    <div>
-    <div class="row">                <div class="col-md-3">
-                                    </div>
-                <div class="col-md-3">
-                    <input type="hidden" value="<?php echo (isset($post['medico_codigo'])?$post['medico_codigo']:'') ?>" class="form-control   " id="medico_codigo" name="medico_codigo">
-                    <br>
-                </div>
 
-            </div><div class="row">                <div class="col-md-3">
+                    <input type="hidden" value="<?php echo (isset($post['medico_codigo'])?$post['medico_codigo']:'') ?>" class="form-control   " id="medico_codigo" name="medico_codigo">
+
+
+            <div class="row">                <div class="col-md-3">
                     Nombre                </div>
                 <div class="col-md-3">
                     <input type="text" value="<?php echo (isset($post['medico_nombre'])?$post['medico_nombre']:'') ?>" class="form-control obligatorio  " id="medico_nombre" name="medico_nombre">
                     <br>
                 </div>
-
             </div><div class="row">                <div class="col-md-3">
                     Matricula profecional                </div>
                 <div class="col-md-3">

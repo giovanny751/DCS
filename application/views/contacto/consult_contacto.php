@@ -1,3 +1,4 @@
+<h1>Contactos</h1>
 
 <form action="<?php echo base_url('index.php/').'/Contacto/consult_contacto'; ?>" method="post" >
     <div>
@@ -37,7 +38,7 @@
                 </div>
 
                             <div class="col-md-3">
-                    Ccelular                </div>
+                    Celular                </div>
                 <div class="col-md-3">
                     <input type="text" value="<?php echo (isset($post['contacto_celular'])?$post['contacto_celular']:'') ?>" class="form-control   " id="contacto_celular" name="contacto_celular">
                     <br>

@@ -1,4 +1,4 @@
-
+<h1>Aseguradoras</h1>
 <form action="<?php echo base_url('index.php/').'/Aseguradoras/consult_aseguradoras'; ?>" method="post" >
     <div>
     </div><div class="row">                <div class="col-md-3">
@@ -37,7 +37,7 @@
                             <div class="col-md-3">
                     Email                </div>
                 <div class="col-md-3">
-                    <input type="email" value="<?php echo (isset($post['asegu_email'])?$post['asegu_email']:'') ?>" class="form-control   " id="asegu_email" name="asegu_email">
+                    <input type="text" value="<?php echo (isset($post['asegu_email'])?$post['asegu_email']:'') ?>" class="form-control   " id="asegu_email" name="asegu_email">
                     <br>
                 </div>
 

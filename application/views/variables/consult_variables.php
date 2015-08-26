@@ -1,4 +1,4 @@
-<h1>Examenes</h1>
+<h1>Variables</h1>
 <form action="<?php echo base_url('index.php/').'/Variables/consult_variables'; ?>" method="post" >
     <div>
     <div class="row">                <div class="col-md-3">

@@ -1,4 +1,4 @@
-
+<h1>Aseguradoras</h1>
 
 <form action="<?php echo base_url('index.php/') . "/Aseguradoras/save_aseguradoras"; ?>" method="post" onsubmit="return campos()">
     <div>

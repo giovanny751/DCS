@@ -1,4 +1,4 @@
-
+<h1>Contactos</h1>
 
 <form action="<?php echo base_url('index.php/')."/Contacto/save_contacto"; ?>" method="post" onsubmit="return campos()">
     <div>
@@ -50,7 +50,7 @@
                 
 
                 <div class="col-md-3">
-                                        Ccelular                </div>
+                                        Celular                </div>
                 <div class="col-md-3">
                     <input type="text" value="<?php echo (isset($datos[0]->contacto_celular)?$datos[0]->contacto_celular:'' ) ?>" class="form-control   " id="contacto_celular" name="contacto_celular">
                     <br>
@@ -61,7 +61,7 @@
                 <div class="col-md-3">
                                         Email                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($datos[0]->contacto_email)?$datos[0]->contacto_email:'' ) ?>" class="form-control   " id="contacto_email" name="contacto_email">
+                    <input type="email" value="<?php echo (isset($datos[0]->contacto_email)?$datos[0]->contacto_email:'' ) ?>" class="form-control   " id="contacto_email" name="contacto_email">
                     <br>
                 </div>
 
@@ -79,7 +79,7 @@
                 <div class="col-md-3">
                                         Tiene o no tiene llaves de la casa                </div>
                 <div class="col-md-3">
-                    <input type="checkbox" value="<?php echo (isset($datos[0]->contacto_llaves)?$datos[0]->contacto_llaves:'' ) ?>" class="form-control   " id="contacto_llaves" name="contacto_llaves">
+                    <input type="checkbox" value="SI" class="form-control   " id="contacto_llaves" name="contacto_llaves">
                     <br>
                 </div>
 
@@ -88,7 +88,7 @@
                 <div class="col-md-3">
                                         Ciudador                </div>
                 <div class="col-md-3">
-                    <input type="checkbox" value="<?php echo (isset($datos[0]->contacto_cuidador)?$datos[0]->contacto_cuidador:'' ) ?>" class="form-control   " id="contacto_cuidador" name="contacto_cuidador">
+                    <input type="checkbox"  value="SI" class="form-control   " id="contacto_cuidador" name="contacto_cuidador">
                     <br>
                 </div>
 

@@ -1,4 +1,4 @@
-
+<h1>Hospitales</h1>
 <form action="<?php echo base_url('index.php/')."/Hospitales/consult_hospitales"; ?>" method="post" >
     <div class="row">                <div class="col-md-3">
                                     </div>
@@ -22,6 +22,7 @@
                     Telefono                </div>
                 <div class="col-md-3">
                     <input type="text" value="<?php echo (isset($post['hospital_telefono_fijo'])?$post['hospital_telefono_fijo']:'') ?>" class="form-control obligatorio  number" id="hospital_telefono_fijo" name="hospital_telefono_fijo">
+                    <br>
                 </div>
 
                             <div class="col-md-3">

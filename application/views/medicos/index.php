@@ -1,17 +1,10 @@
-
+<h1>Medicos</h1>
 
 <form action="<?php echo base_url('index.php/')."/Medicos/save_medicos"; ?>" method="post" onsubmit="return campos()">
-    <div>
-    <div class="row">
-
-                <div class="col-md-3">
-                                                        </div>
-                <div class="col-md-3">
+    
                     <input type="hidden" value="<?php echo (isset($datos[0]->medico_codigo)?$datos[0]->medico_codigo:'' ) ?>" class="form-control   " id="medico_codigo" name="medico_codigo">
-                    <br>
-                </div>
 
-                </div><div class="row">
+                <div class="row">
 
                 <div class="col-md-3">
                     *                     Nombre                </div>

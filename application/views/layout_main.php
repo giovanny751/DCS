@@ -2,46 +2,59 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
-<script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>
-<script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>
-<link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  
+  
+  
+
+<!--<script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>-->
+<!--<script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>-->
+<!--<link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>-->
 <link href="<?php echo base_url('img/blanco.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
 <script src="<?= base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
-<script src="<?= base_url('js/validCampoFranz.js') ?>" type="text/javascript"></script>
+<!--<script src="<?= base_url('js/validCampoFranz.js') ?>" type="text/javascript"></script>-->
 <script src="<?= base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
 <script src="<?= base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
 <link href="<?= base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?= base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?= base_url('css/jquery.smartmenus.bootstrap.css') ?>" rel="stylesheet">
 <script src="<?php echo base_url('/assets/global/scripts/metronic.js'); ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('/assets/admin/pages/scripts/ui-blockui.js'); ?>"></script>
-<script src="<?php echo base_url('/assets/global/plugins/jquery.blockui.min.js'); ?>" type="text/javascript"></script>
-<link href="<?php echo base_url('/assets/global/css/plugins.css'); ?>" rel="stylesheet" type="text/css"/>
+<!--<script src="<?php echo base_url('/assets/admin/pages/scripts/ui-blockui.js'); ?>"></script>-->
+<!--<script src="<?php echo base_url('/assets/global/plugins/jquery.blockui.min.js'); ?>" type="text/javascript"></script>-->
+<!--<link href="<?php echo base_url('/assets/global/css/plugins.css'); ?>" rel="stylesheet" type="text/css"/>-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/jquery-notific8/jquery.notific8.min.css'); ?>"/>
 <script src="<?php echo base_url('/assets/global/plugins/jquery-notific8/jquery.notific8.min.js'); ?>"></script>
 <script src="<?php echo base_url('/assets/admin/pages/scripts/ui-notific8.js'); ?>"></script>
-<link href="<?php echo base_url('/assets/global/plugins/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>
+<!--<link href="<?php echo base_url('/assets/global/plugins/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>-->
 <link href="<?php echo base_url('/assets/global/plugins/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css"/>
-<link href="<?php echo base_url('/css/font_google.css'); ?>" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css'); ?>"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css'); ?>"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'); ?>"/>  
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('css/estilos.css'); ?>"/>  
-<link href="<?php echo base_url('/assets/global/plugins/bootstrap-select/bootstrap-select.min.css'); ?>" rel="stylesheet">
-<link href="<?php echo base_url('/assets/global/plugins/select2/select2.css'); ?>" rel="stylesheet">
-<link href="<?php echo base_url('/assets/global/plugins/jquery-multi-select/css/multi-select.css'); ?>" rel="stylesheet">
-<link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>
+<!--<link href="<?php echo base_url('/css/font_google.css'); ?>" rel="stylesheet" type="text/css"/>-->
+<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css'); ?>"/>-->
+<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css'); ?>"/>-->
+<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'); ?>"/>-->  
+<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('css/estilos.css'); ?>"/>-->  
+<!--<link href="<?php echo base_url('/assets/global/plugins/bootstrap-select/bootstrap-select.min.css'); ?>" rel="stylesheet">-->
+<!--<link href="<?php echo base_url('/assets/global/plugins/select2/select2.css'); ?>" rel="stylesheet">-->
+<!--<link href="<?php echo base_url('/assets/global/plugins/jquery-multi-select/css/multi-select.css'); ?>" rel="stylesheet">-->
+<!--<link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>-->
 <script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js'); ?>"></script>
 <script src="<?php echo base_url('/assets/global/scripts/datatable.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('/assets/admin/pages/scripts/table-ajax.js'); ?>"></script>
-<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/moment.min.js'); ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js'); ?>" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>"></script>
-<script src="<?php echo base_url('/assets/admin/pages/scripts/components-pickers.js'); ?>"></script>
+<!--<script type="text/javascript" src="<?php echo base_url('/assets/admin/pages/scripts/table-ajax.js'); ?>"></script>-->
+<!--<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/moment.min.js'); ?>" type="text/javascript"></script>-->
+<!--<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js'); ?>" type="text/javascript"></script>-->
+<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>"></script>-->
+<!--<script src="<?php echo base_url('/assets/admin/pages/scripts/components-pickers.js'); ?>"></script>-->
+
+
+
+
 <?php
 function modulos($datosmodulos, $idusuario, $dato = null) {
 
@@ -230,10 +243,10 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core componets
 //        Layout.init(); // init layout
-        TableAjax.init();
-        UIBlockUI.init();
+//        TableAjax.init();
+//        UIBlockUI.init();
         //TableAdvanced.init();
-        ComponentsPickers.init();
+//        ComponentsPickers.init();
         //QuickSidebar.init() // init quick sidebar
         //Index.init();
         //Index.initDashboardDaterange();
@@ -252,14 +265,13 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     });
     $('.fecha').datepicker({
         dateFormat: "yy-mm-dd",
-//        rtl: Metronic.isRTL(),
         autoclose: true
           
     });
     
     
-//    
-//    
+    
+    
 //    $('body').on('keyup', 'input[type=text]', function () {
 //        var start = this.selectionStart,
 //                end = this.selectionEnd;
@@ -292,9 +304,9 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 //            return '';
 //        }));
 //    });
-//    $(function () {
-//    //Se pone para que en todos los llamados ajax se bloquee la pantalla mostrando el mensaje Procesando...
-//    $.blockUI.defaults.message = 'Procesando...';
-//    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
-//});
+    $(function () {
+    //Se pone para que en todos los llamados ajax se bloquee la pantalla mostrando el mensaje Procesando...
+    $.blockUI.defaults.message = 'Procesando...';
+    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+});
 </script>
