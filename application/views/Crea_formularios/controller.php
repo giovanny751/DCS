@@ -42,7 +42,6 @@ class <?php echo $clase ?> extends My_Controller {
         $this->data['post']=$this->input->post();
         if(!isset($this->data['post']['campo']))
         redirect('index.php/<?php echo ucfirst($post['tabla'])?>/consult_<?php echo $post['tabla']?>', 'location');
-        
         $this->data['datos']=$this-><?php echo $model;?>->edit_<?php echo $post['tabla']?>($this->data['post']);
         $this->layout->view('<?php echo $post['tabla']?>/index', $this->data);
     }

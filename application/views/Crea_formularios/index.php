@@ -1,35 +1,34 @@
+<div class="alert alert-info"><center><b>CREACIÓN DE FORMULARIOS</b></center></div>
 <form id="form1">
     <div class="row">
         <div class="col-md-3" id="datos">
-            Tabla
+            <label for="tabla">Tabla</label>
         </div> 
         <div class="col-md-3" id="datos">
             <select id="tabla" class="form-control" name="tabla">
-                <option></option>
-                <?php
-                foreach ($tablas as $value) {
-                    ?><option value="<?php echo $value->Tables_in_dcs ?>"><?php echo $value->Tables_in_dcs ?></option><?php
-                }
-                ?>
+                <option value="">::Seleccionar::</option>
+                <?php foreach ($tablas as $value) { ?>
+                    <option value="<?php echo $value->Tables_in_dcs ?>">
+                        <?php echo $value->Tables_in_dcs ?>
+                    </option>
+                <?php } ?>
             </select>
         </div>
         <div class="col-md-3" id="datos">
-            Numero de columnas
+            <label for="columnas">Número de columnas</label>
         </div> 
         <div class="col-md-3" id="datos">
             <select id="columnas" class="form-control" name="columnas">
                 <?php
-                for ($i = 1; $i <= 12; $i++) {
-                    echo '<option value="' . $i . '">' . $i . '</option>';
-                }
-                ?>
-
+                for ($i = 1; $i <= 12; $i++) { ?>
+                    <option value="'<?php echo $i; ?> '"><?php echo $i  ?></option>;
+                <?php } ?>
             </select>
         </div> 
     </div>
     <div class="row">
         <div class="col-md-3" id="datos">
-            Titulo
+            <label for="titulo">Título</label>
         </div>
         <div class="col-md-3" id="datos">
             <input type="text" class="form-control" name="titulo" id="titulo">
@@ -43,9 +42,10 @@
             <th>Label</th>
             <th>Tipo</th>
             <th>Obligatorio</th>
-            <th>numerico</th>
-            <th>fecha</th>
-            <th>aparezca</th>
+            <th>Númerico</th>
+            <th>Fecha</th>
+            <th>Visible</th>
+            <th>Orden</th>
             </thead>
             <tbody id="tbody_table">
 
@@ -58,28 +58,55 @@
 <script>
 
     $('#guardar').click(function () {
-        var url = "<?= base_url("index.php/Crea_formularios/new_file") ?>";
+        var url = "<?php echo base_url("index.php/Crea_formularios/new_file") ?>";
         $.post(url, $('#form1').serialize())
                 .done(function (msg) {
                     alert('Se agregaron con exito');
                 })
                 .fail(function () {
                     alert('No se agregaron ');
-                })
+                });
     });
     $('#tabla').change(function () {
-        var url = "<?= base_url("index.php/Crea_formularios/info_table") ?>";
+        var url = "<?php echo base_url("index.php/Crea_formularios/info_table") ?>";
         $.post(url, {tabla: $('#tabla').val()})
                 .done(function (msg) {
-//                    msg=JSON.parse(msg);
-//                    $.each(msg,function(){
-//                        
-//                    })
+                    var table = "";
+                    $.each(msg[0], function (key, val) {
+                        table += "<tr>";
+                        table += "<td><input type='hidden' name='nombre_campo[]' value='" + val.Field + "' class='form-control' />" + val.Field + "</td>";
+                        table += "<td>" + val.Type + "</td>";
+                        table += "<td><input type='text' name='nombre_label[]' value='" + val.Field + "' class='form-control' /></td>";
+                        table += "<td><select name='tipo[]' class='form-control'>";
+                        $.each(msg[1], function (key2, val2) {
+                            table += "<option value='" + val2.id + "'>" + val2.name + "</option>";
+                        });
+                        table += "</select>";
+                        table += "</td>";
+                        table += "<td><select name='obligatorio[]' class='form-control'>";
+                        table += "<option value='obligatorio'>Si</option>";
+                        table += "<option value=''>No</option>";
+                        table += "</select></td>";
+                        table += "<td><select name='numero[]' class='form-control'>";
+                        table += "<option value=''>No</option>";
+                        table += "<option value='number'>Si</option>";
+                        table += "</select></td>";
+                        table += "<td><select name='fecha[]' class='form-control'>";
+                        table += "<option value=''>No</option>";
+                        table += "<option value='fecha'>Si</option>";
+                        table += "</select></td>";
+                        table += "<td><select name='aparezca[]' class='form-control'>";
+                        table += "<option value='1'>Si</option>";
+                        table += "<option value=''>No</option>";
+                        table += "</select></td>";
+                        table += "<td><input type='text' name='orden' class='form-control' /></td>";
+                        table += "</tr>";
+                    });
                     $('#guardar').show();
-                    $('#tbody_table').html(msg)
+                    $('#tbody_table').html(table)
                 })
                 .fail(function (msg) {
 
-                })
+                });
     })
 </script>

@@ -23,8 +23,10 @@ class Crea_formularios_model extends CI_Model {
     }
 
     public function info_input() {
-        $datos = $this->db->query('select * from tipo_inputs');
-        return $datos->result();
+        
+        $tipo = $this->db->get('tipo_inputs');
+//        $datos = $this->db->query('select * from ');
+        return $tipo->result();
     }
 
 }

@@ -27,36 +27,41 @@ class Crea_formularios extends My_Controller {
         $datos = $this->Crea_formularios_model->info_table($post);
         $info_input = $this->Crea_formularios_model->info_input();
         $html = "";
-        foreach ($datos as $value) {
-            $html.="<tr>"
-                    . "<td><input type='hidden' name='nombre_campo[]' value='" . $value->Field . "'> " . $value->Field . "</td>"
-                    . "<td>" . $value->Type . "</td>"
-                    . "<td><input type='text' name='nombre_label[]' value='" . $value->Field . "'></td>"
-                    . "<td> <select name='tipo[]'>";
-            foreach ($info_input as $info_input2) {
-                $html.="<option value='" . $info_input2->name . "'>" . $info_input2->name . "</option>";
-            }
-            $html.="</select></td>"
-                    . "<td><select name='obligatorio[]'>"
-                    . "<option value='obligatorio'>Si</option>"
-                    . "<option value=''>No</option>"
-                    . "</select></td>"
-                    . "<td><select name='numero[]'>"
-                    . "<option value=''>No</option>"
-                    . "<option value='number'>Si</option>"
-                    . "</select></td>"
-                    . "<td><select name='fecha[]'>"
-                    . "<option value=''>No</option>"
-                    . "<option value='fecha'>Si</option>"
-                    . "</select></td>"
-                    . "<td><select name='aparezca[]'>"
-                    . "<option value='1'>Si</option>"
-                    . "<option value=''>No</option>"
-                    . "</select></td>"
-                    . "</tr>";
-        }
-//        print_r($datos);
-        echo $html;
+        
+        $data = array($datos,$info_input);
+        
+        $this->output->set_content_type('application/json')->set_output(json_encode($data));
+        
+//        foreach ($datos as $value) {
+//            $html.="<tr>"
+//                    . "<td><input type='hidden' name='nombre_campo[]' value='" . $value->Field . "'> " . $value->Field . "</td>"
+//                    . "<td>" . $value->Type . "</td>"
+//                    . "<td><input type='text' name='nombre_label[]' value='" . $value->Field . "'></td>"
+//                    . "<td> <select name='tipo[]'>";
+//            foreach ($info_input as $info_input2) {
+//                $html.="<option value='" . $info_input2->name . "'>" . $info_input2->name . "</option>";
+//            }
+//            $html.="</select></td>"
+//                    . "<td><select name='obligatorio[]'>"
+//                    . "<option value='obligatorio'>Si</option>"
+//                    . "<option value=''>No</option>"
+//                    . "</select></td>"
+//                    . "<td><select name='numero[]'>"
+//                    . "<option value=''>No</option>"
+//                    . "<option value='number'>Si</option>"
+//                    . "</select></td>"
+//                    . "<td><select name='fecha[]'>"
+//                    . "<option value=''>No</option>"
+//                    . "<option value='fecha'>Si</option>"
+//                    . "</select></td>"
+//                    . "<td><select name='aparezca[]'>"
+//                    . "<option value='1'>Si</option>"
+//                    . "<option value=''>No</option>"
+//                    . "</select></td>"
+//                    . "</tr>";
+//        }
+////        print_r($datos);
+//        echo $html;
     }
 
     public function new_file() {
