@@ -25,39 +25,40 @@ class Hospitales_model extends CI_Model {
         return $datos=$datos->result();
     }
     function consult_hospitales($post){
-            if(isset($post['hospital_cod']))
-        if($post['hospital_cod']!="")
-        $this->db->like('hospital_cod',$post['hospital_cod']);
-                    if(isset($post['hospital_nombre']))
-        if($post['hospital_nombre']!="")
-        $this->db->like('hospital_nombre',$post['hospital_nombre']);
-                    if(isset($post['hospital_fecha_creacion']))
-        if($post['hospital_fecha_creacion']!="")
-        $this->db->like('hospital_fecha_creacion',$post['hospital_fecha_creacion']);
-                    if(isset($post['hospital_direccion']))
-        if($post['hospital_direccion']!="")
-        $this->db->like('hospital_direccion',$post['hospital_direccion']);
-                    if(isset($post['hospital_telefono_fijo']))
-        if($post['hospital_telefono_fijo']!="")
-        $this->db->like('hospital_telefono_fijo',$post['hospital_telefono_fijo']);
-                    if(isset($post['hospital_celular']))
-        if($post['hospital_celular']!="")
-        $this->db->like('hospital_celular',$post['hospital_celular']);
-                    if(isset($post['hospital_email']))
-        if($post['hospital_email']!="")
-        $this->db->like('hospital_email',$post['hospital_email']);
-                    if(isset($post['hospital_borrado']))
-        if($post['hospital_borrado']!="")
-        $this->db->like('hospital_borrado',$post['hospital_borrado']);
+            if(isset($post['codigo_hospital']))
+        if($post['codigo_hospital']!="")
+        $this->db->like('codigo_hospital',$post['codigo_hospital']);
+                    if(isset($post['nombre']))
+        if($post['nombre']!="")
+        $this->db->like('nombre',$post['nombre']);
+                    if(isset($post['estado']))
+        if($post['estado']!="")
+        $this->db->like('estado',$post['estado']);
+                    if(isset($post['fecha_creacion']))
+        if($post['fecha_creacion']!="")
+        $this->db->like('fecha_creacion',$post['fecha_creacion']);
+                    if(isset($post['direccion']))
+        if($post['direccion']!="")
+        $this->db->like('direccion',$post['direccion']);
+                    if(isset($post['telefono_fijo']))
+        if($post['telefono_fijo']!="")
+        $this->db->like('telefono_fijo',$post['telefono_fijo']);
+                    if(isset($post['celular']))
+        if($post['celular']!="")
+        $this->db->like('celular',$post['celular']);
+                    if(isset($post['email']))
+        if($post['email']!="")
+        $this->db->like('email',$post['email']);
                     if(isset($post['activo']))
         if($post['activo']!="")
         $this->db->like('activo',$post['activo']);
-                                    $this->db->select('hospital_cod');
-                                $this->db->select('hospital_nombre');
-                                $this->db->select('hospital_direccion');
-                                $this->db->select('hospital_telefono_fijo');
-                                $this->db->select('hospital_celular');
-                                $this->db->select('hospital_email');
+                                    $this->db->select('codigo_hospital');
+                                $this->db->select('nombre');
+                                $this->db->select('estado');
+                                $this->db->select('direccion');
+                                $this->db->select('telefono_fijo');
+                                $this->db->select('celular');
+                                $this->db->select('email');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('hospitales');
         $datos=$datos->result();

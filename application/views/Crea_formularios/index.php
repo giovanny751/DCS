@@ -69,6 +69,9 @@
     });
     $('#tabla').change(function () {
         var url = "<?php echo base_url("index.php/Crea_formularios/info_table") ?>";
+        var tabla=$("#tabla option:selected").text()
+//        tabla=tabla.capitalize();
+//        $('#titulo').val(tabla);
         $.post(url, {tabla: $('#tabla').val()})
                 .done(function (msg) {
                     var table = "";
@@ -79,7 +82,7 @@
                         table += "<td><input type='text' name='nombre_label[]' value='" + val.Field + "' class='form-control' /></td>";
                         table += "<td><select name='tipo[]' class='form-control'>";
                         $.each(msg[1], function (key2, val2) {
-                            table += "<option value='" + val2.id + "'>" + val2.name + "</option>";
+                            table += "<option value='" + val2.name + "'>" + val2.name + "</option>";
                         });
                         table += "</select>";
                         table += "</td>";

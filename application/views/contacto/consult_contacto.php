@@ -1,75 +1,131 @@
 <h1>Contactos</h1>
-
 <form action="<?php echo base_url('index.php/').'/Contacto/consult_contacto'; ?>" method="post" >
     <div>
-    <div class="row">                <div class="col-md-3">
+    
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Warning</p>
+<p>Message:  Division by zero</p>
+<p>Filename: Crea_formularios/view_consulta.php</p>
+<p>Line Number: 5</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\DCS\application\views\Crea_formularios\view_consulta.php<br />
+			Line: 5<br />
+			Function: _error_handler			</p>
+
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\DCS\application\controllers\Crea_formularios.php<br />
+			Line: 72<br />
+			Function: view			</p>
+
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\DCS\index.php<br />
+			Line: 292<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div><div class="row">                <div class="col-md-">
                                     </div>
-                <div class="col-md-3">
-                    <input type="hidden" value="<?php echo (isset($post['contacto_id'])?$post['contacto_id']:'') ?>" class="form-control   " id="contacto_id" name="contacto_id">
-                    <br>
+                <div class="col-md-">
+                                            <input type="hidden" value="<?php echo (isset($datos[0]->contacto_id)?$datos[0]->contacto_id:'' ) ?>" class="form-control   " id="contacto_id" name="contacto_id">
+                                            <br>
                 </div>
 
-            </div><div class="row">                <div class="col-md-3">
-                    Documento                </div>
-                <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['contacto_documento'])?$post['contacto_documento']:'') ?>" class="form-control obligatorio  number" id="contacto_documento" name="contacto_documento">
-                    <br>
+            </div><div class="row">                <div class="col-md-">
+                    Cédula o NIT                </div>
+                <div class="col-md-">
+                                            <input type="text" value="<?php echo (isset($datos[0]->documento)?$datos[0]->documento:'' ) ?>" class="form-control obligatorio  " id="documento" name="documento">
+                                            <br>
                 </div>
 
-                            <div class="col-md-3">
+            </div><div class="row">                <div class="col-md-">
                     Nombre                </div>
-                <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['contacto_nombre'])?$post['contacto_nombre']:'') ?>" class="form-control obligatorio  " id="contacto_nombre" name="contacto_nombre">
-                    <br>
+                <div class="col-md-">
+                                            <input type="text" value="<?php echo (isset($datos[0]->nombre)?$datos[0]->nombre:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                            <br>
                 </div>
 
-                            <div class="col-md-3">
-                    Dirección                </div>
-                <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['contacto_direccion'])?$post['contacto_direccion']:'') ?>" class="form-control obligatorio  " id="contacto_direccion" name="contacto_direccion">
-                    <br>
+            </div><div class="row">                <div class="col-md-">
+                    Estado                </div>
+                <div class="col-md-">
+                                            <input type="text" value="<?php echo (isset($datos[0]->Estado)?$datos[0]->Estado:'' ) ?>" class="form-control obligatorio  " id="Estado" name="Estado">
+                                            <br>
                 </div>
 
-                            <div class="col-md-3">
+            </div><div class="row">                <div class="col-md-">
+                    Direccion                </div>
+                <div class="col-md-">
+                                            <input type="text" value="<?php echo (isset($datos[0]->direccion)?$datos[0]->direccion:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
+                                            <br>
+                </div>
+
+            </div><div class="row">                <div class="col-md-">
                     Telefono fijo                </div>
-                <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['contacto_telefono_fijo'])?$post['contacto_telefono_fijo']:'') ?>" class="form-control obligatorio  number" id="contacto_telefono_fijo" name="contacto_telefono_fijo">
-                    <br>
+                <div class="col-md-">
+                                            <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo)?$datos[0]->telefono_fijo:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
+                                            <br>
                 </div>
 
-                            <div class="col-md-3">
-                    Celular                </div>
-                <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['contacto_celular'])?$post['contacto_celular']:'') ?>" class="form-control   " id="contacto_celular" name="contacto_celular">
-                    <br>
+            </div><div class="row">                <div class="col-md-">
+                    celular                </div>
+                <div class="col-md-">
+                                            <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   " id="celular" name="celular">
+                                            <br>
                 </div>
 
-                            <div class="col-md-3">
-                    Email                </div>
-                <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['contacto_email'])?$post['contacto_email']:'') ?>" class="form-control   " id="contacto_email" name="contacto_email">
-                    <br>
+            </div><div class="row">                <div class="col-md-">
+                    email                </div>
+                <div class="col-md-">
+                                            <input type="email" value="<?php echo (isset($datos[0]->email)?$datos[0]->email:'' ) ?>" class="form-control   " id="email" name="email">
+                                            <br>
                 </div>
 
-                            <div class="col-md-3">
-                    Parentesco                </div>
-                <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['contacto_parentesco'])?$post['contacto_parentesco']:'') ?>" class="form-control   " id="contacto_parentesco" name="contacto_parentesco">
-                    <br>
+            </div><div class="row">                <div class="col-md-">
+                    parentesco                </div>
+                <div class="col-md-">
+                                            <input type="text" value="<?php echo (isset($datos[0]->parentesco)?$datos[0]->parentesco:'' ) ?>" class="form-control   " id="parentesco" name="parentesco">
+                                            <br>
                 </div>
 
-                            <div class="col-md-3">
-                    Tiene o no tiene llaves de la casa                </div>
-                <div class="col-md-3">
-                    <input type="checkbox" value="<?php echo (isset($post['contacto_llaves'])?$post['contacto_llaves']:'') ?>" class="form-control   " id="contacto_llaves" name="contacto_llaves">
-                    <br>
+            </div><div class="row">                <div class="col-md-">
+                    Tiene o no llaves de la casa                </div>
+                <div class="col-md-">
+                                            <input type="checkbox" value="<?php echo (isset($datos[0]->llaves)?$datos[0]->llaves:'' ) ?>" class="form-control   " id="llaves" name="llaves">
+                                            <br>
                 </div>
 
-                            <div class="col-md-3">
-                    Ciudador                </div>
-                <div class="col-md-3">
-                    <input type="checkbox" value="<?php echo (isset($post['contacto_cuidador'])?$post['contacto_cuidador']:'') ?>" class="form-control   " id="contacto_cuidador" name="contacto_cuidador">
-                    <br>
+            </div><div class="row">                <div class="col-md-">
+                    Cuidador                </div>
+                <div class="col-md-">
+                                            <input type="checkbox" value="<?php echo (isset($datos[0]->cuidador)?$datos[0]->cuidador:'' ) ?>" class="form-control   " id="cuidador" name="cuidador">
+                                            <br>
                 </div>
 
                 </div>
@@ -81,15 +137,16 @@
         <table class="table table-bordered">
             <thead>
                                     <th></th>
-                                    <th>Documento</th>
+                                    <th>Cédula o NIT</th>
                                     <th>Nombre</th>
-                                    <th>Dirección</th>
+                                    <th>Estado</th>
+                                    <th>Direccion</th>
                                     <th>Telefono fijo</th>
-                                    <th>Ccelular</th>
-                                    <th>Email</th>
-                                    <th>Parentesco</th>
-                                    <th>Tiene o no tiene llaves de la casa</th>
-                                    <th>Ciudador</th>
+                                    <th>celular</th>
+                                    <th>email</th>
+                                    <th>parentesco</th>
+                                    <th>Tiene o no llaves de la casa</th>
+                                    <th>Cuidador</th>
                             <th>Acción</th>
             </thead>
             <tbody>

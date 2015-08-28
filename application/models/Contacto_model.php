@@ -5,11 +5,6 @@ class Contacto_model extends CI_Model {
         parent::__construct();
     }
     function save_contacto($post){
-        
-        if(!isset($post['contacto_llaves']))
-            $this->db->set('contacto_llaves','NO');
-        if(!isset($post['contacto_cuidador']))
-            $this->db->set('contacto_cuidador','NO');
         if(isset($post['campo'])){ 
         $this->db->where($post["campo"],$post[$post["campo"]]);
             unset($post['campo']);
@@ -33,52 +28,53 @@ class Contacto_model extends CI_Model {
             if(isset($post['contacto_id']))
         if($post['contacto_id']!="")
         $this->db->like('contacto_id',$post['contacto_id']);
-                    if(isset($post['contacto_documento']))
-        if($post['contacto_documento']!="")
-        $this->db->like('contacto_documento',$post['contacto_documento']);
-                    if(isset($post['contacto_nombre']))
-        if($post['contacto_nombre']!="")
-        $this->db->like('contacto_nombre',$post['contacto_nombre']);
-                    if(isset($post['contacto_fecha_creacion']))
-        if($post['contacto_fecha_creacion']!="")
-        $this->db->like('contacto_fecha_creacion',$post['contacto_fecha_creacion']);
-                    if(isset($post['contacto_direccion']))
-        if($post['contacto_direccion']!="")
-        $this->db->like('contacto_direccion',$post['contacto_direccion']);
-                    if(isset($post['contacto_telefono_fijo']))
-        if($post['contacto_telefono_fijo']!="")
-        $this->db->like('contacto_telefono_fijo',$post['contacto_telefono_fijo']);
-                    if(isset($post['contacto_celular']))
-        if($post['contacto_celular']!="")
-        $this->db->like('contacto_celular',$post['contacto_celular']);
-                    if(isset($post['contacto_email']))
-        if($post['contacto_email']!="")
-        $this->db->like('contacto_email',$post['contacto_email']);
-                    if(isset($post['contacto_parentesco']))
-        if($post['contacto_parentesco']!="")
-        $this->db->like('contacto_parentesco',$post['contacto_parentesco']);
-                    if(isset($post['contacto_llaves']))
-        if($post['contacto_llaves']!="")
-        $this->db->like('contacto_llaves',$post['contacto_llaves']);
-                    if(isset($post['contacto_cuidador']))
-        if($post['contacto_cuidador']!="")
-        $this->db->like('contacto_cuidador',$post['contacto_cuidador']);
-                    if(isset($post['contacto_borrador']))
-        if($post['contacto_borrador']!="")
-        $this->db->like('contacto_borrador',$post['contacto_borrador']);
+                    if(isset($post['documento']))
+        if($post['documento']!="")
+        $this->db->like('documento',$post['documento']);
+                    if(isset($post['nombre']))
+        if($post['nombre']!="")
+        $this->db->like('nombre',$post['nombre']);
+                    if(isset($post['Estado']))
+        if($post['Estado']!="")
+        $this->db->like('Estado',$post['Estado']);
+                    if(isset($post['fecha_creacion']))
+        if($post['fecha_creacion']!="")
+        $this->db->like('fecha_creacion',$post['fecha_creacion']);
+                    if(isset($post['direccion']))
+        if($post['direccion']!="")
+        $this->db->like('direccion',$post['direccion']);
+                    if(isset($post['telefono_fijo']))
+        if($post['telefono_fijo']!="")
+        $this->db->like('telefono_fijo',$post['telefono_fijo']);
+                    if(isset($post['celular']))
+        if($post['celular']!="")
+        $this->db->like('celular',$post['celular']);
+                    if(isset($post['email']))
+        if($post['email']!="")
+        $this->db->like('email',$post['email']);
+                    if(isset($post['parentesco']))
+        if($post['parentesco']!="")
+        $this->db->like('parentesco',$post['parentesco']);
+                    if(isset($post['llaves']))
+        if($post['llaves']!="")
+        $this->db->like('llaves',$post['llaves']);
+                    if(isset($post['cuidador']))
+        if($post['cuidador']!="")
+        $this->db->like('cuidador',$post['cuidador']);
                     if(isset($post['activo']))
         if($post['activo']!="")
         $this->db->like('activo',$post['activo']);
                                     $this->db->select('contacto_id');
-                                $this->db->select('contacto_documento');
-                                $this->db->select('contacto_nombre');
-                                $this->db->select('contacto_direccion');
-                                $this->db->select('contacto_telefono_fijo');
-                                $this->db->select('contacto_celular');
-                                $this->db->select('contacto_email');
-                                $this->db->select('contacto_parentesco');
-                                $this->db->select('contacto_llaves');
-                                $this->db->select('contacto_cuidador');
+                                $this->db->select('documento');
+                                $this->db->select('nombre');
+                                $this->db->select('Estado');
+                                $this->db->select('direccion');
+                                $this->db->select('telefono_fijo');
+                                $this->db->select('celular');
+                                $this->db->select('email');
+                                $this->db->select('parentesco');
+                                $this->db->select('llaves');
+                                $this->db->select('cuidador');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('contacto');
         $datos=$datos->result();

@@ -3,6 +3,7 @@
 <form action="<=?php echo base_url('index.php/')."<?php echo "/" . ucfirst($post['tabla']) . '/save_' . $post['tabla'] ?>"; ?=>" method="post" onsubmit="return campos()">
     <div>
         <?php
+        $post['columnas']=  str_replace("'", "", $post['columnas']);
         $resul = 12 / $post['columnas'];
         for ($i = 0; $i < count($post['nombre_label']); $i++) {
             if ($post['aparezca'][$i] == 1) {
@@ -18,13 +19,24 @@
 
 
                     <div class="col-md-<?php echo $resul ?>">
-                        <?php if ($post['obligatorio'][$i] != '') {
+                        <?php
+                        if ($post['obligatorio'][$i] != '') {
                             echo "* ";
-                        } ?>
+                        }
+                        ?>
         <?php echo $post['nombre_label'][$i]; ?>
                     </div>
                     <div class="col-md-<?php echo $resul ?>">
+                        <?php if($post['nombre_campo'][$i]=="estado"){
+                            ?>
+                        <select  class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                                <?php
+                        }else{ ?>
                         <input type="<?php echo $post['tipo'][$i]; ?>" value="<=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?$datos[0]-><?php echo $post['nombre_campo'][$i]; ?>:'' ) ?=>" class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                        <?php }?>
                         <br>
                     </div>
 

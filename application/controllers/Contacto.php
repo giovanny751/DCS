@@ -38,7 +38,6 @@ class Contacto extends My_Controller {
         $this->data['post']=$this->input->post();
         if(!isset($this->data['post']['campo']))
         redirect('index.php/Contacto/consult_contacto', 'location');
-        
         $this->data['datos']=$this->Contacto_model->edit_contacto($this->data['post']);
         $this->layout->view('contacto/index', $this->data);
     }

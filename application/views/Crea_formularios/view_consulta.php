@@ -12,11 +12,20 @@
                     $uu = $i;
                 }
                 ?>
-                <div class="col-md-3">
+                <div class="col-md-<?php echo $resul ?>">
                     <?php echo $post['nombre_label'][$i]; ?>
                 </div>
-                <div class="col-md-3">
-                    <input type="<?php echo $post['tipo'][$i]; ?>" value="<=?php echo (isset($post['<?php echo $post['nombre_campo'][$i] ?>'])?$post['<?php echo $post['nombre_campo'][$i] ?>']:'') ?=>" class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                <div class="col-md-<?php echo $resul ?>">
+                    <?php if($post['nombre_campo'][$i]=="estado"){
+                            ?>
+                        <select  class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                                <?php
+                        }else{ ?>
+                        <input type="<?php echo $post['tipo'][$i]; ?>" value="<=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?$datos[0]-><?php echo $post['nombre_campo'][$i]; ?>:'' ) ?=>" class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                        <?php }?>
                     <br>
                 </div>
 
