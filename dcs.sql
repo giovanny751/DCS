@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50624
+Source Server         : localhost
+Source Server Version : 50614
 Source Host           : localhost:3306
 Source Database       : dcs
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-08-29 09:57:50
+Date: 2015-08-30 11:37:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,23 +41,25 @@ INSERT INTO `adminformularios` VALUES ('5', '1', ' Tipo de Empresa', 'pública',
 -- ----------------------------
 DROP TABLE IF EXISTS `aseguradoras`;
 CREATE TABLE `aseguradoras` (
-  `asegu_codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `asegu_tipo` varchar(255) DEFAULT NULL,
-  `asegu_fecha_creacion` timestamp NULL DEFAULT NULL,
-  `asegu_direccion` varchar(255) DEFAULT NULL,
-  `asegu_telefono_fijo` varchar(255) DEFAULT NULL,
-  `asegu_celular` varchar(255) DEFAULT NULL,
-  `asegu_email` varchar(255) DEFAULT NULL,
-  `asegu_borrado` varchar(255) DEFAULT NULL,
+  `aseguradora_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) DEFAULT NULL,
+  `tipo` varchar(255) DEFAULT NULL,
+  `estado` varchar(50) DEFAULT NULL,
+  `fecha_creacion` timestamp NULL DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `telefono_fijo` varchar(255) DEFAULT NULL,
+  `celular` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
-  PRIMARY KEY (`asegu_codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`aseguradora_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of aseguradoras
 -- ----------------------------
-INSERT INTO `aseguradoras` VALUES ('1', 'EPS/IPS', null, 'sd', '44', '34', 'f@jj.com', null, 'S');
-INSERT INTO `aseguradoras` VALUES ('2', 'Prepagada', null, 'CALL', '765432', '', '', null, 'S');
+INSERT INTO `aseguradoras` VALUES ('1', 'ya quedi ', 'EPS/IPS', 'Inactivo', null, 'sd', '44', '34', 'f@jj.com', 'S');
+INSERT INTO `aseguradoras` VALUES ('2', null, 'Prepagada', null, null, 'CALL', '765432', '', '', 'S');
+INSERT INTO `aseguradoras` VALUES ('3', null, 'Prepagada', null, null, 'da', '234', '234', '', 'S');
 
 -- ----------------------------
 -- Table structure for `cargo`
@@ -723,6 +725,31 @@ INSERT INTO `ciudad` VALUES ('47', 'Bucaramanga');
 INSERT INTO `ciudad` VALUES ('48', 'medellin');
 
 -- ----------------------------
+-- Table structure for `clientes`
+-- ----------------------------
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE `clientes` (
+  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) DEFAULT NULL,
+  `fecha_creacion` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `id_tipo_cliente` int(11) DEFAULT NULL,
+  `creado_por` int(11) DEFAULT NULL,
+  `fecha_inicio_contrato` date DEFAULT NULL,
+  `fecha_fin_contrato` date DEFAULT NULL,
+  `estado` varchar(50) DEFAULT NULL,
+  `email` text,
+  `activo` varchar(1) DEFAULT 'S',
+  PRIMARY KEY (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of clientes
+-- ----------------------------
+INSERT INTO `clientes` VALUES ('1', 'sadf', null, '0', null, '2015-01-12', '2015-01-12', 'Activo', '', null);
+INSERT INTO `clientes` VALUES ('2', 'dd', null, '0', null, '2015-01-12', '2015-01-12', 'Activo', '', 'S');
+INSERT INTO `clientes` VALUES ('3', 'asd', null, '3', null, '0000-00-00', '0000-00-00', 'Activo', '', 'S');
+
+-- ----------------------------
 -- Table structure for `contacto`
 -- ----------------------------
 DROP TABLE IF EXISTS `contacto`;
@@ -870,16 +897,21 @@ CREATE TABLE `equipos` (
   `fecha_fabricacion` datetime DEFAULT NULL,
   `tipo_equipo_cod` int(11) DEFAULT NULL,
   `imagen` varchar(100) DEFAULT NULL,
-  `responsable` int(11) DEFAULT NULL,
+  `responsable` varchar(255) DEFAULT NULL,
   `observaciones` text,
-  `borrado` varchar(50) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
+  `fecha_ultima_calibracion` datetime DEFAULT NULL,
+  `empresa_certificadora` text,
+  `adjuntar_certificado` varchar(255) DEFAULT NULL,
+  `examen_cod` int(11) DEFAULT NULL,
+  `variable_codigo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_equipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of equipos
 -- ----------------------------
+INSERT INTO `equipos` VALUES ('1', '123', null, 'Activo', '123', '123', '', '0000-00-00 00:00:00', '1', '', '0', '', 'S', '0000-00-00 00:00:00', '', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `estados`
@@ -920,19 +952,19 @@ CREATE TABLE `examenes` (
   `examen_cod` int(11) NOT NULL AUTO_INCREMENT,
   `examen_nombre` varchar(255) DEFAULT NULL,
   `examen_fecha_creacion` timestamp NULL DEFAULT NULL,
-  `examen_borrado` varchar(255) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`examen_cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of examenes
 -- ----------------------------
-INSERT INTO `examenes` VALUES ('1', 'prueba1', null, null, null);
-INSERT INTO `examenes` VALUES ('2', 'prueba1', null, null, null);
-INSERT INTO `examenes` VALUES ('3', 'prueba', null, null, null);
-INSERT INTO `examenes` VALUES ('4', 'prueba', null, null, 'S');
-INSERT INTO `examenes` VALUES ('5', 'prueba2', null, null, 'S');
+INSERT INTO `examenes` VALUES ('1', 'prueba1', null, null);
+INSERT INTO `examenes` VALUES ('2', 'prueba1', null, null);
+INSERT INTO `examenes` VALUES ('3', 'prueba', null, null);
+INSERT INTO `examenes` VALUES ('4', 'prueba', null, 'S');
+INSERT INTO `examenes` VALUES ('5', 'prueba2', null, 'S');
+INSERT INTO `examenes` VALUES ('6', 'ya :)dd', null, 'N');
 
 -- ----------------------------
 -- Table structure for `genero`
@@ -982,13 +1014,14 @@ CREATE TABLE `hospitales` (
   `email` varchar(255) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`codigo_hospital`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of hospitales
 -- ----------------------------
 INSERT INTO `hospitales` VALUES ('1', 'sdf', null, null, 'sdf', '234', '324', 'dsf', 'N');
-INSERT INTO `hospitales` VALUES ('2', 'NELSON BARBOSA', null, null, 'CL 60 B 18 D 36 SUR', '4', '345435', 'ff@hh', 'S');
+INSERT INTO `hospitales` VALUES ('2', 'NELSON BARBOSA', 'Activo', null, 'CL 60 B 18 D 36 SUR', '4', '345435', 'ff@hh', 'S');
+INSERT INTO `hospitales` VALUES ('3', 'dsf', 'Inactivo', null, '234', '234', '234', '', 'S');
 
 -- ----------------------------
 -- Table structure for `ingreso`
@@ -999,7 +1032,7 @@ CREATE TABLE `ingreso` (
   `usu_id` int(11) NOT NULL,
   `ing_fechaIngreso` datetime NOT NULL,
   PRIMARY KEY (`ing_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ingreso
@@ -1027,6 +1060,8 @@ INSERT INTO `ingreso` VALUES ('20', '1', '2015-08-26 00:07:16');
 INSERT INTO `ingreso` VALUES ('21', '1', '2015-08-26 02:56:11');
 INSERT INTO `ingreso` VALUES ('22', '1', '2015-08-28 00:44:26');
 INSERT INTO `ingreso` VALUES ('23', '1', '2015-08-28 03:21:15');
+INSERT INTO `ingreso` VALUES ('24', '1', '2015-08-30 00:52:05');
+INSERT INTO `ingreso` VALUES ('25', '1', '2015-08-30 18:20:49');
 
 -- ----------------------------
 -- Table structure for `inicio`
@@ -1066,23 +1101,25 @@ CREATE TABLE `login_attempts` (
 DROP TABLE IF EXISTS `medicos`;
 CREATE TABLE `medicos` (
   `medico_codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `medico_nombre` varchar(255) DEFAULT NULL,
-  `medico_fecha_creacion` timestamp NULL DEFAULT NULL,
-  `medico_matricula_prof` varchar(255) DEFAULT NULL,
-  `medico_direccion` varchar(255) DEFAULT NULL,
-  `medico_telefono_fijo` varchar(255) DEFAULT NULL,
-  `medico_celular` varchar(255) DEFAULT NULL,
-  `medico_email` varchar(255) DEFAULT NULL,
-  `medico_borrado` varchar(255) DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `fecha_creacion` timestamp NULL DEFAULT NULL,
+  `Estado` varchar(50) DEFAULT NULL,
+  `matricula_profesional` varchar(255) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `telefono_fijo` varchar(255) DEFAULT NULL,
+  `celular` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`medico_codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of medicos
 -- ----------------------------
-INSERT INTO `medicos` VALUES ('1', 'NELSON', null, '123', '123', '123', '123', '123@cc.com', null, 'S');
-INSERT INTO `medicos` VALUES ('2', 'ne', null, '121d', '123', '123', '123', '123@hh.com', null, 'S');
+INSERT INTO `medicos` VALUES ('1', 'NELSON', null, null, '123', '123', '123', '123', '123@cc.com', 'S');
+INSERT INTO `medicos` VALUES ('2', 'ne', null, null, '121d', '123', '123', '123', '123@hh.com', 'S');
+INSERT INTO `medicos` VALUES ('3', 'fdg', null, 'Activo', '324', 'dfg', '34', '', '', 'S');
+INSERT INTO `medicos` VALUES ('4', '123', null, 'Activo', '123', '123', '1123', '', '', 'S');
 
 -- ----------------------------
 -- Table structure for `modulo`
@@ -1121,6 +1158,29 @@ INSERT INTO `modulo` VALUES ('87', '74', 'INFORMES', '0', null, null, '1');
 INSERT INTO `modulo` VALUES ('88', '0', 'PROYECTO', '88', null, null, '1');
 
 -- ----------------------------
+-- Table structure for `niveles_alarma`
+-- ----------------------------
+DROP TABLE IF EXISTS `niveles_alarma`;
+CREATE TABLE `niveles_alarma` (
+  `id_niveles_alarma` int(11) DEFAULT NULL,
+  `descripcion` text,
+  `fecha_creacion` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `examen_cod` int(11) DEFAULT NULL,
+  `analisis_resultado` varchar(50) DEFAULT NULL,
+  `n_repeticiones_minimas` varchar(100) DEFAULT NULL,
+  `n_repeticiones_maximas` varchar(100) DEFAULT NULL,
+  `tiempo` varchar(100) DEFAULT NULL,
+  `frecuencia` varchar(50) DEFAULT NULL,
+  `color` varchar(100) DEFAULT NULL,
+  `id_protocolo` int(11) DEFAULT NULL,
+  `activo` varchar(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of niveles_alarma
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `numero_empleados`
 -- ----------------------------
 DROP TABLE IF EXISTS `numero_empleados`;
@@ -1137,6 +1197,41 @@ INSERT INTO `numero_empleados` VALUES ('1', 'Hasta 10 trabajadores');
 INSERT INTO `numero_empleados` VALUES ('2', 'De 11 a 50 trabajadores');
 INSERT INTO `numero_empleados` VALUES ('3', 'De 51 a 200 trabajadores');
 INSERT INTO `numero_empleados` VALUES ('4', 'De 201 o más trabajadores');
+
+-- ----------------------------
+-- Table structure for `pacientes`
+-- ----------------------------
+DROP TABLE IF EXISTS `pacientes`;
+CREATE TABLE `pacientes` (
+  `id_paciente` int(11) NOT NULL AUTO_INCREMENT,
+  `cedula_paciente` varchar(255) DEFAULT NULL,
+  `nombres` varchar(255) DEFAULT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `fecha_afiliacion` date DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `barrio` varchar(255) DEFAULT NULL,
+  `ciudad` varchar(255) DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `estatura` varchar(255) DEFAULT NULL,
+  `peso` varchar(255) DEFAULT NULL,
+  `telefono_fijo` varchar(255) DEFAULT NULL,
+  `celular` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `fecha_inicio_contrato` date DEFAULT NULL,
+  `fecha_fin_contrato` date DEFAULT NULL,
+  `tipo_cliente` int(11) DEFAULT NULL,
+  `cliente` int(11) DEFAULT NULL,
+  `medico` int(11) DEFAULT NULL,
+  `observaciones` text,
+  `activo` varchar(1) DEFAULT 'S',
+  PRIMARY KEY (`id_paciente`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of pacientes
+-- ----------------------------
+INSERT INTO `pacientes` VALUES ('1', '123', '123', '123', '0000-00-00', '', '123', '123', '123', '2012-01-11', '12', '12', '234', '', '', '2015-01-12', '2015-01-12', '3', '2', '0', '', 'N');
 
 -- ----------------------------
 -- Table structure for `pais`
@@ -1505,6 +1600,25 @@ INSERT INTO `tamano_empresa` VALUES ('ME', 'Mediana empresa');
 INSERT INTO `tamano_empresa` VALUES ('GR', 'Gran empresa');
 
 -- ----------------------------
+-- Table structure for `tipo_alarma`
+-- ----------------------------
+DROP TABLE IF EXISTS `tipo_alarma`;
+CREATE TABLE `tipo_alarma` (
+  `id_tipo_alarma` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` text,
+  `fecha_creacion` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `examen` text,
+  `analisis_resultados` varchar(50) DEFAULT NULL,
+  `id_niveles_alarma` int(11) DEFAULT NULL,
+  `activo` varchar(1) DEFAULT 'S',
+  PRIMARY KEY (`id_tipo_alarma`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tipo_alarma
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `tipo_aseguradora`
 -- ----------------------------
 DROP TABLE IF EXISTS `tipo_aseguradora`;
@@ -1517,6 +1631,26 @@ CREATE TABLE `tipo_aseguradora` (
 -- ----------------------------
 -- Records of tipo_aseguradora
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `tipo_cliente`
+-- ----------------------------
+DROP TABLE IF EXISTS `tipo_cliente`;
+CREATE TABLE `tipo_cliente` (
+  `id_tipo_cliente` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` text,
+  `fecha_creacion` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `creado_por` int(11) DEFAULT NULL,
+  `activo` varchar(1) DEFAULT 'S',
+  PRIMARY KEY (`id_tipo_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tipo_cliente
+-- ----------------------------
+INSERT INTO `tipo_cliente` VALUES ('1', 'ya', null, null, null);
+INSERT INTO `tipo_cliente` VALUES ('2', 'ya', null, null, null);
+INSERT INTO `tipo_cliente` VALUES ('3', 'sada', null, null, 'S');
 
 -- ----------------------------
 -- Table structure for `tipo_contrato`
@@ -1558,18 +1692,18 @@ CREATE TABLE `tipo_equipo` (
   `tipo_equipo_cod` int(11) NOT NULL AUTO_INCREMENT,
   `referencia` varchar(255) DEFAULT NULL,
   `fecha_creacion` timestamp NULL DEFAULT NULL,
-  `borrado` varchar(50) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`tipo_equipo_cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tipo_equipo
 -- ----------------------------
-INSERT INTO `tipo_equipo` VALUES ('1', 'nelson', null, null, 'S');
-INSERT INTO `tipo_equipo` VALUES ('2', 'ya quedo', null, null, 'S');
-INSERT INTO `tipo_equipo` VALUES ('3', 'eded', null, null, 'S');
-INSERT INTO `tipo_equipo` VALUES ('4', 'dddd', null, null, 'S');
+INSERT INTO `tipo_equipo` VALUES ('1', 'nelson', null, 'S');
+INSERT INTO `tipo_equipo` VALUES ('2', 'ya quedo', null, 'S');
+INSERT INTO `tipo_equipo` VALUES ('3', 'eded', null, 'S');
+INSERT INTO `tipo_equipo` VALUES ('4', 'dddd', null, 'S');
+INSERT INTO `tipo_equipo` VALUES ('5', 'refedddd', null, 'S');
 
 -- ----------------------------
 -- Table structure for `tipo_inputs`
@@ -1650,17 +1784,18 @@ INSERT INTO `usermodule` VALUES ('1', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `variables`;
 CREATE TABLE `variables` (
-  `variable_cod` int(11) NOT NULL AUTO_INCREMENT,
-  `variable_descrip` text,
-  `variable_fecha_creacion` timestamp NULL DEFAULT NULL,
+  `variable_codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `hl7tag` varchar(255) DEFAULT NULL,
+  `descripcion` text,
+  `fecha_creacion` timestamp NULL DEFAULT NULL,
   `examen_cod` int(11) DEFAULT NULL,
-  `variable_borrado` varchar(255) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
-  PRIMARY KEY (`variable_cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`variable_codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of variables
 -- ----------------------------
-INSERT INTO `variables` VALUES ('1', 'rffff', null, '5', null, null);
-INSERT INTO `variables` VALUES ('2', 'ddd', null, '4', null, 'S');
+INSERT INTO `variables` VALUES ('1', null, 'rffff', null, '5', null);
+INSERT INTO `variables` VALUES ('2', null, 'ddd', null, '4', 'S');
+INSERT INTO `variables` VALUES ('3', 'sss', 'ee', null, '4', 'S');
