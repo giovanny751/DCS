@@ -387,3 +387,22 @@ function lista($name, $id, $class, $tabla, $option_value, $option_name, $value, 
             return false;
         }
     }
+    function auto($tabla,$idcampo,$nombrecampo,$letra) {
+            $search = buscador($tabla,$nombrecampo,$letra);
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->$nombrecampo,
+                       'value' => $result->$nombrecampo
+                );
+                $h++;
+            }
+            return $data;
+    }
+    function buscador($tabla,$nombrecampo,$palabra){
+        $CI = & get_instance();
+        $CI->db->like($nombrecampo,$palabra);
+        $user = $CI->db->get($tabla);
+        return $user->result();
+    }

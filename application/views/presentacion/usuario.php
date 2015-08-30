@@ -1,49 +1,54 @@
-<div class="alert alert-info"><center><b>REGISTRO USUARIO</b></center></div>
-<div class="row">
-    <div class="table-responsive ">
-        <table class="table table-responsive table-striped table-bordered">
-            <thead>
-            <th style="width: 220px">Usuario</th>
-            <th style="width: 220px">Email</th>
-            <th style="width: 220px">Numero Celular</th>
-            <th style="width: 220px">Estado</th>
-            <th style="width: 220px">Modificar</th>
-            <th style="width: 220px">Roles</th>
-            </thead>
-            <tbody>
-                <?php foreach ($usaurios as $todosusuarios) { ?>
-                    <tr>
-                        <td><?php echo $todosusuarios['usu_nombres']; ?></td>
-                        <td><?php echo $todosusuarios['usu_correo']; ?></td>
-                        <td><?php
-                            if (!empty($todosusuarios['phone'])) {
-                                echo $todosusuarios['phone'];
-                            } else {
-                                echo 0;
-                            }
-                            ?></td>
-                        <td><?php
-                            if ($todosusuarios['est_id'] == 1)
-                                echo "Activo";
-                            else {
-                                echo "Inactivo";
-                            }
-                            ?></td>
-                        <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?php echo $todosusuarios['usu_id']; ?>">Modificar</button></td>
-                        <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"   class="btn btn-info permiso" usuarioid="<?php echo $todosusuarios['usu_id']; ?>">Roles</button></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-        <div id="alerta"></div>
-    </div>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i>REGISTRO USUARIO
+    </h5>
 </div>
+<div class='well'>
+    <div class="row">
+        <div class="table-responsive ">
+            <table class="table table-responsive table-striped table-bordered">
+                <thead>
+                <th style="width: 220px">Usuario</th>
+                <th style="width: 220px">Email</th>
+                <th style="width: 220px">Numero Celular</th>
+                <th style="width: 220px">Estado</th>
+                <th style="width: 220px">Modificar</th>
+                <th style="width: 220px">Roles</th>
+                </thead>
+                <tbody>
+                    <?php foreach ($usaurios as $todosusuarios) { ?>
+                        <tr>
+                            <td><?php echo $todosusuarios['usu_nombre'] . " " . $todosusuarios['usu_apellido']; ?></td>
+                            <td><?php echo $todosusuarios['usu_email']; ?></td>
+                            <td><?php
+                                if (!empty($todosusuarios['phone'])) {
+                                    echo $todosusuarios['phone'];
+                                } else {
+                                    echo 0;
+                                }
+                                ?></td>
+                            <td><?php
+                                if ($todosusuarios['est_id'] == 1)
+                                    echo "Activo";
+                                else {
+                                    echo "Inactivo";
+                                }
+                                ?></td>
+                            <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?php echo $todosusuarios['usu_id']; ?>">Modificar</button></td>
+                            <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"   class="btn btn-info permiso" usuarioid="<?php echo $todosusuarios['usu_id']; ?>">Roles</button></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <div id="alerta"></div>
+        </div>
+    </div>
 </div>
 
 <!--Modal-->
 
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" >
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -70,11 +75,8 @@
                         <div class="row">
                             <form method="post" id="formulariopermisos">
                                 <input type="hidden" name="usuarioid" id="usuarioid">
-                                <div class="col-md-6 col-lg-6 col-sm-6 col-sx-6 rolseleccionado">
-
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-sm-6 col-sx-6 permisomenu">
-
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-sx-12 permisomenu">
+                                    
                                 </div>
                             </form>    
                         </div>
@@ -105,13 +107,9 @@
     $('#ingresousuario').hide();
     $('.insertarrol').click(function () {
         $('.permisomenu *').remove();
-        $('.rolseleccionado *').remove();
         var idusuario = $(this).attr('usuarioid');
         var idrol = $('#roles').val();
         var textrol = $('#roles option:selected').text();
-        if (idrol != "") {
-            $('.rolseleccionado').append('<input type="hidden" name="roluser" value="' + idrol + '"><div style="cursor:pointer" class="alert alert-success rolusuario" rolid="' + idrol + '">' + textrol + '</div>');
-        }
         $('.permisomenu *').remove();
         $.post("<?= base_url('index.php/presentacion/permisosporrol') ?>", {idrol: idrol, idusuario: idusuario}, function (data) {
             $('.permisomenu').append(data);

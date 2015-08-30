@@ -45,5 +45,17 @@ class <?php echo $clase ?> extends My_Controller {
         $this->data['datos']=$this-><?php echo $model;?>->edit_<?php echo $post['tabla']?>($this->data['post']);
         $this->layout->view('<?php echo $post['tabla']?>/index', $this->data);
     }
+    <?php 
+    for ($i = 0; $i < count($post['nombre_label']); $i++) {
+        if($post['autocomplete'][$i]==1){
+            ?>
+                function <?php echo 'autocomplete_' . $post['nombre_campo'][$i];?>(){
+                  $info = auto("<?php echo $post['autocomplete1'][$i]; ?>","<?php echo $post['autocomplete2'][$i]; ?>","<?php echo $post['autocomplete3'][$i]; ?>",$this->input->get('term'));
+                  $this->output->set_content_type('application/json')->set_output(json_encode($info));
+                }
+            <?php
+        }
+    }
+    ?>
 }
 ?=>

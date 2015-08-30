@@ -19,7 +19,24 @@
                         </label>
                 </div>
                 <div class="col-md-<?php echo $resul ?>">
-                    <?php if($post['nombre_campo'][$i]=="estado"){
+                    
+                    <?php 
+                    
+                    if($post['autocomplete'][$i]==1){
+                    ?>
+                    <script>
+                        $('document').ready(function() {
+                            $('#<?php echo $post['nombre_campo'][$i];?>').autocomplete({
+                                source: "<=?php echo base_url("index.php/<?php echo "/" . ucfirst($post['tabla']) . '/autocomplete_' . $post['nombre_campo'][$i] ?>") ?=>",
+                                minLength: 3
+                            });
+                        });
+                    </script>
+                    <?php
+                    }
+                    
+                    
+                    if($post['nombre_campo'][$i]=="estado" || $post['nombre_campo'][$i]=="Estado"){
                             ?>
                         <select  class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
                             <option value=""></option>

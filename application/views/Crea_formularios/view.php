@@ -3,12 +3,11 @@
 <form action="<=?php echo base_url('index.php/')."<?php echo "/" . ucfirst($post['tabla']) . '/save_' . $post['tabla'] ?>"; ?=>" method="post" onsubmit="return campos()">
     <div>
         <?php
-        $post['columnas']=  str_replace("'", "", $post['columnas']);
+        $post['columnas'] = str_replace("'", "", $post['columnas']);
         $resul = 12 / $post['columnas'];
         for ($i = 0; $i < count($post['nombre_label']); $i++) {
+            
             if ($post['aparezca'][$i] == 1) {
-
-//                echo $i % $post['columnas']."**";
                 if ($i == 0) {
                     ?><div class="row"><?php
                 } else if ($resul % $i == 0) {
@@ -20,26 +19,26 @@
 
                     <div class="col-md-<?php echo $resul ?>">
                         <label for="<?php echo $post['nombre_campo'][$i]; ?>">
-                        <?php
-                        if ($post['obligatorio'][$i] != '') {
-                            echo "* ";
-                        }
-                        ?>
-        <?php echo $post['nombre_label'][$i]; ?>
-                            </label>
+                            <?php
+                            if ($post['obligatorio'][$i] != '') {
+                                echo "* ";
+                            }
+                            ?>
+                            <?php echo $post['nombre_label'][$i]; ?>
+                        </label>
                     </div>
                     <div class="col-md-<?php echo $resul ?>">
-                        <?php if($post['nombre_campo'][$i]=="estado" || $post['nombre_campo'][$i]=="Estado"){
+                        <?php if ($post['nombre_campo'][$i] == "estado" || $post['nombre_campo'][$i] == "Estado") {
                             ?>
-                        <select  class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
-                            <option value=""></option>
-                            <option value="Activo" <=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?(($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>=='Activo')?'selected="selected"':''):'' ) ?=>>Activo</option>
-                            <option value="Inactivo" <=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?(($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>=='Inactivo')?'selected="selected"':''):'' ) ?=>>Inactivo</option>
-                        </select>
-                                <?php
-                        }else{ ?>
-                        <input type="<?php echo $post['tipo'][$i]; ?>" value="<=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?$datos[0]-><?php echo $post['nombre_campo'][$i]; ?>:'' ) ?=>" class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
-                        <?php }?>
+                            <select  class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                                <option value=""></option>
+                                <option value="Activo" <=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?(($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>=='Activo')?'selected="selected"':''):'' ) ?=>>Activo</option>
+                                <option value="Inactivo" <=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?(($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>=='Inactivo')?'selected="selected"':''):'' ) ?=>>Inactivo</option>
+                            </select>
+                            <?php } else {
+                            ?>
+                            <input type="<?php echo $post['tipo'][$i]; ?>" value="<=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?$datos[0]-><?php echo $post['nombre_campo'][$i]; ?>:'' ) ?=>" class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                        <?php } ?>
                         <br>
                     </div>
 
@@ -75,9 +74,11 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function (tecla) {
+    $('body').delegate('.number', 'keypress', function(tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
     $('.fecha').datepicker();
+
+
 </script>
