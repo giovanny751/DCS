@@ -1,48 +1,60 @@
 <h1>Medicos</h1>
 <form action="<?php echo base_url('index.php/').'/Medicos/consult_medicos'; ?>" method="post" >
+    <div>
+    <div class="row">                <div class="col-md-3">
+                                    </div>
+                <div class="col-md-3">
+                                            <input type="hidden" value="<?php echo (isset($post['medico_codigo'])?$post['medico_codigo']:'' ) ?>" class="form-control   " id="medico_codigo" name="medico_codigo">
+                                            <br>
+                </div>
 
-                    <input type="hidden" value="<?php echo (isset($post['medico_codigo'])?$post['medico_codigo']:'') ?>" class="form-control   " id="medico_codigo" name="medico_codigo">
-
-
-            <div class="row">                <div class="col-md-3">
+            </div><div class="row">                <div class="col-md-3">
                     Nombre                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['medico_nombre'])?$post['medico_nombre']:'') ?>" class="form-control obligatorio  " id="medico_nombre" name="medico_nombre">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                            <br>
                 </div>
+
             </div><div class="row">                <div class="col-md-3">
-                    Matricula profecional                </div>
+                    Estado                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['medico_matricula_prof'])?$post['medico_matricula_prof']:'') ?>" class="form-control obligatorio  " id="medico_matricula_prof" name="medico_matricula_prof">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['Estado'])?$post['Estado']:'' ) ?>" class="form-control obligatorio  " id="Estado" name="Estado">
+                                            <br>
+                </div>
+
+                            <div class="col-md-3">
+                    Matrícula Profesional                </div>
+                <div class="col-md-3">
+                                            <input type="text" value="<?php echo (isset($post['matricula_profesional'])?$post['matricula_profesional']:'' ) ?>" class="form-control obligatorio  number" id="matricula_profesional" name="matricula_profesional">
+                                            <br>
                 </div>
 
                             <div class="col-md-3">
                     Dirección                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['medico_direccion'])?$post['medico_direccion']:'') ?>" class="form-control obligatorio  " id="medico_direccion" name="medico_direccion">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['direccion'])?$post['direccion']:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
+                                            <br>
                 </div>
 
                             <div class="col-md-3">
                     Telefono fijo                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['medico_telefono_fijo'])?$post['medico_telefono_fijo']:'') ?>" class="form-control obligatorio  number" id="medico_telefono_fijo" name="medico_telefono_fijo">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['telefono_fijo'])?$post['telefono_fijo']:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
+                                            <br>
                 </div>
 
                             <div class="col-md-3">
                     Celular                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['medico_celular'])?$post['medico_celular']:'') ?>" class="form-control   number" id="medico_celular" name="medico_celular">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['celular'])?$post['celular']:'' ) ?>" class="form-control   number" id="celular" name="celular">
+                                            <br>
                 </div>
 
                             <div class="col-md-3">
                     Email                </div>
                 <div class="col-md-3">
-                    <input type="email" value="<?php echo (isset($post['medico_email'])?$post['medico_email']:'') ?>" class="form-control   " id="medico_email" name="medico_email">
-                    <br>
+                                            <input type="email" value="<?php echo (isset($post['email'])?$post['email']:'' ) ?>" class="form-control   " id="email" name="email">
+                                            <br>
                 </div>
 
                 </div>
@@ -55,7 +67,8 @@
             <thead>
                                     <th></th>
                                     <th>Nombre</th>
-                                    <th>Matricula profecional</th>
+                                    <th>Estado</th>
+                                    <th>Matrícula Profesional</th>
                                     <th>Dirección</th>
                                     <th>Telefono fijo</th>
                                     <th>Celular</th>

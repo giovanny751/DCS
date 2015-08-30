@@ -1,0 +1,121 @@
+<?php 
+class Pacientes__model extends CI_Model {
+
+    function __construct() {
+        parent::__construct();
+    }
+    function save_pacientes($post){
+        if(isset($post['campo'])){ 
+        $this->db->where($post["campo"],$post[$post["campo"]]);
+            unset($post['campo']);
+            $this->db->update('pacientes',$post);
+        }else{
+            $this->db->insert('pacientes',$post);
+        }
+        
+    }
+    function delete_pacientes($post){
+        $this->db->set('ACTIVO','N');
+        $this->db->where($post["campo"],$post[$post["campo"]]);
+        $this->db->update('pacientes');
+    }
+    function edit_pacientes($post){
+        $this->db->where($post["campo"],$post[$post["campo"]]);
+        $datos=$this->db->get('pacientes',$post);
+        return $datos=$datos->result();
+    }
+    function consult_pacientes($post){
+            if(isset($post['id_paciente']))
+        if($post['id_paciente']!="")
+        $this->db->like('id_paciente',$post['id_paciente']);
+                    if(isset($post['cedula_paciente']))
+        if($post['cedula_paciente']!="")
+        $this->db->like('cedula_paciente',$post['cedula_paciente']);
+                    if(isset($post['nombres']))
+        if($post['nombres']!="")
+        $this->db->like('nombres',$post['nombres']);
+                    if(isset($post['apellidos']))
+        if($post['apellidos']!="")
+        $this->db->like('apellidos',$post['apellidos']);
+                    if(isset($post['fecha_afiliacion']))
+        if($post['fecha_afiliacion']!="")
+        $this->db->like('fecha_afiliacion',$post['fecha_afiliacion']);
+                    if(isset($post['foto']))
+        if($post['foto']!="")
+        $this->db->like('foto',$post['foto']);
+                    if(isset($post['direccion']))
+        if($post['direccion']!="")
+        $this->db->like('direccion',$post['direccion']);
+                    if(isset($post['barrio']))
+        if($post['barrio']!="")
+        $this->db->like('barrio',$post['barrio']);
+                    if(isset($post['ciudad']))
+        if($post['ciudad']!="")
+        $this->db->like('ciudad',$post['ciudad']);
+                    if(isset($post['fecha_nacimiento']))
+        if($post['fecha_nacimiento']!="")
+        $this->db->like('fecha_nacimiento',$post['fecha_nacimiento']);
+                    if(isset($post['estatura']))
+        if($post['estatura']!="")
+        $this->db->like('estatura',$post['estatura']);
+                    if(isset($post['peso']))
+        if($post['peso']!="")
+        $this->db->like('peso',$post['peso']);
+                    if(isset($post['telefono_fijo']))
+        if($post['telefono_fijo']!="")
+        $this->db->like('telefono_fijo',$post['telefono_fijo']);
+                    if(isset($post['celular']))
+        if($post['celular']!="")
+        $this->db->like('celular',$post['celular']);
+                    if(isset($post['email']))
+        if($post['email']!="")
+        $this->db->like('email',$post['email']);
+                    if(isset($post['fecha_inicio_contrato']))
+        if($post['fecha_inicio_contrato']!="")
+        $this->db->like('fecha_inicio_contrato',$post['fecha_inicio_contrato']);
+                    if(isset($post['fecha_fin_contrato']))
+        if($post['fecha_fin_contrato']!="")
+        $this->db->like('fecha_fin_contrato',$post['fecha_fin_contrato']);
+                    if(isset($post['tipo_cliente']))
+        if($post['tipo_cliente']!="")
+        $this->db->like('tipo_cliente',$post['tipo_cliente']);
+                    if(isset($post['cliente']))
+        if($post['cliente']!="")
+        $this->db->like('cliente',$post['cliente']);
+                    if(isset($post['medico']))
+        if($post['medico']!="")
+        $this->db->like('medico',$post['medico']);
+                    if(isset($post['observaciones']))
+        if($post['observaciones']!="")
+        $this->db->like('observaciones',$post['observaciones']);
+                    if(isset($post['activo']))
+        if($post['activo']!="")
+        $this->db->like('activo',$post['activo']);
+                                    $this->db->select('id_paciente');
+                                $this->db->select('cedula_paciente');
+                                $this->db->select('nombres');
+                                $this->db->select('apellidos');
+                                $this->db->select('fecha_afiliacion');
+                                $this->db->select('foto');
+                                $this->db->select('direccion');
+                                $this->db->select('barrio');
+                                $this->db->select('ciudad');
+                                $this->db->select('fecha_nacimiento');
+                                $this->db->select('estatura');
+                                $this->db->select('peso');
+                                $this->db->select('telefono_fijo');
+                                $this->db->select('celular');
+                                $this->db->select('email');
+                                $this->db->select('fecha_inicio_contrato');
+                                $this->db->select('fecha_fin_contrato');
+                                $this->db->select('tipo_cliente');
+                                $this->db->select('cliente');
+                                $this->db->select('medico');
+                                $this->db->select('observaciones');
+                        $this->db->where('ACTIVO','S');
+        $datos=$this->db->get('pacientes');
+        $datos=$datos->result();
+        return $datos;
+    }
+}
+?>

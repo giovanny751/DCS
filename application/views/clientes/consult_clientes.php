@@ -1,24 +1,58 @@
-<h1>Hospitales</h1>
-<form action="<?php echo base_url('index.php/').'/Hospitales/consult_hospitales'; ?>" method="post" >
+<h1>Clientes</h1>
+<form action="<?php echo base_url('index.php/').'/Clientes/consult_clientes'; ?>" method="post" >
     <div>
     <div class="row">                <div class="col-md-3">
-                                    </div>
+                    <label for="id_cliente">
+                                            </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="hidden" value="<?php echo (isset($datos[0]->codigo_hospital)?$datos[0]->codigo_hospital:'' ) ?>" class="form-control   " id="codigo_hospital" name="codigo_hospital">
+                                            <input type="hidden" value="<?php echo (isset($post['id_cliente'])?$post['id_cliente']:'' ) ?>" class="form-control   " id="id_cliente" name="id_cliente">
                                             <br>
                 </div>
 
             </div><div class="row">                <div class="col-md-3">
-                    Nombre                </div>
+                    <label for="nombre">
+                    Nombre                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->nombre)?$datos[0]->nombre:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                            <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                            <br>
+                </div>
+
+            </div><div class="row">                <div class="col-md-3">
+                    <label for="id_tipo_cliente">
+                    Tipo de cliente                        </label>
+                </div>
+                <div class="col-md-3">
+                                            <?php echo lista("id_tipo_cliente", "id_tipo_cliente", "form-control ", "tipo_cliente", "id_tipo_cliente", "descripcion", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Estado                </div>
+                    <label for="fecha_inicio_contrato">
+                    Fecha inicio contrato                        </label>
+                </div>
+                <div class="col-md-3">
+                                            <input type="text" value="<?php echo (isset($post['fecha_inicio_contrato'])?$post['fecha_inicio_contrato']:'' ) ?>" class="form-control obligatorio fecha " id="fecha_inicio_contrato" name="fecha_inicio_contrato">
+                                            <br>
+                </div>
+
+                            <div class="col-md-3">
+                    <label for="fecha_fin_contrato">
+                    Fecha fin contrato                        </label>
+                </div>
+                <div class="col-md-3">
+                                            <input type="text" value="<?php echo (isset($post['fecha_fin_contrato'])?$post['fecha_fin_contrato']:'' ) ?>" class="form-control obligatorio fecha " id="fecha_fin_contrato" name="fecha_fin_contrato">
+                                            <br>
+                </div>
+
+                            <div class="col-md-3">
+                    <label for="estado">
+                    Estado                        </label>
+                </div>
                 <div class="col-md-3">
                                             <select  class="form-control obligatorio  " id="estado" name="estado">
+                            <option value=""></option>
                             <option value="Activo">Activo</option>
                             <option value="Inactivo">Inactivo</option>
                         </select>
@@ -26,30 +60,11 @@
                 </div>
 
                             <div class="col-md-3">
-                    Dirección                </div>
-                <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->direccion)?$datos[0]->direccion:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
-                                            <br>
+                    <label for="email">
+                    Email                        </label>
                 </div>
-
-                            <div class="col-md-3">
-                    Telefono fijo                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo)?$datos[0]->telefono_fijo:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
-                                            <br>
-                </div>
-
-                            <div class="col-md-3">
-                    Celular                </div>
-                <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   number" id="celular" name="celular">
-                                            <br>
-                </div>
-
-                            <div class="col-md-3">
-                    Email                </div>
-                <div class="col-md-3">
-                                            <input type="email" value="<?php echo (isset($datos[0]->email)?$datos[0]->email:'' ) ?>" class="form-control   " id="email" name="email">
+                                            <input type="email" value="<?php echo (isset($post['email'])?$post['email']:'' ) ?>" class="form-control   " id="email" name="email">
                                             <br>
                 </div>
 
@@ -63,10 +78,10 @@
             <thead>
                                     <th></th>
                                     <th>Nombre</th>
+                                    <th>Tipo de cliente</th>
+                                    <th>Fecha inicio contrato</th>
+                                    <th>Fecha fin contrato</th>
                                     <th>Estado</th>
-                                    <th>Dirección</th>
-                                    <th>Telefono fijo</th>
-                                    <th>Celular</th>
                                     <th>Email</th>
                             <th>Acción</th>
             </thead>
@@ -98,15 +113,15 @@
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">
-        <a href="<?php echo base_url()."/index.php/Hospitales/index" ?>" class="btn btn-success" >Nuevo</a>
+        <a href="<?php echo base_url()."/index.php/Clientes/index" ?>" class="btn btn-success" >Nuevo</a>
     </div>
 </div>
 <?php  if(isset($campo)){ ?>
-<form action="<?php echo base_url('index.php/')."/Hospitales/edit_hospitales"; ?>" method="post" id="editar">
+<form action="<?php echo base_url('index.php/')."/Clientes/edit_clientes"; ?>" method="post" id="editar">
     <input type="hidden" name="<?php echo $campo ?>" id="<?php echo $campo ?>2">
     <input type="hidden" name="campo" value="<?php echo $campo ?>">
 </form>
-<form action="<?php echo base_url('index.php/')."/Hospitales/delete_hospitales"; ?>" method="post" id="delete">
+<form action="<?php echo base_url('index.php/')."/Clientes/delete_clientes"; ?>" method="post" id="delete">
     <input type="hidden" name="<?php echo $campo ?>" id="<?php echo $campo ?>3">
     <input type="hidden" name="campo" value="<?php echo $campo ?>">
 </form>

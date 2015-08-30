@@ -38,7 +38,6 @@ class Aseguradoras extends My_Controller {
         $this->data['post']=$this->input->post();
         if(!isset($this->data['post']['campo']))
         redirect('index.php/Aseguradoras/consult_aseguradoras', 'location');
-        
         $this->data['datos']=$this->Aseguradoras_model->edit_aseguradoras($this->data['post']);
         $this->layout->view('aseguradoras/index', $this->data);
     }

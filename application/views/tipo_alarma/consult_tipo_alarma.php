@@ -1,55 +1,48 @@
-<h1>Hospitales</h1>
-<form action="<?php echo base_url('index.php/').'/Hospitales/consult_hospitales'; ?>" method="post" >
+<h1>Tipos alarmas</h1>
+<form action="<?php echo base_url('index.php/').'/Tipo_alarma/consult_tipo_alarma'; ?>" method="post" >
     <div>
     <div class="row">                <div class="col-md-3">
-                                    </div>
+                    <label for="id_tipo_alarma">
+                                            </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="hidden" value="<?php echo (isset($datos[0]->codigo_hospital)?$datos[0]->codigo_hospital:'' ) ?>" class="form-control   " id="codigo_hospital" name="codigo_hospital">
+                                            <input type="hidden" value="<?php echo (isset($post['id_tipo_alarma'])?$post['id_tipo_alarma']:'' ) ?>" class="form-control   " id="id_tipo_alarma" name="id_tipo_alarma">
                                             <br>
                 </div>
 
             </div><div class="row">                <div class="col-md-3">
-                    Nombre                </div>
+                    <label for="descripcion">
+                    Descripción                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->nombre)?$datos[0]->nombre:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                            <input type="text" value="<?php echo (isset($post['descripcion'])?$post['descripcion']:'' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
+                                            <br>
+                </div>
+
+            </div><div class="row">                <div class="col-md-3">
+                    <label for="examen">
+                    Examen                        </label>
+                </div>
+                <div class="col-md-3">
+                                            <input type="text" value="<?php echo (isset($post['examen'])?$post['examen']:'' ) ?>" class="form-control obligatorio  " id="examen" name="examen">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Estado                </div>
-                <div class="col-md-3">
-                                            <select  class="form-control obligatorio  " id="estado" name="estado">
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                        </select>
-                                                    <br>
+                    <label for="analisis_resultados">
+                    Análisis resultados                        </label>
                 </div>
-
-                            <div class="col-md-3">
-                    Dirección                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->direccion)?$datos[0]->direccion:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
+                                            <input type="text" value="<?php echo (isset($post['analisis_resultados'])?$post['analisis_resultados']:'' ) ?>" class="form-control   " id="analisis_resultados" name="analisis_resultados">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Telefono fijo                </div>
-                <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo)?$datos[0]->telefono_fijo:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
-                                            <br>
+                    <label for="id_niveles_alarma">
+                    Niveles                        </label>
                 </div>
-
-                            <div class="col-md-3">
-                    Celular                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   number" id="celular" name="celular">
-                                            <br>
-                </div>
-
-                            <div class="col-md-3">
-                    Email                </div>
-                <div class="col-md-3">
-                                            <input type="email" value="<?php echo (isset($datos[0]->email)?$datos[0]->email:'' ) ?>" class="form-control   " id="email" name="email">
+                                            <input type="text" value="<?php echo (isset($post['id_niveles_alarma'])?$post['id_niveles_alarma']:'' ) ?>" class="form-control obligatorio  " id="id_niveles_alarma" name="id_niveles_alarma">
                                             <br>
                 </div>
 
@@ -62,12 +55,10 @@
         <table class="table table-bordered">
             <thead>
                                     <th></th>
-                                    <th>Nombre</th>
-                                    <th>Estado</th>
-                                    <th>Dirección</th>
-                                    <th>Telefono fijo</th>
-                                    <th>Celular</th>
-                                    <th>Email</th>
+                                    <th>Descripción</th>
+                                    <th>Examen</th>
+                                    <th>Análisis resultados</th>
+                                    <th>Niveles</th>
                             <th>Acción</th>
             </thead>
             <tbody>
@@ -98,15 +89,15 @@
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">
-        <a href="<?php echo base_url()."/index.php/Hospitales/index" ?>" class="btn btn-success" >Nuevo</a>
+        <a href="<?php echo base_url()."/index.php/Tipo_alarma/index" ?>" class="btn btn-success" >Nuevo</a>
     </div>
 </div>
 <?php  if(isset($campo)){ ?>
-<form action="<?php echo base_url('index.php/')."/Hospitales/edit_hospitales"; ?>" method="post" id="editar">
+<form action="<?php echo base_url('index.php/')."/Tipo_alarma/edit_tipo_alarma"; ?>" method="post" id="editar">
     <input type="hidden" name="<?php echo $campo ?>" id="<?php echo $campo ?>2">
     <input type="hidden" name="campo" value="<?php echo $campo ?>">
 </form>
-<form action="<?php echo base_url('index.php/')."/Hospitales/delete_hospitales"; ?>" method="post" id="delete">
+<form action="<?php echo base_url('index.php/')."/Tipo_alarma/delete_tipo_alarma"; ?>" method="post" id="delete">
     <input type="hidden" name="<?php echo $campo ?>" id="<?php echo $campo ?>3">
     <input type="hidden" name="campo" value="<?php echo $campo ?>">
 </form>

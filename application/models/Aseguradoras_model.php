@@ -25,38 +25,44 @@ class Aseguradoras_model extends CI_Model {
         return $datos=$datos->result();
     }
     function consult_aseguradoras($post){
-            if(isset($post['asegu_codigo']))
-        if($post['asegu_codigo']!="")
-        $this->db->like('asegu_codigo',$post['asegu_codigo']);
-                    if(isset($post['asegu_tipo']))
-        if($post['asegu_tipo']!="")
-        $this->db->like('asegu_tipo',$post['asegu_tipo']);
-                    if(isset($post['asegu_fecha_creacion']))
-        if($post['asegu_fecha_creacion']!="")
-        $this->db->like('asegu_fecha_creacion',$post['asegu_fecha_creacion']);
-                    if(isset($post['asegu_direccion']))
-        if($post['asegu_direccion']!="")
-        $this->db->like('asegu_direccion',$post['asegu_direccion']);
-                    if(isset($post['asegu_telefono_fijo']))
-        if($post['asegu_telefono_fijo']!="")
-        $this->db->like('asegu_telefono_fijo',$post['asegu_telefono_fijo']);
-                    if(isset($post['asegu_celular']))
-        if($post['asegu_celular']!="")
-        $this->db->like('asegu_celular',$post['asegu_celular']);
-                    if(isset($post['asegu_email']))
-        if($post['asegu_email']!="")
-        $this->db->like('asegu_email',$post['asegu_email']);
-                    if(isset($post['asegu_borrado']))
-        if($post['asegu_borrado']!="")
-        $this->db->like('asegu_borrado',$post['asegu_borrado']);
+            if(isset($post['aseguradora_id']))
+        if($post['aseguradora_id']!="")
+        $this->db->like('aseguradora_id',$post['aseguradora_id']);
+                    if(isset($post['nombre']))
+        if($post['nombre']!="")
+        $this->db->like('nombre',$post['nombre']);
+                    if(isset($post['tipo']))
+        if($post['tipo']!="")
+        $this->db->like('tipo',$post['tipo']);
+                    if(isset($post['estado']))
+        if($post['estado']!="")
+        $this->db->like('estado',$post['estado']);
+                    if(isset($post['fecha_creacion']))
+        if($post['fecha_creacion']!="")
+        $this->db->like('fecha_creacion',$post['fecha_creacion']);
+                    if(isset($post['direccion']))
+        if($post['direccion']!="")
+        $this->db->like('direccion',$post['direccion']);
+                    if(isset($post['telefono_fijo']))
+        if($post['telefono_fijo']!="")
+        $this->db->like('telefono_fijo',$post['telefono_fijo']);
+                    if(isset($post['celular']))
+        if($post['celular']!="")
+        $this->db->like('celular',$post['celular']);
+                    if(isset($post['email']))
+        if($post['email']!="")
+        $this->db->like('email',$post['email']);
                     if(isset($post['activo']))
         if($post['activo']!="")
         $this->db->like('activo',$post['activo']);
-                                    $this->db->select('asegu_tipo');
-                                $this->db->select('asegu_direccion');
-                                $this->db->select('asegu_telefono_fijo');
-                                $this->db->select('asegu_celular');
-                                $this->db->select('asegu_email');
+                                    $this->db->select('aseguradora_id');
+                                $this->db->select('nombre');
+                                $this->db->select('tipo');
+                                $this->db->select('estado');
+                                $this->db->select('direccion');
+                                $this->db->select('telefono_fijo');
+                                $this->db->select('celular');
+                                $this->db->select('email');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('aseguradoras');
         $datos=$datos->result();

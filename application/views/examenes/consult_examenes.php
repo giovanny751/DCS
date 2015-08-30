@@ -1,18 +1,22 @@
-<h1>Examenes</h1>
+<h1>Exámenes</h1>
 <form action="<?php echo base_url('index.php/').'/Examenes/consult_examenes'; ?>" method="post" >
     <div>
     <div class="row">                <div class="col-md-3">
-                                    </div>
+                    <label for="examen_cod">
+                                            </label>
+                </div>
                 <div class="col-md-3">
-                    <input type="hidden" value="<?php echo (isset($post['examen_cod'])?$post['examen_cod']:'') ?>" class="form-control   " id="examen_cod" name="examen_cod">
-                    <br>
+                                            <input type="hidden" value="<?php echo (isset($post['examen_cod'])?$post['examen_cod']:'' ) ?>" class="form-control   " id="examen_cod" name="examen_cod">
+                                            <br>
                 </div>
 
             </div><div class="row">                <div class="col-md-3">
-                    Nombre                </div>
+                    <label for="examen_nombre">
+                     Nombre                        </label>
+                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['examen_nombre'])?$post['examen_nombre']:'') ?>" class="form-control obligatorio  " id="examen_nombre" name="examen_nombre">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['examen_nombre'])?$post['examen_nombre']:'' ) ?>" class="form-control obligatorio  " id="examen_nombre" name="examen_nombre">
+                                            <br>
                 </div>
 
                 </div>
@@ -24,7 +28,7 @@
         <table class="table table-bordered">
             <thead>
                                     <th></th>
-                                    <th>Nombre</th>
+                                    <th> Nombre</th>
                             <th>Acción</th>
             </thead>
             <tbody>

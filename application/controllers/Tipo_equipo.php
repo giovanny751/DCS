@@ -38,7 +38,6 @@ class Tipo_equipo extends My_Controller {
         $this->data['post']=$this->input->post();
         if(!isset($this->data['post']['campo']))
         redirect('index.php/Tipo_equipo/consult_tipo_equipo', 'location');
-        
         $this->data['datos']=$this->Tipo_equipo_model->edit_tipo_equipo($this->data['post']);
         $this->layout->view('tipo_equipo/index', $this->data);
     }

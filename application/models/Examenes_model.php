@@ -34,9 +34,6 @@ class Examenes_model extends CI_Model {
                     if(isset($post['examen_fecha_creacion']))
         if($post['examen_fecha_creacion']!="")
         $this->db->like('examen_fecha_creacion',$post['examen_fecha_creacion']);
-                    if(isset($post['examen_borrado']))
-        if($post['examen_borrado']!="")
-        $this->db->like('examen_borrado',$post['examen_borrado']);
                     if(isset($post['activo']))
         if($post['activo']!="")
         $this->db->like('activo',$post['activo']);

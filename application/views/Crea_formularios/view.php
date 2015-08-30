@@ -19,19 +19,22 @@
 
 
                     <div class="col-md-<?php echo $resul ?>">
+                        <label for="<?php echo $post['nombre_campo'][$i]; ?>">
                         <?php
                         if ($post['obligatorio'][$i] != '') {
                             echo "* ";
                         }
                         ?>
         <?php echo $post['nombre_label'][$i]; ?>
+                            </label>
                     </div>
                     <div class="col-md-<?php echo $resul ?>">
-                        <?php if($post['nombre_campo'][$i]=="estado"){
+                        <?php if($post['nombre_campo'][$i]=="estado" || $post['nombre_campo'][$i]=="Estado"){
                             ?>
                         <select  class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
+                            <option value=""></option>
+                            <option value="Activo" <=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?(($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>=='Activo')?'selected="selected"':''):'' ) ?=>>Activo</option>
+                            <option value="Inactivo" <=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?(($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>=='Inactivo')?'selected="selected"':''):'' ) ?=>>Inactivo</option>
                         </select>
                                 <?php
                         }else{ ?>

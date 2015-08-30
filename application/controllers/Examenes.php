@@ -38,7 +38,6 @@ class Examenes extends My_Controller {
         $this->data['post']=$this->input->post();
         if(!isset($this->data['post']['campo']))
         redirect('index.php/Examenes/consult_examenes', 'location');
-        
         $this->data['datos']=$this->Examenes_model->edit_examenes($this->data['post']);
         $this->layout->view('examenes/index', $this->data);
     }

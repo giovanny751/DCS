@@ -1,44 +1,64 @@
 <h1>Aseguradoras</h1>
 <form action="<?php echo base_url('index.php/').'/Aseguradoras/consult_aseguradoras'; ?>" method="post" >
     <div>
-    </div><div class="row">                <div class="col-md-3">
-                    Tipo                </div>
+    <div class="row">                <div class="col-md-3">
+                                    </div>
                 <div class="col-md-3">
-                    <select class="form-control obligatorio  " id="asegu_tipo" name="asegu_tipo">
-                        <option value=""></option>
-                <option value="EPS/IPS" <?php echo (isset($datos[0]->asegu_tipo) ? (($datos[0]->asegu_tipo=='EPS/IPS')?'selected="selected"':'') : '' ) ?>>EPS/IPS</option>
-                <option value="Prepagada" <?php echo (isset($datos[0]->asegu_tipo) ? (($datos[0]->asegu_tipo=='EPS/IPS')?'selected="selected"':'') : '' ) ?>>Prepagada</option>
-                <option value="Red de ambulancias" <?php echo (isset($datos[0]->asegu_tipo) ? (($datos[0]->asegu_tipo=='EPS/IPS')?'selected="selected"':'') : '' ) ?>>Red de ambulancias</option>
-            </select>
-                    <br>
+                                            <input type="hidden" value="<?php echo (isset($post['aseguradora_id'])?$post['aseguradora_id']:'' ) ?>" class="form-control   " id="aseguradora_id" name="aseguradora_id">
+                                            <br>
                 </div>
 
             </div><div class="row">                <div class="col-md-3">
+                    Nombre                </div>
+                <div class="col-md-3">
+                                            <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                            <br>
+                </div>
+
+                            <div class="col-md-3">
+                    Tipo                </div>
+                <div class="col-md-3">
+                                            <input type="text" value="<?php echo (isset($post['tipo'])?$post['tipo']:'' ) ?>" class="form-control obligatorio  " id="tipo" name="tipo">
+                                            <br>
+                </div>
+
+            </div><div class="row">                <div class="col-md-3">
+                    Estado                </div>
+                <div class="col-md-3">
+                                            <select  class="form-control obligatorio  " id="estado" name="estado">
+                            <option value=""></option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                                                    <br>
+                </div>
+
+                            <div class="col-md-3">
                     Dirección                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['asegu_direccion'])?$post['asegu_direccion']:'') ?>" class="form-control obligatorio  " id="asegu_direccion" name="asegu_direccion">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['direccion'])?$post['direccion']:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
+                                            <br>
                 </div>
 
                             <div class="col-md-3">
                     Telefono fijo                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['asegu_telefono_fijo'])?$post['asegu_telefono_fijo']:'') ?>" class="form-control obligatorio  number" id="asegu_telefono_fijo" name="asegu_telefono_fijo">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['telefono_fijo'])?$post['telefono_fijo']:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
+                                            <br>
                 </div>
 
                             <div class="col-md-3">
                     Celular                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['asegu_celular'])?$post['asegu_celular']:'') ?>" class="form-control   number" id="asegu_celular" name="asegu_celular">
-                    <br>
+                                            <input type="text" value="<?php echo (isset($post['celular'])?$post['celular']:'' ) ?>" class="form-control   number" id="celular" name="celular">
+                                            <br>
                 </div>
 
                             <div class="col-md-3">
                     Email                </div>
                 <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($post['asegu_email'])?$post['asegu_email']:'') ?>" class="form-control   " id="asegu_email" name="asegu_email">
-                    <br>
+                                            <input type="email" value="<?php echo (isset($post['email'])?$post['email']:'' ) ?>" class="form-control   " id="email" name="email">
+                                            <br>
                 </div>
 
                 </div>
@@ -49,7 +69,10 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
+                                    <th></th>
+                                    <th>Nombre</th>
                                     <th>Tipo</th>
+                                    <th>Estado</th>
                                     <th>Dirección</th>
                                     <th>Telefono fijo</th>
                                     <th>Celular</th>

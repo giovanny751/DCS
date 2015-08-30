@@ -26,8 +26,9 @@
                         *         Estado                    </div>
                     <div class="col-md-3">
                                                 <select  class="form-control obligatorio  " id="estado" name="estado">
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
+                            <option value=""></option>
+                            <option value="Activo" <?php echo (isset($datos[0]->estado)?(($datos[0]->estado=='Activo')?'selected="selected"':''):'' ) ?>>Activo</option>
+                            <option value="Inactivo" <?php echo (isset($datos[0]->estado)?(($datos[0]->estado=='Inactivo')?'selected="selected"':''):'' ) ?>>Inactivo</option>
                         </select>
                                                         <br>
                     </div>
@@ -35,7 +36,7 @@
                     
 
                     <div class="col-md-3">
-                        *         Direccion                    </div>
+                        *         Dirección                    </div>
                     <div class="col-md-3">
                                                 <input type="text" value="<?php echo (isset($datos[0]->direccion)?$datos[0]->direccion:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
                                                 <br>
@@ -46,7 +47,7 @@
                     <div class="col-md-3">
                         *         Telefono fijo                    </div>
                     <div class="col-md-3">
-                                                <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo)?$datos[0]->telefono_fijo:'' ) ?>" class="form-control obligatorio  " id="telefono_fijo" name="telefono_fijo">
+                                                <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo)?$datos[0]->telefono_fijo:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
                                                 <br>
                     </div>
 
@@ -55,14 +56,14 @@
                     <div class="col-md-3">
                                 Celular                    </div>
                     <div class="col-md-3">
-                                                <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   " id="celular" name="celular">
+                                                <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   number" id="celular" name="celular">
                                                 <br>
                     </div>
 
                     
 
                     <div class="col-md-3">
-                                email                    </div>
+                                Email                    </div>
                     <div class="col-md-3">
                                                 <input type="email" value="<?php echo (isset($datos[0]->email)?$datos[0]->email:'' ) ?>" class="form-control   " id="email" name="email">
                                                 <br>

@@ -88,7 +88,7 @@ class Crea_formularios extends My_Controller {
         $file = fopen($controllers."/".ucfirst($this->data["post"]['tabla']).".php", "w");
         fwrite($file, $controller . PHP_EOL);
         fclose($file);
-        $file = fopen($models."/".ucfirst($this->data["post"]['tabla'])."_model.php", "w");
+        $file = fopen($models."/".ucfirst($this->data["post"]['tabla'])."__model.php", "w");
         fwrite($file, $model . PHP_EOL);
         fclose($file);
         $file = fopen($estructura."/index.php", "w");

@@ -1,21 +1,21 @@
-<h1>Tipo Equipo</h1>
-<form action="<?php echo base_url('index.php/').'/Tipo_equipo/consult_tipo_equipo'; ?>" method="post" >
+<h1>Tipos de clientes</h1>
+<form action="<?php echo base_url('index.php/').'/Tipo_cliente/consult_tipo_cliente'; ?>" method="post" >
     <div>
     <div class="row">                <div class="col-md-3">
-                    <label for="tipo_equipo_cod">
+                    <label for="id_tipo_cliente">
                                             </label>
                 </div>
                 <div class="col-md-3">
-                                            <input type="hidden" value="<?php echo (isset($post['tipo_equipo_cod'])?$post['tipo_equipo_cod']:'' ) ?>" class="form-control   " id="tipo_equipo_cod" name="tipo_equipo_cod">
+                                            <input type="hidden" value="<?php echo (isset($post['id_tipo_cliente'])?$post['id_tipo_cliente']:'' ) ?>" class="form-control   " id="id_tipo_cliente" name="id_tipo_cliente">
                                             <br>
                 </div>
 
             </div><div class="row">                <div class="col-md-3">
-                    <label for="referencia">
-                    Referencia                        </label>
+                    <label for="descripcion">
+                    Descripción                        </label>
                 </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($post['referencia'])?$post['referencia']:'' ) ?>" class="form-control obligatorio  " id="referencia" name="referencia">
+                                            <input type="text" value="<?php echo (isset($post['descripcion'])?$post['descripcion']:'' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
                                             <br>
                 </div>
 
@@ -28,7 +28,7 @@
         <table class="table table-bordered">
             <thead>
                                     <th></th>
-                                    <th>Referencia</th>
+                                    <th>Descripción</th>
                             <th>Acción</th>
             </thead>
             <tbody>
@@ -59,15 +59,15 @@
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">
-        <a href="<?php echo base_url()."/index.php/Tipo_equipo/index" ?>" class="btn btn-success" >Nuevo</a>
+        <a href="<?php echo base_url()."/index.php/Tipo_cliente/index" ?>" class="btn btn-success" >Nuevo</a>
     </div>
 </div>
 <?php  if(isset($campo)){ ?>
-<form action="<?php echo base_url('index.php/')."/Tipo_equipo/edit_tipo_equipo"; ?>" method="post" id="editar">
+<form action="<?php echo base_url('index.php/')."/Tipo_cliente/edit_tipo_cliente"; ?>" method="post" id="editar">
     <input type="hidden" name="<?php echo $campo ?>" id="<?php echo $campo ?>2">
     <input type="hidden" name="campo" value="<?php echo $campo ?>">
 </form>
-<form action="<?php echo base_url('index.php/')."/Tipo_equipo/delete_tipo_equipo"; ?>" method="post" id="delete">
+<form action="<?php echo base_url('index.php/')."/Tipo_cliente/delete_tipo_cliente"; ?>" method="post" id="delete">
     <input type="hidden" name="<?php echo $campo ?>" id="<?php echo $campo ?>3">
     <input type="hidden" name="campo" value="<?php echo $campo ?>">
 </form>

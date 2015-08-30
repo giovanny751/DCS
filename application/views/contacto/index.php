@@ -14,7 +14,7 @@
                     </div><div class="row">
 
                     <div class="col-md-3">
-                        *         Cédula o NIT                    </div>
+                        *         Cédula ó NIT                    </div>
                     <div class="col-md-3">
                                                 <input type="text" value="<?php echo (isset($datos[0]->documento)?$datos[0]->documento:'' ) ?>" class="form-control obligatorio  " id="documento" name="documento">
                                                 <br>
@@ -34,14 +34,18 @@
                     <div class="col-md-3">
                         *         Estado                    </div>
                     <div class="col-md-3">
-                                                <input type="text" value="<?php echo (isset($datos[0]->Estado)?$datos[0]->Estado:'' ) ?>" class="form-control obligatorio  " id="Estado" name="Estado">
-                                                <br>
+                                                <select  class="form-control obligatorio  " id="Estado" name="Estado">
+                            <option value=""></option>
+                            <option value="Activo" <?php echo (isset($datos[0]->Estado)?(($datos[0]->Estado=='Activo')?'selected="selected"':''):'' ) ?>>Activo</option>
+                            <option value="Inactivo" <?php echo (isset($datos[0]->Estado)?(($datos[0]->Estado=='Inactivo')?'selected="selected"':''):'' ) ?>>Inactivo</option>
+                        </select>
+                                                        <br>
                     </div>
 
                     
 
                     <div class="col-md-3">
-                        *         Direccion                    </div>
+                        *         Dirección                    </div>
                     <div class="col-md-3">
                                                 <input type="text" value="<?php echo (isset($datos[0]->direccion)?$datos[0]->direccion:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
                                                 <br>
@@ -59,16 +63,16 @@
                     
 
                     <div class="col-md-3">
-                                celular                    </div>
+                                Celular                    </div>
                     <div class="col-md-3">
-                                                <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   " id="celular" name="celular">
+                                                <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   number" id="celular" name="celular">
                                                 <br>
                     </div>
 
                     
 
                     <div class="col-md-3">
-                                email                    </div>
+                                Email                    </div>
                     <div class="col-md-3">
                                                 <input type="email" value="<?php echo (isset($datos[0]->email)?$datos[0]->email:'' ) ?>" class="form-control   " id="email" name="email">
                                                 <br>
@@ -77,7 +81,7 @@
                     
 
                     <div class="col-md-3">
-                                parentesco                    </div>
+                                Parentesco                    </div>
                     <div class="col-md-3">
                                                 <input type="text" value="<?php echo (isset($datos[0]->parentesco)?$datos[0]->parentesco:'' ) ?>" class="form-control   " id="parentesco" name="parentesco">
                                                 <br>
@@ -86,7 +90,7 @@
                     
 
                     <div class="col-md-3">
-                                Tiene o no llaves de la casa                    </div>
+                                Tiene o no tiene llaves de la casa                    </div>
                     <div class="col-md-3">
                                                 <input type="checkbox" value="<?php echo (isset($datos[0]->llaves)?$datos[0]->llaves:'' ) ?>" class="form-control   " id="llaves" name="llaves">
                                                 <br>

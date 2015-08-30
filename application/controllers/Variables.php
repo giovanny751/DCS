@@ -38,7 +38,6 @@ class Variables extends My_Controller {
         $this->data['post']=$this->input->post();
         if(!isset($this->data['post']['campo']))
         redirect('index.php/Variables/consult_variables', 'location');
-        
         $this->data['datos']=$this->Variables_model->edit_variables($this->data['post']);
         $this->layout->view('variables/index', $this->data);
     }

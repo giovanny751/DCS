@@ -34,9 +34,6 @@ class Tipo_equipo_model extends CI_Model {
                     if(isset($post['fecha_creacion']))
         if($post['fecha_creacion']!="")
         $this->db->like('fecha_creacion',$post['fecha_creacion']);
-                    if(isset($post['borrado']))
-        if($post['borrado']!="")
-        $this->db->like('borrado',$post['borrado']);
                     if(isset($post['activo']))
         if($post['activo']!="")
         $this->db->like('activo',$post['activo']);

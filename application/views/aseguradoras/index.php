@@ -1,74 +1,108 @@
+
 <h1>Aseguradoras</h1>
-
-<form action="<?php echo base_url('index.php/') . "/Aseguradoras/save_aseguradoras"; ?>" method="post" onsubmit="return campos()">
+<form action="<?php echo base_url('index.php/')."/Aseguradoras/save_aseguradoras"; ?>" method="post" onsubmit="return campos()">
     <div>
-    </div><div class="row">
+        <div class="row">
 
-        <div class="col-md-3">
-            *                     Tipo                </div>
-        <div class="col-md-3">
-            <select class="form-control obligatorio  " id="asegu_tipo" name="asegu_tipo">
-                <option value=""></option>
-                <option value="EPS/IPS" <?php echo (isset($datos[0]->asegu_tipo) ? (($datos[0]->asegu_tipo=='EPS/IPS')?'selected="selected"':'') : '' ) ?>>EPS/IPS</option>
-                <option value="Prepagada" <?php echo (isset($datos[0]->asegu_tipo) ? (($datos[0]->asegu_tipo=='EPS/IPS')?'selected="selected"':'') : '' ) ?>>Prepagada</option>
-                <option value="Red de ambulancias" <?php echo (isset($datos[0]->asegu_tipo) ? (($datos[0]->asegu_tipo=='EPS/IPS')?'selected="selected"':'') : '' ) ?>>Red de ambulancias</option>
-            </select>
-            <br>
+                    <div class="col-md-3">
+                                                    </div>
+                    <div class="col-md-3">
+                                                <input type="hidden" value="<?php echo (isset($datos[0]->aseguradora_id)?$datos[0]->aseguradora_id:'' ) ?>" class="form-control   " id="aseguradora_id" name="aseguradora_id">
+                                                <br>
+                    </div>
+
+                    </div><div class="row">
+
+                    <div class="col-md-3">
+                        *         Nombre                    </div>
+                    <div class="col-md-3">
+                                                <input type="text" value="<?php echo (isset($datos[0]->nombre)?$datos[0]->nombre:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                                <br>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
+                        *         Tipo                    </div>
+                    <div class="col-md-3">
+                                                <input type="text" value="<?php echo (isset($datos[0]->tipo)?$datos[0]->tipo:'' ) ?>" class="form-control obligatorio  " id="tipo" name="tipo">
+                                                <br>
+                    </div>
+
+                    </div><div class="row">
+
+                    <div class="col-md-3">
+                        *         Estado                    </div>
+                    <div class="col-md-3">
+                                                <select  class="form-control obligatorio  " id="estado" name="estado">
+                            <option value=""></option>
+                            <option value="Activo" <?php echo (isset($datos[0]->estado)?(($datos[0]->estado=='Activo')?'selected="selected"':''):'' ) ?>>Activo</option>
+                            <option value="Inactivo" <?php echo (isset($datos[0]->estado)?(($datos[0]->estado=='Inactivo')?'selected="selected"':''):'' ) ?>>Inactivo</option>
+                        </select>
+                                                        <br>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
+                        *         Dirección                    </div>
+                    <div class="col-md-3">
+                                                <input type="text" value="<?php echo (isset($datos[0]->direccion)?$datos[0]->direccion:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
+                                                <br>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
+                        *         Telefono fijo                    </div>
+                    <div class="col-md-3">
+                                                <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo)?$datos[0]->telefono_fijo:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
+                                                <br>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
+                                Celular                    </div>
+                    <div class="col-md-3">
+                                                <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   number" id="celular" name="celular">
+                                                <br>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
+                                Email                    </div>
+                    <div class="col-md-3">
+                                                <input type="email" value="<?php echo (isset($datos[0]->email)?$datos[0]->email:'' ) ?>" class="form-control   " id="email" name="email">
+                                                <br>
+                    </div>
+
+                            </div>
+        <?php if(isset($post['campo'])){ ?>
+        <input type="hidden" name="<?php echo $post['campo']?>" value="<?php echo $post[$post['campo']]?>">
+        <input type="hidden" name="campo" value="<?php echo $post['campo']?>">
+        <?php } ?>
+        <div class="row">
+            <span id="boton_guardar">
+                <button class="btn btn-success" >Guardar</button> 
+                <input class="btn btn-success" type="reset" value="Limpiar">
+                <a href="<?php echo base_url('index.php')."/Aseguradoras/consult_aseguradoras" ?>" class="btn btn-success">Listado </a>
+            </span>
+            <span id="boton_cargar" style="display: none">
+                <h2>Cargando ...</h2>
+            </span>
         </div>
-
-    </div><div class="row">
-
-        <div class="col-md-3">
-            *                     Dirección                </div>
-        <div class="col-md-3">
-            <input type="text" value="<?php echo (isset($datos[0]->asegu_direccion) ? $datos[0]->asegu_direccion : '' ) ?>" class="form-control obligatorio  " id="asegu_direccion" name="asegu_direccion">
-            <br>
-        </div>
-
-
-
-        <div class="col-md-3">
-            *                     Telefono fijo                </div>
-        <div class="col-md-3">
-            <input type="text" value="<?php echo (isset($datos[0]->asegu_telefono_fijo) ? $datos[0]->asegu_telefono_fijo : '' ) ?>" class="form-control obligatorio  number" id="asegu_telefono_fijo" name="asegu_telefono_fijo">
-            <br>
-        </div>
-
-
-
-        <div class="col-md-3">
-            Celular                </div>
-        <div class="col-md-3">
-            <input type="text" value="<?php echo (isset($datos[0]->asegu_celular) ? $datos[0]->asegu_celular : '' ) ?>" class="form-control   number" id="asegu_celular" name="asegu_celular">
-            <br>
-        </div>
-
-
-
-        <div class="col-md-3">
-            Email                </div>
-        <div class="col-md-3">
-            <input type="email" value="<?php echo (isset($datos[0]->asegu_email) ? $datos[0]->asegu_email : '' ) ?>" class="form-control   " id="asegu_email" name="asegu_email">
-            <br>
-        </div>
-
-    </div>
-    <?php if (isset($post['campo'])) { ?>
-        <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
-        <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
-    <?php } ?>
-    <div class="row">
-        <button class="btn btn-success">Guardar</button> 
-        <input class="btn btn-success" type="reset" value="Limpiar">
-        <a href="<?php echo base_url('index.php') . "/Aseguradoras/consult_aseguradoras" ?>" class="btn btn-success">Listado </a>
-    </div>
-    <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
+        <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
 <script>
     function campos() {
+
         if (obligatorio('obligatorio') == false) {
             return false
         } else {
+            $('#boton_guardar').hide();
+            $('#boton_cargar').show();
             return true;
         }
     }

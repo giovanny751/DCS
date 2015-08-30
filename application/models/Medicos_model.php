@@ -28,40 +28,41 @@ class Medicos_model extends CI_Model {
             if(isset($post['medico_codigo']))
         if($post['medico_codigo']!="")
         $this->db->like('medico_codigo',$post['medico_codigo']);
-                    if(isset($post['medico_nombre']))
-        if($post['medico_nombre']!="")
-        $this->db->like('medico_nombre',$post['medico_nombre']);
-                    if(isset($post['medico_fecha_creacion']))
-        if($post['medico_fecha_creacion']!="")
-        $this->db->like('medico_fecha_creacion',$post['medico_fecha_creacion']);
-                    if(isset($post['medico_matricula_prof']))
-        if($post['medico_matricula_prof']!="")
-        $this->db->like('medico_matricula_prof',$post['medico_matricula_prof']);
-                    if(isset($post['medico_direccion']))
-        if($post['medico_direccion']!="")
-        $this->db->like('medico_direccion',$post['medico_direccion']);
-                    if(isset($post['medico_telefono_fijo']))
-        if($post['medico_telefono_fijo']!="")
-        $this->db->like('medico_telefono_fijo',$post['medico_telefono_fijo']);
-                    if(isset($post['medico_celular']))
-        if($post['medico_celular']!="")
-        $this->db->like('medico_celular',$post['medico_celular']);
-                    if(isset($post['medico_email']))
-        if($post['medico_email']!="")
-        $this->db->like('medico_email',$post['medico_email']);
-                    if(isset($post['medico_borrado']))
-        if($post['medico_borrado']!="")
-        $this->db->like('medico_borrado',$post['medico_borrado']);
+                    if(isset($post['nombre']))
+        if($post['nombre']!="")
+        $this->db->like('nombre',$post['nombre']);
+                    if(isset($post['fecha_creacion']))
+        if($post['fecha_creacion']!="")
+        $this->db->like('fecha_creacion',$post['fecha_creacion']);
+                    if(isset($post['Estado']))
+        if($post['Estado']!="")
+        $this->db->like('Estado',$post['Estado']);
+                    if(isset($post['matricula_profesional']))
+        if($post['matricula_profesional']!="")
+        $this->db->like('matricula_profesional',$post['matricula_profesional']);
+                    if(isset($post['direccion']))
+        if($post['direccion']!="")
+        $this->db->like('direccion',$post['direccion']);
+                    if(isset($post['telefono_fijo']))
+        if($post['telefono_fijo']!="")
+        $this->db->like('telefono_fijo',$post['telefono_fijo']);
+                    if(isset($post['celular']))
+        if($post['celular']!="")
+        $this->db->like('celular',$post['celular']);
+                    if(isset($post['email']))
+        if($post['email']!="")
+        $this->db->like('email',$post['email']);
                     if(isset($post['activo']))
         if($post['activo']!="")
         $this->db->like('activo',$post['activo']);
                                     $this->db->select('medico_codigo');
-                                $this->db->select('medico_nombre');
-                                $this->db->select('medico_matricula_prof');
-                                $this->db->select('medico_direccion');
-                                $this->db->select('medico_telefono_fijo');
-                                $this->db->select('medico_celular');
-                                $this->db->select('medico_email');
+                                $this->db->select('nombre');
+                                $this->db->select('Estado');
+                                $this->db->select('matricula_profesional');
+                                $this->db->select('direccion');
+                                $this->db->select('telefono_fijo');
+                                $this->db->select('celular');
+                                $this->db->select('email');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('medicos');
         $datos=$datos->result();

@@ -1,6 +1,6 @@
 <?php 
 $clase=ucfirst($post['tabla']);
-$model=ucfirst($post['tabla'])."_model";
+$model=ucfirst($post['tabla'])."__model";
 ?>
 <=?php 
 

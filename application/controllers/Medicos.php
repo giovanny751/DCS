@@ -38,7 +38,6 @@ class Medicos extends My_Controller {
         $this->data['post']=$this->input->post();
         if(!isset($this->data['post']['campo']))
         redirect('index.php/Medicos/consult_medicos', 'location');
-        
         $this->data['datos']=$this->Medicos_model->edit_medicos($this->data['post']);
         $this->layout->view('medicos/index', $this->data);
     }

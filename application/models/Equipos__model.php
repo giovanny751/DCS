@@ -1,5 +1,5 @@
 <?php 
-class Equipos_model extends CI_Model {
+class Equipos__model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -61,12 +61,24 @@ class Equipos_model extends CI_Model {
                     if(isset($post['observaciones']))
         if($post['observaciones']!="")
         $this->db->like('observaciones',$post['observaciones']);
-                    if(isset($post['borrado']))
-        if($post['borrado']!="")
-        $this->db->like('borrado',$post['borrado']);
                     if(isset($post['activo']))
         if($post['activo']!="")
         $this->db->like('activo',$post['activo']);
+                    if(isset($post['fecha_ultima_calibracion']))
+        if($post['fecha_ultima_calibracion']!="")
+        $this->db->like('fecha_ultima_calibracion',$post['fecha_ultima_calibracion']);
+                    if(isset($post['empresa_certificadora']))
+        if($post['empresa_certificadora']!="")
+        $this->db->like('empresa_certificadora',$post['empresa_certificadora']);
+                    if(isset($post['adjuntar_certificado']))
+        if($post['adjuntar_certificado']!="")
+        $this->db->like('adjuntar_certificado',$post['adjuntar_certificado']);
+                    if(isset($post['examen_cod']))
+        if($post['examen_cod']!="")
+        $this->db->like('examen_cod',$post['examen_cod']);
+                    if(isset($post['variable_codigo']))
+        if($post['variable_codigo']!="")
+        $this->db->like('variable_codigo',$post['variable_codigo']);
                                     $this->db->select('id_equipo');
                                 $this->db->select('descripcion');
                                 $this->db->select('estado');
@@ -78,6 +90,11 @@ class Equipos_model extends CI_Model {
                                 $this->db->select('imagen');
                                 $this->db->select('responsable');
                                 $this->db->select('observaciones');
+                                $this->db->select('fecha_ultima_calibracion');
+                                $this->db->select('empresa_certificadora');
+                                $this->db->select('adjuntar_certificado');
+                                $this->db->select('examen_cod');
+                                $this->db->select('variable_codigo');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('equipos');
         $datos=$datos->result();
