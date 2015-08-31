@@ -1,80 +1,117 @@
-<h1>Contactos</h1>
+<h1>Lista Contactos</h1>
 <form action="<?php echo base_url('index.php/').'/Contacto/consult_contacto'; ?>" method="post" >
     <div>
     <div class="row">                <div class="col-md-3">
-                                    </div>
+                    <label for="contacto_id">
+                                            </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="hidden" value="<?php echo (isset($datos[0]->contacto_id)?$datos[0]->contacto_id:'' ) ?>" class="form-control   " id="contacto_id" name="contacto_id">
+                    
+                                            <input type="hidden" value="<?php echo (isset($post['contacto_id'])?$post['contacto_id']:'' ) ?>" class="form-control   " id="contacto_id" name="contacto_id">
                                             <br>
                 </div>
 
             </div><div class="row">                <div class="col-md-3">
-                    Cédula ó NIT                </div>
+                    <label for="documento">
+                    Cédula ó NIT                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->documento)?$datos[0]->documento:'' ) ?>" class="form-control obligatorio  " id="documento" name="documento">
+                    
+                                            <input type="text" value="<?php echo (isset($post['documento'])?$post['documento']:'' ) ?>" class="form-control obligatorio  number" id="documento" name="documento">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Nombre                </div>
+                    <label for="nombre">
+                    Nombre                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->nombre)?$datos[0]->nombre:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                    
+                                            <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
                                             <br>
                 </div>
 
             </div><div class="row">                <div class="col-md-3">
-                    Estado                </div>
+                    <label for="Estado">
+                    Estado                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->Estado)?$datos[0]->Estado:'' ) ?>" class="form-control obligatorio  " id="Estado" name="Estado">
+                    
+                                            <select  class="form-control obligatorio  " id="Estado" name="Estado">
+                            <option value=""></option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                                                    <br>
+                </div>
+
+                            <div class="col-md-3">
+                    <label for="direccion">
+                    Dirección                        </label>
+                </div>
+                <div class="col-md-3">
+                    
+                                            <input type="text" value="<?php echo (isset($post['direccion'])?$post['direccion']:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Dirección                </div>
+                    <label for="telefono_fijo">
+                    Teléfono fijo                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->direccion)?$datos[0]->direccion:'' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
+                    
+                                            <input type="text" value="<?php echo (isset($post['telefono_fijo'])?$post['telefono_fijo']:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Telefono fijo                </div>
+                    <label for="celular">
+                    Celular                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo)?$datos[0]->telefono_fijo:'' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
+                    
+                                            <input type="text" value="<?php echo (isset($post['celular'])?$post['celular']:'' ) ?>" class="form-control   number" id="celular" name="celular">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Celular                </div>
+                    <label for="email">
+                    Email                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->celular)?$datos[0]->celular:'' ) ?>" class="form-control   number" id="celular" name="celular">
+                    
+                                            <input type="text" value="<?php echo (isset($post['email'])?$post['email']:'' ) ?>" class="form-control   " id="email" name="email">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Email                </div>
+                    <label for="parentesco">
+                    Parentesco                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="email" value="<?php echo (isset($datos[0]->email)?$datos[0]->email:'' ) ?>" class="form-control   " id="email" name="email">
+                    
+                                            <input type="text" value="<?php echo (isset($post['parentesco'])?$post['parentesco']:'' ) ?>" class="form-control   " id="parentesco" name="parentesco">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Parentesco                </div>
+                    <label for="llaves">
+                    Tiene o no tiene llaves de la casa                        </label>
+                </div>
                 <div class="col-md-3">
-                                            <input type="text" value="<?php echo (isset($datos[0]->parentesco)?$datos[0]->parentesco:'' ) ?>" class="form-control   " id="parentesco" name="parentesco">
+                    
+                                            <input type="checkbox" value="<?php echo (isset($post['llaves'])?$post['llaves']:'' ) ?>" class="form-control   " id="llaves" name="llaves">
                                             <br>
                 </div>
 
                             <div class="col-md-3">
-                    Tiene o no tiene llaves de la casa                </div>
-                <div class="col-md-3">
-                                            <input type="checkbox" value="<?php echo (isset($datos[0]->llaves)?$datos[0]->llaves:'' ) ?>" class="form-control   " id="llaves" name="llaves">
-                                            <br>
+                    <label for="cuidador">
+                    Cuidador                        </label>
                 </div>
-
-                            <div class="col-md-3">
-                    Cuidador                </div>
                 <div class="col-md-3">
-                                            <input type="checkbox" value="<?php echo (isset($datos[0]->cuidador)?$datos[0]->cuidador:'' ) ?>" class="form-control   " id="cuidador" name="cuidador">
+                    
+                                            <input type="checkbox" value="<?php echo (isset($post['cuidador'])?$post['cuidador']:'' ) ?>" class="form-control   " id="cuidador" name="cuidador">
                                             <br>
                 </div>
 
