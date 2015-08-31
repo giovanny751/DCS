@@ -11,11 +11,14 @@ class <?php echo $model ?> extends CI_Model {
     function save_<?php echo $post['tabla']?>($post){
         if(isset($post['campo'])){ 
         $this->db->where($post["campo"],$post[$post["campo"]]);
+        $id=$post[$post["campo"]];
             unset($post['campo']);
             $this->db->update('<?php echo $post['tabla']?>',$post);
         }else{
             $this->db->insert('<?php echo $post['tabla']?>',$post);
+            $id=$this->db->insert_id();
         }
+        return $id;
         
     }
     function delete_<?php echo $post['tabla']?>($post){

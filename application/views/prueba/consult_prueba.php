@@ -1,31 +1,23 @@
 <h1></h1>
 <form action="<?php echo base_url('index.php/').'/Prueba/consult_prueba'; ?>" method="post" >
     <div>
-    <div class="row">                <div class="col-md-12">
+    <div class="row">                <div class="col-md-3">
                     <label for="id">
-                                            </label>
+                    id                        </label>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-3">
                     
                                             <input type="hidden" value="<?php echo (isset($post['id'])?$post['id']:'' ) ?>" class="form-control   " id="id" name="id">
                                             <br>
                 </div>
 
-            </div><div class="row">                <div class="col-md-12">
+            </div><div class="row">                <div class="col-md-3">
                     <label for="nombre">
                     nombre                        </label>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-3">
                     
-                                        <script>
-                        $('document').ready(function() {
-                            $('#nombre').autocomplete({
-                                source: "<?php echo base_url("index.php//Prueba/autocomplete_nombre") ?>",
-                                minLength: 1
-                            });
-                        });
-                    </script>
-                                            <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                            <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control   " id="nombre" name="nombre">
                                             <br>
                 </div>
 
@@ -37,7 +29,7 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
-                                    <th></th>
+                                    <th>id</th>
                                     <th>nombre</th>
                             <th>Acción</th>
             </thead>

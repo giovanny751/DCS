@@ -1,6 +1,6 @@
 
 <h1><?php echo $post['titulo']; ?></h1>
-<form action="<=?php echo base_url('index.php/')."<?php echo "/" . ucfirst($post['tabla']) . '/save_' . $post['tabla'] ?>"; ?=>" method="post" onsubmit="return campos()">
+<form action="<=?php echo base_url('index.php/')."<?php echo "/" . ucfirst($post['tabla']) . '/save_' . $post['tabla'] ?>"; ?=>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
     <div>
         <?php
         $post['columnas'] = str_replace("'", "", $post['columnas']);
@@ -8,8 +8,12 @@
         for ($i = 0; $i < count($post['nombre_label']); $i++) {
             
             if ($post['aparezca'][$i] == 1) {
+                
                 if ($i == 0) {
-                    ?><div class="row"><?php
+                    
+                    ?><div class="row">
+                        <=?php $id=(isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?$datos[0]-><?php echo $post['nombre_campo'][$i]; ?>:'' ) ?=>
+                        <?php
                 } else if ($resul % $i == 0) {
                     ?></div><div class="row"><?php
                         $uu = $i;
@@ -37,7 +41,14 @@
                             </select>
                             <?php } else {
                             ?>
-                            <input type="<?php echo $post['tipo'][$i]; ?>" value="<=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?$datos[0]-><?php echo $post['nombre_campo'][$i]; ?>:'' ) ?=>" class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                            <input type="<?php echo $post['tipo'][$i]; ?>" value="<=?php echo (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?$datos[0]-><?php echo $post['nombre_campo'][$i]; ?>:'' ) ?=>" class=" <?php echo ($post['tipo'][$i]!='file'?'form-control':'')?> <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                            
+                            <?php if($post['tipo'][$i]=="file"){?>
+                            <=?php if(!empty($id)){ ?=>
+                            <img style="width: 100px" src="<=?php echo base_url('uploads')?=>/<?php echo $post['tabla']."/".'<=?php echo $id."/".$datos[0]->nombre?=>';?>">
+                            <=?php } ?=>
+                            <?php } ?>
+                            
                         <?php } ?>
                         <br>
                     </div>
@@ -65,7 +76,14 @@
 </form>
 <script>
     function campos() {
-
+        $('input[type="file"]').each(function(key,val){
+            var img = $(this).val();
+            var r=(img.indexOf('jpg') != -1)?'':((img.indexOf('png') != -1 )?'':((img.indexOf('gif') != -1)?'':false))
+            if ( r===false ) {
+                alert('Tipo de archivo no valido');
+                return false;
+            }
+        });
         if (obligatorio('obligatorio') == false) {
             return false
         } else {

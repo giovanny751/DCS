@@ -45,7 +45,7 @@
                         </select>
                                 <?php
                         }else{ ?>
-                        <input type="<?php echo $post['tipo'][$i]; ?>" value="<=?php echo (isset($post['<?php echo $post['nombre_campo'][$i]; ?>'])?$post['<?php echo $post['nombre_campo'][$i]; ?>']:'' ) ?=>" class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
+                        <input type="<?php echo ($post['tipo'][$i]=='file'?'text':$post['tipo'][$i]); ?>" value="<=?php echo (isset($post['<?php echo $post['nombre_campo'][$i]; ?>'])?$post['<?php echo $post['nombre_campo'][$i]; ?>']:'' ) ?=>" class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
                         <?php }?>
                     <br>
                 </div>

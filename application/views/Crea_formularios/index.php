@@ -37,15 +37,16 @@
         <table class="cree table table-bordered" width="100%">
             <thead>
             <th>Campo</th>
+            <!--<th>Archivo</th>-->
             <th>Descripción</th>
             <th>Label</th>
             <th>Tipo</th>
             <th>Obligatorio</th>
             <th>Númerico</th>
             <th>Fecha</th>
+            <th>Autocompletable</th>
             <th>Visible</th>
             <th>Orden</th>
-            <th>Autocompletable</th>
             </thead>
             <tbody id="tbody_table">
 
@@ -98,12 +99,7 @@
                         table += "<option value=''>No</option>";
                         table += "<option value='fecha'>Si</option>";
                         table += "</select></td>";
-                        table += "<td><select name='aparezca[]' class='form-control'>";
-                        table += "<option value='1'>Si</option>";
-                        table += "<option value=''>No</option>";
-                        table += "</select></td>";
-                        table += "<td><input type='text' name='orden' class='form-control' /></td>";
-                        var dd = '"' + val.Field + '"';
+                         var dd = '"' + val.Field + '"';
                         table += "<td><select name='autocomplete[]' class='form-control' onchange='auto(this," + dd + ")'>";
                         table += "<option value=''>No</option>";
                         table += "<option value='1'>Si</option>";
@@ -112,6 +108,11 @@
                         table += "<br>value<input type='text' style='width: 80px'name='autocomplete2[]' >";
                         table += "<br>text<input type='text' style='width: 80px' name='autocomplete3[]' >";
                         table += "</div></td>";
+                        table += "<td><select name='aparezca[]' class='form-control'>";
+                        table += "<option value='1'>Si</option>";
+                        table += "<option value=''>No</option>";
+                        table += "</select></td>";
+                        table += "<td><input type='text' name='orden' class='form-control' /></td>";
                         table += "</tr>";
                     });
                     $('#guardar').show();

@@ -30,7 +30,35 @@ class <?php echo $clase ?> extends My_Controller {
     }
     function save_<?php echo $post['tabla']?>(){
         $post=$this->input->post();
-        $this-><?php echo $model; ?>->save_<?php echo $post['tabla']?>($post);
+        <?php for ($i = 0; $i < count($post['nombre_label']); $i++) {
+            if($post['tipo'][$i]=='file'){
+                ?>
+                    $post['<?php echo $post['nombre_campo'][$i];?>']=basename($_FILES['<?php echo $post['nombre_campo'][$i];?>']['name']);
+                <?php
+            }
+        }
+        ?>
+        $id=$this-><?php echo $model; ?>->save_<?php echo $post['tabla']?>($post);
+        
+        <?php for ($i = 0; $i < count($post['nombre_label']); $i++) {
+            if($post['tipo'][$i]=='file'){
+                ?>
+                $targetPath = "./uploads/<?php echo $post['tabla']?>";
+                if (!file_exists($targetPath)) {
+                    mkdir($targetPath, 0777, true);
+                }
+                $targetPath = "./uploads/<?php echo $post['tabla']?>/".$id;
+                if (!file_exists($targetPath)) {
+                    mkdir($targetPath, 0777, true);
+                }
+                $target_path = $targetPath.'/'. basename($_FILES['<?php echo $post['nombre_campo'][$i];?>']['name']);
+                if (move_uploaded_file($_FILES['<?php echo $post['nombre_campo'][$i];?>']['tmp_name'], $target_path)) {
+
+                }    
+                <?php
+            }
+        }?>
+                
         redirect('index.php/<?php echo ucfirst($post['tabla'])?>/consult_<?php echo $post['tabla']?>', 'location');
     }
     function delete_<?php echo $post['tabla']?>(){
