@@ -1,20 +1,35 @@
-<h1>Tipos de clientes</h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i> Tipo de cliente    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/').'/Tipo_cliente/consult_tipo_cliente'; ?>" method="post" >
-    <div>
-    <div class="row">                <div class="col-md-3">
+    <div class="row">
+                    <div class="col-md-3">
                     <label for="id_tipo_cliente">
+                        Código
                                             </label>
                 </div>
                 <div class="col-md-3">
-                                            <input type="hidden" value="<?php echo (isset($post['id_tipo_cliente'])?$post['id_tipo_cliente']:'' ) ?>" class="form-control   " id="id_tipo_cliente" name="id_tipo_cliente">
+                    
+                                            <input type="text" value="<?php echo (isset($post['id_tipo_cliente'])?$post['id_tipo_cliente']:'' ) ?>" class="form-control   " id="id_tipo_cliente" name="id_tipo_cliente">
                                             <br>
                 </div>
 
-            </div><div class="row">                <div class="col-md-3">
+                            <div class="col-md-3">
                     <label for="descripcion">
                     Descripción                        </label>
                 </div>
                 <div class="col-md-3">
+                    
+                                        <script>
+                        $('document').ready(function() {
+                            $('#descripcion').autocomplete({
+                                source: "<?php echo base_url("index.php//Tipo_cliente/autocomplete_descripcion") ?>",
+                                minLength: 3
+                            });
+                        });
+                    </script>
                                             <input type="text" value="<?php echo (isset($post['descripcion'])?$post['descripcion']:'' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
                                             <br>
                 </div>
@@ -56,6 +71,7 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">

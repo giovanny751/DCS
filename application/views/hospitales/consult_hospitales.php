@@ -1,6 +1,12 @@
-<h1> Lista Hospitales</h1>
+
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i>Lista Hospitales
+    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/') . '/Hospitales/consult_hospitales'; ?>" method="post" >
-    <div>
+    
         <div class="row">   
             <div class="col-md-3">
                 Código hospital                </div>
@@ -83,6 +89,7 @@
         <input type="hidden" name="campo" value="<?php echo $campo ?>">
     </form>
 <?php } ?>
+    </div>
 <script>
     function editar(num) {
         $('#<?php echo $campo ?>2').val(num);

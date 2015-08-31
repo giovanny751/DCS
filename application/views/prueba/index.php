@@ -1,35 +1,35 @@
-
-<h1></h1>
-<form action="<?php echo base_url('index.php/')."/Prueba/save_prueba"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
-    <div>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i> prubaaaaaaa    </h5>
+</div>
+<div class='well'>
+    <form action="<?php echo base_url('index.php/')."/Prueba/save_prueba"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
         <div class="row">
-                        <?php $id=(isset($datos[0]->id)?$datos[0]->id:'' ) ?>
-                        
+                                    <?php $id=(isset($datos[0]->id)?$datos[0]->id:'' ) ?>
+                                                <input type="hidden" value="<?php echo (isset($datos[0]->id)?$datos[0]->id:'' ) ?>" class=" form-control   " id="id" name="id">
+                    
 
-                    <div class="col-md-3">
-                        <label for="id">
-                                                        id                        </label>
+                    <div class="col-md-12">
+                        <label for="nombre">
+                            *                             nombre                        </label>
                     </div>
-                    <div class="col-md-3">
-                                                    <input type="hidden" value="<?php echo (isset($datos[0]->id)?$datos[0]->id:'' ) ?>" class=" form-control   " id="id" name="id">
+                    <div class="col-md-12">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->nombre)?$datos[0]->nombre:'' ) ?>" class=" form-control obligatorio  " id="nombre" name="nombre">
+
                             
-                                                        
                                                 <br>
                     </div>
 
-                    </div><div class="row">
+                    
 
-                    <div class="col-md-3">
-                        <label for="nombre">
-                                                        nombre                        </label>
+                    <div class="col-md-12">
+                        <label for="fecha">
+                            *                             fecha                        </label>
                     </div>
-                    <div class="col-md-3">
-                                                    <input type="file" value="<?php echo (isset($datos[0]->nombre)?$datos[0]->nombre:'' ) ?>" class="    " id="nombre" name="nombre">
+                    <div class="col-md-12">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->fecha)?$datos[0]->fecha:'' ) ?>" class=" form-control obligatorio fecha " id="fecha" name="fecha">
+
                             
-                                                        <?php if(!empty($id)){ ?>
-                            <img style="width: 100px" src="<?php echo base_url('uploads')?>/prueba/<?php echo $id."/".$datos[0]->nombre?>">
-                            <?php } ?>
-                                                        
                                                 <br>
                     </div>
 
@@ -49,13 +49,14 @@
             </span>
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
-</form>
+    </form>
+</div>
 <script>
     function campos() {
-        $('input[type="file"]').each(function(key,val){
+        $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();
-            var r=(img.indexOf('jpg') != -1)?'':((img.indexOf('png') != -1 )?'':((img.indexOf('gif') != -1)?'':false))
-            if ( r===false ) {
+            var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
+            if (r === false) {
                 alert('Tipo de archivo no valido');
                 return false;
             }
@@ -72,7 +73,7 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker();
+    $('.fecha').datepicker({ dateFormat: 'yy-mm-dd' });
 
 
 </script>

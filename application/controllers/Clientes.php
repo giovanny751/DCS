@@ -26,7 +26,9 @@ class Clientes extends My_Controller {
     }
     function save_clientes(){
         $post=$this->input->post();
-        $this->Clientes__model->save_clientes($post);
+                $id=$this->Clientes__model->save_clientes($post);
+        
+                        
         redirect('index.php/Clientes/consult_clientes', 'location');
     }
     function delete_clientes(){
@@ -41,5 +43,9 @@ class Clientes extends My_Controller {
         $this->data['datos']=$this->Clientes__model->edit_clientes($this->data['post']);
         $this->layout->view('clientes/index', $this->data);
     }
-}
+                    function autocomplete_nombre(){
+                  $info = auto("clientes","id_cliente","nombre",$this->input->get('term'));
+                  $this->output->set_content_type('application/json')->set_output(json_encode($info));
+                }
+            }
 ?>

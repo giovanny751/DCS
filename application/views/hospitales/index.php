@@ -1,7 +1,12 @@
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i> Ficha Hospital
+    </h5>
+</div>
+<div class='well'>
 
-<h1>Ficha Hospital</h1>
-<form action="<?php echo base_url('index.php/') . "/Hospitales/save_hospitales"; ?>" method="post" onsubmit="return campos()">
-    <div>
+    <form action="<?php echo base_url('index.php/') . "/Hospitales/save_hospitales"; ?>" method="post" onsubmit="return campos()">
+
         <div class="row">
 
             <div class="col-md-3">
@@ -85,7 +90,8 @@
             </span>
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
-</form>
+    </form>
+</div>
 <script>
     function campos() {
 
@@ -97,9 +103,9 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function (tecla) {
+    $('body').delegate('.number', 'keypress', function(tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker();
+    $('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
 </script>

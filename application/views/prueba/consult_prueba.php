@@ -1,23 +1,45 @@
-<h1></h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i> prubaaaaaaa    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/').'/Prueba/consult_prueba'; ?>" method="post" >
-    <div>
-    <div class="row">                <div class="col-md-3">
+    <div class="row">
+                    <div class="col-md-12">
                     <label for="id">
-                    id                        </label>
+                                            </label>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-12">
                     
                                             <input type="hidden" value="<?php echo (isset($post['id'])?$post['id']:'' ) ?>" class="form-control   " id="id" name="id">
                                             <br>
                 </div>
 
-            </div><div class="row">                <div class="col-md-3">
+                            <div class="col-md-12">
                     <label for="nombre">
                     nombre                        </label>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-12">
                     
-                                            <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control   " id="nombre" name="nombre">
+                                        <script>
+                        $('document').ready(function() {
+                            $('#nombre').autocomplete({
+                                source: "<?php echo base_url("index.php//Prueba/autocomplete_nombre") ?>",
+                                minLength: 3
+                            });
+                        });
+                    </script>
+                                            <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                                            <br>
+                </div>
+
+                            <div class="col-md-12">
+                    <label for="fecha">
+                    fecha                        </label>
+                </div>
+                <div class="col-md-12">
+                    
+                                            <input type="text" value="<?php echo (isset($post['fecha'])?$post['fecha']:'' ) ?>" class="form-control obligatorio fecha " id="fecha" name="fecha">
                                             <br>
                 </div>
 
@@ -29,8 +51,9 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
-                                    <th>id</th>
+                                    <th></th>
                                     <th>nombre</th>
+                                    <th>fecha</th>
                             <th>Acción</th>
             </thead>
             <tbody>
@@ -58,6 +81,7 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">

@@ -1,20 +1,35 @@
-<h1>Tipo Equipo</h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i> Tipos de Equipos    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/').'/Tipo_equipo/consult_tipo_equipo'; ?>" method="post" >
-    <div>
-    <div class="row">                <div class="col-md-3">
+    <div class="row">
+                    <div class="col-md-3">
                     <label for="tipo_equipo_cod">
+                        Código
                                             </label>
                 </div>
                 <div class="col-md-3">
-                                            <input type="hidden" value="<?php echo (isset($post['tipo_equipo_cod'])?$post['tipo_equipo_cod']:'' ) ?>" class="form-control   " id="tipo_equipo_cod" name="tipo_equipo_cod">
+                    
+                                            <input type="text" value="<?php echo (isset($post['tipo_equipo_cod'])?$post['tipo_equipo_cod']:'' ) ?>" class="form-control   " id="tipo_equipo_cod" name="tipo_equipo_cod">
                                             <br>
                 </div>
 
-            </div><div class="row">                <div class="col-md-3">
+                            <div class="col-md-3">
                     <label for="referencia">
                     Referencia                        </label>
                 </div>
                 <div class="col-md-3">
+                    
+                                        <script>
+                        $('document').ready(function() {
+                            $('#referencia').autocomplete({
+                                source: "<?php echo base_url("index.php//Tipo_equipo/autocomplete_referencia") ?>",
+                                minLength: 3
+                            });
+                        });
+                    </script>
                                             <input type="text" value="<?php echo (isset($post['referencia'])?$post['referencia']:'' ) ?>" class="form-control obligatorio  " id="referencia" name="referencia">
                                             <br>
                 </div>
@@ -27,7 +42,7 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
-                                    <th></th>
+                                    <th>Código</th>
                                     <th>Referencia</th>
                             <th>Acción</th>
             </thead>
@@ -56,6 +71,7 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">

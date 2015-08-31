@@ -1,6 +1,11 @@
-<h1>Pacientes</h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i>Pacientes
+    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/').'/Pacientes/consult_pacientes'; ?>" method="post" >
-    <div>
+    
     <div class="row">                <div class="col-md-3">
                     <label for="id_paciente">
                                             </label>
@@ -246,6 +251,7 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">

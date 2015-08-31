@@ -7,11 +7,14 @@ class Equipos__model extends CI_Model {
     function save_equipos($post){
         if(isset($post['campo'])){ 
         $this->db->where($post["campo"],$post[$post["campo"]]);
+        $id=$post[$post["campo"]];
             unset($post['campo']);
             $this->db->update('equipos',$post);
         }else{
             $this->db->insert('equipos',$post);
+            $id=$this->db->insert_id();
         }
+        return $id;
         
     }
     function delete_equipos($post){
@@ -87,14 +90,7 @@ class Equipos__model extends CI_Model {
                                 $this->db->select('fabricante');
                                 $this->db->select('fecha_fabricacion');
                                 $this->db->select('tipo_equipo_cod');
-                                $this->db->select('imagen');
                                 $this->db->select('responsable');
-                                $this->db->select('observaciones');
-                                $this->db->select('fecha_ultima_calibracion');
-                                $this->db->select('empresa_certificadora');
-                                $this->db->select('adjuntar_certificado');
-                                $this->db->select('examen_cod');
-                                $this->db->select('variable_codigo');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('equipos');
         $datos=$datos->result();

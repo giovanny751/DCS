@@ -26,7 +26,9 @@ class Contacto extends My_Controller {
     }
     function save_contacto(){
         $post=$this->input->post();
-        $this->Contacto__model->save_contacto($post);
+                $id=$this->Contacto__model->save_contacto($post);
+        
+                        
         redirect('index.php/Contacto/consult_contacto', 'location');
     }
     function delete_contacto(){
@@ -41,5 +43,9 @@ class Contacto extends My_Controller {
         $this->data['datos']=$this->Contacto__model->edit_contacto($this->data['post']);
         $this->layout->view('contacto/index', $this->data);
     }
-    }
+                    function autocomplete_nombre(){
+                  $info = auto("contacto","contacto_id","nombre",$this->input->get('term'));
+                  $this->output->set_content_type('application/json')->set_output(json_encode($info));
+                }
+            }
 ?>

@@ -1,17 +1,16 @@
-<h1><?php echo $post['titulo'];?></h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i> <?php echo $post['titulo']; ?>
+    </h5>
+</div>
+<div class='well'>
 <form action="<=?php echo base_url('index.php/').'<?php echo '/' . ucfirst($post['tabla']) . '/consult_' . $post['tabla'] ?>'; ?=>" method="post" >
-    <div>
+    <div class="row">
     <?php
     $post['columnas']=  str_replace("'", "", $post['columnas']);
     $resul = 12 / $post['columnas'];
     for ($i = 0; $i < count($post['nombre_label']); $i++) {
         if ($post['aparezca'][$i] == 1) {
-            if ($i == 0) {
-                ?><div class="row"><?php
-            } else if ($resul % $i == 0) {
-                ?></div><div class="row"><?php
-                    $uu = $i;
-                }
                 ?>
                 <div class="col-md-<?php echo $resul ?>">
                     <label for="<?php echo $post['nombre_campo'][$i]; ?>">
@@ -97,6 +96,7 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">

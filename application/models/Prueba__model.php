@@ -42,6 +42,7 @@ class Prueba__model extends CI_Model {
         $this->db->like('activo',$post['activo']);
                                     $this->db->select('id');
                                 $this->db->select('nombre');
+                                $this->db->select('fecha');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('prueba');
         $datos=$datos->result();

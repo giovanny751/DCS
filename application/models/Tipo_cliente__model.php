@@ -7,11 +7,14 @@ class Tipo_cliente__model extends CI_Model {
     function save_tipo_cliente($post){
         if(isset($post['campo'])){ 
         $this->db->where($post["campo"],$post[$post["campo"]]);
+        $id=$post[$post["campo"]];
             unset($post['campo']);
             $this->db->update('tipo_cliente',$post);
         }else{
             $this->db->insert('tipo_cliente',$post);
+            $id=$this->db->insert_id();
         }
+        return $id;
         
     }
     function delete_tipo_cliente($post){

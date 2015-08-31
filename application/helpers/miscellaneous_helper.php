@@ -403,6 +403,7 @@ function lista($name, $id, $class, $tabla, $option_value, $option_name, $value, 
     function buscador($tabla,$nombrecampo,$palabra){
         $CI = & get_instance();
         $CI->db->like($nombrecampo,$palabra);
+        $CI->db->where('activo','S');
         $user = $CI->db->get($tabla);
         return $user->result();
     }

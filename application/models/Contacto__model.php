@@ -5,13 +5,20 @@ class Contacto__model extends CI_Model {
         parent::__construct();
     }
     function save_contacto($post){
+        if(!isset($post['cuidador']))
+            $this->db->set('cuidador','');
+        if(!isset($post['llaves']))
+            $this->db->set('llaves','');
         if(isset($post['campo'])){ 
         $this->db->where($post["campo"],$post[$post["campo"]]);
+        $id=$post[$post["campo"]];
             unset($post['campo']);
             $this->db->update('contacto',$post);
         }else{
             $this->db->insert('contacto',$post);
+            $id=$this->db->insert_id();
         }
+        return $id;
         
     }
     function delete_contacto($post){

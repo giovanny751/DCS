@@ -1,7 +1,13 @@
 
-<h1>Pacientes</h1>
+
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i>Pacientes
+    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/') . "/Pacientes/save_pacientes"; ?>" method="post" onsubmit="return campos()">
-    <div>
+    
         <div class="row">
 
             <div class="col-md-3">
@@ -53,7 +59,7 @@
                     *         Fecha afiliación                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  " id="fecha_afiliacion" name="fecha_afiliacion">
+                <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  fecha" id="fecha_afiliacion" name="fecha_afiliacion">
                 <br>
             </div>
 
@@ -108,7 +114,7 @@
                     *         Fecha_nacimiento                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->fecha_nacimiento) ? $datos[0]->fecha_nacimiento : '' ) ?>" class="form-control obligatorio  " id="fecha_nacimiento" name="fecha_nacimiento">
+                <input type="text" value="<?php echo (isset($datos[0]->fecha_nacimiento) ? $datos[0]->fecha_nacimiento : '' ) ?>" class="form-control obligatorio fecha" id="fecha_nacimiento" name="fecha_nacimiento">
                 <br>
             </div>
 
@@ -174,7 +180,7 @@
                     *         Fecha inicio contrato                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato) ? $datos[0]->fecha_inicio_contrato : '' ) ?>" class="form-control obligatorio  " id="fecha_inicio_contrato" name="fecha_inicio_contrato">
+                <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato) ? $datos[0]->fecha_inicio_contrato : '' ) ?>" class="form-control obligatorio fecha " id="fecha_inicio_contrato" name="fecha_inicio_contrato">
                 <br>
             </div>
 
@@ -185,7 +191,7 @@
                     *         Fecha fin contrato                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->fecha_fin_contrato) ? $datos[0]->fecha_fin_contrato : '' ) ?>" class="form-control obligatorio  " id="fecha_fin_contrato" name="fecha_fin_contrato">
+                <input type="text" value="<?php echo (isset($datos[0]->fecha_fin_contrato) ? $datos[0]->fecha_fin_contrato : '' ) ?>" class="form-control obligatorio  fecha" id="fecha_fin_contrato" name="fecha_fin_contrato">
                 <br>
             </div>
 
@@ -250,6 +256,7 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
+</div>
 <script>
     function campos() {
 
@@ -265,5 +272,6 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker();
+    $('.fecha').datepicker({ dateFormat: 'yy-mm-dd' });
+    
 </script>

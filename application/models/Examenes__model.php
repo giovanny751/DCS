@@ -1,5 +1,5 @@
 <?php 
-class Examenes_model extends CI_Model {
+class Examenes__model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -7,11 +7,14 @@ class Examenes_model extends CI_Model {
     function save_examenes($post){
         if(isset($post['campo'])){ 
         $this->db->where($post["campo"],$post[$post["campo"]]);
+        $id=$post[$post["campo"]];
             unset($post['campo']);
             $this->db->update('examenes',$post);
         }else{
             $this->db->insert('examenes',$post);
+            $id=$this->db->insert_id();
         }
+        return $id;
         
     }
     function delete_examenes($post){

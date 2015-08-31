@@ -26,22 +26,9 @@ class Prueba extends My_Controller {
     }
     function save_prueba(){
         $post=$this->input->post();
-                            $post['nombre']=basename($_FILES['nombre']['name']);
-                        $id=$this->Prueba__model->save_prueba($post);
+                $id=$this->Prueba__model->save_prueba($post);
         
-                        $targetPath = "./uploads/prueba";
-                if (!file_exists($targetPath)) {
-                    mkdir($targetPath, 0777, true);
-                }
-                $targetPath = "./uploads/prueba/".$id;
-                if (!file_exists($targetPath)) {
-                    mkdir($targetPath, 0777, true);
-                }
-                $target_path = $targetPath.'/'. basename($_FILES['nombre']['name']);
-                if (move_uploaded_file($_FILES['nombre']['tmp_name'], $target_path)) {
-
-                }    
-                                
+                        
         redirect('index.php/Prueba/consult_prueba', 'location');
     }
     function delete_prueba(){
@@ -56,5 +43,9 @@ class Prueba extends My_Controller {
         $this->data['datos']=$this->Prueba__model->edit_prueba($this->data['post']);
         $this->layout->view('prueba/index', $this->data);
     }
-    }
+                    function autocomplete_nombre(){
+                  $info = auto("sexo","Sex_id","Sex_Sexo",$this->input->get('term'));
+                  $this->output->set_content_type('application/json')->set_output(json_encode($info));
+                }
+            }
 ?>

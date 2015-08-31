@@ -115,5 +115,5 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker();
+    $('.fecha').datepicker({ dateFormat: 'yy-mm-dd' });
 </script>
