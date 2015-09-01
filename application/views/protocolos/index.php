@@ -1,7 +1,11 @@
-
-<h1>Protocolos</h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i>Protocolos
+    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/')."/Protocolos/save_protocolos"; ?>" method="post" onsubmit="return campos()">
-    <div>
+
         <div class="row">
 
                     <div class="col-md-2">
@@ -100,6 +104,7 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
+</div>
 <script>
     function campos() {
 

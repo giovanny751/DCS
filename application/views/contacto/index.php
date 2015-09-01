@@ -1,7 +1,10 @@
-
-<h1>Ficha Contacto</h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i> Ficha Contacto
+    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/') . "/Contacto/save_contacto"; ?>" method="post" onsubmit="return campos()">
-    <div>
         <div class="row">
 
             <div class="col-md-3">
@@ -146,6 +149,7 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
+</div>
 <script>
     function campos() {
 

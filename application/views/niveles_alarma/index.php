@@ -1,7 +1,11 @@
-
-<h1>Niveles alarmas</h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i>Niveles alarmas
+    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/')."/Niveles_alarma/save_niveles_alarma"; ?>" method="post" onsubmit="return campos()">
-    <div>
+
         <div class="row">
 
                     <div class="col-md-3">
@@ -129,6 +133,7 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
+</div>
 <script>
     function campos() {
 

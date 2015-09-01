@@ -26,7 +26,9 @@ class Pacientes extends My_Controller {
     }
     function save_pacientes(){
         $post=$this->input->post();
-        $this->Pacientes__model->save_pacientes($post);
+                $id=$this->Pacientes__model->save_pacientes($post);
+        
+                        
         redirect('index.php/Pacientes/consult_pacientes', 'location');
     }
     function delete_pacientes(){
@@ -41,5 +43,5 @@ class Pacientes extends My_Controller {
         $this->data['datos']=$this->Pacientes__model->edit_pacientes($this->data['post']);
         $this->layout->view('pacientes/index', $this->data);
     }
-}
+    }
 ?>

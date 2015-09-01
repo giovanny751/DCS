@@ -1,6 +1,11 @@
-<h1>Tipos alarmas</h1>
+<div class="widgetTitle" >
+    <h5>
+        <i class="glyphicon glyphicon-ok"></i>Tipos alarmas
+    </h5>
+</div>
+<div class='well'>
 <form action="<?php echo base_url('index.php/').'/Tipo_alarma/consult_tipo_alarma'; ?>" method="post" >
-    <div>
+
     <div class="row">                <div class="col-md-3">
                     <label for="id_tipo_alarma">
                                             </label>
@@ -102,6 +107,7 @@
     <input type="hidden" name="campo" value="<?php echo $campo ?>">
 </form>
 <?php } ?>
+</div>
 <script>
     function editar(num) {
         $('#<?php echo $campo ?>2').val(num);
