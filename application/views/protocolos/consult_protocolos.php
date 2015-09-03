@@ -60,7 +60,7 @@
                     Enviar sms                        </label>
                 </div>
                 <div class="col-md-2">
-                                            <input type="checkbox" value="<?php echo (isset($post['enviar_sms'])?$post['enviar_sms']:'' ) ?>" class="form-control   " id="enviar_sms" name="enviar_sms">
+                    <input type="checkbox"  <?php echo (isset($post['enviar_sms'])?'checked="checked"':'' ) ?> class="form-control   " value="SI" id="enviar_sms" name="enviar_sms">
                                             <br>
                 </div>
 
@@ -69,7 +69,7 @@
                     Enviar email                        </label>
                 </div>
                 <div class="col-md-2">
-                                            <input type="checkbox" value="<?php echo (isset($post['enviar_email'])?$post['enviar_email']:'' ) ?>" class="form-control   " id="enviar_email" name="enviar_email">
+                                            <input type="checkbox" value="SI" <?php echo (isset($post['enviar_email'])?'checked="checked"':'' ) ?> class="form-control   " id="enviar_email" name="enviar_email">
                                             <br>
                 </div>
 

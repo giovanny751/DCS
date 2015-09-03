@@ -37,7 +37,7 @@
 
                     <div class="col-md-3">
                         <label for="fecha_inicio_contrato">
-                                                        Fecha inicio_contrato                        </label>
+                                                        Fecha inicio contrato                        </label>
                     </div>
                     <div class="col-md-3">
                                                     <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato)?$datos[0]->fecha_inicio_contrato:'' ) ?>" class=" form-control  fecha " id="fecha_inicio_contrato" name="fecha_inicio_contrato">
@@ -106,6 +106,20 @@
     </form>
 </div>
 <script>
+    $('#nombre').change(function(){
+        var nombre=$('#nombre').val();
+        var id_cliente=$('#id_cliente').val();
+        $.post('<?php echo base_url('index.php/Clientes/buscar_nombre')?>',{nombre:nombre,id_cliente:id_cliente})
+                .done(function(msg){
+                    if(msg==0){
+                        alerta('verde','Nombre valido')
+                    }else{
+                        alerta('rojo','Nombre no valido')
+                        $('#nombre').val('');
+                        return false
+                    }
+                })
+    })
     function campos() {
         $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();

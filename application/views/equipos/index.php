@@ -6,9 +6,9 @@
     <form action="<?php echo base_url('index.php/') . "/Equipos/save_equipos"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
         <div class="row">
             <?php $id = (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>
-            
-            
-                <input type="hidden" value="<?php echo (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>" class=" form-control   " id="id_equipo" name="id_equipo">
+
+
+            <input type="hidden" value="<?php echo (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>" class=" form-control   " id="id_equipo" name="id_equipo">
 
 
 
@@ -24,14 +24,12 @@
             </div>
 
 
-
             <div class="col-md-3">
                 <label for="estado">
                     *                             Estado                        </label>
             </div>
-            <div class="col-md-3">
-                				<select  class="form-control obligatorio  " id="estado" name="estado">
-                    <option value=""></option>
+            <div class="col-md-3" >
+                <select  class="form-control obligatorio  " id="estado" name="estado" <?php echo (isset($datos[0]->estado) ? '' : 'disabled="disabled"') ?>>
                     <option value="DISPONIBLE" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'DISPONIBLE') ? 'selected="selected"' : '') : '' ) ?>>DISPONIBLE</option>
                     <option value="EN OPERACIÓN" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN OPERACIÓN') ? 'selected="selected"' : '') : '' ) ?>>EN OPERACIÓN</option>
                     <option value="ASIGNADO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'ASIGNADO') ? 'selected="selected"' : '') : '' ) ?>>ASIGNADO</option>
@@ -42,20 +40,14 @@
             </div>
 
 
-
             <div class="col-md-3">
                 <label for="ubicacion">
                     *                             Ubicación                        </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : '' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
-
-
                 <br>
             </div>
-
-
-
             <div class="col-md-3">
                 <label for="serial">
                     *                             Serial N°                         </label>
@@ -75,8 +67,6 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->fabricante) ? $datos[0]->fabricante : '' ) ?>" class=" form-control   " id="fabricante" name="fabricante">
-
-
                 <br>
             </div>
 
@@ -87,7 +77,7 @@
                     Fecha fabricación                        </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->fecha_fabricacion) ? $datos[0]->fecha_fabricacion : '' ) ?>" class=" form-control   " id="fecha_fabricacion" name="fecha_fabricacion">
+                <input type="text" value="<?php echo (isset($datos[0]->fecha_fabricacion) ? $datos[0]->fecha_fabricacion : '' ) ?>" class=" form-control  fecha " id="fecha_fabricacion" name="fecha_fabricacion">
 
 
                 <br>
@@ -100,20 +90,20 @@
                     *                             Tipo equipo                        </label>
             </div>
             <div class="col-md-3">
-                <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->tipo_equipo_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
             </div>
-            </div>
+        </div>
         <div class="row">
 
 
 
             <div class="col-md-3">
                 <label for="imagen">
-                    *                             Imagen                        </label>
+                    Imagen                        </label>
             </div>
             <div class="col-md-3">
-                <input type="file" value="<?php echo (isset($datos[0]->imagen) ? $datos[0]->imagen : '' ) ?>" class="  obligatorio  " id="imagen" name="imagen">
+                <input type="file" value="<?php echo (isset($datos[0]->imagen) ? $datos[0]->imagen : '' ) ?>" class="   " id="imagen" name="imagen">
 
                 <?php if (!empty($id) && $datos[0]->imagen != '') { ?>
                     <img style="width: 100px" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->imagen ?>">
@@ -122,7 +112,7 @@
                 <br>
             </div>
 
-</div>
+        </div>
         <div class="row">
 
             <div class="col-md-3">
@@ -135,11 +125,11 @@
 
                 <br>
             </div>
-</div>
+        </div>
         <div class="row">
             <div class="col-md-12"><hr></div>
         </div>
-        
+
         <div class="row">
 
 
@@ -147,10 +137,8 @@
                 <label for="observaciones">
                     Observaciones                        </label>
             </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->observaciones) ? $datos[0]->observaciones : '' ) ?>" class=" form-control   " id="observaciones" name="observaciones">
-
-
+            <div class="col-md-9">
+                <textarea class=" form-control   " id="observaciones" name="observaciones"><?php echo (isset($datos[0]->observaciones) ? $datos[0]->observaciones : '' ) ?></textarea>
                 <br>
             </div>
 
@@ -181,7 +169,7 @@
             </div>
 
 
-</div>
+        </div>
         <div class="row">
             <div class="col-md-3">
                 <label for="adjuntar_certificado">
@@ -196,20 +184,20 @@
 
                 <br>
             </div>
-</div>
-        
+        </div>
+
         <div class="row">
             <div class="col-md-12"><hr></div>
         </div>
-        
+
         <div class="row">
-            
+
             <div class="col-md-3">
                 <label for="examen_cod">
-                    Examen                        </label>
+                    * Examen                        </label>
             </div>
             <div class="col-md-3">
-                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->examen_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
             </div>
 
@@ -220,8 +208,8 @@
                     Variable código                        </label>
             </div>
             <div class="col-md-3">
-                <?php echo lista("variable_codigo", "variable_codigo", "form-control", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                 <br>
+                <?php echo lista("variable_codigo", "variable_codigo", "form-control", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->tipo_equipo_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                <br>
             </div>
 
         </div>
@@ -246,10 +234,12 @@
     function campos() {
         $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();
-            var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
-            if (r === false) {
-                alert('Tipo de archivo no valido');
-                return false;
+            if (img != "") {
+                var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
+                if (r === false) {
+                    alert('Tipo de archivo no valido');
+                    return false;
+                }
             }
         });
         if (obligatorio('obligatorio') == false) {
@@ -264,7 +254,7 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
 
 
 </script>

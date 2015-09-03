@@ -24,6 +24,12 @@ class Clientes extends My_Controller {
         $this->data['datos']=$this->Clientes__model->consult_clientes($post);
         $this->layout->view('clientes/consult_clientes', $this->data);
     }
+    function buscar_nombre(){
+        $post=$this->input->post();
+        $this->data['post']=$this->input->post();
+        echo $datos=$this->Clientes__model->buscar_nombre($post);
+//        $this->layout->view('clientes/consult_clientes', $this->data);
+    }
     function save_clientes(){
         $post=$this->input->post();
                 $id=$this->Clientes__model->save_clientes($post);

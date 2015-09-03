@@ -34,6 +34,9 @@ class Tipo_equipo__model extends CI_Model {
                     if(isset($post['referencia']))
         if($post['referencia']!="")
         $this->db->like('referencia',$post['referencia']);
+                    if(isset($post['estado']))
+        if($post['estado']!="")
+        $this->db->like('estado',$post['estado']);
                     if(isset($post['fecha_creacion']))
         if($post['fecha_creacion']!="")
         $this->db->like('fecha_creacion',$post['fecha_creacion']);
@@ -42,10 +45,20 @@ class Tipo_equipo__model extends CI_Model {
         $this->db->like('activo',$post['activo']);
                                     $this->db->select('tipo_equipo_cod');
                                 $this->db->select('referencia');
+                                $this->db->select('estado');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('tipo_equipo');
         $datos=$datos->result();
         return $datos;
+    }
+    public function referencia($post) {
+        if(!empty($post['tipo_equipo_cod']))
+        $this->db->where_not_in('tipo_equipo_cod', $post['tipo_equipo_cod']);
+        $this->db->where('referencia', $post['referencia']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('tipo_equipo');
+        $datos =$datos->result();
+        return count($datos);
     }
 }
 ?>

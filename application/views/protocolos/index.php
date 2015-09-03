@@ -60,8 +60,8 @@
                         <label for="descripcion">
                         *         Descripción                            </label>
                     </div>
-                    <div class="col-md-2">
-                                                <input type="text" value="<?php echo (isset($datos[0]->descripcion)?$datos[0]->descripcion:'' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
+                    <div class="col-md-10">
+                                                <textarea class="form-control obligatorio  " id="descripcion" name="descripcion"><?php echo (isset($datos[0]->descripcion)?$datos[0]->descripcion:'' ) ?></textarea>
                                                 <br>
                     </div>
 
@@ -72,7 +72,8 @@
                                 Enviar sms                            </label>
                     </div>
                     <div class="col-md-2">
-                                                <input type="checkbox" value="<?php echo (isset($datos[0]->enviar_sms)?$datos[0]->enviar_sms:'' ) ?>" class="form-control   " id="enviar_sms" name="enviar_sms">
+                                                <!--<input type="checkbox" value="<?php echo (isset($datos[0]->enviar_sms)?$datos[0]->enviar_sms:'' ) ?>" class="form-control   " id="enviar_sms" name="enviar_sms">-->
+                        <input type="checkbox"  <?php echo (isset($datos[0]->enviar_sms)?(empty($datos[0]->enviar_sms)?'checked="checked"':''):'' ) ?> class="form-control   " value="SI" id="enviar_sms" name="enviar_sms">
                                                 <br>
                     </div>
 
@@ -83,7 +84,8 @@
                                 Enviar email                            </label>
                     </div>
                     <div class="col-md-2">
-                                                <input type="checkbox" value="<?php echo (isset($datos[0]->enviar_email)?$datos[0]->enviar_email:'' ) ?>" class="form-control   " id="enviar_email" name="enviar_email">
+                                                <!--<input type="checkbox" value="<?php echo (isset($datos[0]->enviar_email)?$datos[0]->enviar_email:'' ) ?>" class="form-control   " id="enviar_email" name="enviar_email">-->
+                                                <input type="checkbox" value="SI" <?php echo (isset($datos[0]->enviar_email)?(empty($datos[0]->enviar_email)?'checked="checked"':''):'' ) ?> class="form-control   " id="enviar_email" name="enviar_email">
                                                 <br>
                     </div>
 

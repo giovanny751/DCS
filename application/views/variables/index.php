@@ -9,8 +9,6 @@
     
         <div class="row">
             <?php $id = (isset($datos[0]->variable_codigo) ? $datos[0]->variable_codigo : '' ) ?>
-
-
             <div class="col-md-3">
                 <label for="variable_codigo">
                 </label>
@@ -78,6 +76,27 @@
 </form>
 </div>
 <script>
+    $('#hl7tag').change(function() {
+        var hl7tag = $('#hl7tag').val();
+        var variable_codigo = $('#variable_codigo').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Variables/referencia') ?>', {hl7tag: hl7tag, variable_codigo: variable_codigo})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Nombre valido')
+                    } else {
+                        alerta('rojo', 'Nombre no valido')
+                        $('#hl7tag').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
     function campos() {
         $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();

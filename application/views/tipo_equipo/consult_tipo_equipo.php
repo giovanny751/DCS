@@ -34,6 +34,20 @@
                                             <br>
                 </div>
 
+                            <div class="col-md-3">
+                    <label for="estado">
+                    Estado                        </label>
+                </div>
+                <div class="col-md-3">
+                    
+                                            <select  class="form-control obligatorio  " id="estado" name="estado">
+                            <option value=""></option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                                                    <br>
+                </div>
+
                 </div>
     <button class="btn btn-success">Consultar</button>
 </form>
@@ -42,8 +56,9 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
-                                    <th>Código</th>
+                                    <th></th>
                                     <th>Referencia</th>
+                                    <th>Estado</th>
                             <th>Acción</th>
             </thead>
             <tbody>

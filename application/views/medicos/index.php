@@ -55,7 +55,7 @@
                     *                             Matrícula profesional                        </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->matricula_profesional) ? $datos[0]->matricula_profesional : '' ) ?>" class=" form-control obligatorio  number" id="matricula_profesional" name="matricula_profesional">
+                <input type="text" value="<?php echo (isset($datos[0]->matricula_profesional) ? $datos[0]->matricula_profesional : '' ) ?>" class=" form-control obligatorio  " id="matricula_profesional" name="matricula_profesional">
 
 
                 <br>
@@ -78,7 +78,7 @@
 
             <div class="col-md-3">
                 <label for="telefono_fijo">
-                    *                             Telefono fijo                        </label>
+                    *                             Teléfono fijo                        </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo) ? $datos[0]->telefono_fijo : '' ) ?>" class=" form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">

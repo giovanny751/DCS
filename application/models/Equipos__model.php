@@ -11,6 +11,7 @@ class Equipos__model extends CI_Model {
             unset($post['campo']);
             $this->db->update('equipos',$post);
         }else{
+            $this->db->set('estado','DISPONIBLE');
             $this->db->insert('equipos',$post);
             $id=$this->db->insert_id();
         }

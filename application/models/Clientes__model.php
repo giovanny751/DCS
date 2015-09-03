@@ -32,6 +32,7 @@ class Clientes__model extends CI_Model {
     }
 
     function consult_clientes($post) {
+//        print_y($post);
         if (isset($post['id_cliente']))
             if ($post['id_cliente'] != "")
                 $this->db->like('id_cliente', $post['id_cliente']);
@@ -55,7 +56,7 @@ class Clientes__model extends CI_Model {
                 $this->db->like('fecha_fin_contrato', $post['fecha_fin_contrato']);
         if (isset($post['estado']))
             if ($post['estado'] != "")
-                $this->db->like('estado', $post['estado']);
+                $this->db->where('estado', $post['estado']);
         if (isset($post['email']))
             if ($post['email'] != "")
                 $this->db->like('email', $post['email']);
@@ -75,6 +76,14 @@ class Clientes__model extends CI_Model {
         $datos = $this->db->get('clientes');
         $datos = $datos->result();
         return $datos;
+    }
+    public function buscar_nombre($post) {
+        $this->db->where_not_in('id_cliente', $post['id_cliente']);
+        $this->db->where('nombre', $post['nombre']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('clientes');
+        $datos =$datos->result();
+        return count($datos);
     }
 
 }

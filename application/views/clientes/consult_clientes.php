@@ -3,7 +3,7 @@
         <i class="glyphicon glyphicon-ok"></i> Clientes    </h5>
 </div>
 <div class='well'>
-<form action="<?php echo base_url('index.php/').'/Clientes/consult_clientes'; ?>" method="post" >
+    <form action="<?php echo base_url('index.php/').'/Clientes/consult_clientes'; ?>" method="post">
     <div class="row">
                     <div class="col-md-3">
                     <label for="id_cliente">Código
@@ -38,8 +38,8 @@
                     Tipo cliente                        </label>
                 </div>
                 <div class="col-md-3">
-                    
-                                            <input type="text" value="<?php echo (isset($post['id_tipo_cliente'])?$post['id_tipo_cliente']:'' ) ?>" class="form-control   " id="id_tipo_cliente" name="id_tipo_cliente">
+                    <?php echo lista("id_tipo_cliente", "id_tipo_cliente", "form-control ", "tipo_cliente", "id_tipo_cliente", "descripcion", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                                            <!--<input type="text" value="<?php echo (isset($post['id_tipo_cliente'])?$post['id_tipo_cliente']:'' ) ?>" class="form-control   " id="id_tipo_cliente" name="id_tipo_cliente">-->
                                             <br>
                 </div>
 
@@ -69,7 +69,7 @@
                                     <th></th>
                                     <th>Nombre</th>
                                     <th>Tipo cliente</th>
-                                    <th>Fecha inicio_contrato</th>
+                                    <th>Fecha inicio contrato</th>
                                     <th>Fecha fin contrato</th>
                                     <th>Estado</th>
                                     <th>Email</th>
@@ -118,6 +118,7 @@
 </form>
 <?php } ?>
 <script>
+    
     function editar(num) {
         $('#<?php echo $campo ?>2').val(num);
         $('#editar').submit();

@@ -1,19 +1,12 @@
 <div class="widgetTitle" >
     <h5>
-        <i class="glyphicon glyphicon-ok"></i> Examenes    </h5>
+        <i class="glyphicon glyphicon-ok"></i> Exámenes    </h5>
 </div>
 <div class='well'>
     <form action="<?php echo base_url('index.php/')."/Examenes/save_examenes"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
         <div class="row">
                                     <?php $id=(isset($datos[0]->examen_cod)?$datos[0]->examen_cod:'' ) ?>
-                        
-
-                    
-                    
-                                                    <input type="hidden" value="<?php echo (isset($datos[0]->examen_cod)?$datos[0]->examen_cod:'' ) ?>" class=" form-control   " id="examen_cod" name="examen_cod">
-
-                    
-
+                                                <input type="hidden" value="<?php echo (isset($datos[0]->examen_cod)?$datos[0]->examen_cod:'' ) ?>" class=" form-control   " id="examen_cod" name="examen_cod">
                     
 
                     <div class="col-md-3">
@@ -24,6 +17,21 @@
                                                     <input type="text" value="<?php echo (isset($datos[0]->examen_nombre)?$datos[0]->examen_nombre:'' ) ?>" class=" form-control obligatorio  " id="examen_nombre" name="examen_nombre">
 
                             
+                                                <br>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
+                        <label for="estado">
+                            *                             Estado                        </label>
+                    </div>
+                    <div class="col-md-3">
+                                                    <select  class="form-control obligatorio  " id="estado" name="estado">
+                                <option value=""></option>
+                                <option value="Activo" <?php echo (isset($datos[0]->estado)?(($datos[0]->estado=='Activo')?'selected="selected"':''):'' ) ?>>Activo</option>
+                                <option value="Inactivo" <?php echo (isset($datos[0]->estado)?(($datos[0]->estado=='Inactivo')?'selected="selected"':''):'' ) ?>>Inactivo</option>
+                            </select>
                                                 <br>
                     </div>
 
@@ -46,13 +54,36 @@
     </form>
 </div>
 <script>
+    $('#examen_nombre').change(function() {
+        var examen_cod = $('#examen_cod').val();
+        var examen_nombre = $('#examen_nombre').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Examenes/referencia') ?>', {examen_cod: examen_cod, examen_nombre: examen_nombre})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Nombre valido')
+                    } else {
+                        alerta('rojo', 'Nombre no valido')
+                        $('#examen_nombre').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
     function campos() {
         $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();
-            var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
-            if (r === false) {
-                alert('Tipo de archivo no valido');
-                return false;
+            if (img != "") {
+                var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
+                if (r === false) {
+                    alert('Tipo de archivo no valido');
+                    return false;
+                }
             }
         });
         if (obligatorio('obligatorio') == false) {

@@ -34,7 +34,8 @@
                     *         Examen                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->examen) ? $datos[0]->examen : '' ) ?>" class="form-control obligatorio  " id="examen" name="examen">
+                <!--<input type="text" value="<?php echo (isset($datos[0]->examen) ? $datos[0]->examen : '' ) ?>" class="form-control obligatorio  " id="examen" name="examen">-->
+                <?php echo lista("examen", "examen", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre",  (isset($datos[0]->examen) ? $datos[0]->examen : '' ) , array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
             </div>
 
@@ -45,7 +46,13 @@
                     Análisis resultados                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->analisis_resultados) ? $datos[0]->analisis_resultados : '' ) ?>" class="form-control   " id="analisis_resultados" name="analisis_resultados">
+                <!--<input type="text" value="<?php echo (isset($datos[0]->analisis_resultados) ? $datos[0]->analisis_resultados : '' ) ?>" class="form-control   " id="analisis_resultados" name="analisis_resultados">-->
+                <select class="form-control   " id="analisis_resultados" name="analisis_resultados">
+                    <option value=""></option>
+                    <option value="Normal">Normal</option>
+                    <option value="Baja">Baja</option>
+                    <option value="Alta">Alta</option>
+                </select>
                 <br>
             </div>
 
@@ -56,7 +63,8 @@
                     *         Niveles                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : '' ) ?>" class="form-control obligatorio  " id="id_niveles_alarma" name="id_niveles_alarma">
+                <!--<input type="text" value="<?php echo (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : '' ) ?>" class="form-control obligatorio  " id="id_niveles_alarma" name="id_niveles_alarma">-->
+                <?php echo lista("id_niveles_alarma", "id_niveles_alarma", "form-control obligatorio", "niveles_alarma", "id_niveles_alarma", "descripcion", (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
             </div>
 
@@ -79,6 +87,7 @@
     </form>
 </div>
 <script>
+    $('#analisis_resultados').val("<?php echo (isset($datos[0]->analisis_resultados) ? $datos[0]->analisis_resultados : '' ) ?>");
     function campos() {
 
         if (obligatorio('obligatorio') == false) {
@@ -89,7 +98,7 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function (tecla) {
+    $('body').delegate('.number', 'keypress', function(tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });

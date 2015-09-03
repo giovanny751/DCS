@@ -62,7 +62,15 @@ class Variables__model extends CI_Model {
         $datos = $datos->result();
         return $datos;
     }
-
+    public function referencia($post) {
+        if(!empty($post['variable_codigo']))
+        $this->db->where_not_in('variable_codigo', $post['variable_codigo']);
+        $this->db->where('hl7tag', $post['hl7tag']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('variables');
+        $datos =$datos->result();
+        return count($datos);
+    }
 }
 
 ?>

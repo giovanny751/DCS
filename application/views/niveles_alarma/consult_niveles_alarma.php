@@ -29,7 +29,7 @@
                     Examen                        </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['examen_cod']) ? $post['examen_cod'] : '' ) ?>" class="form-control   " id="examen_cod" name="examen_cod">
+                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre",  (isset($post['examen_cod']) ? $post['examen_cod'] : '' ) , array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
             </div>
 
@@ -92,7 +92,7 @@
                     protocolo                        </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['id_protocolo']) ? $post['id_protocolo'] : '' ) ?>" class="form-control obligatorio  " id="id_protocolo" name="id_protocolo">
+                <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($post['id_protocolo']) ? $post['id_protocolo'] : '' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
             </div>
 

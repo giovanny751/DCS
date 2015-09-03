@@ -6,7 +6,7 @@
 <form action="<?php echo base_url('index.php/').'/Equipos/consult_equipos'; ?>" method="post" >
     <div class="row">
                     <div class="col-md-3">
-                    <label for="id_equipo">Codigo
+                    <label for="id_equipo">Código equipo
                                             </label>
                 </div>
                 <div class="col-md-3">
@@ -94,7 +94,7 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
-                                    <th></th>
+                                    <th>Código</th>
                                     <th>Descripción</th>
                                     <th>Estado</th>
                                     <th>Ubicación</th>

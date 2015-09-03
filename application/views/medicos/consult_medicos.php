@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-3">
 
-                <input type="text" value="<?php echo (isset($post['matricula_profesional']) ? $post['matricula_profesional'] : '' ) ?>" class="form-control obligatorio  number" id="matricula_profesional" name="matricula_profesional">
+                <input type="text" value="<?php echo (isset($post['matricula_profesional']) ? $post['matricula_profesional'] : '' ) ?>" class="form-control obligatorio  " id="matricula_profesional" name="matricula_profesional">
                 <br>
             </div>
 
@@ -71,7 +71,7 @@
             <th>Estado</th>
             <th>Matricula profesional</th>
             <th>Dirección</th>
-            <th>Telefono fijo</th>
+            <th>Teléfono fijo</th>
             <th>Celular</th>
             <th>Email</th>
             <th>Acción</th>
