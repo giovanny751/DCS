@@ -119,29 +119,13 @@ class Presentacion extends My_Controller {
     function permisosporrol() {
         $idrol = $this->input->post('idrol');
         $idusuario = $this->input->post('idusuario');
+        $data = array();
+        for($i = 0; $i < count($idrol); $i++){
+            $data[$i] = array(""=>$idrol,""=>$idusuario); 
+        }
+        
         $permisos = $this->permisorolporusuario('prueba', $idrol, $idusuario);
         echo $permisos;
-    }
-
-    function permisorolporusuario($datosmodulos = 'prueba', $idrol, $idusuario, $html = "") {
-
-        $menu = $this->Ingreso_model->permisousuarioroles($datosmodulos, $idrol, $idusuario);
-        $i = array();
-        foreach ($menu as $modulo)
-            $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
-
-        $html .="<ul>";
-        foreach ($i as $padre => $nombrepapa)
-            foreach ($nombrepapa as $nombrepapa => $menuidpadre)
-                foreach ($menuidpadre as $modulos => $menu)
-                    foreach ($menu as $submenus):
-                        $html .= "<li>" . strtoupper($nombrepapa) . "<input type='checkbox' class='seleccionados' name='permisorol[]' value='" . $padre . "'>";
-                        if (!empty($submenus[0]))
-                            $html .=$this->permisorolporusuario($submenus[0], $idrol, $idusuario);
-                        $html .= "</li>";
-                    endforeach;
-        $html.="</ul>";
-        return $html;
     }
 
     function consultausuario() {
@@ -295,6 +279,7 @@ class Presentacion extends My_Controller {
         $tipo = 1;
         $menu = $this->Ingreso_model->menu($datosmodulos, $idusuario, $tipo);
         $i = array();
+        
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion'], $modulo['menudos']);
         if ($datosmodulos == 'prueba')
@@ -324,16 +309,19 @@ class Presentacion extends My_Controller {
     }
 
     function guardarpermisos() {
-        $rol = $this->input->post('roluser');
-        $usuario = $this->input->post('usuarioid');
-        $this->Ingreso_model->eliminapermisosusuario($rol, $usuario);
-        $permisorol = $this->input->post('permisorol');
-        $permiso = array();
-            $this->Ingreso_model->eliminarpermisosrol($rol,$usuario);
-        for ($i = 0; $i < count($permisorol); $i++) {
-            $permiso[] = array('usu_id' => $usuario, 'menu_id' => $permisorol[$i], 'rol_id' => $rol);
+        $rol = $this->input->post('idrol');
+        $usuario = $this->input->post('idusuario');
+        $this->Ingreso_model->eliminarpermisosusuario($usuario);
+        $this->Ingreso_model->actualizausuariorol($usuario);
+        $data = array();
+        $i = 0;
+        for($i = 0;$i < count($rol);$i++){
+            $data[$i] = array(
+                "rol_id"=>$rol[$i],
+                "usu_id"=>$usuario
+            );
         }
-        $this->Ingreso_model->permisosusuariomenu($permiso);
+        $this->Ingreso_model->permisosusuariomenu($data);
     }
 
     function guardarpais() {
@@ -363,7 +351,17 @@ class Presentacion extends My_Controller {
     function guardarcontrasena() {
         $this->Ingreso_model->guardarcontrasena($this->input->post('password'), $this->data['user']['usu_id']);
     }
-
+    function rol(){
+        
+        $this->data['roles'] = $this->Roles_model->rolxusuario($this->session->userdata('usu_id'));
+        $this->layout->view("presentacion/rol",$this->data);
+    }
+    function guardarroldefecto(){
+        $this->load->model("User_model");
+        $rol = $this->input->post("rol");
+        $usu_id = $this->session->userdata('usu_id');
+        $this->User_model->rolxdefecto($rol,$usu_id);
+    }
 }
 
 /* End of file welcome.php */

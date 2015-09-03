@@ -93,12 +93,16 @@ class Administrativo extends My_Controller {
     }
 
     function creacionusuarios() {
-        $this->load->model('Sexo_model');
-        $this->load->model('Cargo_model');
-        $this->load->model('Empleado_model');
-        $this->data['empleado'] = $this->Empleado_model->detail();
-        $this->data['sexo'] = $this->Sexo_model->detail();
-        $this->data['cargo'] = $this->Cargo_model->detail();
+
+        $this->load->model('Estados_model');
+        $this->load->model('User_model');
+        $this->data['estado'] = $this->Estados_model->detail();
+        $this->data['usuario'] = "";
+        $user = $this->input->post('usu_id');
+        if (!empty($user)) {
+            $this->data['usuario'] = $this->User_model->consultausuarioxid($this->input->post('usu_id'));
+//            var_dump($this->data['usuario']);die;
+        }
         $this->layout->view("administrativo/creacionusuarios", $this->data);
     }
 
@@ -134,13 +138,14 @@ class Administrativo extends My_Controller {
             'usu_apellido' => $this->input->post('apellidos'),
             'usu_usuario' => $this->input->post('usuario'),
             'usu_email' => $this->input->post('email'),
-            'sex_id' => $this->input->post('genero'),
-            'car_id' => $this->input->post('cargo'),
-            'emp_id' => $this->input->post('empleado'),
             'usu_fechaCreacion' => date('Y-m-d H:i:s') 
         );
-
+        $data = $this->User_model->validaexistencia($this->input->post('cedula'));
+        
+        if(empty($data))
         $this->User_model->create($data);
+        else
+            echo 1;
     }
 
     function cargos() {

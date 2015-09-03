@@ -6,18 +6,16 @@ if (!defined('BASEPATH'))
 class User_model extends CI_Model {
 
     public function get_user($username, $pass) {
-        $this->db->where('usu_email', $username);
+        $this->db->where('usu_usuario', $username);
         $this->db->where('usu_contrasena', $pass);
-//        $this->db->where('usu_status','0');
         $query = $this->db->get('user');
-//        echo $this->db->last_query();die;
         return $query->result_array();
     }
 
     public function listo_politica($username, $pass) {
         $this->db->set('usu_politicas', '1');
-        $this->db->where('usu_correo', $username);
-        $this->db->where('usu_password', $pass);
+        $this->db->where('usu_email', $username);
+        $this->db->where('usu_contrasena', $pass);
         $this->db->update('user');
     }
 
@@ -35,14 +33,27 @@ class User_model extends CI_Model {
 
     function reset($mail) {
         $datos = rand(1000000, 8155555);
-        $this->db->get('usu_password', $datos);
-        $this->db->where('usu_correo', $mail);
+        $this->db->set('usu_contrasena', $datos);
+        $this->db->where('usu_email', $mail);
+        $this->db->update('user');
+        return $datos;
+    }
+    function actualizar($mail) {
+        $this->db->set('usu_cambiocontrasena', 1);
+        $this->db->where('usu_email', $mail);
         $this->db->get('user');
         return $datos;
     }
 
     function create($data) {
         $this->db->insert_batch('user', $data);
+//        echo $this->db->last_query();die;
+    }
+    function validaexistencia($cc){
+        
+        $this->db->where("usu_cedula",$cc);
+        $data = $this->db->get('user');
+        return $data->result();
     }
 
     function filteruser($apellido = null, $cedula = null, $estado = null, $nombre = null) {
@@ -60,10 +71,36 @@ class User_model extends CI_Model {
     }
     function consultageneral(){
         
-        $this->db->join("ingreso","ingreso.usu_id = user.usu_id","LEFT");
+        $this->db->select("user.usu_id as id,user.*,ingreso.Ing_fechaIngreso as ingreso");
+        $this->db->join("ingreso","ingreso.usu_id = user.usu_id and ingreso.ing_fechaIngreso = (select max(ing_fechaIngreso) from ingreso ) ","LEFT");
         $user = $this->db->get('user');
+//        echo $this->db->last_query();die;
         return $user->result();
         
     }
-
+    function consultausuarioxid($id){
+        
+        $this->db->where("usu_id",$id);
+        $user = $this->db->get("user");
+        return $user->result();
+    }
+    function update($data,$id){
+        $this->db->where("usu_id",$id);
+        
+        $this->db->update("user",$data);
+    }
+    function consultausuarioxcedula($cedula){
+        
+         $this->db->where("usu_cedula",$cedula);
+        $user = $this->db->get("user");
+        return $user->result();
+        
+    }
+    function rolxdefecto($rol,$usu_id){
+        
+        $this->db->where("usu_id",$usu_id);
+        $this->db->set("rol_id",$rol);
+        $this->db->update("user");
+        
+    }
 }

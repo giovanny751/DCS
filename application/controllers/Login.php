@@ -32,8 +32,13 @@ class Login extends My_Controller {
     }
 
     function verify() {
+        
+//        echo $this->input->post('username')."***".$this->input->post('password');die;
+        
         $user = $this->user_model->get_user($this->input->post('username'), $this->input->post('password'));
         if (!empty($user) > 0) {
+            $this->data['username'] = $user[0]["usu_email"];
+            $this->data['password'] = $user[0]["usu_contrasena"];      
             if ($user[0]['usu_politicas'] == 0) {
                 $this->data['inicio'] = $this->user_model->admin_inicio();
                 $this->load->view('login/politicas', $this->data);
@@ -44,7 +49,12 @@ class Login extends My_Controller {
                     'ing_fechaIngreso'=>date('Y-m-d H:i:s')   
                 );
                 $this->Ingreso_model->insertingreso($data);
-                redirect('index.php/presentacion/principal', 'location');
+                if(!empty($user[0]['rol_id'])){
+                    redirect('index.php/presentacion/principal', 'location');
+                }else{
+                    redirect('index.php/presentacion/rol', 'location');
+                }
+                
             }
         } else {
             $this->session->set_flashdata(array('message' => 'Su n&uacute;mero de documento no se encuentra registrado en el sistema.', 'message_type' => 'warning'));
@@ -72,7 +82,10 @@ class Login extends My_Controller {
     function reset() {
         $mail = $this->input->post('email');
         $password = $this->user_model->reset($mail);
-        mail($mail, "Restablecer la contraseña. ", 'clave: ' . $password);
+        $actualizar = $this->user_model->actualizar($mail);
+        $data = mail($mail, "Actualizacion de Contraseña", 'clave: ' . $password);
+        
+        redirect('index.php', 'location');
     }
 
 }

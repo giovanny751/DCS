@@ -20,34 +20,31 @@ class Roles_model extends CI_Model {
     function roles(){
         
         $consulta = $this->db->get('roles');
-        
-//        echo $this->db->last_query();die;
-        
         return $consulta->result_array();
     }
     
     function guardarrol($nombre){
-        
         $this->db->set('rol_nombre',$nombre);
-        
         $this->db->insert('roles');
-        
         return $this->db->insert_id();
     } 
     function insertapermisos($insert){
-        
         $this->db->insert_batch('permisos_rol',$insert);
-        
     }
     
     function eliminarrol($id){
-        
         $this->db->where('rol_id',$id);
         $this->db->delete('roles');
     }
     function eliminpermisosrol($idrol){
-        
         $this->db->where('rol_id',$idrol);
         $this->db->delete('permisos_rol');
+    }
+    function rolxusuario($usu_id){
+        $this->db->where("rol_estado",1);
+        $this->db->where("permisos.usu_id",$usu_id);
+        $this->db->join("permisos","permisos.rol_id = roles.rol_id");
+        $rol = $this->db->get("roles");
+        return $rol->result();
     }
 }
