@@ -132,6 +132,27 @@
     </form>
 </div>
 <script>
+    $('#nombre').change(function() {
+        var nombre = $('#nombre').val();
+        var tipo_equipo_cod = $('#tipo_equipo_cod').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Medicos/referencia') ?>', {nombre: nombre, tipo_equipo_cod: tipo_equipo_cod})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Nombre valido')
+                    } else {
+                        alerta('rojo', 'Nombre no valido')
+                        $('#nombre').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
     function campos() {
         $('input[type="file"]').each(function (key, val) {
             var img = $(this).val();

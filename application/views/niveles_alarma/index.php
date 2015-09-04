@@ -47,7 +47,12 @@
                     Analisis resultado                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->analisis_resultado) ? $datos[0]->analisis_resultado : '' ) ?>" class="form-control   " id="analisis_resultado" name="analisis_resultado">
+                <select  class="form-control   " id="analisis_resultado" name="analisis_resultado">
+                    <option value=""></option>
+                    <option value="Normal">Normal</option>
+                    <option value="Baja">Baja</option>
+                    <option value="Alta">Alta</option>
+                </select>
                 <br>
             </div>
 
@@ -145,7 +150,9 @@
     </form>
 </div>
 <script>
+    
     $('#frecuencia').val("<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>");
+    $('#analisis_resultado').val("<?php echo (isset($datos[0]->analisis_resultado) ? $datos[0]->analisis_resultado : '' ) ?>");
     function campos() {
         if (obligatorio('obligatorio') == false) {
             return false

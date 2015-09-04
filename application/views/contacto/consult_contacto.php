@@ -80,7 +80,7 @@
             <th>Nombre</th>
             <th>Estado</th>
             <th>Dirección</th>
-            <th>Telefono_fijo</th>
+            <th>Teléfono fijo</th>
             <th>Celular</th>
             <th>Email</th>
             <th>Parentesco</th>

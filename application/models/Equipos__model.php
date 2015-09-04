@@ -85,14 +85,15 @@ class Equipos__model extends CI_Model {
         $this->db->like('variable_codigo',$post['variable_codigo']);
                                     $this->db->select('id_equipo');
                                 $this->db->select('descripcion');
-                                $this->db->select('estado');
+                                $this->db->select('tipo_equipo.estado');
                                 $this->db->select('ubicacion');
                                 $this->db->select('serial');
                                 $this->db->select('fabricante');
                                 $this->db->select('fecha_fabricacion');
-                                $this->db->select('tipo_equipo_cod');
+                                $this->db->select('referencia');
                                 $this->db->select('responsable');
-                        $this->db->where('ACTIVO','S');
+                        $this->db->join('tipo_equipo','equipos.tipo_equipo_cod=tipo_equipo.tipo_equipo_cod');
+                        $this->db->where('equipos.ACTIVO','S');
         $datos=$this->db->get('equipos');
         $datos=$datos->result();
         return $datos;

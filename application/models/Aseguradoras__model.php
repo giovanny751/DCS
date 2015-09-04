@@ -71,5 +71,14 @@ class Aseguradoras__model extends CI_Model {
         $datos=$datos->result();
         return $datos;
     }
+    public function referencia($post) {
+        if(!empty($post['aseguradora_id']))
+        $this->db->where_not_in('aseguradora_id', $post['aseguradora_id']);
+        $this->db->where('nombre', $post['nombre']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('aseguradoras');
+        $datos =$datos->result();
+        return count($datos);
+    }
 }
 ?>

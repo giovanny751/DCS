@@ -75,7 +75,7 @@
                 <th>Tipo</th>
                 <th>Estado</th>
                 <th>Dirección</th>
-                <th>Telefono fijo</th>
+                <th>Teléfono fijo</th>
                 <th>Celular</th>
                 <th>Email</th>
                 <th>Acción</th>

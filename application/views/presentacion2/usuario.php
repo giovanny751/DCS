@@ -12,6 +12,7 @@
                 <th style="width: 220px">Email</th>
                 <th style="width: 220px">Numero Celular</th>
                 <th style="width: 220px">Estado</th>
+                <th style="width: 220px">Modificar</th>
                 <th style="width: 220px">Roles</th>
                 </thead>
                 <tbody>
@@ -33,6 +34,7 @@
                                     echo "Inactivo";
                                 }
                                 ?></td>
+                            <td align="center"><button type="button" class="modificar btn btn-info" idpadre="<?php echo $todosusuarios['usu_id']; ?>">Modificar</button></td>
                             <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"   class="btn btn-info permiso" usuarioid="<?php echo $todosusuarios['usu_id']; ?>">Roles</button></td>
                         </tr>
                     <?php } ?>
@@ -60,32 +62,21 @@
                     <div class="well">
                         <div class="row">
                             <div class="form-group has-success has-feedback">
-                                <form method="post" id="f15">
-                                    <input type="hidden" value="" id="idusuario" name="idusuario" />
-                                <table class="table table-hover table-bordered"> 
-                                    <thead>
-                                    <th>Rol</th><th>Asignación</th>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($roles as $rol) { ?>
-                                            <tr>
-                                                <td><?php echo $rol['rol_nombre']; ?></td>
-                                                <td style="text-align:center">
-                                                    <input type="checkbox" value="<?php echo $rol['rol_id']; ?>" id="idrol" name="idrol[]">
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>    
-                                
-                                </form>
+                                <label>Roles</label>
+                                <select id="roles" class="form-control">
+                                    <option value="">-Seleccionar-</option>
+                                    <?php foreach ($roles as $rol) { ?>
+                                        <option value="<?php echo $rol['rol_id']; ?>"><?php echo $rol['rol_nombre']; ?></option>
+                                    <?php } ?>
+                                </select>
+                                <button type="button" class="btn btn-success insertarrol">Asignar</button>
                             </div>
                         </div>
                         <div class="row">
                             <form method="post" id="formulariopermisos">
                                 <input type="hidden" name="usuarioid" id="usuarioid">
                                 <div class="col-md-12 col-lg-12 col-sm-12 col-sx-12 permisomenu">
-
+                                    
                                 </div>
                             </form>    
                         </div>
@@ -95,7 +86,7 @@
             <div class="modal-footer">
                 <div class="row marginV10">
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 col-md-offset-8 col-lg-offset-8 col-sm-offset-8 col-sx-offset-8 margenlogo' align='center' >
-                        <button type="button" class="btn btn-success insertarrol">Asignar</button>
+                        <button type="button" class="btn btn-primary guardarpermiso">Guardar</button>
                     </div>
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
                         <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>
@@ -114,18 +105,15 @@
 </style>
 <script>
     $('#ingresousuario').hide();
-
-    $('.insertarrol').click(function(){
-        $("#idusuario").val($(this).attr('usuarioid'));
-        $.post("<?= base_url('index.php/presentacion/guardarpermisos') ?>", 
-                    $('#f15').serialize()
-                ).done(function(){
-                    
-                }).fail(function(){
-                    
-                })
-
-        
+    $('.insertarrol').click(function () {
+        $('.permisomenu *').remove();
+        var idusuario = $(this).attr('usuarioid');
+        var idrol = $('#roles').val();
+        var textrol = $('#roles option:selected').text();
+        $('.permisomenu *').remove();
+        $.post("<?= base_url('index.php/presentacion/permisosporrol') ?>", {idrol: idrol, idusuario: idusuario}, function (data) {
+            $('.permisomenu').append(data);
+        });
     });
 
     $('.modificar').click(function () {
@@ -143,9 +131,18 @@
         var id = $(this).attr('usuarioid');
         $('#usuarioid').val(id);
         $('.insertarrol').attr('usuarioid', id);
+        $.post("<?php echo base_url('index.php/presentacion/permisos') ?>",
+                {id: id}, function (data) {
+            $('.totalpermisos').html(data);
+        });
     });
 
-       
+    $('body').delegate('.guardarpermiso', 'click', function () {
+        $.post("<?php echo base_url('index.php/presentacion/guardarpermisos') ?>",
+                $('#formulariopermisos').serialize(), function () {
+
+        });
+    });
     $('#insertarusuario').click(function () {
         $('.obligatorio').val('');
     });

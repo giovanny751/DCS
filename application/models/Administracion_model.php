@@ -122,23 +122,8 @@ class administracion_model extends CI_Model {
         return $dato->result_array();
     }
 
-    function cargos() {
 
-        $cargo = $this->db->get('cargo');
-        return $cargo->result_array();
-    }
 
-    function grupotrabajo() {
-
-        $grupotrabajo = $this->db->get('grupo_trabajo');
-        return $grupotrabajo->result_array();
-    }
-
-    function genero() {
-
-        $genero = $this->db->get('genero');
-        return $genero->result_array();
-    }
 
     function desicion() {
 
@@ -161,14 +146,6 @@ class administracion_model extends CI_Model {
         return $genero->result_array();
     }
 
-    function guardarempleado($data, $id) {
-
-        $this->db->where('usu_id', $id);
-        $this->db->update('user', $data);
-
-//        echo $this->db->last_query();die;
-    }
-
     function guardarfactores($factores) {
 
         $this->db->insert_batch('factor_usuario', $factores);
@@ -186,29 +163,7 @@ class administracion_model extends CI_Model {
         return $user->result_array();
     }
 
-    function ciudad() {
 
-        $ciudad = $this->db->get('ciudad');
-        return $ciudad->result_array();
-    }
-
-    function tipocontrato() {
-
-        $ciudad = $this->db->get('tipo_contrato');
-        return $ciudad->result_array();
-    }
-
-    function frecuencia() {
-
-        $ciudad = $this->db->get('frecuencia_desplazamiento');
-        return $ciudad->result_array();
-    }
-
-    function tipotrasporte() {
-
-        $ciudad = $this->db->get('tipo_transporte');
-        return $ciudad->result_array();
-    }
 
     function factoresriesgo($id) {
 
@@ -219,17 +174,7 @@ class administracion_model extends CI_Model {
         return $ciudad->result_array();
     }
 
-    function estadoconductor() {
 
-        $ciudad = $this->db->get('estado_conductor');
-        return $ciudad->result_array();
-    }
-
-    function restricciones() {
-
-        $ciudad = $this->db->get('restricciones');
-        return $ciudad->result_array();
-    }
 
     function rol() {
 

@@ -29,6 +29,12 @@
                             minLength: 3
                         });
                     });
+                    $('document').ready(function() {
+                        $('#matricula_profesional').autocomplete({
+                            source: "<?php echo base_url("index.php//Medicos/autocomplete_matricula_profesional") ?>",
+                            minLength: 3
+                        });
+                    });
                 </script>
                 <input type="text" value="<?php echo (isset($post['nombre']) ? $post['nombre'] : '' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
                 <br>
@@ -66,7 +72,7 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
-            <th></th>
+            <th>Código</th>
             <th>Nombre</th>
             <th>Estado</th>
             <th>Matricula profesional</th>

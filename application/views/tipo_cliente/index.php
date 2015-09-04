@@ -39,6 +39,27 @@
     </form>
 </div>
 <script>
+    $('#descripcion').change(function() {
+        var descripcion = $('#descripcion').val();
+        var id_tipo_cliente = $('#id_tipo_cliente').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Tipo_cliente/referencia') ?>', {descripcion: descripcion, id_tipo_cliente: id_tipo_cliente})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Nombre valido')
+                    } else {
+                        alerta('rojo', 'Nombre no valido')
+                        $('#descripcion').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
     function campos() {
         $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();

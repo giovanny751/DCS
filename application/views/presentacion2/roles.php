@@ -1,34 +1,28 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>ADMINISTRACIÓN DE ROLES
-    </h5>
+<div class="alert alert-info"><center><b>ADMINISTRACIÓN DE ROLES</b></center></div>
+<div class="row">
+    <button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones">Nuevo Rol</button>
 </div>
-<div class='well'>
-    <div class="row">
-        <button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones">Nuevo Rol</button>
-    </div>
-    <div class="row">
-        <div class="table-responsive ">
-            <table class="table table-responsive table-striped table-bordered">
-                <thead>
-                <th>Nombre</th>
-                <th>Estado</th>
-                <th>Opciones</th>
-                <th>Eliminar</th>
-                </thead>
-                <tbody id="cuerporol">
-                    <?php foreach ($roles as $datos) { ?>
-                        <tr>
-                            <td><?php echo $datos['rol_nombre']; ?></td>
-                            <td><?php echo $datos['rol_estado']; ?></td>
-                            <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>"  data-toggle="modal" data-target="#myModal"  class="btn btn-info modificar">Opciones</button></td>
-                            <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-danger eliminar">Eliminar</button></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>    
-    </div>
+<div class="row">
+    <div class="table-responsive ">
+        <table class="table table-responsive table-striped table-bordered">
+            <thead>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+            <th>Eliminar</th>
+            </thead>
+            <tbody id="cuerporol">
+                <?php foreach ($roles as $datos) { ?>
+                    <tr>
+                        <td><?php echo $datos['rol_nombre']; ?></td>
+                        <td><?php echo $datos['rol_estado']; ?></td>
+                        <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>"  data-toggle="modal" data-target="#myModal"  class="btn btn-info modificar">Opciones</button></td>
+                        <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-danger eliminar">Eliminar</button></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>    
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -49,7 +43,7 @@
                             <div class="form-group agregarrol">
 
                             </div>
-                            <div class="form-group datas"  style="overflow: scroll;height: 250px;">
+                            <div class="form-group"  style="overflow: scroll;height: 250px;">
                                 <label>Permisos </label>
                                 <?php
                                 echo $content;
@@ -78,38 +72,32 @@
 //------------------------------------------------------------------------------ 
     $('body').delegate('.eliminar', 'click', function() {
         $.post("<?php echo base_url('index.php/presentacion/eliminarrol'); ?>", {id: $(this).attr('rol')})
-                .done(function(msg) {
+                .done(function(msg){
                     $(this).parents('tr').remove();
-                }).fail(function(msg) {
+                }).fail(function(msg){
 
-        });
+                });
     });
 //------------------------------------------------------------------------------
 //                      NUEVO ROL    
 //------------------------------------------------------------------------------    
     $('body').delegate('.guardar', 'click', function() {
 
-        $.post("<?php echo base_url('index.php/presentacion/guardarroles'); ?>",
-                $('#nuevorol').serialize())           
-            .done(function(data) {
+        $.post("<?php echo base_url('index.php/presentacion/guardarroles'); ?>", $('#nuevorol').serialize(), function(data) {
             $('#myModal').modal('hide');
-//            var filas = "";
-//            $.each(data, function(key, val) {
-//                filas += "<tr>";
-//                filas += "<td>" + val.rol_nombre + "</td>";
-//                filas += "<td>" + val.rol_estado + "</td>";
-//                filas += "<td><button type='button' rol='" + val.rol_id + "' class='btn btn-danger eliminar'>Eliminar</button></td>";
-//                filas += "<td><button type='button' rol='" + val.rol_id + "' class='btn btn-info opciones'>Opciones</button></td>";
-//                filas += "</tr>";
-//            });
-//            $('#cuerporol *').remove();
-//            $('#cuerporol').append(filas);
-//            $('#nombre').val('');
-            alerta('verde', 'Guardado con exito');
-            location.reload();
-        }).fail(function() {
-            alerta('rojo', 'No se pudo Guardar el Registro');
-        })
+                var filas = "";
+                $.each(data, function(key, val) {
+                    filas += "<tr>";
+                    filas += "<td>" + val.rol_nombre + "</td>";
+                    filas += "<td>" + val.rol_estado + "</td>";
+                    filas += "<td><button type='button' rol='" + val.rol_id + "' class='btn btn-danger eliminar'>Eliminar</button></td>";
+                    filas += "<td><button type='button' rol='" + val.rol_id + "' class='btn btn-info opciones'>Opciones</button></td>";
+                    filas += "</tr>";
+                });
+                $('#cuerporol *').remove();
+                $('#cuerporol').append(filas);
+                $('#nombre').val('');
+        });
 
     });
 

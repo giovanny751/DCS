@@ -94,11 +94,16 @@ class Administrativo extends My_Controller {
 
     function creacionusuarios() {
 
+        $user = $this->input->post('usu_id');
+        if(!isset($user))
+            $est=array(1);
+        else
+            $est=array(1,2);
         $this->load->model('Estados_model');
         $this->load->model('User_model');
-        $this->data['estado'] = $this->Estados_model->detail();
+        $this->data['estado'] = $this->Estados_model->detail($est);
         $this->data['usuario'] = "";
-        $user = $this->input->post('usu_id');
+        
         if (!empty($user)) {
             $this->data['usuario'] = $this->User_model->consultausuarioxid($this->input->post('usu_id'));
 //            var_dump($this->data['usuario']);die;
@@ -129,7 +134,7 @@ class Administrativo extends My_Controller {
 
     function guardarusuario() {
         $this->load->model('User_model');
-        $data[] = array(
+        $data = array(
             'usu_contrasena' => $this->input->post('contrasena'),
             'est_id' => $this->input->post('estado'),
             'usu_politicas' => '0',
@@ -140,12 +145,17 @@ class Administrativo extends My_Controller {
             'usu_email' => $this->input->post('email'),
             'usu_fechaCreacion' => date('Y-m-d H:i:s') 
         );
-        $data = $this->User_model->validaexistencia($this->input->post('cedula'));
-        
-        if(empty($data))
+        $data1 = $this->User_model->validaexistencia($this->input->post('cedula'));
+        $cedu=$this->input->post('cedula');
+        if(empty($data1))
         $this->User_model->create($data);
         else
-            echo 1;
+            $this->User_model->update_user($data,$cedu);
+    }
+    function confirm_cedula(){
+        $this->load->model('User_model');
+        $datos=$this->User_model->validaexistencia($this->input->post('cedula'));
+        echo count($datos);
     }
 
     function cargos() {

@@ -1,4 +1,4 @@
-<title>NYGSOFT.COM</title>
+<title></title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
@@ -14,7 +14,7 @@
 <!--<script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>-->
 <!--<script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>-->
 <!--<link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>-->
-<link href="<?php echo base_url('img/blanco.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
+<link href="<?php // echo base_url('img/blanco.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
 <script src="<?= base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
 <!--<script src="<?= base_url('js/validCampoFranz.js') ?>" type="text/javascript"></script>-->
 <script src="<?= base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
@@ -91,7 +91,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php base_url('index.php/presentacion/principal') ?>">NYGSOFT</a>
+            <a class="navbar-brand" href="<?php base_url('index.php/presentacion/principal') ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
         </div>
         <div class="navbar-collapse collapse">
             <?php echo modulos('prueba', $id, null); ?>
@@ -120,8 +120,8 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center">
                 <!--<img src="<?php echo base_url('uploads/Logo_PSAT_Final.png'); ?>" style="width: 90px">-->
             </div>
-            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4"><center><p class="text-muted" style='margin-top:10%'>Copyright -  NYGSOFT right Reserved</p></center></div>
-            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><a href="http://www.nygsoft.com"><img src="<?php echo base_url('img/blanco.jpg'); ?>" style="width: 31%;height: 16%"></a></div>
+            <!--<div class="col-md-4 col-lg-4 col-sm-4 col-sx-4"><center><p class="text-muted" style='margin-top:10%'>Copyright -  NYGSOFT right Reserved</p></center></div>-->
+            <!--<div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><a href="http://www.nygsoft.com"><img src="<?php echo base_url('img/blanco.jpg'); ?>" style="width: 31%;height: 16%"></a></div>-->
         </div>  
     </div>  
 </footer>

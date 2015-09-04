@@ -120,10 +120,10 @@ class Presentacion extends My_Controller {
         $idrol = $this->input->post('idrol');
         $idusuario = $this->input->post('idusuario');
         $data = array();
-        for($i = 0; $i < count($idrol); $i++){
-            $data[$i] = array(""=>$idrol,""=>$idusuario); 
+        for ($i = 0; $i < count($idrol); $i++) {
+            $data[$i] = array("" => $idrol, "" => $idusuario);
         }
-        
+
         $permisos = $this->permisorolporusuario('prueba', $idrol, $idusuario);
         echo $permisos;
     }
@@ -144,8 +144,8 @@ class Presentacion extends My_Controller {
 
     function eliminarmodulo() {
         $idgeneral = $this->input->post('idgeneral');
-        if (!empty($idgeneral)) 
-            $eliminar = $this->Ingreso_model->eliminar($idgeneral); 
+        if (!empty($idgeneral))
+            $eliminar = $this->Ingreso_model->eliminar($idgeneral);
     }
 
     function permisosusuarios() {
@@ -197,7 +197,7 @@ class Presentacion extends My_Controller {
     }
 
     function permisoroles($datosmodulos, $html = null) {
-
+        
         $menu = $this->Ingreso_model->permisoroles($datosmodulos);
         $i = array();
         foreach ($menu as $modulo)
@@ -279,7 +279,7 @@ class Presentacion extends My_Controller {
         $tipo = 1;
         $menu = $this->Ingreso_model->menu($datosmodulos, $idusuario, $tipo);
         $i = array();
-        
+
         foreach ($menu as $modulo)
             $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion'], $modulo['menudos']);
         if ($datosmodulos == 'prueba')
@@ -315,10 +315,10 @@ class Presentacion extends My_Controller {
         $this->Ingreso_model->actualizausuariorol($usuario);
         $data = array();
         $i = 0;
-        for($i = 0;$i < count($rol);$i++){
+        for ($i = 0; $i < count($rol); $i++) {
             $data[$i] = array(
-                "rol_id"=>$rol[$i],
-                "usu_id"=>$usuario
+                "rol_id" => $rol[$i],
+                "usu_id" => $usuario
             );
         }
         $this->Ingreso_model->permisosusuariomenu($data);
@@ -351,17 +351,20 @@ class Presentacion extends My_Controller {
     function guardarcontrasena() {
         $this->Ingreso_model->guardarcontrasena($this->input->post('password'), $this->data['user']['usu_id']);
     }
-    function rol(){
-        
+
+    function rol() {
+
         $this->data['roles'] = $this->Roles_model->rolxusuario($this->session->userdata('usu_id'));
-        $this->layout->view("presentacion/rol",$this->data);
+        $this->layout->view("presentacion/rol", $this->data);
     }
-    function guardarroldefecto(){
+
+    function guardarroldefecto() {
         $this->load->model("User_model");
         $rol = $this->input->post("rol");
         $usu_id = $this->session->userdata('usu_id');
-        $this->User_model->rolxdefecto($rol,$usu_id);
+        $this->User_model->rolxdefecto($rol, $usu_id);
     }
+
 }
 
 /* End of file welcome.php */

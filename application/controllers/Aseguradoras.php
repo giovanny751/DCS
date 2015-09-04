@@ -18,6 +18,12 @@ class Aseguradoras extends My_Controller {
         $this->data['post']=$this->input->post();
         $this->layout->view('aseguradoras/index', $this->data);
     }
+    	function referencia(){
+        $post=$this->input->post();
+        $this->data['post']=$this->input->post();
+        echo $datos=$this->Aseguradoras__model->referencia($post);
+//        $this->layout->view('clientes/consult_clientes', $this->data);
+    }
     function consult_aseguradoras(){
         $post=$this->input->post();
         $this->data['post']=$this->input->post();

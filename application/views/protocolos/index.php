@@ -61,7 +61,7 @@
                         *         Descripción                            </label>
                     </div>
                     <div class="col-md-10">
-                                                <textarea class="form-control obligatorio  " id="descripcion" name="descripcion"><?php echo (isset($datos[0]->descripcion)?$datos[0]->descripcion:'' ) ?></textarea>
+                        <textarea class="form-control obligatorio  " id="descripcion" name="descripcion" style="height: 300px"><?php echo (isset($datos[0]->descripcion)?$datos[0]->descripcion:'' ) ?></textarea>
                                                 <br>
                     </div>
 

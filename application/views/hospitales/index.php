@@ -81,9 +81,9 @@
         <?php } ?>
         <div class="row">
             <span id="boton_guardar">
-                <button class="btn btn-success" >Grabar</button> 
+                <button class="btn btn-success" >Guardar</button> 
                 <input class="btn btn-success" type="reset" value="Limpiar">
-                <a href="<?php echo base_url('index.php') . "/Hospitales/consult_hospitales" ?>" class="btn btn-success">Consultar Hospitales </a>
+                <a href="<?php echo base_url('index.php') . "/Hospitales/consult_hospitales" ?>" class="btn btn-success">Listado </a>
             </span>
             <span id="boton_cargar" style="display: none">
                 <h2>Cargando ...</h2>
@@ -93,6 +93,28 @@
     </form>
 </div>
 <script>
+    $('#nombre').change(function() {
+        var nombre = $('#nombre').val();
+        var codigo_hospital = $('#codigo_hospital').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Hospitales/referencia') ?>', {nombre: nombre, codigo_hospital: codigo_hospital})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Nombre valido')
+                    } else {
+                        alerta('rojo', 'Nombre no valido')
+                        $('#nombre').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
+    
     function campos() {
 
         if (obligatorio('obligatorio') == false) {

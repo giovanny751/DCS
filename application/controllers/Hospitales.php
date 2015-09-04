@@ -41,5 +41,11 @@ class Hospitales extends My_Controller {
         $this->data['datos']=$this->Hospitales_model->edit_hospitales($this->data['post']);
         $this->layout->view('hospitales/index', $this->data);
     }
+    function referencia(){
+        $post=$this->input->post();
+        $this->data['post']=$this->input->post();
+        echo $datos=$this->Hospitales_model->referencia($post);
+//        $this->layout->view('clientes/consult_clientes', $this->data);
+    }
 }
 ?>

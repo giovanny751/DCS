@@ -38,7 +38,13 @@
                     Analisis resultado                        </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>" class="form-control   " id="analisis_resultado" name="analisis_resultado">
+                <!--<input type="text" value="<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>" class="form-control   " id="analisis_resultado" name="analisis_resultado">-->
+                <select  class="form-control   " id="analisis_resultado" name="analisis_resultado">
+                    <option value=""></option>
+                    <option value="Normal">Normal</option>
+                    <option value="Baja">Baja</option>
+                    <option value="Alta">Alta</option>
+                </select>
                 <br>
             </div>
 
@@ -160,6 +166,7 @@
     
     </div>
 <script>
+    $('#analisis_resultado').val("<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>");
     function editar(num) {
         $('#<?php echo $campo ?>2').val(num);
         $('#editar').submit();

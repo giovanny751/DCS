@@ -35,7 +35,7 @@ class User_model extends CI_Model {
         $datos = rand(1000000, 8155555);
         $this->db->set('usu_contrasena', $datos);
         $this->db->where('usu_email', $mail);
-        $this->db->update('user');
+        $this->db->get('user');
         return $datos;
     }
     function actualizar($mail) {
@@ -46,14 +46,11 @@ class User_model extends CI_Model {
     }
 
     function create($data) {
-        $this->db->insert_batch('user', $data);
-//        echo $this->db->last_query();die;
+        $this->db->insert('user', $data);
     }
-    function validaexistencia($cc){
-        
-        $this->db->where("usu_cedula",$cc);
-        $data = $this->db->get('user');
-        return $data->result();
+    function update_user($data,$cedula) {
+        $this->db->where('usu_cedula',$cedula);
+        $this->db->update('user', $data);
     }
 
     function filteruser($apellido = null, $cedula = null, $estado = null, $nombre = null) {
@@ -102,5 +99,10 @@ class User_model extends CI_Model {
         $this->db->set("rol_id",$rol);
         $this->db->update("user");
         
+    }
+    function validaexistencia($cc){
+        $this->db->where("usu_cedula",$cc);
+        $data = $this->db->get('user');
+        return $data->result();
     }
 }

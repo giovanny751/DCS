@@ -71,5 +71,14 @@ class Medicos__model extends CI_Model {
         $datos=$datos->result();
         return $datos;
     }
+    public function referencia($post) {
+        if(!empty($post['medico_codigo']))
+        $this->db->where_not_in('medico_codigo', $post['medico_codigo']);
+        $this->db->where('nombre', $post['nombre']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('medicos');
+        $datos =$datos->result();
+        return count($datos);
+    }
 }
 ?>

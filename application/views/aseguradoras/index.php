@@ -83,7 +83,7 @@
 
             <div class="col-md-3">
                 <label for="telefono_fijo">
-                    *                             Telefono fijo                        </label>
+                    *                             Teléfono fijo                        </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo) ? $datos[0]->telefono_fijo : '' ) ?>" class=" form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
@@ -137,6 +137,27 @@
     </form>
 </div>
 <script>
+    $('#nombre').change(function() {
+        var nombre = $('#nombre').val();
+        var aseguradora_id = $('#aseguradora_id').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Aseguradoras/referencia') ?>', {nombre: nombre, aseguradora_id: aseguradora_id})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Nombre valido')
+                    } else {
+                        alerta('rojo', 'Nombre no valido')
+                        $('#nombre').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
     function campos() {
         $('input[type="file"]').each(function (key, val) {
             var img = $(this).val();

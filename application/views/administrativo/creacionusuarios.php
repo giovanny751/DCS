@@ -1,6 +1,6 @@
 <div class="widgetTitle" >
     <h5>
-        <i class="glyphicon glyphicon-ok"></i>CREACI�N USUARIOS
+        <i class="glyphicon glyphicon-ok"></i>CREACIÓN USUARIOS
     </h5>
 </div>
 <div class='well'>
@@ -12,8 +12,6 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                 <input type="text" id="cedula" name="cedula" class="form-control obligatorio" value="<?php echo (!empty($usuario[0]->usu_cedula)) ? $usuario[0]->usu_cedula : ""; ?>" />
             </div>    
-        </div>
-        <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                 <label for="nombres">
                     <span class="campoobligatorio">*</span>Nombres</label>
@@ -29,6 +27,12 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                 <input type="text" id="apellidos" name="apellidos" class="form-control" value="<?php echo (!empty($usuario[0]->usu_apellido)) ? $usuario[0]->usu_apellido : ""; ?>" />
             </div> 
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <label for="email">Email</label>
+            </div>    
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                <input type="text" id="email" name="email" class="form-control" value="<?php echo (!empty($usuario[0]->usu_email)) ? $usuario[0]->usu_email : ""; ?>" />
+            </div> 
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -41,7 +45,7 @@
                 <label for="usuario">Cambio contraseña inicial</label>
             </div>    
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                <input type="checkbox" name="cambiocontrasena" class="form-control" <?php echo (!empty($usuario[0]->usu_cambiocontrasena) && $usuario[0]->usu_cambiocontrasena == 1)?"checked":""; ?> />
+                <input type="checkbox" name="cambiocontrasena" class="form-control" <?php echo (!empty($usuario[0]->usu_cambiocontrasena) && $usuario[0]->usu_cambiocontrasena == 1) ? "checked" : ""; ?> />
             </div> 
         </div>
         <div class="row">
@@ -56,52 +60,71 @@
             </div>    
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                 <select id="estado" name="estado" class="form-control">
-                    <option value="">::Seleccionar::</option>
+                    <!--                    <option value="">::Seleccionar::</option>-->
                     <?php foreach ($estado as $e) { ?>
                         <option <?php echo (!empty($usuario[0]->est_id) && $usuario[0]->est_id == $e->est_id) ? "selected" : ""; ?> value="<?php echo $e->est_id ?>"><?php echo $e->est_nombre ?></option>
                     <?php } ?>
                 </select>
             </div>    
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <label for="email">Email</label>
-            </div>    
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                <input type="email" id="email" name="email" class="form-control" value="<?php echo (!empty($usuario[0]->usu_email)) ? $usuario[0]->usu_email : ""; ?>" />
-            </div>    
-              
-        </div>
+
+
         <?php if (!empty($usuario[0]->usu_id)) { ?>
             <input type="hidden" name="usuid" id="usuid" value="<?php echo $usuario[0]->usu_id; ?>">
         <?php } ?>
     </form>
     <div class="row" style="text-align:center">
-        
-        <button type="button" class="btn btn-success" id="guardar"><?php echo (!empty($usuario[0]->usu_id))?"Actualizar":"Guardar"; ?></button>
+
+        <button type="button" class="btn btn-success" id="guardar"><?php echo (!empty($usuario[0]->usu_id)) ? "Actualizar" : "Guardar"; ?></button>
     </div>    
 </div>    
 <script>
-    $('#cargo').change(function(){
-        
-        $.post(
-               "<?php echo base_url("index.php/administrativo/consultausuarioscargo") ?>",
-       {
-           cargo:$(this).val()
-       }
-               ).done(function(msg){
-                   var data = "";
-                   $('#empleado *').remove();
-                   $.each(msg,function(key,val){
-                       data += "<option value='"+val.Emp_Id+"'>"+val.Emp_Nombre+" "+val.Emp_Apellidos+"</option>" 
-                   });
-                   $('#empleado').append(data);
-               }).fail(function(msg){
-                   
-               })
-    });
-    
-    $('#guardar').click(function () {
+//    $('#cargo').change(function(){
+//        
+//        $.post(
+//               "<?php echo base_url("index.php/administrativo/consultausuarioscargo") ?>",
+//       {
+//           cargo:$(this).val()
+//       }
+//               ).done(function(msg){
+//                   var data = "";
+//                   $('#empleado *').remove();
+//                   $.each(msg,function(key,val){
+//                       data += "<option value='"+val.Emp_Id+"'>"+val.Emp_Nombre+" "+val.Emp_Apellidos+"</option>" 
+//                   });
+//                   $('#empleado').append(data);
+//               }).fail(function(msg){
+//                   
+//               })
+//    });
+
+    $('#cedula').change(function() {
+        var cedula = $('#cedula').val();
+        $.post('<?php echo base_url('index.php/administrativo/confirm_cedula') ?>', {cedula: cedula})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Cédula valido')
+                    } else {
+                        alerta('rojo', 'Cédula ya se encuentra regitrada')
+                        $('#cedula').val('');
+                    }
+                })
+                .fail(function(msg) {
+                })
+    })
+
+    $('#guardar').click(function() {
+        var email = $('#email').val();
+
+        if (email != "") {
+            expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!expr.test(email)) {
+                alerta("rojo", "La dirección de correo " + email + " es incorrecta.");
+                return false;
+            }
+        }
+
+
         if (obligatorio('obligatorio') == true) {
             $.post(
                     "<?php
@@ -111,17 +134,19 @@
             echo base_url('index.php/administrativo/actualizarusuario');
         ?>",
                     $('#f3').serialize()
-                    ).done(function (msg) {
-                        if(msg == 1){
-                            alerta("rojo", "El usuario ya esta registrado");
-                        }else{
-                            alerta("verde", "Datos guardados correctamente");
-                        }
-                
+                    ).done(function(msg) {
+                alerta("verde", "Datos guardados correctamente");
             })
-                    .fail(function (msg) {
-                        
+                    .fail(function(msg) {
+                        alerta("rojo", "Error en el sistema por favor verificar la conexion de internet");
                     });
         }
     });
+
+    $('#contrasena').change(function() {
+        if ($(this).val().length < 7) {
+            alerta('rojo', 'La contraseña debe ser minimo de 8 caracteres')
+            $(this).val('')
+        }
+    })
 </script>    

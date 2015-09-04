@@ -50,5 +50,14 @@ class Tipo_cliente__model extends CI_Model {
         $datos=$datos->result();
         return $datos;
     }
+    public function referencia($post) {
+        if(!empty($post['id_tipo_cliente']))
+        $this->db->where_not_in('id_tipo_cliente', $post['id_tipo_cliente']);
+        $this->db->where('descripcion', $post['descripcion']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('tipo_cliente');
+        $datos =$datos->result();
+        return count($datos);
+    }
 }
 ?>

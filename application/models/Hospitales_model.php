@@ -64,5 +64,14 @@ class Hospitales_model extends CI_Model {
         $datos=$datos->result();
         return $datos;
     }
+    public function referencia($post) {
+        if(!empty($post['codigo_hospital']))
+        $this->db->where_not_in('codigo_hospital', $post['codigo_hospital']);
+        $this->db->where('nombre', $post['nombre']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('hospitales');
+        $datos =$datos->result();
+        return count($datos);
+    }
 }
 ?>

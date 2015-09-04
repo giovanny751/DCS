@@ -27,20 +27,7 @@
                 <br>
             </div>
 
-
-
-            <div class="col-md-3">
-                <label for="nombre">
-                    *                             Nombre                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->nombre) ? $datos[0]->nombre : '' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
-                <br>
-            </div>
-
-        </div><div class="row">
-
-            <div class="col-md-3">
+ <div class="col-md-3">
                 <label for="Estado">
                     *                             Estado                        </label>
             </div>
@@ -52,6 +39,19 @@
                 </select>
                 <br>
             </div>
+
+            <div class="col-md-3">
+                <label for="nombre">
+                    *                             Nombre                        </label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" value="<?php echo (isset($datos[0]->nombre) ? $datos[0]->nombre : '' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
+                <br>
+            </div>
+
+       
+
+           
 
 
 
@@ -93,7 +93,7 @@
                     Email                        </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->email) ? $datos[0]->email : '' ) ?>" class="form-control   " id="email" name="email">
+                <input type="email" value="<?php echo (isset($datos[0]->email) ? $datos[0]->email : '' ) ?>" class="form-control   " id="email" name="email">
                 <br>
             </div>
 
@@ -139,9 +139,9 @@
         <?php } ?>
         <div class="row">
             <span id="boton_guardar">
-                <button class="btn btn-success" >Grabar</button> 
+                <button class="btn btn-success" >Guardar</button> 
                 <input class="btn btn-success" type="reset" value="Limpiar">
-                <a href="<?php echo base_url('index.php') . "/Contacto/consult_contacto" ?>" class="btn btn-success">Consultar Contactos </a>
+                <a href="<?php echo base_url('index.php') . "/Contacto/consult_contacto" ?>" class="btn btn-success">Listado</a>
             </span>
             <span id="boton_cargar" style="display: none">
                 <h2>Cargando ...</h2>
@@ -151,6 +151,28 @@
 </form>
 </div>
 <script>
+    $('#documento').change(function() {
+        var documento = $('#documento').val();
+        var contacto_id = $('#contacto_id').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Contacto/referencia') ?>', {documento: documento, contacto_id: contacto_id})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'documento valido')
+                    } else {
+                        alerta('rojo', 'documento no valido')
+                        $('#documento').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
+    
     function campos() {
 
         if (obligatorio('obligatorio') == false) {
