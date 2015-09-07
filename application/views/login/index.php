@@ -132,7 +132,7 @@
         <script src="<?php echo base_url('/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/global/plugins/jquery-validation/js/jquery.validate.min.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/global/plugins/jquery-validation/js/messages_es.js') ?>" type="text/javascript"></script>
-        <script src="<?php echo base_url('/assets/global/plugins/backstretch/jquery.backstretch.min.js') ?>" type="text/javascript"></script>
+        <script src="<?php // echo base_url('/assets/global/plugins/backstretch/jquery.backstretch.min.js') ?>" type="text/javascript"></script>
         <script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/select2/select2.min.js') ?>"></script>
         <script src="<?php echo base_url('/assets/global/scripts/metronic.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/admin/layout/scripts/layout.js') ?>" type="text/javascript"></script>
@@ -151,19 +151,26 @@
                 Login.init();
                 UIConfirmations.init(); // init page demo
                 // init background slide images
-                $.backstretch([
-//                    base_url_js + "/assets/admin/pages/media/bg/1.jpg",
-//                    base_url_js + "/assets/admin/pages/media/bg/2.jpg",
-//                    base_url_js + "/assets/admin/pages/media/bg/3.jpg",
-//                    base_url_js + "/assets/admin/pages/media/bg/4.jpg"
-                    base_url_js + "/assets/admin/pages/media/bg/diseño_latinlink.jpg"
-                ], {
-                    fade: 1000,
-                    duration: 8000
-                }
-                );
+//                $.backstretch([
+////                    base_url_js + "/assets/admin/pages/media/bg/1.jpg",
+////                    base_url_js + "/assets/admin/pages/media/bg/2.jpg",
+////                    base_url_js + "/assets/admin/pages/media/bg/3.jpg",
+////                    base_url_js + "/assets/admin/pages/media/bg/4.jpg"
+////                    base_url_js + "/assets/admin/pages/media/bg/diseno_latinlink.jpg"
+//                ]);
             });
         </script>
+        <style type="text/css">
+            html{
+                width: 100%;
+                height: 100%;
+            }
+            body{
+                background-image: url("<?php echo base_url("/assets/admin/pages/media/bg/diseño_latinlink.jpg") ?>");
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+        </style>
         <!-- END JAVASCRIPTS -->
     </body>
     <!-- END BODY -->
