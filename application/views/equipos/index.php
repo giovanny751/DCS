@@ -4,215 +4,221 @@
 </div>
 <div class='well'>
     <form action="<?php echo base_url('index.php/') . "/Equipos/save_equipos"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
-        <div class="row">
-            <?php $id = (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>
+        
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTabs" role="tablist">
+              <li role="presentation" class="active"><a href="#tabDatos" aria-controls="tabDatos" role="tab" data-toggle="tab">Datos</a></li>
+              <li role="presentation"><a href="#tabCalibracion" aria-controls="tabCalibracion" role="tab" data-toggle="tab">Calibración</a></li>
+              <li role="presentation"><a href="#tabExamenes" aria-controls="tabExamenes" role="tab" data-toggle="tab">Exámenes</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!--Tab Datos -->
+                <div role="tabpanel" class="tab-pane active" id="tabDatos">
+                    <br />
+                    <?php $id = (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>
+                    <input type="hidden" value="<?php echo (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>" class=" form-control   " id="id_equipo" name="id_equipo">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="descripcion">
+                                *                             Descripción                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">
 
 
-            <input type="hidden" value="<?php echo (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>" class=" form-control   " id="id_equipo" name="id_equipo">
+                            <br>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="estado">
+                                *                             Estado                        </label>
+                        </div>
+                        <div class="col-md-3" >
+                            <select  class="form-control obligatorio  " id="estado" name="estado" <?php echo (isset($datos[0]->estado) ? '' : 'disabled="disabled"') ?>>
+                                <option value="DISPONIBLE" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'DISPONIBLE') ? 'selected="selected"' : '') : '' ) ?>>DISPONIBLE</option>
+                                <option value="EN OPERACIÓN" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN OPERACIÓN') ? 'selected="selected"' : '') : '' ) ?>>EN OPERACIÓN</option>
+                                <option value="ASIGNADO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'ASIGNADO') ? 'selected="selected"' : '') : '' ) ?>>ASIGNADO</option>
+                                <option value="EN TRANSITO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN TRANSITO') ? 'selected="selected"' : '') : '' ) ?>>EN TRANSITO</option>
+                                <option value="MANTENIMIENTO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'MANTENIMIENTO') ? 'selected="selected"' : '') : '' ) ?>>MANTENIMIENTO</option>
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <label for="ubicacion">
+                                *                             Ubicación                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : '' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
+                            <br>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="serial">
+                                *                             Serial N°                         </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->serial) ? $datos[0]->serial : '' ) ?>" class=" form-control obligatorio  number" id="serial" name="serial">
+
+
+                            <br>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="fabricante">
+                                Fabricante                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->fabricante) ? $datos[0]->fabricante : '' ) ?>" class=" form-control   " id="fabricante" name="fabricante">
+                            <br>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="fecha_fabricacion">
+                                Fecha fabricación                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->fecha_fabricacion) ? $datos[0]->fecha_fabricacion : '' ) ?>" class=" form-control  fecha " id="fecha_fabricacion" name="fecha_fabricacion">
+
+
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="tipo_equipo_cod">
+                                *                             Tipo equipo                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->tipo_equipo_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                        <div class="col-md-6">
+                            <label for="imagen">
+                                Imagen                        </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="file" value="<?php echo (isset($datos[0]->imagen) ? $datos[0]->imagen : '' ) ?>" class="   " id="imagen" name="imagen">
+                            <br>
+                        </div>
+
+                   
+
+                        <div class="col-md-6">
+                            <label for="responsable">
+                                Responsable                        </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" value="<?php echo (isset($datos[0]->responsable) ? $datos[0]->responsable : '' ) ?>" class=" form-control   " id="responsable" name="responsable">
+
+
+                            <br>
+                        </div>
+                    </div>
+                        <!--<div class="col-md-2"></div>-->
+                        <div class="col-md-6">
+                             <?php if (!empty($id) && $datos[0]->imagen != '') { ?>
+                                <img style="width: 250px;float: right;margin-top: -80px;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->imagen ?>">
+                            <?php } ?>
+
+                            <br>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="observaciones">
+                                Observaciones                        </label>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea class=" form-control   " id="observaciones" name="observaciones"><?php echo (isset($datos[0]->observaciones) ? $datos[0]->observaciones : '' ) ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--Tab Calibracion -->
+                <div role="tabpanel" class="tab-pane" id="tabCalibracion">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="fecha_ultima_calibracion">
+                                Fecha ultima calibración                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->fecha_ultima_calibracion) ? $datos[0]->fecha_ultima_calibracion : '' ) ?>" class=" form-control  fecha " id="fecha_ultima_calibracion" name="fecha_ultima_calibracion">
+
+
+                            <br>
+                        </div>
 
 
 
-            <div class="col-md-3">
-                <label for="descripcion">
-                    *                             Descripción                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">
+                        <div class="col-md-3">
+                            <label for="empresa_certificadora">
+                                Empresa certificadora                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->empresa_certificadora) ? $datos[0]->empresa_certificadora : '' ) ?>" class=" form-control   " id="empresa_certificadora" name="empresa_certificadora">
 
 
-                <br>
-            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="adjuntar_certificado">
+                                Adjuntar certificado                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="file" value="<?php echo (isset($datos[0]->adjuntar_certificado) ? $datos[0]->adjuntar_certificado : '' ) ?>" class="    " id="adjuntar_certificado" name="adjuntar_certificado">
 
+                            <?php if (!empty($id) && $datos[0]->adjuntar_certificado != '') { ?>
+                                <img style="width: 100px" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
+                            <?php } ?>
 
-            <div class="col-md-3">
-                <label for="estado">
-                    *                             Estado                        </label>
-            </div>
-            <div class="col-md-3" >
-                <select  class="form-control obligatorio  " id="estado" name="estado" <?php echo (isset($datos[0]->estado) ? '' : 'disabled="disabled"') ?>>
-                    <option value="DISPONIBLE" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'DISPONIBLE') ? 'selected="selected"' : '') : '' ) ?>>DISPONIBLE</option>
-                    <option value="EN OPERACIÓN" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN OPERACIÓN') ? 'selected="selected"' : '') : '' ) ?>>EN OPERACIÓN</option>
-                    <option value="ASIGNADO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'ASIGNADO') ? 'selected="selected"' : '') : '' ) ?>>ASIGNADO</option>
-                    <option value="EN TRANSITO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN TRANSITO') ? 'selected="selected"' : '') : '' ) ?>>EN TRANSITO</option>
-                    <option value="MANTENIMIENTO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'MANTENIMIENTO') ? 'selected="selected"' : '') : '' ) ?>>MANTENIMIENTO</option>
-                </select>
-                <br>
-            </div>
-
-
-            <div class="col-md-3">
-                <label for="ubicacion">
-                    *                             Ubicación                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : '' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
-                <br>
-            </div>
-            <div class="col-md-3">
-                <label for="serial">
-                    *                             Serial N°                         </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->serial) ? $datos[0]->serial : '' ) ?>" class=" form-control obligatorio  number" id="serial" name="serial">
-
-
-                <br>
-            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <!--Tab Examenes -->
+                <div role="tabpanel" class="tab-pane" id="tabExamenes">
+                    <br />
+                     <div class="row">
+                        <div class="col-md-3">
+                            <label for="examen_cod">
+                                * Examen                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->examen_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                            <br>
+                        </div>
 
 
 
-            <div class="col-md-3">
-                <label for="fabricante">
-                    Fabricante                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->fabricante) ? $datos[0]->fabricante : '' ) ?>" class=" form-control   " id="fabricante" name="fabricante">
-                <br>
-            </div>
-
-
-
-            <div class="col-md-3">
-                <label for="fecha_fabricacion">
-                    Fecha fabricación                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->fecha_fabricacion) ? $datos[0]->fecha_fabricacion : '' ) ?>" class=" form-control  fecha " id="fecha_fabricacion" name="fecha_fabricacion">
-
-
-                <br>
-            </div>
-
-
-
-            <div class="col-md-3">
-                <label for="tipo_equipo_cod">
-                    *                             Tipo equipo                        </label>
-            </div>
-            <div class="col-md-3">
-                <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->tipo_equipo_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
+                        <div class="col-md-3">
+                            <label for="variable_codigo">
+                                Variable código                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <?php echo lista("variable_codigo", "variable_codigo", "form-control", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->tipo_equipo_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                            <br>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
 
 
-
-            <div class="col-md-3">
-                <label for="imagen">
-                    Imagen                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="file" value="<?php echo (isset($datos[0]->imagen) ? $datos[0]->imagen : '' ) ?>" class="   " id="imagen" name="imagen">
-
-                <?php if (!empty($id) && $datos[0]->imagen != '') { ?>
-                    <img style="width: 100px" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->imagen ?>">
-                <?php } ?>
-
-                <br>
-            </div>
-
-        </div>
-        <div class="row">
-
-            <div class="col-md-3">
-                <label for="responsable">
-                    Responsable                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->responsable) ? $datos[0]->responsable : '' ) ?>" class=" form-control   " id="responsable" name="responsable">
-
-
-                <br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12"><hr></div>
-        </div>
-
-        <div class="row">
-
-
-            <div class="col-md-3">
-                <label for="observaciones">
-                    Observaciones                        </label>
-            </div>
-            <div class="col-md-9">
-                <textarea class=" form-control   " id="observaciones" name="observaciones"><?php echo (isset($datos[0]->observaciones) ? $datos[0]->observaciones : '' ) ?></textarea>
-                <br>
-            </div>
-
-
-
-            <div class="col-md-3">
-                <label for="fecha_ultima_calibracion">
-                    Fecha ultima calibración                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->fecha_ultima_calibracion) ? $datos[0]->fecha_ultima_calibracion : '' ) ?>" class=" form-control  fecha " id="fecha_ultima_calibracion" name="fecha_ultima_calibracion">
-
-
-                <br>
-            </div>
-
-
-
-            <div class="col-md-3">
-                <label for="empresa_certificadora">
-                    Empresa certificadora                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->empresa_certificadora) ? $datos[0]->empresa_certificadora : '' ) ?>" class=" form-control   " id="empresa_certificadora" name="empresa_certificadora">
-
-
-                <br>
-            </div>
-
-
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="adjuntar_certificado">
-                    Adjuntar certificado                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="file" value="<?php echo (isset($datos[0]->adjuntar_certificado) ? $datos[0]->adjuntar_certificado : '' ) ?>" class="    " id="adjuntar_certificado" name="adjuntar_certificado">
-
-                <?php if (!empty($id) && $datos[0]->adjuntar_certificado != '') { ?>
-                    <img style="width: 100px" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
-                <?php } ?>
-
-                <br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12"><hr></div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-3">
-                <label for="examen_cod">
-                    * Examen                        </label>
-            </div>
-            <div class="col-md-3">
-                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->examen_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
-            </div>
-
-
-
-            <div class="col-md-3">
-                <label for="variable_codigo">
-                    Variable código                        </label>
-            </div>
-            <div class="col-md-3">
-                <?php echo lista("variable_codigo", "variable_codigo", "form-control", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->tipo_equipo_cod))?$datos[0]->tipo_equipo_cod:null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
-            </div>
-
-        </div>
+       
         <?php if (isset($post['campo'])) { ?>
             <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
             <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
@@ -231,6 +237,10 @@
     </form>
 </div>
 <script>
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
     function campos() {
         $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();

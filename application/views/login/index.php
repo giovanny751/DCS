@@ -152,10 +152,11 @@
                 UIConfirmations.init(); // init page demo
                 // init background slide images
                 $.backstretch([
-                    base_url_js + "/assets/admin/pages/media/bg/1.jpg",
-                    base_url_js + "/assets/admin/pages/media/bg/2.jpg",
-                    base_url_js + "/assets/admin/pages/media/bg/3.jpg",
-                    base_url_js + "/assets/admin/pages/media/bg/4.jpg"
+//                    base_url_js + "/assets/admin/pages/media/bg/1.jpg",
+//                    base_url_js + "/assets/admin/pages/media/bg/2.jpg",
+//                    base_url_js + "/assets/admin/pages/media/bg/3.jpg",
+//                    base_url_js + "/assets/admin/pages/media/bg/4.jpg"
+                    base_url_js + "/assets/admin/pages/media/bg/diseño_latinlink.jpg"
                 ], {
                     fade: 1000,
                     duration: 8000
