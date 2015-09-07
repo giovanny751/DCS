@@ -15,19 +15,18 @@ class Ingreso_model extends CI_Model {
         };
 
         $this->db->where('menu_estado', 1);
+        $this->db->where('user.usu_id', $idusuario);
+        
         $this->db->select('modulo.menu_id,modulo.menu_idpadre,modulo.menu_nombrepadre,modulo.menu_idhijo,'
                 . 'modulo.menu_controlador,modulo.menu_accion,modulo.menu_estado,permisos_rol.menu_id menudos');
-        if ($tipo == 1) {
-            $this->db->join("permisos_rol", "permisos_rol.menu_id = modulo.menu_id and permisos.usu_id=$idusuario", "left");
-        }
-        if ($tipo == 2) {
-            $this->db->join('permisos_rol',' permisos_rol.menu_id = modulo.menu_id');
-            $this->db->join("permisos", "permisos.rol_id = permisos_rol.rol_id and permisos.usu_id=$idusuario");
-            $this->db->join("user", "user.rol_id = permisos.rol_id");
-        }
-        $dato = $this->db->get('modulo');
+       
+            $this->db->join("permisos", "user.rol_id = permisos.rol_id and user.usu_id = permisos.usu_id");
+            $this->db->join('permisos_rol',' permisos_rol.rol_id = permisos.rol_id');
+            $this->db->join("modulo", "modulo.menu_id = permisos_rol.menu_id");
+
+        $dato = $this->db->get('user');
         
-//        echo $this->db->last_query();die;
+//        echo $this->db->last_query();die; 
         
         $envio = $dato->result_array();
 

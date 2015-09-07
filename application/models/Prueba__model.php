@@ -43,6 +43,7 @@ class Prueba__model extends CI_Model {
                                     $this->db->select('id');
                                 $this->db->select('nombre');
                                 $this->db->select('fecha');
+                                $this->db->select('activo');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('prueba');
         $datos=$datos->result();

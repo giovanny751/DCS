@@ -43,9 +43,5 @@ class Prueba extends My_Controller {
         $this->data['datos']=$this->Prueba__model->edit_prueba($this->data['post']);
         $this->layout->view('prueba/index', $this->data);
     }
-                    function autocomplete_nombre(){
-                  $info = auto("sexo","Sex_id","Sex_Sexo",$this->input->get('term'));
-                  $this->output->set_content_type('application/json')->set_output(json_encode($info));
-                }
-            }
+    }
 ?>

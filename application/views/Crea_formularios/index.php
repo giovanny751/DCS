@@ -81,12 +81,16 @@
                         table += "<td><input type='hidden' name='nombre_campo[]' value='" + val.Field + "' class='form-control' />" + val.Field + "</td>";
                         table += "<td>" + val.Type + "</td>";
                         table += "<td><input type='text' name='nombre_label[]' value='" + val.Field + "' class='form-control' /></td>";
-                        table += "<td><select name='tipo[]' class='form-control'>";
+                        var dd = '"' + val.Field + '2"';
+                        table += "<td><select name='tipo[]' class='form-control' onchange='auto2(this," + dd + ")'>";
                         $.each(msg[1], function(key2, val2) {
                             table += "<option value='" + val2.name + "'>" + val2.name + "</option>";
                         });
-                        table += "</select>";
-                        table += "</td>";
+                        table += "</select><div class='" + val.Field + "2' style='display:none'>";
+                        table += "<br>tablaa<input type='text' style='width: 80px' name='select1[]' >";
+                        table += "<br>value<input type='text' style='width: 80px'name='select2[]' >";
+                        table += "<br>text<input type='text' style='width: 80px' name='select3[]' >";
+                        table += "</div></td>";
                         table += "<td><select name='obligatorio[]' class='form-control'>";
                         table += "<option value='obligatorio'>Si</option>";
                         table += "<option value=''>No</option>";
@@ -99,7 +103,7 @@
                         table += "<option value=''>No</option>";
                         table += "<option value='fecha'>Si</option>";
                         table += "</select></td>";
-                         var dd = '"' + val.Field + '"';
+                        var dd = '"' + val.Field + '"';
                         table += "<td><select name='autocomplete[]' class='form-control' onchange='auto(this," + dd + ")'>";
                         table += "<option value=''>No</option>";
                         table += "<option value='1'>Si</option>";
@@ -124,6 +128,14 @@
     })
     function auto(num, campo) {
         if (num.value == 1) {
+            $('.'+campo).show();
+        } else {
+            $('.'+campo).hide();
+        }
+    }
+    function auto2(num, campo) {
+        console.log(num);
+        if (num.value == 'select') {
             $('.'+campo).show();
         } else {
             $('.'+campo).hide();

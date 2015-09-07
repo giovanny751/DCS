@@ -26,9 +26,22 @@ class Pacientes extends My_Controller {
     }
     function save_pacientes(){
         $post=$this->input->post();
-                $id=$this->Pacientes__model->save_pacientes($post);
+                            $post['foto']=basename($_FILES['foto']['name']);
+                        $id=$this->Pacientes__model->save_pacientes($post);
         
-                        
+                        $targetPath = "./uploads/pacientes";
+                if (!file_exists($targetPath)) {
+                    mkdir($targetPath, 0777, true);
+                }
+                $targetPath = "./uploads/pacientes/".$id;
+                if (!file_exists($targetPath)) {
+                    mkdir($targetPath, 0777, true);
+                }
+                $target_path = $targetPath.'/'. basename($_FILES['foto']['name']);
+                if (move_uploaded_file($_FILES['foto']['tmp_name'], $target_path)) {
+
+                }    
+                                
         redirect('index.php/Pacientes/consult_pacientes', 'location');
     }
     function delete_pacientes(){

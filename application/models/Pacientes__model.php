@@ -124,9 +124,9 @@ class Pacientes__model extends CI_Model {
                     if(isset($post['tipo_equipo_cod']))
         if($post['tipo_equipo_cod']!="")
         $this->db->like('tipo_equipo_cod',$post['tipo_equipo_cod']);
-                    if(isset($post['id_equipo']))
-        if($post['id_equipo']!="")
-        $this->db->like('id_equipo',$post['id_equipo']);
+                    if(isset($post['descripcion']))
+        if($post['descripcion']!="")
+        $this->db->like('descripcion',$post['descripcion']);
                     if(isset($post['estado']))
         if($post['estado']!="")
         $this->db->like('estado',$post['estado']);
@@ -142,7 +142,8 @@ class Pacientes__model extends CI_Model {
                     if(isset($post['aseguradora_id']))
         if($post['aseguradora_id']!="")
         $this->db->like('aseguradora_id',$post['aseguradora_id']);
-                                    $this->db->select('cedula_paciente');
+                                    $this->db->select('id_paciente');
+                                $this->db->select('cedula_paciente');
                                 $this->db->select('nombres');
                                 $this->db->select('apellidos');
                                 $this->db->select('fecha_afiliacion');
@@ -162,7 +163,6 @@ class Pacientes__model extends CI_Model {
                                 $this->db->select('cliente');
                                 $this->db->select('medico');
                                 $this->db->select('observaciones');
-                                $this->db->select('activo');
                                 $this->db->select('examen_cod');
                                 $this->db->select('hl7tag');
                                 $this->db->select('variable_codigo');
@@ -173,7 +173,7 @@ class Pacientes__model extends CI_Model {
                                 $this->db->select('observaciones_programas');
                                 $this->db->select('contacto_id');
                                 $this->db->select('tipo_equipo_cod');
-                                $this->db->select('id_equipo');
+                                $this->db->select('descripcion');
                                 $this->db->select('estado');
                                 $this->db->select('prioridad');
                                 $this->db->select('codigo_hospital');

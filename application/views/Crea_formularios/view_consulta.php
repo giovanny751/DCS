@@ -35,7 +35,9 @@
                     }
                     
                     
-                    if($post['nombre_campo'][$i]=="estado" || $post['nombre_campo'][$i]=="Estado"){
+                    if($post['tipo'][$i]=='select'){
+                            ?><=?php echo lista("<?php echo $post['nombre_campo'][$i]; ?>", "<?php echo $post['nombre_campo'][$i]; ?>", "form-control <?php echo $post['obligatorio'][$i] ?>", "<?php echo $post['select1'][$i]; ?>", "<?php echo $post['select2'][$i]; ?>", "<?php echo $post['select3'][$i]; ?>", (isset($datos[0]-><?php echo $post['nombre_campo'][$i]; ?>)?$datos[0]-><?php echo $post['nombre_campo'][$i]; ?>:'' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?=><?php
+                        }else if($post['nombre_campo'][$i]=="estado" || $post['nombre_campo'][$i]=="Estado"){
                             ?>
                         <select  class="form-control <?php echo $post['obligatorio'][$i] ?> <?php echo $post['fecha'][$i] ?> <?php echo $post['numero'][$i] ?>" id="<?php echo $post['nombre_campo'][$i]; ?>" name="<?php echo $post['nombre_campo'][$i]; ?>">
                             <option value=""></option>
