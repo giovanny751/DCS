@@ -112,14 +112,14 @@
             <thead>
             <th></th>
             <th>Descripción</th>
-            <th>Examen</th>
+            <!--<th>Examen</th>-->
             <th>Analisis resultado</th>
             <th>N° repeticiones mínimas</th>
             <th>N° repeticiones máximas</th>
             <th>Tiempo</th>
             <th>Frecuencia</th>
             <th>Color</th>
-            <th>protocolo</th>
+            <!--<th>protocolo</th>-->
             <th>Acción</th>
             </thead>
             <tbody>

@@ -48,9 +48,9 @@ class Tipo_alarma__model extends CI_Model {
         $this->db->like('activo',$post['activo']);
                                     $this->db->select('id_tipo_alarma');
                                 $this->db->select('descripcion');
-                                $this->db->select('examen');
+//                                $this->db->select('examen');
                                 $this->db->select('analisis_resultados');
-                                $this->db->select('id_niveles_alarma');
+//                                $this->db->select('id_niveles_alarma');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('tipo_alarma');
         $datos=$datos->result();

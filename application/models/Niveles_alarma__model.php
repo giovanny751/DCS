@@ -63,14 +63,14 @@ class Niveles_alarma__model extends CI_Model {
         $this->db->like('activo',$post['activo']);
                                     $this->db->select('id_niveles_alarma');
                                 $this->db->select('descripcion');
-                                $this->db->select('examen_cod');
+                                
                                 $this->db->select('analisis_resultado');
                                 $this->db->select('n_repeticiones_minimas');
                                 $this->db->select('n_repeticiones_maximas');
                                 $this->db->select('tiempo');
                                 $this->db->select('frecuencia');
                                 $this->db->select('color');
-                                $this->db->select('id_protocolo');
+//                                $this->db->select('id_protocolo');
                         $this->db->where('ACTIVO','S');
         $datos=$this->db->get('niveles_alarma');
         $datos=$datos->result();
