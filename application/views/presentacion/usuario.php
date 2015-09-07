@@ -8,24 +8,22 @@
         <div class="table-responsive ">
             <table class="table table-responsive table-striped table-bordered">
                 <thead>
-                <th style="width: 220px">Usuario</th>
+                <th style="width: 220px">Nombre</th>
+                <th style="width: 220px">Apellido</th>
+                <th style="width: 220px">Cédula</th>
+                <th style="width: 220px">Login</th>
                 <th style="width: 220px">Email</th>
-                <th style="width: 220px">Numero Celular</th>
                 <th style="width: 220px">Estado</th>
                 <th style="width: 220px">Roles</th>
                 </thead>
                 <tbody>
                     <?php foreach ($usaurios as $todosusuarios) { ?>
                         <tr>
-                            <td><?php echo $todosusuarios['usu_nombre'] . " " . $todosusuarios['usu_apellido']; ?></td>
+                            <td><?php echo $todosusuarios['usu_nombre'] ?></td>
+                            <td><?php echo $todosusuarios['usu_apellido'] ?></td>
+                            <td><?php echo $todosusuarios['usu_cedula']; ?></td>
+                            <td><?php echo $todosusuarios['usu_usuario']; ?></td>
                             <td><?php echo $todosusuarios['usu_email']; ?></td>
-                            <td><?php
-                                if (!empty($todosusuarios['phone'])) {
-                                    echo $todosusuarios['phone'];
-                                } else {
-                                    echo 0;
-                                }
-                                ?></td>
                             <td><?php
                                 if ($todosusuarios['est_id'] == 1)
                                     echo "Activo";
