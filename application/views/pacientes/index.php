@@ -54,18 +54,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="foto">* Foto </label>
+                            <label for="foto">Foto </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="file" value="<?php echo (isset($datos[0]->foto) ? $datos[0]->foto : '' ) ?>" class="  obligatorio  " id="foto" name="foto">
-                            <?php if (!empty($id) && $datos[0]->foto != '') { ?>
-                                <img style="width: 100px" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
-                            <?php } ?>
-                            <br>
+                            <input type="file" value="<?php echo (isset($datos[0]->foto) ? $datos[0]->foto : '' ) ?>" class="   " id="foto" name="foto">
                         </div>
                         <div class="col-md-6">
                             <?php if (!empty($id) && $datos[0]->foto != '') { ?>
-                                    <img style="width: 300px;float: right;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
+                                <img style="width: 300px;float: right;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
                             <?php } ?>
                         </div>
                     </div>
@@ -218,8 +214,15 @@
                             *                             Valor frecuencia                        </label>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" value="<?php echo (isset($datos[0]->valor_frecuencia) ? $datos[0]->valor_frecuencia : '' ) ?>" class=" form-control obligatorio  number" id="valor_frecuencia" name="valor_frecuencia">
-
+                        <!--<input type="text" value="<?php echo (isset($datos[0]->valor_frecuencia) ? $datos[0]->valor_frecuencia : '' ) ?>" >-->
+                        <select class=" form-control obligatorio" id="valor_frecuencia" name="valor_frecuencia">
+                            <option value="">Seleccione</option>
+                            <option value="Hora" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Hora') ? 'selected="selected"' : '') : '' ) ?>>Hora</option>
+                            <option value="Día" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Día') ? 'selected="selected"' : '') : '' ) ?>>Día</option>
+                            <option value="Semana" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Semana') ? 'selected="selected"' : '') : '' ) ?>>Semana</option>
+                            <option value="Mes" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Mes') ? 'selected="selected"' : '') : '' ) ?>>Mes</option>
+                            <option value="Año" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Año') ? 'selected="selected"' : '') : '' ) ?>>Año</option> 
+                        </select>
 
                         <br>
                     </div>
@@ -284,47 +287,61 @@
                             *                             Nombre contacto                        </label>
                     </div>
                     <div class="col-md-3">
-                        <?php echo lista("contacto_id", "contacto_id", "form-control obligatorio", "contacto", "contacto_id", "nombre", (isset($datos[0]->contacto_id) ? $datos[0]->contacto_id : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                        <?php 
+                        if(isset($datos[0]->contacto_id)) {
+                                    $array=  explode(',',$datos[0]->contacto_id);
+                                }else{
+                                    $array=null;
+                                }
+                        echo listaMultiple2("contacto_id[]", "contacto_id", "form-control obligatorio", "contacto", "contacto_id", "nombre", $array, array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
                     </div>
                 </div>
                 <!-- Tab Equipos -->
                 <div role="tabpanel" class="tab-pane" id="tabEquipos">
                     <br />
-                    <div class="col-md-3">
-                        <label for="tipo_equipo_cod">
-                            *                             Tipo de Equipo                        </label>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <label for="tipo_equipo_cod">
+                                    *                             Tipo de Equipo                        </label>
+                            </div>
+                            <div class="col-md-6">
+                                <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="estado">
+                                    *                             Estado                        </label>
+                            </div>
+                            <div class="col-md-6">
+                                <select  class="form-control obligatorio  " id="estado" name="estado">
+                                    <option value=""></option>
+                                    <option value="Activo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Activo') ? 'selected="selected"' : '') : '' ) ?>>Activo</option>
+                                    <option value="Inactivo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Inactivo') ? 'selected="selected"' : '') : '' ) ?>>Inactivo</option>
+                                </select>
+                                <br>
+                            </div>
+                        </div>
+                        <div  class="col-md-6">
+                            <div class="col-md-6">
+                                <label for="descripcion">
+                                    *                             Descripción                        </label>
+                            </div>
+                            <div class="col-md-6">
+                                <?php 
+                                if(isset($datos[0]->descripcion)) {
+                                    $array=  explode(',',$datos[0]->descripcion);
+                                }else{
+                                    $array=null;
+                                }
+//                                print_r($array);
+                                echo listaMultiple2("descripcion[]", "descripcion", "form-control obligatorio", "equipos", "id_equipo", "descripcion", $array, array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                                                            <!--<input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">-->
+
+
+                                <br>
+                            </div>
                     </div>
-                    <div class="col-md-3">
-                        <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
-                    </div>
-
-
-
-                    <div class="col-md-3">
-                        <label for="descripcion">
-                            *                             Descripción                        </label>
-                    </div>
-                    <div class="col-md-3">
-                        <?php echo lista("descripcion", "descripcion", "form-control obligatorio", "equipos", "id_equipo", "descripcion", (isset($datos[0]->descripcion) ? $datos[0]->descripcion : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
-                                                    <!--<input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">-->
-
-
-                        <br>
-                    </div>
-
-
-
-                    <div class="col-md-3">
-                        <label for="estado">
-                            *                             Estado                        </label>
-                    </div>
-                    <div class="col-md-3">
-                        <select  class="form-control obligatorio  " id="estado" name="estado">
-                            <option value=""></option>
-                            <option value="Activo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Activo') ? 'selected="selected"' : '') : '' ) ?>>Activo</option>
-                            <option value="Inactivo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Inactivo') ? 'selected="selected"' : '') : '' ) ?>>Inactivo</option>
-                        </select>
-                        <br>
                     </div>
                 </div>
                 <!-- Tab Sistema -->
@@ -395,13 +412,13 @@
 </div>
 <script>
 
-    $('#myTabs a').click(function (e) {
+    $('#myTabs a').click(function(e) {
         e.preventDefault()
         $(this).tab('show')
     })
 
     function campos() {
-        $('input[type="file"]').each(function (key, val) {
+        $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();
             if (img != "") {
                 var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
@@ -419,7 +436,7 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function (tecla) {
+    $('body').delegate('.number', 'keypress', function(tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
@@ -427,3 +444,8 @@
 
 
 </script>
+<style>
+    #descripcion{
+        height: 150px !important;
+    }
+</style>

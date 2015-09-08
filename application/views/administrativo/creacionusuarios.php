@@ -76,28 +76,12 @@
     <div class="row" style="text-align:center">
 
         <button type="button" class="btn btn-success" id="guardar"><?php echo (!empty($usuario[0]->usu_id)) ? "Actualizar" : "Guardar"; ?></button>
+        <input class="btn btn-success" type="reset" value="Limpiar">
+        <a href="<?php echo base_url('index.php') . "/Administrativo/listadousuarios" ?>" class="btn btn-success">Listado </a>
+        
     </div>    
 </div>    
 <script>
-//    $('#cargo').change(function(){
-//        
-//        $.post(
-//               "<?php echo base_url("index.php/administrativo/consultausuarioscargo") ?>",
-//       {
-//           cargo:$(this).val()
-//       }
-//               ).done(function(msg){
-//                   var data = "";
-//                   $('#empleado *').remove();
-//                   $.each(msg,function(key,val){
-//                       data += "<option value='"+val.Emp_Id+"'>"+val.Emp_Nombre+" "+val.Emp_Apellidos+"</option>" 
-//                   });
-//                   $('#empleado').append(data);
-//               }).fail(function(msg){
-//                   
-//               })
-//    });
-
     $('#cedula').change(function() {
         var cedula = $('#cedula').val();
         $.post('<?php echo base_url('index.php/administrativo/confirm_cedula') ?>', {cedula: cedula})
@@ -136,6 +120,7 @@
                     $('#f3').serialize()
                     ).done(function(msg) {
                 alerta("verde", "Datos guardados correctamente");
+                location.href="<?php echo base_url('index.php') . "/Administrativo/listadousuarios" ?>";
             })
                     .fail(function(msg) {
                         alerta("rojo", "Error en el sistema por favor verificar la conexion de internet");

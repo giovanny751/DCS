@@ -316,4 +316,5 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     $.blockUI.defaults.message = 'Procesando...';
     $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 });
+//$('.table').DataTable();
 </script>

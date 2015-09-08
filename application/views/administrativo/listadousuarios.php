@@ -77,6 +77,8 @@
                 <?php } ?>
             </tbody>
         </table>
+        <br>
+        <a href="<?php echo base_url() . "/index.php/Administrativo/creacionusuarios" ?>" class="btn btn-success" >Nuevo</a>
     </div>    
 </div>    
 <form id="f10" method="post" action="<?php echo base_url("index.php/administrativo/creacionusuarios") ?>">

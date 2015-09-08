@@ -7,6 +7,21 @@ class Pacientes__model extends CI_Model {
     }
 
     function save_pacientes($post) {
+        if(isset($post['descripcion'])){
+            $s="";
+            foreach ($post['descripcion'] as $des){
+                $s.=$des.",";
+            }
+            $post['descripcion']=$s;
+        }
+        if(isset($post['contacto_id'])){
+            $s="";
+            foreach ($post['contacto_id'] as $des){
+                $s.=$des.",";
+            }
+            $post['contacto_id']=$s;
+        }
+        
         if (isset($post['campo'])) {
             $this->db->where($post["campo"], $post[$post["campo"]]);
             $id = $post[$post["campo"]];

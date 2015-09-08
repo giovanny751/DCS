@@ -407,3 +407,41 @@ function lista($name, $id, $class, $tabla, $option_value, $option_name, $value, 
         $user = $CI->db->get($tabla);
         return $user->result();
     }
+    function listaMultiple2($name, $id, $class, $tabla, $option_value, $option_name, $value, $where, $bloqued) {
+        $CI = & get_instance();
+        if (!isset($value)) {
+            $value = "";
+        }
+        if (isset($where)) {
+            foreach ($where as $campo => $igual) {
+                $CI->db->where($campo, $igual);
+            }
+        }
+        $query = $CI->db->get($tabla); //var_dump($this->db1->last_query());echo '</br>';
+        if ($query->num_rows() > 0) {
+            $html = "<select multiple id=$id class=$class name=$name required='required'     >";
+//            if ($bloqued) {
+//                $html .= "<option value='' disabled=disabled>Seleccione</option>";
+//            } else {
+//                $html .= "<option value=''>Seleccione</option>";
+//            }
+            $i=0;
+            if($value[$i]=="")
+                $i=1;
+            foreach ($query->result() as $row) {
+                if ($row->$option_value == (isset($value[$i])?$value[$i]:'')) {
+                    $html.="<option value=" . $row->$option_value . " selected>" . $row->$option_name . "</option>";
+                    $i++;
+                } else {
+                    if ($bloqued) {
+                        $html.="<option  disabled=disabled  value=" . $row->$option_value . " >" . $row->$option_name . "</option>";
+                    } else {
+                        $html.="<option   value=" . $row->$option_value . " onlyRead >" . $row->$option_name . "</option>";
+                    }
+                }
+            }
+            return $html.="</select>";
+        } else {
+            return false;
+        }
+    }

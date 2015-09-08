@@ -101,7 +101,7 @@
                         table += "</select></td>";
                         table += "<td><select name='fecha[]' class='form-control'>";
                         table += "<option value=''>No</option>";
-                        table += "<option value='fecha'>Si</option>";
+                        table += "<option value='fecha hasDatepicker'>Si</option>";
                         table += "</select></td>";
                         var dd = '"' + val.Field + '"';
                         table += "<td><select name='autocomplete[]' class='form-control' onchange='auto(this," + dd + ")'>";

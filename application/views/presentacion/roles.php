@@ -12,7 +12,7 @@
             <table class="table table-responsive table-striped table-bordered">
                 <thead>
                 <th>Nombre</th>
-                <th>Estado</th>
+                <!--<th>Estado</th>-->
                 <th>Opciones</th>
                 <th>Eliminar</th>
                 </thead>
@@ -20,7 +20,7 @@
                     <?php foreach ($roles as $datos) { ?>
                         <tr>
                             <td><?php echo $datos['rol_nombre']; ?></td>
-                            <td><?php echo $datos['rol_estado']; ?></td>
+                            <!--<td><?php echo $datos['rol_estado']; ?></td>-->
                             <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>"  data-toggle="modal" data-target="#myModal"  class="btn btn-info modificar">Opciones</button></td>
                             <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-danger eliminar">Eliminar</button></td>
                         </tr>
@@ -77,11 +77,17 @@
 //                      ELIMINAR ROL    
 //------------------------------------------------------------------------------ 
     $('body').delegate('.eliminar', 'click', function() {
+        $(this).parents().parents('tr').remove();
+//        return false;
         $.post("<?php echo base_url('index.php/presentacion/eliminarrol'); ?>", {id: $(this).attr('rol')})
                 .done(function(msg) {
-                    $(this).parents('tr').remove();
+                    alerta('verde','Rol eliminado con exito');
+//                    $(this).parents('')
+//                    $(this).parents('tr').remove();
+        
                 }).fail(function(msg) {
-
+                    alerta('rojo','Error al eliminar');
+                    location.reload();
         });
     });
 //------------------------------------------------------------------------------

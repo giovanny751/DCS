@@ -92,6 +92,7 @@
                 <th>Barrio</th>
                 <th>Ciudad</th>
                 <th>Fecha Nacimiento</th>
+                <th>Acción</th>
                 </thead>
                 <tbody>
                     <?php

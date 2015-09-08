@@ -180,12 +180,12 @@
                         </div>
                         <div class="col-md-3">
                             <input type="file" value="<?php echo (isset($datos[0]->adjuntar_certificado) ? $datos[0]->adjuntar_certificado : '' ) ?>" class="    " id="adjuntar_certificado" name="adjuntar_certificado">
-
-                            <?php if (!empty($id) && $datos[0]->adjuntar_certificado != '') { ?>
-                                <img style="width: 100px" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
-                            <?php } ?>
-
                             <br>
+                        </div>
+                        <div class="col-md-6">
+                            <?php if (!empty($id) && $datos[0]->adjuntar_certificado != '') { ?>
+                                <img style="width: 250px;float: right;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
