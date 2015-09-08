@@ -183,8 +183,13 @@
                             <br>
                         </div>
                         <div class="col-md-6">
-                            <?php if (!empty($id) && $datos[0]->adjuntar_certificado != '') { ?>
-                                <img style="width: 250px;float: right;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
+                            <?php if (!empty($id) && $datos[0]->adjuntar_certificado != '') { 
+                                $s=  explode('.', $datos[0]->adjuntar_certificado);
+                                  if($s[2]='gif' || $s[2]='jpg' || $s[2]='png'){?>
+                                      <img style="width: 250px;float: right;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
+                                      <?php }else{ ?>
+                                      <a href="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">Documento</a>
+                                      <?php }   ?>
                             <?php } ?>
                         </div>
                     </div>

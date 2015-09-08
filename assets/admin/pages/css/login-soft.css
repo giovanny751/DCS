@@ -15,7 +15,7 @@ Login page
 .login .content {
   background: url(../img/bg-white-lock.png) repeat;
   width: 360px;
-  margin: 0 auto;
+   float: right;
   margin-bottom: 0px;
   padding: 30px;
   padding-top: 20px;
@@ -25,19 +25,20 @@ Login page
   -ms-border-radius: 7px;
   -o-border-radius: 7px;
   border-radius: 7px;
+  margin-top: 70px;
 }
 
 .login .content h3 {
-  color: #eee;
+  /*color: #eee;*/
 }
 
 .login .content h4 {
-  color: #eee;
+  /*color: #eee;*/
 }
 
 .login .content p,
 .login .content label {
-  color: #fff;
+  /*color: #fff;*/
 }
 
 .login .content .login-form,
@@ -47,7 +48,7 @@ Login page
 }
 
 .login .content .form-control {
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 
 .login .content .forget-form {
@@ -144,7 +145,7 @@ Login page
   text-align: center;
   margin: 0 auto;
   padding: 10px;
-  color: #eee;
+  /*color: #eee;*/
   font-size: 13px;
 }
 

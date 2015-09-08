@@ -70,8 +70,8 @@
                         <td><?php echo $u->usu_fechaCreacion ?></td>
                         <td><?php echo $u->ingreso ?></td>
                         <td>
-                            <i class="fa fa-times fa-2x eliminar btn btn-danger" title="Eliminar" usu_id="<?php echo $u->id ?>"></i>
-                            <i class="fa fa-pencil-square-o fa-2x modificar btn btn-info" title="Modificar" usu_id="<?php echo $u->id ?>"  data-toggle="modal" data-target="#myModal"></i>
+                            <i class="fa fa-trash-o eliminar btn btn-danger" title="Eliminar" usu_id="<?php echo $u->id ?>"></i>
+                            <i class="fa fa-pencil modificar btn btn-info" title="Modificar" usu_id="<?php echo $u->id ?>"  data-toggle="modal" data-target="#myModal"></i>
                         </td>
                     </tr>
                 <?php } ?>
@@ -85,6 +85,14 @@
     <input type="hidden" value="" name="usu_id" id="usu_id">
 </form>
 <script>
+    $('.eliminar').click(function(){
+        var url="<?php echo base_url("index.php/administrativo/eliminar_usuarios") ?>";
+        $.post(url,{usu_id:$(this).attr('usu_id')})
+                .done(function(msg){
+                    alerta('verde','Eliminado con exito');
+            location.reload();
+                })
+    })
 $('#cedula').autocomplete({
     source: "<?php echo base_url("index.php/administrativo/autocompletaruacedula") ?>",
     minLength: 3

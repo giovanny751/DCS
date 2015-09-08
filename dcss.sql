@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Nygsoft_red
+Source Server         : nygsoft.com
 Source Server Version : 50536
 Source Host           : 192.186.204.164:3306
 Source Database       : dcss
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50536
 File Encoding         : 65001
 
-Date: 2015-09-07 10:02:24
+Date: 2015-09-07 22:48:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,16 +52,17 @@ CREATE TABLE `aseguradoras` (
   `email` varchar(255) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`aseguradora_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of aseguradoras
 -- ----------------------------
-INSERT INTO `aseguradoras` VALUES ('1', 'ya quedi ', 'EPS/IPS', 'Inactivo', null, 'sd', '44', '34', 'f@jj.com', 'S');
-INSERT INTO `aseguradoras` VALUES ('2', null, 'Prepagada', null, null, 'CALL', '765432', '', '', 'S');
-INSERT INTO `aseguradoras` VALUES ('3', null, 'Prepagada', null, null, 'da', '234', '234', '', 'S');
-INSERT INTO `aseguradoras` VALUES ('4', '123', 'Red de ambulancias', 'Activo', null, '123', '123', '123', '', 'S');
-INSERT INTO `aseguradoras` VALUES ('5', 'Medplus', 'Prepagada', 'Activo', null, 'calle 76 36 - 67', '67657689', '', 'ff@h.com', 'S');
+INSERT INTO `aseguradoras` VALUES ('1', 'ya quedi ', 'EPS/IPS', 'Inactivo', null, 'sd', '44', '34', 'f@jj.com', 'N');
+INSERT INTO `aseguradoras` VALUES ('2', null, 'Prepagada', null, null, 'CALL', '765432', '', '', 'N');
+INSERT INTO `aseguradoras` VALUES ('3', null, 'Prepagada', null, null, 'da', '234', '234', '', 'N');
+INSERT INTO `aseguradoras` VALUES ('4', '123', 'Red de ambulancias', 'Activo', null, '123', '123', '123', '', 'N');
+INSERT INTO `aseguradoras` VALUES ('5', 'Medplus', 'Prepagada', 'Activo', null, 'calle 76 36 - 67', '67657689', '', 'ff@h.com', 'N');
+INSERT INTO `aseguradoras` VALUES ('6', 'emermedica', 'Red de ambulancias', 'Activo', null, 'calle 03 A #45-67', '89078689', '320876789', 'servicioalcliente@emermedica.com.co', 'S');
 
 -- ----------------------------
 -- Table structure for `cargo`
@@ -780,16 +781,17 @@ CREATE TABLE `contacto` (
   `cuidador` varchar(255) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`contacto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of contacto
 -- ----------------------------
 INSERT INTO `contacto` VALUES ('1', '234', '345', null, null, '345', '345', '345', '345', '345', null, null, 'N');
-INSERT INTO `contacto` VALUES ('2', '1234567890', 'NELSON', null, null, 'CL 60', '123', '30023', '123@hh.com', 'NELSON', 'SI', 'SI', 'S');
-INSERT INTO `contacto` VALUES ('3', '213', '123', 'Inactivo', null, '123', '123', '312', '123', '123', '', 'SI', 'S');
-INSERT INTO `contacto` VALUES ('4', '11', '213', 'Inactivo', null, '123', '123', '123', '123', '123', '', '', 'S');
-INSERT INTO `contacto` VALUES ('5', '52865386', 'gina paola', 'Activo', null, 'Calle 127  20-45 Bogotá', '6786779', '320787897', 'jj@hotmail.com', 'hija', 'SI', '', 'S');
+INSERT INTO `contacto` VALUES ('2', '1234567890', 'NELSON', null, null, 'CL 60', '123', '30023', '123@hh.com', 'NELSON', 'SI', 'SI', 'N');
+INSERT INTO `contacto` VALUES ('3', '213', '123', 'Inactivo', null, '123', '123', '312', '123', '123', '', 'SI', 'N');
+INSERT INTO `contacto` VALUES ('4', '11', '213', 'Inactivo', null, '123', '123', '123', '123', '123', '', '', 'N');
+INSERT INTO `contacto` VALUES ('5', '52865386', 'gina paola', 'Activo', null, 'Calle 127  20-45 Bogotá', '6786779', '320787897', 'jj@hotmail.com', 'hija', 'SI', '', 'N');
+INSERT INTO `contacto` VALUES ('6', '90675678', 'María ballen', 'Activo', null, 'calle 97 # 45-68', '897867896', '320878678', 'monicayrod@hotmail.com', 'hija', 'SI', '', 'S');
 
 -- ----------------------------
 -- Table structure for `dimension`
@@ -921,16 +923,17 @@ CREATE TABLE `equipos` (
   `examen_cod` int(11) DEFAULT NULL,
   `variable_codigo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_equipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of equipos
 -- ----------------------------
-INSERT INTO `equipos` VALUES ('1', '123', null, 'DISPONIBLE', '123', '123', '', '0000-00-00 00:00:00', '1', '', 'nelson', '', 'S', '0000-00-00 00:00:00', '', '', '4', '3');
-INSERT INTO `equipos` VALUES ('2', 'sdf', null, 'Activo', 'sdfs', '324', '', '0000-00-00 00:00:00', '3', 'escudo-1.jpg', '', '', 'S', '0000-00-00 00:00:00', '', '', '0', '0');
-INSERT INTO `equipos` VALUES ('3', 'nelson', null, 'DISPONIBLE', 'hhhh', '777', '6666', '2015-09-14 00:00:00', '3', '', '', '', 'S', '0000-00-00 00:00:00', '', '', '4', '3');
+INSERT INTO `equipos` VALUES ('1', '123', null, 'DISPONIBLE', '123', '123', '', '0000-00-00 00:00:00', '1', '', 'nelson', '', 'N', '0000-00-00 00:00:00', '', '', '4', '3');
+INSERT INTO `equipos` VALUES ('2', 'sdf', null, 'Activo', 'sdfs', '324', '', '0000-00-00 00:00:00', '3', 'escudo-1.jpg', '', '', 'N', '0000-00-00 00:00:00', '', '', '0', '0');
+INSERT INTO `equipos` VALUES ('3', 'nelson', null, 'DISPONIBLE', 'hhhh', '777', '6666', '2015-09-14 00:00:00', '3', '', '', '', 'N', '0000-00-00 00:00:00', '', '', '4', '3');
 INSERT INTO `equipos` VALUES ('4', 'medidor de signos vitales 2', null, 'DISPONIBLE', 'almacen', '7798098089', '', '2015-09-23 00:00:00', '7', 'DCD.png', '', '', 'S', '0000-00-00 00:00:00', '', '', '7', '3');
-INSERT INTO `equipos` VALUES ('5', 'df', null, 'DISPONIBLE', 'dfs', '23', '', '0000-00-00 00:00:00', '1', '0.jpg', '', '', 'S', '0000-00-00 00:00:00', '', 'escudo-1.jpg', '4', '0');
+INSERT INTO `equipos` VALUES ('5', 'df', null, 'DISPONIBLE', 'dfs', '23', '', '0000-00-00 00:00:00', '1', '0.jpg', '', '', 'N', '0000-00-00 00:00:00', '', 'escudo-1.jpg', '4', '0');
+INSERT INTO `equipos` VALUES ('6', 'Tensiometro', null, 'DISPONIBLE', 'almacén', '3633920272', 'CISCO', '2015-05-01 00:00:00', '8', 'tensiometro.jpg', '', 'dlfkhdkgdkgfnbfjblkhfkjblfdlbfbfdlnldmn', 'S', '2015-01-01 00:00:00', '', '', '7', '4');
 
 -- ----------------------------
 -- Table structure for `estado_civil`
@@ -982,10 +985,10 @@ CREATE TABLE `examenes` (
 INSERT INTO `examenes` VALUES ('1', 'prueba1', null, null, null);
 INSERT INTO `examenes` VALUES ('2', 'prueba1', null, null, null);
 INSERT INTO `examenes` VALUES ('3', 'prueba', null, null, null);
-INSERT INTO `examenes` VALUES ('4', 'prueba', 'Inactivo', null, 'S');
-INSERT INTO `examenes` VALUES ('5', 'prueba2', null, null, 'S');
+INSERT INTO `examenes` VALUES ('4', 'prueba', 'Inactivo', null, 'N');
+INSERT INTO `examenes` VALUES ('5', 'prueba2', null, null, 'N');
 INSERT INTO `examenes` VALUES ('6', 'ya :)dd', null, null, 'N');
-INSERT INTO `examenes` VALUES ('7', 'tensión arterial', 'Activo', null, 'S');
+INSERT INTO `examenes` VALUES ('7', 'Tensión arterial', 'Activo', null, 'S');
 INSERT INTO `examenes` VALUES ('8', 'Espirometría', 'Activo', null, 'S');
 
 -- ----------------------------
@@ -1036,15 +1039,16 @@ CREATE TABLE `hospitales` (
   `email` varchar(255) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`codigo_hospital`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of hospitales
 -- ----------------------------
 INSERT INTO `hospitales` VALUES ('1', 'sdf', null, null, 'sdf', '234', '324', 'dsf', 'N');
-INSERT INTO `hospitales` VALUES ('2', 'NELSON BARBOSA', 'Activo', null, 'CL 60 B 18 D 36 SUR', '4', '345435', 'ff@hh', 'S');
-INSERT INTO `hospitales` VALUES ('3', 'dsf', 'Inactivo', null, '234', '234', '234', '', 'S');
+INSERT INTO `hospitales` VALUES ('2', 'NELSON BARBOSA', 'Activo', null, 'CL 60 B 18 D 36 SUR', '4', '345435', 'ff@hh', 'N');
+INSERT INTO `hospitales` VALUES ('3', 'dsf', 'Inactivo', null, '234', '234', '234', '', 'N');
 INSERT INTO `hospitales` VALUES ('4', 'Hospital San Rafael', 'Activo', null, 'calle 116 # 89-56 ', '78767898', '320876899', 'gg@hotmail.com', 'S');
+INSERT INTO `hospitales` VALUES ('5', 'Hospital San Ignacio', 'Activo', null, 'calle 76 36 - 67', '3445678', '', 'atencionalusuario@gmail.com', 'S');
 
 -- ----------------------------
 -- Table structure for `ingreso`
@@ -1055,7 +1059,7 @@ CREATE TABLE `ingreso` (
   `usu_id` int(11) NOT NULL,
   `ing_fechaIngreso` datetime NOT NULL,
   PRIMARY KEY (`ing_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ingreso
@@ -1125,6 +1129,20 @@ INSERT INTO `ingreso` VALUES ('62', '6', '2015-09-04 19:17:50');
 INSERT INTO `ingreso` VALUES ('63', '1', '2015-09-04 19:18:04');
 INSERT INTO `ingreso` VALUES ('64', '6', '2015-09-04 19:21:28');
 INSERT INTO `ingreso` VALUES ('65', '6', '2015-09-07 16:55:54');
+INSERT INTO `ingreso` VALUES ('66', '6', '2015-09-07 18:40:36');
+INSERT INTO `ingreso` VALUES ('67', '1', '2015-09-07 19:09:47');
+INSERT INTO `ingreso` VALUES ('68', '6', '2015-09-07 19:10:10');
+INSERT INTO `ingreso` VALUES ('69', '6', '2015-09-07 19:12:31');
+INSERT INTO `ingreso` VALUES ('70', '6', '2015-09-07 19:21:47');
+INSERT INTO `ingreso` VALUES ('71', '6', '2015-09-07 19:51:47');
+INSERT INTO `ingreso` VALUES ('72', '6', '2015-09-07 20:01:31');
+INSERT INTO `ingreso` VALUES ('73', '1', '2015-09-07 20:05:58');
+INSERT INTO `ingreso` VALUES ('74', '6', '2015-09-07 20:13:02');
+INSERT INTO `ingreso` VALUES ('75', '6', '2015-09-08 02:23:45');
+INSERT INTO `ingreso` VALUES ('76', '6', '2015-09-08 02:45:31');
+INSERT INTO `ingreso` VALUES ('77', '6', '2015-09-08 02:50:01');
+INSERT INTO `ingreso` VALUES ('78', '6', '2015-09-08 03:36:59');
+INSERT INTO `ingreso` VALUES ('79', '6', '2015-09-08 03:41:25');
 
 -- ----------------------------
 -- Table structure for `inicio`
@@ -1179,11 +1197,11 @@ CREATE TABLE `medicos` (
 -- ----------------------------
 -- Records of medicos
 -- ----------------------------
-INSERT INTO `medicos` VALUES ('1', 'NELSON', null, null, '123', '123', '123', '123', '123@cc.com', 'S');
-INSERT INTO `medicos` VALUES ('2', 'ne', null, null, '121d', '123', '123', '123', '123@hh.com', 'S');
-INSERT INTO `medicos` VALUES ('3', 'fdg', null, 'Activo', '324', 'dfg', '34', '', '', 'S');
-INSERT INTO `medicos` VALUES ('4', '123', null, 'Activo', '123', '123', '1123', '', '', 'S');
-INSERT INTO `medicos` VALUES ('5', 'nelson', null, 'Activo', '1233123123', 'ddd', '234', '', '', 'S');
+INSERT INTO `medicos` VALUES ('1', 'NELSON', null, null, '123', '123', '123', '123', '123@cc.com', 'N');
+INSERT INTO `medicos` VALUES ('2', 'ne', null, null, '121d', '123', '123', '123', '123@hh.com', 'N');
+INSERT INTO `medicos` VALUES ('3', 'fdg', null, 'Activo', '324', 'dfg', '34', '', '', 'N');
+INSERT INTO `medicos` VALUES ('4', '123', null, 'Activo', '123', '123', '1123', '', '', 'N');
+INSERT INTO `medicos` VALUES ('5', 'nelson', null, 'Activo', '1233123123', 'ddd', '234', '', '', 'N');
 INSERT INTO `medicos` VALUES ('6', 'Juan Pablo angel', null, 'Activo', '172873333443KJL', 'calle 97 # 45-68', '89789090', '', '', 'S');
 INSERT INTO `medicos` VALUES ('7', 'Alexander Camargo', null, 'Activo', '172873333443KJL', 'calle 76 36 - 67', '98732937983', '', '', 'S');
 
@@ -1205,7 +1223,7 @@ CREATE TABLE `modulo` (
 -- ----------------------------
 -- Records of modulo
 -- ----------------------------
-INSERT INTO `modulo` VALUES ('61', '0', 'NYGSOFT', '61', '', '', '1');
+INSERT INTO `modulo` VALUES ('61', '0', 'MENUS', '61', '', '', '1');
 INSERT INTO `modulo` VALUES ('64', '61', 'MENU', '0', 'presentacion', 'creacionmenu', '1');
 INSERT INTO `modulo` VALUES ('65', '61', 'ROLES', '0', 'presentacion', 'roles', '1');
 INSERT INTO `modulo` VALUES ('66', '61', 'ROL USUARIO', '66', 'presentacion', 'usuario', '1');
@@ -1222,14 +1240,14 @@ INSERT INTO `modulo` VALUES ('85', '74', 'DIMENSION 1', '0', 'administrativo', '
 INSERT INTO `modulo` VALUES ('86', '74', 'DIMENSIÓN 2', '0', 'administrativo', 'dimension', '1');
 INSERT INTO `modulo` VALUES ('87', '74', 'INFORMES', '0', null, null, '1');
 INSERT INTO `modulo` VALUES ('88', '0', 'PROYECTO', '88', null, null, '1');
-INSERT INTO `modulo` VALUES ('89', '0', 'DSC', '89', null, null, '1');
-INSERT INTO `modulo` VALUES ('90', '0', 'DSC', '0', null, null, '1');
+INSERT INTO `modulo` VALUES ('89', '0', 'ConfiguraciÓn', '89', '', '', '1');
+INSERT INTO `modulo` VALUES ('90', '0', 'DCS', '0', '', '', '1');
 INSERT INTO `modulo` VALUES ('91', '89', 'Hospitales', '91', null, null, '1');
 INSERT INTO `modulo` VALUES ('92', '89', 'Contactos', '92', 'Contacto', 'index', '1');
 INSERT INTO `modulo` VALUES ('93', '89', 'Aseguradoras', '93', null, null, '1');
 INSERT INTO `modulo` VALUES ('94', '89', 'Medicos', '94', null, null, '1');
 INSERT INTO `modulo` VALUES ('95', '89', 'Variables', '95', null, null, '1');
-INSERT INTO `modulo` VALUES ('96', '89', 'Exámenes', '96', null, null, '1');
+INSERT INTO `modulo` VALUES ('96', '89', 'ExÁmenes', '96', '', '', '1');
 INSERT INTO `modulo` VALUES ('97', '89', 'Tipo de Equipos', '97', null, null, '1');
 INSERT INTO `modulo` VALUES ('98', '89', 'Equipos', '98', null, null, '1');
 INSERT INTO `modulo` VALUES ('99', '89', 'Tipo de Clientes', '99', null, null, '1');
@@ -1285,15 +1303,16 @@ CREATE TABLE `niveles_alarma` (
   `id_protocolo` int(11) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`id_niveles_alarma`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of niveles_alarma
 -- ----------------------------
-INSERT INTO `niveles_alarma` VALUES ('1', 'nelson niveles alarma', null, '4', 'asd', '213', '213', '213', 'Día', '1112', '1', 'S');
-INSERT INTO `niveles_alarma` VALUES ('2', 'Nivel 1 tensión arterial alta', null, '7', '', '2', '4', '2', 'Semana', 'amarillo', '3', 'S');
-INSERT INTO `niveles_alarma` VALUES ('3', 'ss', null, '4', 'Baja', '22', '33', '22', 'Semana', '33', '1', 'S');
+INSERT INTO `niveles_alarma` VALUES ('1', 'nelson niveles alarma', '2015-09-07 19:59:01', '4', 'asd', '213', '213', '213', 'Día', '1112', '1', 'N');
+INSERT INTO `niveles_alarma` VALUES ('2', 'Nivel 1 tensión arterial alta', '2015-09-07 19:59:07', '7', '', '2', '4', '2', 'Semana', 'amarillo', '3', 'N');
+INSERT INTO `niveles_alarma` VALUES ('3', 'ss', '2015-09-07 19:58:53', '4', 'Baja', '22', '33', '22', 'Semana', '33', '1', 'N');
 INSERT INTO `niveles_alarma` VALUES ('4', 'Nivel 2 tensión arterial alta', null, '7', 'Alta', '3', '5', '7', 'Semana', 'naranja', '3', 'S');
+INSERT INTO `niveles_alarma` VALUES ('5', 'Nivel 1 tensión arterial alta', '2015-09-07 20:03:21', '7', 'Alta', '2', '3', '1', 'Semana', 'amarillo', '4', 'S');
 
 -- ----------------------------
 -- Table structure for `numero_empleados`
@@ -1357,12 +1376,13 @@ CREATE TABLE `pacientes` (
   `tipo` varchar(55) DEFAULT NULL,
   `aseguradora_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_paciente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of pacientes
 -- ----------------------------
 INSERT INTO `pacientes` VALUES ('1', '123', '123', '123', '0000-00-00', '', '123', '123', '123', '2012-01-11', '12', '12', '234', '', '', '2015-01-12', '2015-01-12', '3', '2', '0', '', 'N', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `pacientes` VALUES ('2', '20617881', 'Ana maría', 'Beltrán', '2015-08-01', 'abuelita.jpg', 'calle 76 36 - 67', 'Cedritos', 'bogota', '1975-06-01', '1.65', '60', '56789654', '', '', '2006-09-01', '2016-09-30', '8', '12', '7', 'xbvnb', 'S', '8', 'VEF1', '4', 'Día', '1', '20', '30', 'afdgfdjhjjklhjlññkñ', '6', '8', '6', 'Activo', '1', '5', 'prepagada', '6');
 
 -- ----------------------------
 -- Table structure for `pais`
@@ -1523,7 +1543,6 @@ INSERT INTO `permisos_rol` VALUES ('632', '77', '51');
 INSERT INTO `permisos_rol` VALUES ('633', '78', '51');
 INSERT INTO `permisos_rol` VALUES ('634', '79', '51');
 INSERT INTO `permisos_rol` VALUES ('834', '61', '60');
-INSERT INTO `permisos_rol` VALUES ('837', '71', '63');
 INSERT INTO `permisos_rol` VALUES ('975', '61', '62');
 INSERT INTO `permisos_rol` VALUES ('976', '64', '62');
 INSERT INTO `permisos_rol` VALUES ('977', '65', '62');
@@ -1636,14 +1655,15 @@ CREATE TABLE `protocolos` (
   `enviar_email` varchar(50) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`id_protocolo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of protocolos
 -- ----------------------------
-INSERT INTO `protocolos` VALUES ('1', 'nelson', '2015-09-03 00:48:58', 'njjj', 'Activo', 'sdf', 'NO', 'SI', 'S');
-INSERT INTO `protocolos` VALUES ('2', 'nelson', '2015-09-03 00:53:12', 'ii', 'Inactivo', 'iikjsdk ahsjkdakshdkahsd', 'SI', 'NO', 'S');
+INSERT INTO `protocolos` VALUES ('1', 'nelson', '2015-09-07 20:00:17', 'njjj', 'Activo', 'sdf', 'NO', 'SI', 'N');
+INSERT INTO `protocolos` VALUES ('2', 'nelson', '2015-09-07 20:00:20', 'ii', 'Inactivo', 'iikjsdk ahsjkdakshdkahsd', 'SI', 'NO', 'N');
 INSERT INTO `protocolos` VALUES ('3', 'Nivel 2 tensión arterial alta', null, '1.0', 'Activo', 'dhjhsfskjdbnxbv,mxz,nm\r\nojvlxvnc,mbnc,mbmb,mb\r\nxkkvx.,bv.,cnb.c,bCb\r\n.vmxvlsfmvclvlxmvclvcb\r\nxvjkjv-xv_c b-c.b-.cnbcnb.\r\n cvlknccvm{dkvcmm kcbv\r\ncxllcldkkjvñdlv,d]{}', 'SI', 'SI', 'S');
+INSERT INTO `protocolos` VALUES ('4', 'Nivel 1 Tensión arterial alta ', null, '1.0', 'Activo', '1. Llamar al paciente\r\n2. si el paciente tiene la tensión arterial superior a ... se debe...', 'NO', 'SI', 'S');
 
 -- ----------------------------
 -- Table structure for `prueba`
@@ -1757,7 +1777,6 @@ INSERT INTO `roles` VALUES ('51', 'ADMIN', '1');
 INSERT INTO `roles` VALUES ('56', 'BASC', '1');
 INSERT INTO `roles` VALUES ('60', 'co', '1');
 INSERT INTO `roles` VALUES ('62', 'dds', '1');
-INSERT INTO `roles` VALUES ('63', 'df', '1');
 
 -- ----------------------------
 -- Table structure for `session`
@@ -1855,18 +1874,19 @@ CREATE TABLE `tipo_cliente` (
   `creado_por` int(11) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`id_tipo_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tipo_cliente
 -- ----------------------------
 INSERT INTO `tipo_cliente` VALUES ('1', 'ya', null, null, null);
 INSERT INTO `tipo_cliente` VALUES ('2', 'ya', null, null, null);
-INSERT INTO `tipo_cliente` VALUES ('3', 'sada', null, null, 'S');
-INSERT INTO `tipo_cliente` VALUES ('4', 'esto es mio', null, null, 'S');
-INSERT INTO `tipo_cliente` VALUES ('5', 'hospitales', null, null, 'S');
+INSERT INTO `tipo_cliente` VALUES ('3', 'sada', '2015-09-07 19:54:32', null, 'N');
+INSERT INTO `tipo_cliente` VALUES ('4', 'esto es mio', '2015-09-07 19:54:35', null, 'N');
+INSERT INTO `tipo_cliente` VALUES ('5', 'hospitales', '2015-09-07 19:54:37', null, 'N');
 INSERT INTO `tipo_cliente` VALUES ('6', 'Hospitales', null, null, 'S');
-INSERT INTO `tipo_cliente` VALUES ('7', 'Hospitales', null, null, 'S');
+INSERT INTO `tipo_cliente` VALUES ('7', 'Hospitales', '2015-09-07 19:54:40', null, 'N');
+INSERT INTO `tipo_cliente` VALUES ('8', 'Particular', null, null, 'S');
 
 -- ----------------------------
 -- Table structure for `tipo_contrato`
@@ -1911,18 +1931,19 @@ CREATE TABLE `tipo_equipo` (
   `fecha_creacion` timestamp NULL DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`tipo_equipo_cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tipo_equipo
 -- ----------------------------
-INSERT INTO `tipo_equipo` VALUES ('1', 'nelson', 'Inactivo', '0000-00-00 00:00:00', 'S');
-INSERT INTO `tipo_equipo` VALUES ('2', 'ya quedo', 'Activo', '0000-00-00 00:00:00', 'S');
-INSERT INTO `tipo_equipo` VALUES ('3', 'eded', 'Activo', null, 'S');
-INSERT INTO `tipo_equipo` VALUES ('4', 'dddd', 'Activo', null, 'S');
-INSERT INTO `tipo_equipo` VALUES ('5', 'refedddd', 'Activo', null, 'S');
-INSERT INTO `tipo_equipo` VALUES ('6', 'rrrddddddd', 'Activo', null, 'S');
+INSERT INTO `tipo_equipo` VALUES ('1', 'nelson', 'Inactivo', '0000-00-00 00:00:00', 'N');
+INSERT INTO `tipo_equipo` VALUES ('2', 'ya quedo', 'Activo', '0000-00-00 00:00:00', 'N');
+INSERT INTO `tipo_equipo` VALUES ('3', 'eded', 'Activo', null, 'N');
+INSERT INTO `tipo_equipo` VALUES ('4', 'dddd', 'Activo', null, 'N');
+INSERT INTO `tipo_equipo` VALUES ('5', 'refedddd', 'Activo', null, 'N');
+INSERT INTO `tipo_equipo` VALUES ('6', 'rrrddddddd', 'Activo', null, 'N');
 INSERT INTO `tipo_equipo` VALUES ('7', 'Medidor de signos vitales', 'Activo', null, 'S');
+INSERT INTO `tipo_equipo` VALUES ('8', 'Tensiometros', 'Activo', null, 'S');
 
 -- ----------------------------
 -- Table structure for `tipo_inputs`
@@ -1972,20 +1993,23 @@ CREATE TABLE `user` (
   `usu_fechaCreacion` datetime DEFAULT NULL,
   `Ing_id` int(11) DEFAULT NULL,
   `rol_id` int(11) DEFAULT NULL,
+  `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`usu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '12345', '1', '1', '12345', 'gerson', 'barbosa', 'admin@admin.com', 'admin@admin.com', null, null, null, '2015-09-03 09:16:00', null, null, '51');
-INSERT INTO `user` VALUES ('2', '12345', '1', '1', '6789', 'javier', 'romero', null, null, null, null, null, '2015-09-03 14:44:24', null, null, '0');
-INSERT INTO `user` VALUES ('3', '12345', '1', '1', '34567', 'barbosa', 'castillo', null, null, null, null, null, '2015-09-04 10:40:39', null, null, '0');
-INSERT INTO `user` VALUES ('5', '12345', '0', '0', '123456789', 'gerson javier', 'barbosa romero', 'javierbr12@hotmail.com', 'javierbr12@hotmail.com', '1', '40', '0', '2015-09-03 06:43:52', null, null, null);
-INSERT INTO `user` VALUES ('6', '12345', '1', '1', '123456789', 'dcs', 'dcs', 'dcs@dcs.com', 'dcs@dcs.com', '1', '40', '0', '2015-09-04 10:49:06', '2015-08-23 08:13:46', null, '62');
-INSERT INTO `user` VALUES ('43', '1234567890', '1', '0', '100000', 'nelson22', 'bb', 'giovanny751@hotmail.com', 'giovanny751@hotmail.com', null, null, null, '2015-09-03 18:57:51', '2015-09-04 01:57:51', null, null);
-INSERT INTO `user` VALUES ('44', '123123123123', '1', '0', '123', '333', '', '123', 'sad', null, null, null, null, '2015-09-04 02:11:07', null, null);
-INSERT INTO `user` VALUES ('45', '123456788', '1', '0', '546765678', 'German', 'rodriguez', 'Grodriguez', 'g@hotmail.com', null, null, null, '2015-09-04 08:48:58', '2015-09-04 15:48:58', null, null);
+INSERT INTO `user` VALUES ('1', '12345', '1', '1', '12345', 'gerson', 'barbosa', 'admin@admin.com', 'admin@admin.com', null, null, null, '2015-09-03 09:16:00', null, null, '51', 'S');
+INSERT INTO `user` VALUES ('2', '12345', '1', '1', '6789', 'javier', 'romero', null, null, null, null, null, '2015-09-07 20:22:09', null, null, '0', 'N');
+INSERT INTO `user` VALUES ('3', '12345', '1', '1', '34567', 'barbosa', 'castillo', null, null, null, null, null, '2015-09-07 20:22:12', null, null, '0', 'N');
+INSERT INTO `user` VALUES ('5', '12345', '0', '0', '123456789', 'gerson javier', 'barbosa romero', 'javierbr12@hotmail.com', 'javierbr12@hotmail.com', '1', '40', '0', '2015-09-03 06:43:52', null, null, null, 'S');
+INSERT INTO `user` VALUES ('6', '12345', '1', '1', '123456789', 'dcs', 'dcs', 'dcs@dcs.com', 'dcs@dcs.com', '1', '40', '0', '2015-09-04 10:49:06', '2015-08-23 08:13:46', null, '62', 'S');
+INSERT INTO `user` VALUES ('43', '1234567890', '1', '0', '100000', 'nelson22', 'bb', 'giovanny751@hotmail.com', 'giovanny751@hotmail.com', null, null, null, '2015-09-03 18:57:51', '2015-09-04 01:57:51', null, null, 'S');
+INSERT INTO `user` VALUES ('44', '123123123123', '1', '0', '123', '333', '', '123', 'sad', null, null, null, '2015-09-07 20:22:16', '2015-09-04 02:11:07', null, null, 'N');
+INSERT INTO `user` VALUES ('45', '123456788', '1', '0', '546765678', 'German', 'rodriguez', 'Grodriguez', 'g@hotmail.com', null, null, null, '2015-09-04 08:48:58', '2015-09-04 15:48:58', null, null, 'S');
+INSERT INTO `user` VALUES ('46', 'daniel123', '1', '0', '79648473', 'Daniel', 'Ortiz', 'DOrtiz', 'daniel@hotmail.com', null, null, null, null, '2015-09-08 02:29:09', null, null, 'S');
+INSERT INTO `user` VALUES ('47', '12345678', '1', '1', '76987879', 'gina', 'beltran', 'gbeltran', '', null, null, null, '2015-09-07 19:47:32', '2015-09-08 02:46:41', null, null, 'S');
 
 -- ----------------------------
 -- Table structure for `user_copy`
@@ -2089,7 +2113,7 @@ CREATE TABLE `variables` (
   `examen_cod` int(11) DEFAULT NULL,
   `activo` varchar(1) DEFAULT 'S',
   PRIMARY KEY (`variable_codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of variables
@@ -2099,3 +2123,4 @@ INSERT INTO `variables` VALUES ('2', null, 'ddd', null, '4', 'S');
 INSERT INTO `variables` VALUES ('3', 'sss', 'ee', null, '4', 'S');
 INSERT INTO `variables` VALUES ('4', 'VEF1', 'VEF1', null, '8', 'S');
 INSERT INTO `variables` VALUES ('5', 'CVF', 'CVF', null, '8', 'S');
+INSERT INTO `variables` VALUES ('6', 'VS', 'valor sistolico', null, '7', 'S');

@@ -23,35 +23,44 @@
                     <div class="row">
                         <?php $id = (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>
                         <input type="hidden" value="<?php echo (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>" class=" form-control   " id="id_paciente" name="id_paciente">
-                        <div class="col-md-3">
-                            <label for="cedula_paciente">* Cédula paciente </label>
+
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <label for="cedula_paciente">* Cédula paciente </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" value="<?php echo (isset($datos[0]->cedula_paciente) ? $datos[0]->cedula_paciente : '' ) ?>" class=" form-control obligatorio  number" id="cedula_paciente" name="cedula_paciente">
+                                <br>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nombres">* Nombres </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" value="<?php echo (isset($datos[0]->nombres) ? $datos[0]->nombres : '' ) ?>" class=" form-control obligatorio  " id="nombres" name="nombres">
+                                <br>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="apellidos">* Apellidos </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" value="<?php echo (isset($datos[0]->apellidos) ? $datos[0]->apellidos : '' ) ?>" class=" form-control obligatorio  " id="apellidos" name="apellidos">
+                                <br>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fecha_afiliacion">* Fecha Afiliación </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio    " id="fecha_afiliacion" name="fecha_afiliacion">
+                                <br>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->cedula_paciente) ? $datos[0]->cedula_paciente : '' ) ?>" class=" form-control obligatorio  number" id="cedula_paciente" name="cedula_paciente">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="nombres">* Nombres </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->nombres) ? $datos[0]->nombres : '' ) ?>" class=" form-control obligatorio  " id="nombres" name="nombres">
+                        <div class="col-md-6">
+                            <?php if (!empty($id) && $datos[0]->foto != '') { ?>
+                                <img style="width: 300px;float: right;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
+                            <?php } ?>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="apellidos">* Apellidos </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->apellidos) ? $datos[0]->apellidos : '' ) ?>" class=" form-control obligatorio  " id="apellidos" name="apellidos">
-                            <br>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="fecha_afiliacion">* Fecha Afiliación </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class=" form-control obligatorio fecha " id="fecha_afiliacion" name="fecha_afiliacion">
-                            <br>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-md-3">
                             <label for="foto">Foto </label>
@@ -59,11 +68,7 @@
                         <div class="col-md-3">
                             <input type="file" value="<?php echo (isset($datos[0]->foto) ? $datos[0]->foto : '' ) ?>" class="   " id="foto" name="foto">
                         </div>
-                        <div class="col-md-6">
-                            <?php if (!empty($id) && $datos[0]->foto != '') { ?>
-                                <img style="width: 300px;float: right;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
-                            <?php } ?>
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-3">
@@ -90,7 +95,7 @@
                             <label for="fecha_nacimiento">* Fecha Nacimiento </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->fecha_nacimiento) ? $datos[0]->fecha_nacimiento : '' ) ?>" class=" form-control obligatorio fecha " id="fecha_nacimiento" name="fecha_nacimiento">
+                            <input type="text" value="<?php echo (isset($datos[0]->fecha_nacimiento) ? $datos[0]->fecha_nacimiento : '' ) ?>" class=" form-control obligatorio fecha   " id="fecha_nacimiento" name="fecha_nacimiento">
                         </div>
                     </div>
                     <div class="row">
@@ -132,7 +137,7 @@
                             <label for="fecha_inicio_contrato">* Fecha inicio contrato </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato) ? $datos[0]->fecha_inicio_contrato : '' ) ?>" class=" form-control obligatorio fecha " id="fecha_inicio_contrato" name="fecha_inicio_contrato">
+                            <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato) ? $datos[0]->fecha_inicio_contrato : '' ) ?>" class=" form-control obligatorio fecha   " id="fecha_inicio_contrato" name="fecha_inicio_contrato">
                         </div>
                     </div>
                     <div class="row">
@@ -140,7 +145,7 @@
                             <label for="fecha_fin_contrato">* Fecha fin contrato</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->fecha_fin_contrato) ? $datos[0]->fecha_fin_contrato : '' ) ?>" class=" form-control obligatorio fecha " id="fecha_fin_contrato" name="fecha_fin_contrato">
+                            <input type="text" value="<?php echo (isset($datos[0]->fecha_fin_contrato) ? $datos[0]->fecha_fin_contrato : '' ) ?>" class=" form-control obligatorio fecha   " id="fecha_fin_contrato" name="fecha_fin_contrato">
                         </div>
                         <div class="col-md-3">
                             <label for="tipo_cliente">* Tipo Cliente</label>
@@ -287,13 +292,14 @@
                             *                             Nombre contacto                        </label>
                     </div>
                     <div class="col-md-3">
-                        <?php 
-                        if(isset($datos[0]->contacto_id)) {
-                                    $array=  explode(',',$datos[0]->contacto_id);
-                                }else{
-                                    $array=null;
-                                }
-                        echo listaMultiple2("contacto_id[]", "contacto_id", "form-control obligatorio", "contacto", "contacto_id", "nombre", $array, array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                        <?php
+                        if (isset($datos[0]->contacto_id)) {
+                            $array = explode(',', $datos[0]->contacto_id);
+                        } else {
+                            $array = null;
+                        }
+                        echo listaMultiple2("contacto_id[]", "contacto_id", "form-control obligatorio", "contacto", "contacto_id", "nombre", $array, array("ACTIVO" => "S"), /* readOnly? */ false);
+                        ?>                        <br>
                     </div>
                 </div>
                 <!-- Tab Equipos -->
@@ -328,20 +334,21 @@
                                     *                             Descripción                        </label>
                             </div>
                             <div class="col-md-6">
-                                <?php 
-                                if(isset($datos[0]->descripcion)) {
-                                    $array=  explode(',',$datos[0]->descripcion);
-                                }else{
-                                    $array=null;
+                                <?php
+                                if (isset($datos[0]->descripcion)) {
+                                    $array = explode(',', $datos[0]->descripcion);
+                                } else {
+                                    $array = null;
                                 }
 //                                print_r($array);
-                                echo listaMultiple2("descripcion[]", "descripcion", "form-control obligatorio", "equipos", "id_equipo", "descripcion", $array, array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                                echo listaMultiple2("descripcion[]", "descripcion", "form-control obligatorio", "equipos", "id_equipo", "descripcion", $array, array("ACTIVO" => "S"), /* readOnly? */ false);
+                                ?>                        <br>
                                                             <!--<input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">-->
 
 
                                 <br>
                             </div>
-                    </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Tab Sistema -->
@@ -440,7 +447,8 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
+//    $('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#fecha_afiliacion').datepicker({dateFormat: 'yy-mm-dd'});
 
 
 </script>

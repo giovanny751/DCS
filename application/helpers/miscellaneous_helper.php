@@ -426,6 +426,7 @@ function lista($name, $id, $class, $tabla, $option_value, $option_name, $value, 
 //                $html .= "<option value=''>Seleccione</option>";
 //            }
             $i=0;
+            if(isset($value[$i]))
             if($value[$i]=="")
                 $i=1;
             foreach ($query->result() as $row) {

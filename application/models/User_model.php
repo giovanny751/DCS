@@ -70,6 +70,7 @@ class User_model extends CI_Model {
         
         $this->db->select("user.usu_id as id,user.*,ingreso.Ing_fechaIngreso as ingreso");
         $this->db->join("ingreso","ingreso.usu_id = user.usu_id and ingreso.ing_fechaIngreso = (select max(ing_fechaIngreso) from ingreso ) ","LEFT");
+        $this->db->where('user.activo','S');
         $user = $this->db->get('user');
 //        echo $this->db->last_query();die;
         return $user->result();
@@ -104,5 +105,10 @@ class User_model extends CI_Model {
         $this->db->where("usu_cedula",$cc);
         $data = $this->db->get('user');
         return $data->result();
+    }
+    function eliminar_usuarios($post){
+        $this->db->set('activo','N');
+        $this->db->where('usu_id',$post['usu_id']);
+        $this->db->update('user');
     }
 }

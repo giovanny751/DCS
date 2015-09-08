@@ -259,6 +259,11 @@ class Administrativo extends My_Controller {
         else
             $this->Empresa_model->update($data[0]);
     }
+    function eliminar_usuarios(){
+        $this->load->model('User_model');
+        $post=$this->input->post();
+        $this->User_model->eliminar_usuarios($post);
+    }
 
 }
 

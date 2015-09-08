@@ -55,9 +55,9 @@
                 </div>
             </form>
         </div>
-        <div class="copyright">
+<!--        <div class="copyright">
             <?php echo date("Y") ?> &copy; 
-        </div>
+        </div>-->
         <script src="<?php echo base_url('/assets/global/plugins/jquery-1.11.0.min.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/global/plugins/jquery-migrate-1.2.1.min.js') ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js') ?>" type="text/javascript"></script>
