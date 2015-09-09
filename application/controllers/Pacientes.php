@@ -60,12 +60,30 @@ class Pacientes extends My_Controller {
         if (!isset($this->data['post']['campo']))
             redirect('index.php/Pacientes/consult_pacientes', 'location');
         $this->data['datos'] = $this->Pacientes__model->edit_pacientes($this->data['post']);
+        $this->data['paciente_examen_variable'] = $this->Pacientes__model->paciente_examen_variable($this->data['post']);
         $this->layout->view('pacientes/index', $this->data);
     }
 
     function autocomplete_cedula_paciente() {
         $info = auto("pacientes", "id_paciente", "cedula_paciente", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_contacto_id() {
+        $info = $this->auto2("contacto", "contacto_id", "nombre", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function auto2($tabla,$idcampo,$nombrecampo,$letra) {
+            $search = buscador($tabla,$nombrecampo,$letra);
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->documento." ".$result->$nombrecampo,
+                       'value' => $result->$nombrecampo." :: ".$result->direccion." :: ".$result->telefono_fijo." :: ".$result->celular." :: ".$result->email." :: ".$result->parentesco." :: ".$result->llaves." :: ".$result->contacto_id
+                );
+                $h++;
+            }
+            return $data;
     }
 
     function autocomplete_nombres() {

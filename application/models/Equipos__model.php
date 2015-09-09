@@ -10,11 +10,7 @@ class Equipos__model extends CI_Model {
         $variable_codigo = $post['variable_codigo'];
         $examen = $post['examen'];
         $estado_examen = $post['estado_examen'];
-        echo "<pre>";
-        print_r($variable_codigo);
-        print_r($examen);
-        print_r($estado_examen);
-        echo "</pre>";
+        
         if (empty($post['imagen']))
             unset($post['imagen']);
         if (empty($post['adjuntar_certificado']))
@@ -46,7 +42,7 @@ class Equipos__model extends CI_Model {
 
 
 
-        die();
+//        die();
         return $id;
     }
 

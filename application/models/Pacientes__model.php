@@ -22,6 +22,24 @@ class Pacientes__model extends CI_Model {
             $post['contacto_id']=$s;
         }
         
+        $examen = $post['examen'];
+        $variable_codigo = $post['variable_codigo'];
+        $valor_frecuencia = $post['valor_frecuencia'];
+        $frecuencia = $post['frecuencia'];
+        $valor_minimo = $post['valor_minimo'];
+        $valor_maximo = $post['valor_maximo'];
+        $contacto_id = $post['contacto_id'];
+        if (empty($post['foto']))
+            unset($post['foto']);
+        unset($post['examen']);
+        unset($post['contacto_id2']);
+        unset($post['contacto_id']);
+        unset($post['variable_codigo']);
+        unset($post['valor_frecuencia']);
+        unset($post['frecuencia']);
+        unset($post['valor_minimo']);
+        unset($post['valor_maximo']);
+        
         if (isset($post['campo'])) {
             $this->db->where($post["campo"], $post[$post["campo"]]);
             $id = $post[$post["campo"]];
@@ -31,7 +49,34 @@ class Pacientes__model extends CI_Model {
             $this->db->insert('pacientes', $post);
             $id = $this->db->insert_id();
         }
+        $this->db->where('id_paciente', $id);
+        $this->db->delete('paciente_examen_variable');
+        for ($i = 0; $i < count($variable_codigo); $i++) {
+            $this->db->set('examen_cod', $examen[$i]);
+            $this->db->set('variable_codigo', $variable_codigo[$i]);
+            $this->db->set('id_paciente', $id);
+            $this->db->set('valor_frecuencia', $valor_frecuencia[$i]);
+            $this->db->set('frecuencia', $frecuencia[$i]);
+            $this->db->set('valor_minimo', $valor_minimo[$i]);
+            $this->db->set('valor_maximo', $valor_maximo[$i]);
+            $this->db->insert('paciente_examen_variable');
+        }
+        $this->db->where('id_paciente', $id);
+        $this->db->delete('paciente_contacto');
+        for ($i = 0; $i < count($contacto_id); $i++) {
+            $this->db->set('contacto_id', $contacto_id[$i]);
+            $this->db->set('valor_frecuencia', $valor_frecuencia[$i]);
+            $this->db->insert('paciente_contacto');
+        }
+//        die();
         return $id;
+    }
+    function buscador($tabla,$nombrecampo,$palabra){
+//        $CI = & get_instance();
+        $this->db->like($nombrecampo,$palabra);
+        $this->db->where('activo','S');
+        $user = $this->db->get($tabla);
+        return $user->result();
     }
 
     function delete_pacientes($post) {
@@ -43,6 +88,13 @@ class Pacientes__model extends CI_Model {
     function edit_pacientes($post) {
         $this->db->where($post["campo"], $post[$post["campo"]]);
         $datos = $this->db->get('pacientes', $post);
+        return $datos = $datos->result();
+    }
+    function paciente_examen_variable($post) {
+        $this->db->select('paciente_examen_variable.*,examenes.examen_nombre');
+        $this->db->where('id_paciente', $post[$post["campo"]]);
+        $this->db->join('examenes','examenes.examen_cod=paciente_examen_variable.examen_cod');
+        $datos = $this->db->get('paciente_examen_variable');
         return $datos = $datos->result();
     }
 

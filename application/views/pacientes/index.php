@@ -8,8 +8,8 @@
         <div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                <li role="presentation"><a href="#tabDatos" aria-controls="tabDatos" role="tab" data-toggle="tab">Datos</a></li>
-                <li role="presentation" class="active"><a href="#tabPrograma" aria-controls="tabPrograma" role="tab" data-toggle="tab">Programa</a></li>
+                <li role="presentation" class="active"><a href="#tabDatos" aria-controls="tabDatos" role="tab" data-toggle="tab">Datos</a></li>
+                <li role="presentation"><a href="#tabPrograma" aria-controls="tabPrograma" role="tab" data-toggle="tab">Programa</a></li>
                 <li role="presentation"><a href="#tabContactos" aria-controls="tabContactos" role="tab" data-toggle="tab">Contactos</a></li>
                 <li role="presentation"><a href="#tabEquipos" aria-controls="tabEquipos" role="tab" data-toggle="tab">Equipos</a></li>
                 <li role="presentation"><a href="#tabSistema" aria-controls="tabSistema" role="tab" data-toggle="tab">Sistema De Salud</a></li>
@@ -18,7 +18,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <!--Tab Datos -->
-                <div role="tabpanel" class="tab-pane" id="tabDatos">
+                <div role="tabpanel" class="tab-pane active" id="tabDatos">
                     <br />
                     <div class="row">
                         <?php $id = (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>
@@ -61,6 +61,8 @@
                         </div>
                     </div>
 
+
+
                     <div class="row">
                         <div class="col-md-3">
                             <label for="foto">Foto </label>
@@ -100,7 +102,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="estatura"> * Estatura </label>
+                            <label for="estatura">* Estatura </label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->estatura) ? $datos[0]->estatura : '' ) ?>" class=" form-control obligatorio  " id="estatura" name="estatura">
@@ -114,7 +116,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="telefono_fijo"> * Teléfono fijo </label>
+                            <label for="telefono_fijo">* Teléfono fijo </label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo) ? $datos[0]->telefono_fijo : '' ) ?>" class=" form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
@@ -134,7 +136,7 @@
                             <input type="email" value="<?php echo (isset($datos[0]->email) ? $datos[0]->email : '' ) ?>" class=" form-control   " id="email" name="email">
                         </div>
                         <div class="col-md-3">
-                            <label for="fecha_inicio_contrato"> * Fecha inicio contrato </label>
+                            <label for="fecha_inicio_contrato">* Fecha inicio contrato </label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato) ? $datos[0]->fecha_inicio_contrato : '' ) ?>" class=" form-control obligatorio fecha   " id="fecha_inicio_contrato" name="fecha_inicio_contrato">
@@ -142,13 +144,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="fecha_fin_contrato"> * Fecha fin contrato</label>
+                            <label for="fecha_fin_contrato">* Fecha fin contrato</label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->fecha_fin_contrato) ? $datos[0]->fecha_fin_contrato : '' ) ?>" class=" form-control obligatorio fecha   " id="fecha_fin_contrato" name="fecha_fin_contrato">
                         </div>
                         <div class="col-md-3">
-                            <label for="tipo_cliente"> * Tipo Cliente</label>
+                            <label for="tipo_cliente">* Tipo Cliente</label>
                         </div>
                         <div class="col-md-3">
                             <?php echo lista("tipo_cliente", "tipo_cliente", "form-control obligatorio", "tipo_cliente", "id_tipo_cliente", "descripcion", (isset($datos[0]->tipo_cliente) ? $datos[0]->tipo_cliente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
@@ -156,13 +158,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="cliente"> * Cliente </label>
+                            <label for="cliente">* Cliente </label>
                         </div>
                         <div class="col-md-3">
                             <?php echo lista("cliente", "cliente", "form-control obligatorio", "clientes", "id_cliente", "nombre", (isset($datos[0]->cliente) ? $datos[0]->cliente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                         </div>
                         <div class="col-md-3">
-                            <label for="medico"> * Médico </label>
+                            <label for="medico">* Médico </label>
                         </div>
                         <div class="col-md-3">
                             <?php echo lista("medico", "medico", "form-control obligatorio", "medicos", "medico_codigo", "nombre", (isset($datos[0]->medico) ? $datos[0]->medico : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
@@ -179,197 +181,384 @@
                     </div>
                 </div>
                 <!-- Tab programa -->
-                <div role="tabpanel" class="tab-pane active" id="tabPrograma" >
-                    <button type="button">Agregar</button>
-                    <table>
-                        <thead>
-                        <th>Examen</th>
-                        <th>Variable</th>
-                        <th>Frecuencia</th>
-                        <th>Valor Mínimo</th>
-                        <th>Valor Maximo</th>
-                        <th>Eliminar</th>
-                        </thead>
-                        <tbody>
-                            <?php foreach($examenes as $e){?>
-                            <tr>
-                                <td><?php echo $e-> ?></td>
-                                <td><?php echo $e-> ?></td>
-                                <td><?php echo $e-> ?></td>
-                                <td><?php echo $e-> ?></td>
-                                <td><?php echo $e-> ?></td>
-                                <td><button type="button" class='btn btn-danger'>Eliminar</button></td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <label for="hl7tag"> * HL7TAG </label>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" value="<?php echo (isset($datos[0]->hl7tag) ? $datos[0]->hl7tag : '' ) ?>" class=" form-control obligatorio  " id="hl7tag" name="hl7tag">
-                </div>
-                <div class="col-md-2">
-                    <label for="observaciones_programas">* Observaciones </label>
-                </div>
-                <div class="col-md-4">
-                    <textarea  class="form-control obligatorio" id="observaciones_programas" name="observaciones_programas"><?php echo (isset($datos[0]->observaciones_programas) ? $datos[0]->observaciones_programas : '' ) ?></textarea>
-                </div>
-            </div>
-        </div>
-        <!-- Tab Contactos -->
-        <div role="tabpanel" class="tab-pane" id="tabContactos">
-            <br />
-            <div class="col-md-3">
-                <label for="contacto_id">
-                    * Nombre contacto                        
-                </label>
-            </div>
-            <div class="col-md-3">
-                <?php
-                if (isset($datos[0]->contacto_id)) {
-                    $array = explode(',', $datos[0]->contacto_id);
-                } else {
-                    $array = null;
-                }
-                echo listaMultiple2("contacto_id[]", "contacto_id", "form-control obligatorio", "contacto", "contacto_id", "nombre", $array, array("ACTIVO" => "S"), /* readOnly? */ false);
-                ?>                        <br>
-            </div>
-        </div>
-        <!-- Tab Equipos -->
-        <div role="tabpanel" class="tab-pane" id="tabEquipos">
-            <br />
+                <div role="tabpanel" class="tab-pane" id="tabPrograma">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="examen_cod">
+                                Examen                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="javascript:" id="agregar">Agregar</a>
+                            <br>
+                        </div>
+                    </div>
+                    <div style="width: 80%;margin: 0 auto;">
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                <th>Examen</th>
+                                <th>Variable</th>
+                                <th>Valor frecuencia</th>
+                                <th>Frecuencia</th>
+                                <th>Valor minimo</th>
+                                <th>Valor maximo</th>
+                                <th>Acción</th>
+                                </thead>
+                                <tbody id="agregar_examen">
+                                    <?php
+//                                    $equipo_examen_variable = 0;
+//                                    if ($equipo_examen_variable != 0) {
+                                    if (count($paciente_examen_variable) > 0) {
+                                        foreach ($paciente_examen_variable as $value) {
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <input type='hidden' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                                                </td>
+                                                <td>
+                                                    <select class=" form-control obligatorio" id="valor_frecuencia" name="valor_frecuencia">
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Hora"  <?php echo (($value->valor_frecuencia == 'Hora') ? 'selected="selected"' : '') ?>>Hora</option>
+                                                        <option value="Día" <?php echo (($value->valor_frecuencia == 'Día') ? 'selected="selected"' : '') ?>>Día</option>
+                                                        <option value="Semana" <?php echo (($value->valor_frecuencia == 'Semana') ? 'selected="selected"' : '') ?>>Semana</option>
+                                                        <option value="Mes" <?php echo (($value->valor_frecuencia == 'Mes') ? 'selected="selected"' : '') ?>>Mes</option>
+                                                        <option value="Año" <?php echo (($value->valor_frecuencia == 'Año') ? 'selected="selected"' : '') ?> >Año</option> 
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="frecuencia[]"  class=" form-control obligatorio  " value="<?php echo $value->valor_frecuencia; ?>">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="valor_minimo[]"  class=" form-control obligatorio  number" value="<?php echo $value->valor_minimo; ?>">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="valor_maximo[]"  class=" form-control obligatorio  number" value="<?php echo $value->valor_maximo; ?>">
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:" class="eliminar">Eliminar</a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <label for="tipo_equipo_cod">
-                            *                             Tipo de Equipo                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="estado">
-                            *                             Estado                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <select  class="form-control obligatorio  " id="estado" name="estado">
-                            <option value=""></option>
-                            <option value="Activo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Activo') ? 'selected="selected"' : '') : '' ) ?>>Activo</option>
-                            <option value="Inactivo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Inactivo') ? 'selected="selected"' : '') : '' ) ?>>Inactivo</option>
-                        </select>
-                        <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="hl7tag">
+                                *                             HL7TAG                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->hl7tag) ? $datos[0]->hl7tag : '' ) ?>" class=" form-control obligatorio  " id="hl7tag" name="hl7tag">
+
+
+                            <br>
+                        </div>
+                        <!--                        <div class="col-md-3">
+                                                    <label for="valor_frecuencia">
+                                                        *                             Valor frecuencia                        </label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->valor_frecuencia) ? $datos[0]->valor_frecuencia : '' ) ?>" >
+                                                    <select class=" form-control obligatorio" id="valor_frecuencia" name="valor_frecuencia">
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Hora" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Hora') ? 'selected="selected"' : '') : '' ) ?>>Hora</option>
+                                                        <option value="Día" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Día') ? 'selected="selected"' : '') : '' ) ?>>Día</option>
+                                                        <option value="Semana" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Semana') ? 'selected="selected"' : '') : '' ) ?>>Semana</option>
+                                                        <option value="Mes" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Mes') ? 'selected="selected"' : '') : '' ) ?>>Mes</option>
+                                                        <option value="Año" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Año') ? 'selected="selected"' : '') : '' ) ?>>Año</option> 
+                                                    </select>
+                        
+                                                    <br>
+                                                </div>-->
+
+
+
+                        <!--                        <div class="col-md-3">
+                                                    <label for="frecuencia">
+                                                        *                             Frecuencia                        </label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>" class=" form-control obligatorio  " id="frecuencia" name="frecuencia">
+                        
+                        
+                                                    <br>
+                                                </div>-->
+
+
+
+                        <!--                        <div class="col-md-3">
+                                                    <label for="valor_minimo">
+                                                        *                             Valor mínimo                        </label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->valor_minimo) ? $datos[0]->valor_minimo : '' ) ?>" class=" form-control obligatorio  number" id="valor_minimo" name="valor_minimo">
+                        
+                        
+                                                    <br>
+                                                </div>-->
+
+
+
+                        <!--                        <div class="col-md-3">
+                                                    <label for="valor_maximo">
+                                                        *                             Valor máximo                        </label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->valor_maximo) ? $datos[0]->valor_maximo : '' ) ?>" class=" form-control obligatorio  number" id="valor_maximo" name="valor_maximo">
+                        
+                        
+                                                    <br>
+                                                </div>-->
+
+
+
+                        <div class="col-md-3">
+                            <label for="observaciones_programas">
+                                *                             Observaciones                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->observaciones_programas) ? $datos[0]->observaciones_programas : '' ) ?>" class=" form-control obligatorio  " id="observaciones_programas" name="observaciones_programas">
+
+
+                            <br>
+                        </div>
                     </div>
                 </div>
-                <div  class="col-md-6">
-                    <div class="col-md-6">
-                        <label for="descripcion">
-                            *                             Descripción                        </label>
+                <!-- Tab Contactos -->
+                <div role="tabpanel" class="tab-pane" id="tabContactos">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="contacto_id2">
+                                                             Nombre contacto                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <script>
+                                $('document').ready(function () {
+                                    $('#contacto_id2').autocomplete({
+                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_contacto_id") ?>",
+                                        minLength: 3
+                                    });
+                                });
+                            </script>
+                            <input type="text" id="contacto_id2" name="contacto_id2" class="form-control ">
+                            <br>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="javascript:" id="agregar_contacto">Agregar</a>
+                            <br>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <?php
-                        if (isset($datos[0]->descripcion)) {
-                            $array = explode(',', $datos[0]->descripcion);
-                        } else {
-                            $array = null;
-                        }
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Teléfono fijo</th>
+                            <th>Celular</th>
+                            <th>email</th>
+                            <th>Parentesco</th>
+                            <th>Tiene llaves Cuidador</th>
+                            <th>Acción</th>
+                            </thead>
+                            <tbody id="tabla_contacto">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Tab Equipos -->
+                <div role="tabpanel" class="tab-pane" id="tabEquipos">
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <label for="tipo_equipo_cod">
+                                    *                             Tipo de Equipo                        </label>
+                            </div>
+                            <div class="col-md-6">
+                                <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="estado">
+                                    *                             Estado                        </label>
+                            </div>
+                            <div class="col-md-6">
+                                <select  class="form-control obligatorio  " id="estado" name="estado">
+                                    <option value=""></option>
+                                    <option value="Activo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Activo') ? 'selected="selected"' : '') : '' ) ?>>Activo</option>
+                                    <option value="Inactivo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Inactivo') ? 'selected="selected"' : '') : '' ) ?>>Inactivo</option>
+                                </select>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div  class="col-md-6">
+                            <div class="col-md-6">
+                                <label for="descripcion">
+                                    *                             Descripción                        </label>
+                            </div>
+                            <div class="col-md-6">
+                                <?php
+                                if (isset($datos[0]->descripcion)) {
+                                    $array = explode(',', $datos[0]->descripcion);
+                                } else {
+                                    $array = null;
+                                }
 //                                print_r($array);
-                        echo listaMultiple2("descripcion[]", "descripcion", "form-control obligatorio", "equipos", "id_equipo", "descripcion", $array, array("ACTIVO" => "S"), /* readOnly? */ false);
-                        ?>                        <br>
-                                                    <!--<input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">-->
+                                echo listaMultiple2("descripcion[]", "descripcion", "form-control obligatorio", "equipos", "id_equipo", "descripcion", $array, array("ACTIVO" => "S"), /* readOnly? */ false);
+                                ?>                        <br>
+                                                            <!--<input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">-->
+
+
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab Sistema -->
+                <div role="tabpanel" class="tab-pane" id="tabSistema">
+                    <br />
+                    <div class="col-md-3">
+                        <label for="prioridad">
+                            *                             Prioridad                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo (isset($datos[0]->prioridad) ? $datos[0]->prioridad : '' ) ?>" class=" form-control obligatorio  " id="prioridad" name="prioridad">
+
+
                         <br>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <label for="codigo_hospital">
+                            *                             Nombre hospital                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        <?php echo lista("codigo_hospital", "codigo_hospital", "form-control obligatorio", "hospitales", "codigo_hospital", "nombre", (isset($datos[0]->codigo_hospital) ? $datos[0]->codigo_hospital : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <label for="tipo">
+                            *                             Tipo                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo (isset($datos[0]->tipo) ? $datos[0]->tipo : '' ) ?>" class=" form-control obligatorio  " id="tipo" name="tipo">
+
+
+                        <br>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <label for="aseguradora_id">
+                            *                             Nombre aseguradora                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        <?php echo lista("aseguradora_id", "aseguradora_id", "form-control obligatorio", "aseguradoras", "aseguradora_id", "nombre", (isset($datos[0]->aseguradora_id) ? $datos[0]->aseguradora_id : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Tab Sistema -->
-        <div role="tabpanel" class="tab-pane" id="tabSistema">
-            <br />
-            <div class="col-md-3">
-                <label for="prioridad">
-                    *Prioridad 
-                </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->prioridad) ? $datos[0]->prioridad : '' ) ?>" class=" form-control obligatorio  " id="prioridad" name="prioridad">
-                <br>
-            </div>
-            <div class="col-md-3">
-                <label for="codigo_hospital">
-                    *Nombre hospital                        
-                </label>
-            </div>
-            <div class="col-md-3">
-                <?php echo lista("codigo_hospital", "codigo_hospital", "form-control obligatorio", "hospitales", "codigo_hospital", "nombre", (isset($datos[0]->codigo_hospital) ? $datos[0]->codigo_hospital : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
-            </div>
-            <div class="col-md-3">
-                <label for="tipo">
-                    *Tipo
-                </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->tipo) ? $datos[0]->tipo : '' ) ?>" class=" form-control obligatorio  " id="tipo" name="tipo">
-                <br>
-            </div>
-            <div class="col-md-3">
-                <label for="aseguradora_id">
-                    *                             Nombre aseguradora                        </label>
-            </div>
-            <div class="col-md-3">
-                <?php echo lista("aseguradora_id", "aseguradora_id", "form-control obligatorio", "aseguradoras", "aseguradora_id", "nombre", (isset($datos[0]->aseguradora_id) ? $datos[0]->aseguradora_id : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
-            </div>
+        <?php if (isset($post['campo'])) { ?>
+            <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
+            <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
+        <?php } ?>
+        <div class="row">
+            <span id="boton_guardar">
+                <button class="btn btn-success" >Guardar</button> 
+                <input class="btn btn-success" type="reset" value="Limpiar">
+                <a href="<?php echo base_url('index.php') . "/Pacientes/consult_pacientes" ?>" class="btn btn-success">Listado </a>
+            </span>
+            <span id="boton_cargar" style="display: none">
+                <h2>Cargando ...</h2>
+            </span>
         </div>
-</div>
-</div>
-<?php if (isset($post['campo'])) { ?>
-    <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
-    <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
-<?php } ?>
-<div class="row">
-    <span id="boton_guardar">
-        <button class="btn btn-success" >Guardar</button> 
-        <input class="btn btn-success" type="reset" value="Limpiar">
-        <a href="<?php echo base_url('index.php') . "/Pacientes/consult_pacientes" ?>" class="btn btn-success">Listado </a>
-    </span>
-    <span id="boton_cargar" style="display: none">
-        <h2>Cargando ...</h2>
-    </span>
-</div>
-<div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
-</form>
+        <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
+    </form>
 </div>
 <script>
-    var pacientes = '<?php echo $contenido ?>';
-    var segundaopcion = '<?php echo $segundocontenido ?>';
-    
-    $('body').delegate('input[type="checkbox"]','click',function(){
-        
-       if($(this).is(':checked')){
-           
-           $(this).parents('.container-fluid').children('.clonPacientes').append(segundaopcion);
-           
-       } 
-        
-    });
-    
-    
-    
-    $('body').delegate(".agregarExamen", "click", function () {
 
-        $('#originalPacientes').append(pacientes);
+    $('#agregar_contacto').click(function () {
+        var info = $('#contacto_id2').val();
+        var info2 = info.split(' :: ');
+        if (info2.length == 8) {
+            var html="<tr>";
+             html+="<td><input type='hidden' name='contacto_id[]' value='"+info2[7]+"'>"+info2[0]+"</td>";
+             html+="<td>"+info2[1]+"</td>";
+             html+="<td>"+info2[2]+"</td>";
+             html+="<td>"+info2[3]+"</td>";
+             html+="<td>"+info2[4]+"</td>";
+             html+="<td>"+info2[5]+"</td>";
+             html+="<td>"+info2[6]+"</td>";
+             html+="<td>"+'<a href="javascript:" class="eliminar">Eliminar</a>'+"</td>";
+             html+="</tr>";
+            $('#tabla_contacto').append(html);
+        } else {
+            alerta('rojo', 'Cadena no valida');
+        }
+    })
+    $('#agregar').click(function () {
 
-    });
-    $('body').delegate(".eliminarExamen", "click", function () {
-
-        $(this).parents('.container-fluid ').remove();
-
-    });
-
-
+        var examen = $('#examen_cod option:selected').text();
+        var id_examen = $('#examen_cod').val();
+        if (id_examen == '') {
+            alerta('rojo', 'Seleccione un examen');
+            return false;
+        }
+        var html = "<tr>";
+        html += "<td>";
+        html += "<input type='hidden' name='examen[]' value='" + id_examen + "'>" + examen + " ";
+        html += "</td>";
+        html += "<td>";
+        html += "<?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->tipo_equipo_cod)) ? $datos[0]->tipo_equipo_cod : null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>";
+        html += "</td>";
+        html += "<td>";
+        html += '<select name="valor_frecuencia[]"  class=" form-control obligatorio">'
+        html += '<option value="Hora">Hora</option>'
+        html += '<option value="Día">Día</option>'
+        html += '<option value="Semana">Semana</option>'
+        html += '<option value="Mes">Mes</option>'
+        html += '<option value="Año">Año</option> '
+        html += '</select>';
+        html += "</td>";
+        html += "<td>";
+        html += '<input type="text" name="frecuencia[]"  class=" form-control obligatorio  " value="">';
+        html += "</td>";
+        html += "<td>";
+        html += '<input type="text" name="valor_minimo[]"  class=" form-control obligatorio  number" value="">';
+        html += "</td>";
+        html += "<td>";
+        html += '<input type="text" name="valor_maximo[]"  class=" form-control obligatorio  number" value="">';
+        html += "</td>";
+        html += "<td>";
+        html += '<a href="javascript:" class="eliminar">Eliminar</a>';
+        html += "</td>";
+        html += "</tr>";
+        $('#agregar_examen').append(html)
+    })
+    $('body').delegate('.eliminar', 'click', function () {
+        $(this).parent().parent().remove();
+    })
     $('#myTabs a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
