@@ -202,7 +202,12 @@ class Pacientes__model extends CI_Model {
         $datos = $datos->result();
         return $datos;
     }
-
+    function consultavariables(){
+        $this->db->where("ACTIVO","S");
+        $variable = $this->db->get("variables");
+        return $variable->result();
+        
+    }
 }
 
 ?>

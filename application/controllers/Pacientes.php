@@ -17,6 +17,7 @@ class Pacientes extends My_Controller {
 
     function index() {
         $this->data['post'] = $this->input->post();
+        $this->data['variables'] = $this->Pacientes__model->consultavariables();
         $this->layout->view('pacientes/index', $this->data);
     }
 
