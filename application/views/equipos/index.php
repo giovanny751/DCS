@@ -222,6 +222,7 @@
                                 </thead>
                                 <tbody id="agregar_examen">
                                     <?php
+                                    if (isset($equipo_examen_variable)) 
                                     if (count($equipo_examen_variable) > 0) {
                                         foreach ($equipo_examen_variable as $value) {
                                             ?>
