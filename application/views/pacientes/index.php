@@ -189,7 +189,7 @@
                                 Examen                        </label>
                         </div>
                         <div class="col-md-3">
-                            <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                            <?php echo lista("examen_cod", "examen_cod", "form-control ", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
                         </div>
                         <div class="col-md-3">
                             <a href="javascript:" id="agregar">Agregar</a>
@@ -202,52 +202,51 @@
                                 <thead>
                                 <th>Examen</th>
                                 <th>Variable</th>
-                                <th>Valor frecuencia</th>
                                 <th>Frecuencia</th>
+                                <th>Valor frecuencia</th>
                                 <th>Valor minimo</th>
                                 <th>Valor maximo</th>
                                 <th>Acción</th>
                                 </thead>
                                 <tbody id="agregar_examen">
                                     <?php
-//                                    $equipo_examen_variable = 0;
-//                                    if ($equipo_examen_variable != 0) {
-                                    if (count($paciente_examen_variable) > 0) {
-                                        foreach ($paciente_examen_variable as $value) {
-                                            ?>
-                                            <tr>
-                                                <td>
-                                                    <input type='hidden' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                                                </td>
-                                                <td>
-                                                    <select class=" form-control obligatorio" id="valor_frecuencia" name="valor_frecuencia">
-                                                        <option value="">Seleccione</option>
-                                                        <option value="Hora"  <?php echo (($value->valor_frecuencia == 'Hora') ? 'selected="selected"' : '') ?>>Hora</option>
-                                                        <option value="Día" <?php echo (($value->valor_frecuencia == 'Día') ? 'selected="selected"' : '') ?>>Día</option>
-                                                        <option value="Semana" <?php echo (($value->valor_frecuencia == 'Semana') ? 'selected="selected"' : '') ?>>Semana</option>
-                                                        <option value="Mes" <?php echo (($value->valor_frecuencia == 'Mes') ? 'selected="selected"' : '') ?>>Mes</option>
-                                                        <option value="Año" <?php echo (($value->valor_frecuencia == 'Año') ? 'selected="selected"' : '') ?> >Año</option> 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="frecuencia[]"  class=" form-control obligatorio  " value="<?php echo $value->valor_frecuencia; ?>">
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="valor_minimo[]"  class=" form-control obligatorio  number" value="<?php echo $value->valor_minimo; ?>">
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="valor_maximo[]"  class=" form-control obligatorio  number" value="<?php echo $value->valor_maximo; ?>">
-                                                </td>
-                                                <td>
-                                                    <a href="javascript:" class="eliminar">Eliminar</a>
-                                                </td>
-                                            </tr>
-                                            <?php
+                                    if (isset($paciente_examen_variable))
+                                        if (count($paciente_examen_variable) > 0) {
+                                            foreach ($paciente_examen_variable as $value) {
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <input type='hidden' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S", "examen_cod" => $value->examen_cod), /* readOnly? */ false); ?>
+                                                    </td>
+                                                    <td>
+                                                        <select class=" form-control obligatorio"  name="valor_frecuencia[]">
+                                                            <option value="">Seleccione</option>
+                                                            <option value="Hora"  <?php echo (($value->valor_frecuencia == 'Hora') ? 'selected="selected"' : '') ?>>Hora</option>
+                                                            <option value="Día" <?php echo (($value->valor_frecuencia == 'Día') ? 'selected="selected"' : '') ?>>Día</option>
+                                                            <option value="Semana" <?php echo (($value->valor_frecuencia == 'Semana') ? 'selected="selected"' : '') ?>>Semana</option>
+                                                            <option value="Mes" <?php echo (($value->valor_frecuencia == 'Mes') ? 'selected="selected"' : '') ?>>Mes</option>
+                                                            <option value="Año" <?php echo (($value->valor_frecuencia == 'Año') ? 'selected="selected"' : '') ?> >Año</option> 
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="frecuencia[]"  class=" form-control obligatorio  " value="<?php echo $value->frecuencia; ?>">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="valor_minimo[]"  class=" form-control obligatorio  number" value="<?php echo $value->valor_minimo; ?>">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="valor_maximo[]"  class=" form-control obligatorio  number" value="<?php echo $value->valor_maximo; ?>">
+                                                    </td>
+                                                    <td>
+                                                        <a href="javascript:" class="eliminar">Eliminar</a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
                                         }
-                                    }
                                     ?>
                                 </tbody>
                             </table>
@@ -255,75 +254,6 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="hl7tag">
-                                *                             HL7TAG                        </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->hl7tag) ? $datos[0]->hl7tag : '' ) ?>" class=" form-control obligatorio  " id="hl7tag" name="hl7tag">
-
-
-                            <br>
-                        </div>
-                        <!--                        <div class="col-md-3">
-                                                    <label for="valor_frecuencia">
-                                                        *                             Valor frecuencia                        </label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <input type="text" value="<?php echo (isset($datos[0]->valor_frecuencia) ? $datos[0]->valor_frecuencia : '' ) ?>" >
-                                                    <select class=" form-control obligatorio" id="valor_frecuencia" name="valor_frecuencia">
-                                                        <option value="">Seleccione</option>
-                                                        <option value="Hora" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Hora') ? 'selected="selected"' : '') : '' ) ?>>Hora</option>
-                                                        <option value="Día" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Día') ? 'selected="selected"' : '') : '' ) ?>>Día</option>
-                                                        <option value="Semana" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Semana') ? 'selected="selected"' : '') : '' ) ?>>Semana</option>
-                                                        <option value="Mes" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Mes') ? 'selected="selected"' : '') : '' ) ?>>Mes</option>
-                                                        <option value="Año" <?php echo (isset($datos[0]->valor_frecuencia) ? (($datos[0]->valor_frecuencia == 'Año') ? 'selected="selected"' : '') : '' ) ?>>Año</option> 
-                                                    </select>
-                        
-                                                    <br>
-                                                </div>-->
-
-
-
-                        <!--                        <div class="col-md-3">
-                                                    <label for="frecuencia">
-                                                        *                             Frecuencia                        </label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <input type="text" value="<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>" class=" form-control obligatorio  " id="frecuencia" name="frecuencia">
-                        
-                        
-                                                    <br>
-                                                </div>-->
-
-
-
-                        <!--                        <div class="col-md-3">
-                                                    <label for="valor_minimo">
-                                                        *                             Valor mínimo                        </label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <input type="text" value="<?php echo (isset($datos[0]->valor_minimo) ? $datos[0]->valor_minimo : '' ) ?>" class=" form-control obligatorio  number" id="valor_minimo" name="valor_minimo">
-                        
-                        
-                                                    <br>
-                                                </div>-->
-
-
-
-                        <!--                        <div class="col-md-3">
-                                                    <label for="valor_maximo">
-                                                        *                             Valor máximo                        </label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <input type="text" value="<?php echo (isset($datos[0]->valor_maximo) ? $datos[0]->valor_maximo : '' ) ?>" class=" form-control obligatorio  number" id="valor_maximo" name="valor_maximo">
-                        
-                        
-                                                    <br>
-                                                </div>-->
-
-
-
                         <div class="col-md-3">
                             <label for="observaciones_programas">
                                 *                             Observaciones                        </label>
@@ -360,38 +290,48 @@
                             <br>
                         </div>
                     </div>
+
+                    <div style="width: 80%;margin: 0 auto;">
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Teléfono fijo</th>
+                                <th>Celular</th>
+                                <th>email</th>
+                                <th>Parentesco</th>
+                                <th>Tiene llaves Cuidador</th>
+                                <th>Acción</th>
+                                </thead>
+                                <tbody id="tabla_contacto">
+                                    <?php
+                                    if (isset($contactos))
+                                        if (!empty($contactos)) {
+                                            foreach ($contactos as $c) {
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" value="<?php echo $c->contacto_id ?>" name="contacto_id[]">
+                                                        <?php echo $c->nombre ?></td>
+                                                    <td><?php echo $c->direccion ?></td>
+                                                    <td><?php echo $c->telefono_fijo ?></td>
+                                                    <td><?php echo $c->celular ?></td>
+                                                    <td><?php echo $c->email ?></td>
+                                                    <td><?php echo $c->parentesco ?></td>
+                                                    <td><?php echo $c->llaves ?></td>
+                                                    <td><a class="eliminar" href="javascript:">Eliminar</a></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div class="row">
-                        <table class="table">
-                            <thead>
-                            <th>Nombre</th>
-                            <th>Dirección</th>
-                            <th>Teléfono fijo</th>
-                            <th>Celular</th>
-                            <th>email</th>
-                            <th>Parentesco</th>
-                            <th>Tiene llaves Cuidador</th>
-                            <th>Acción</th>
-                            </thead>
-                            <tbody id="tabla_contacto">
-                                <?php
-                                if (!empty($contactos)) {
-                                    foreach ($contactos as $c) {
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $c->nombre ?></td>
-                                            <td><?php echo $c->direccion ?></td>
-                                            <td><?php echo $c->telefono_fijo ?></td>
-                                            <td><?php echo $c->celular ?></td>
-                                            <td><?php echo $c->email ?></td>
-                                            <td><?php echo $c->parentesco ?></td>
-                                            <td><?php echo $c->llaves ?></td>
-                                            <td><button type="button" class="btn btn-danger eliminarcontacto" con_id="<?php echo $c->con_id ?>">Eliminar</button></td>
-                                        </tr>
-                                    <?php }
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                        <center><a href="<?php echo base_url('index.php/Contacto'); ?>" class="btn btn-success" id="">Nuevo Contacto</a></center>
                     </div>
                 </div>
                 <script>
@@ -415,189 +355,239 @@
                     <br />
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="col-md-6">
-                                <label for="tipo_equipo_cod">
-                                    *                             Tipo de Equipo                        </label>
-                            </div>
-                            <div class="col-md-6">
-<?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="estado">
-                                    *                             Estado                        </label>
-                            </div>
-                            <div class="col-md-6">
-                                <select  class="form-control obligatorio  " id="estado" name="estado">
-                                    <option value=""></option>
-                                    <option value="Activo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Activo') ? 'selected="selected"' : '') : '' ) ?>>Activo</option>
-                                    <option value="Inactivo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Inactivo') ? 'selected="selected"' : '') : '' ) ?>>Inactivo</option>
-                                </select>
-                                <br>
-                            </div>
+                        <div class="col-md-3">
+                            <label for="descripcion">
+                                Equipo                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <script>
+                                $('document').ready(function () {
+                                    $('#descripcion').autocomplete({
+                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_descripcion") ?>",
+                                        minLength: 3
+                                    });
+                                });
+                            </script>
+                            <input type="text" id="descripcion" name="descripcion" class="form-control ">
+                            <br>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="javascript:" id="agregar_equipo">Agregar</a>
+                            <br>
                         </div>
                     </div>
+                    
                     <div class="row">
-                        <div  class="col-md-6">
-                            <div class="col-md-6">
-                                <label for="descripcion">
-                                    *                             Descripción                        </label>
+                        <div style="width: 80%;margin: 0 auto;">
+                            <div class="row">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                    <th>Tipo</th>
+                                    <th>Descripción</th>
+                                    <th>Serial N°</th>
+                                    <th>Fecha última Calibración</th>
+                                    <th>Acción</th>
+                                    </thead>
+                                    <tbody  id="tabla_equipo">
+                                        <?php
+                                        if (isset($paciente_equipo_tipoEquipo))
+                                            if (count($paciente_equipo_tipoEquipo) > 0) {
+                                                foreach ($paciente_equipo_tipoEquipo as $value) {
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <input type='hidden' name='equipo_id[]' value='<?php echo $value->id_equipo; ?>'>
+                                                            <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", $value->tipo_equipo_cod, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $value->descripcion; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $value->serial; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $value->fecha_ultima_calibracion; ?>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:" class="eliminar">Eliminar</a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-md-6">
-                                <?php
-                                if (isset($datos[0]->descripcion)) {
-                                    $array = explode(',', $datos[0]->descripcion);
-                                } else {
-                                    $array = null;
-                                }
-//                                print_r($array);
-                                echo listaMultiple2("descripcion[]", "descripcion", "form-control obligatorio", "equipos", "id_equipo", "descripcion", $array, array("ACTIVO" => "S"), /* readOnly? */ false);
-                                ?>                        <br>
-                                                            <!--<input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">-->
-
-
-                                <br>
-                            </div>
+                            <div class="row">
+                        <center><a href="<?php echo base_url('index.php/Equipos'); ?>" class="btn btn-success" id="">Nuevo Equipo</a></center>
+                    </div>
                         </div>
                     </div>
                 </div>
                 <!-- Tab Sistema -->
                 <div role="tabpanel" class="tab-pane" id="tabSistema">
-<!--                    <br />
-                    <div class="col-md-3">
-                        <label for="prioridad">*Prioridad</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" value="<?php echo (isset($datos[0]->prioridad) ? $datos[0]->prioridad : '' ) ?>" class=" form-control obligatorio  " id="prioridad" name="prioridad">
-                        <br>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="codigo_hospital">* Nombre hospital</label>
-                    </div>
-                    <div class="col-md-3">
-<?php echo lista("codigo_hospital", "codigo_hospital", "form-control obligatorio", "hospitales", "codigo_hospital", "nombre", (isset($datos[0]->codigo_hospital) ? $datos[0]->codigo_hospital : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
-                    </div>
 
-
-
-                    <div class="col-md-3">
-                        <label for="tipo">*Tipo</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" value="<?php echo (isset($datos[0]->tipo) ? $datos[0]->tipo : '' ) ?>" class=" form-control obligatorio  " id="tipo" name="tipo">
-                        <br>
-                    </div>
-
-
-
-                    <div class="col-md-3">
-                        <label for="aseguradora_id">
-                            *                             Nombre aseguradora                        </label>
-                    </div>
-                    <div class="col-md-3">
-<?php echo lista("aseguradora_id", "aseguradora_id", "form-control obligatorio", "aseguradoras", "aseguradora_id", "nombre", (isset($datos[0]->aseguradora_id) ? $datos[0]->aseguradora_id : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
-                    </div>-->
                     <center><h4>HOSPITALES</h4></center>
                     <div class="row" >
-                        <div gclass="col-md-5">
+                        <div class="col-md-2">
                             <label for="hospitales">Hospital</label>
+                        </div>
+                        <div class="col-md-2">
                             <input type="text" class="form-control" name="hospitales" id="hospitales" />
+                        </div>
+                        <div class="col-md-2">
                             <a href="javascript:" id="agregar_contacto2">Agregar</a>
                         </div>
-                         <script>
-                                $('document').ready(function () {
-                                    $('#hospitales').autocomplete({
-                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_hospitales") ?>",
-                                        minLength: 3
-                                    });
+                        <script>
+                            $('document').ready(function () {
+                                $('#hospitales').autocomplete({
+                                    source: "<?php echo base_url("index.php//Pacientes/autocomplete_hospitales") ?>",
+                                    minLength: 3
                                 });
-                            </script>
+                            });
+                        </script>
                     </div>    
                     <br>
-                    <table  class="table table-bordered table-hover" >
-                        <thead>
-                        <!--<th>Prioridad</th>-->
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Teléfono fijo</th>
-                        <th>Celular</th>
-                        <th>Email</th>
-                        <th>Acción</th>
-                        </thead>
-                        <tbody id="tabla_contacto2">
-                            
-                        </tbody>
-                    </table>
+                    <div style="width: 80%;margin: 0 auto;">
+                        <div class="row">
+                            <table  class="table table-bordered table-hover" >
+                                <thead>
+                                <!--<th>Prioridad</th>-->
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Teléfono fijo</th>
+                                <th>Celular</th>
+                                <th>Email</th>
+                                <th>Acción</th>
+                                </thead>
+                                <tbody id="tabla_contacto2">
+                                    <?php
+                                    if (isset($hospital))
+                                        if (!empty($hospital)) {
+                                            foreach ($hospital as $c) {
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" value="<?php echo $c->codigo_hospital ?>" name="hospitales2[]">
+                                                        <?php echo $c->nombre ?></td>
+                                                    <td><?php echo $c->direccion ?></td>
+                                                    <td><?php echo $c->telefono_fijo ?></td>
+                                                    <td><?php echo $c->celular ?></td>
+                                                    <td><?php echo $c->email ?></td>
+                                                    <td><a class="eliminar" href="javascript:">Eliminar</a></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <center><a href="<?php echo base_url('index.php/Contacto'); ?>" class="btn btn-success" id="">Nuevo Hospital</a></center>
+                        </div>
+                    </div>
                     <script>
-                    $('body').delegate(".eliminarhospital", "click", function () {
+                        $('body').delegate(".eliminarhospital", "click", function () {
 
-                        var propio = $(this);
-                        if (confirm("Esta seguro de eliminar")) {
-                            $.post("<?php echo base_url("index.php/pacientes/eliminar_hospitalpaciente") ?>",
-                                    {id: $(this).attr('tid')}
-                            ).done(function (msg) {
-                                propio.parents('tr').remove();
-                                alerta("verde", "Eliminado con Exito")
-                            }).fail(function (msg) {
+                            var propio = $(this);
+                            if (confirm("Esta seguro de eliminar")) {
+                                $.post("<?php echo base_url("index.php/pacientes/eliminar_hospitalpaciente") ?>",
+                                        {id: $(this).attr('tid')}
+                                ).done(function (msg) {
+                                    propio.parents('tr').remove();
+                                    alerta("verde", "Eliminado con Exito")
+                                }).fail(function (msg) {
 
-                            });
-                        }
-                    });
-                </script>
+                                });
+                            }
+                        });
+                    </script>
                     <br>
                     <center><h4>ASEGURADORAS</h4></center>
                     <div class="row">
-                        <div class="col-md-5" >
-                            <label for="aseguradora">Aseguradoras</label><input type="text" class="form-control" name="aseguradora" id="aseguradora" />
+                        <div class="col-md-2" >
+                            <label for="aseguradora">Aseguradoras</label>
+                        </div>
+                        <div class="col-md-2" >
+                            <input type="text" class="form-control" name="aseguradora" id="aseguradora" />
+                        </div>
+                        <div class="col-md-2" >
                             <a href="javascript:" id="agregar_contacto3">Agregar</a>
                         </div>
                         <script>
-                                $('document').ready(function () {
-                                    $('#aseguradora').autocomplete({
-                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_aseguradora") ?>",
-                                        minLength: 3
-                                    });
+                            $('document').ready(function () {
+                                $('#aseguradora').autocomplete({
+                                    source: "<?php echo base_url("index.php//Pacientes/autocomplete_aseguradora") ?>",
+                                    minLength: 3
                                 });
-                            </script>
+                            });
+                        </script>
                     </div>
                     <br>
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                        <th>Tipo</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Teléfono fijo</th>
-                        <th>Celular</th>
-                        <th>Acción</th>
-                        </thead>
-                        <tbody  id="tabla_contacto3">
-                                
-                        </tbody>
-                    </table>
+                    <div style="width: 80%;margin: 0 auto;">
+                        <div class="row">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Teléfono fijo</th>
+                                <th>Celular</th>
+                                <th>Acción</th>
+                                </thead>
+                                <tbody  id="tabla_contacto3">
+                                    <?php
+                                    if (isset($aseguradora))
+                                        if (!empty($aseguradora)) {
+                                            foreach ($aseguradora as $c) {
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" value="<?php echo $c->aseguradora_id ?>" name="aseguradora[]">
+                                                        <?php echo $c->tipo ?></td>
+                                                    <?php echo $c->nombre ?></td>
+                                                    <td><?php echo $c->direccion ?></td>
+                                                    <td><?php echo $c->telefono_fijo ?></td>
+                                                    <td><?php echo $c->celular ?></td>
+                                                    <td><a class="eliminar" href="javascript:">Eliminar</a></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                        <center><a href="<?php echo base_url('index.php/Contacto');?>" class="btn btn-success" id="">Nueva Aseguradora</a></center>
+                    </div>
+                    </div>
                     <script>
-                    $('body').delegate(".eliminaraseguradora", "click", function () {
+                        $('body').delegate(".eliminaraseguradora", "click", function () {
 
-                        var propio = $(this);
-                        if (confirm("Esta seguro de eliminar")) {
-                            $.post("<?php echo base_url("index.php/pacientes/eliminar_aseguradorapaciente") ?>",
-                                    {id: $(this).attr('tid')}
-                            ).done(function (msg) {
-                                propio.parents('tr').remove();
-                                alerta("verde", "Eliminado con Exito")
-                            }).fail(function (msg) {
+                            var propio = $(this);
+                            if (confirm("Esta seguro de eliminar")) {
+                                $.post("<?php echo base_url("index.php/pacientes/eliminar_aseguradorapaciente") ?>",
+                                        {id: $(this).attr('tid')}
+                                ).done(function (msg) {
+                                    propio.parents('tr').remove();
+                                    alerta("verde", "Eliminado con Exito")
+                                }).fail(function (msg) {
 
-                            });
-                        }
-                    });
-                </script>
+                                });
+                            }
+                        });
+                    </script>
 
                 </div>
             </div>
         </div>
-<?php if (isset($post['campo'])) { ?>
+        <?php if (isset($post['campo'])) { ?>
             <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
             <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
-<?php } ?>
+        <?php } ?>
         <div class="row">
             <span id="boton_guardar">
                 <button class="btn btn-success" >Guardar</button> 
@@ -613,6 +603,23 @@
 </div>
 <script>
 
+    $('#agregar_equipo').click(function () {
+        var info = $('#descripcion').val();
+        var info2 = info.split(' :: ');
+        if (info2.length == 4) {
+            var html = "<tr>";
+            html += "<td><input type='hidden' name='equipo_id[]' value='" + info2[3] + "'><?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?></td>";
+            html += "<td>" + info2[0] + "</td>";
+            html += "<td>" + info2[1] + "</td>";
+            html += "<td>" + info2[2] + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "</tr>";
+            $('#tabla_equipo').append(html);
+            $('#descripcion').val('');
+        } else {
+            alerta('rojo', 'Cadena no valida');
+        }
+    })
     $('#agregar_contacto').click(function () {
         var info = $('#contacto_id2').val();
         var info2 = info.split(' :: ');
@@ -628,6 +635,7 @@
             html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
             html += "</tr>";
             $('#tabla_contacto').append(html);
+            $('#contacto_id2').val('');
         } else {
             alerta('rojo', 'Cadena no valida');
         }
@@ -637,13 +645,14 @@
         var info2 = info.split(' :: ');
         if (info2.length == 6) {
             var html = "<tr>";
-            html += "<td><input type='hidden' name='contacto_id[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
+            html += "<td><input type='hidden' name='hospitales2[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
             html += "<td>" + info2[1] + "</td>";
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
             html += "<td>" + info2[4] + "</td>";
             html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
             html += "</tr>";
+            $('#hospitales').val('');
             $('#tabla_contacto2').append(html);
         } else {
             alerta('rojo', 'Cadena no valida');
@@ -654,7 +663,7 @@
         var info2 = info.split(' :: ');
         if (info2.length == 6) {
             var html = "<tr>";
-            html += "<td><input type='hidden' name='contacto_id[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
+            html += "<td><input type='hidden' name='aseguradora2[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
             html += "<td>" + info2[1] + "</td>";
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
@@ -662,6 +671,7 @@
             html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
             html += "</tr>";
             $('#tabla_contacto3').append(html);
+            $('#aseguradora').val('');
         } else {
             alerta('rojo', 'Cadena no valida');
         }
@@ -674,36 +684,43 @@
             alerta('rojo', 'Seleccione un examen');
             return false;
         }
-        var html = "<tr>";
-        html += "<td>";
-        html += "<input type='hidden' name='examen[]' value='" + id_examen + "'>" + examen + " ";
-        html += "</td>";
-        html += "<td>";
-        html += "<?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->tipo_equipo_cod)) ? $datos[0]->tipo_equipo_cod : null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>";
-        html += "</td>";
-        html += "<td>";
-        html += '<select name="valor_frecuencia[]"  class=" form-control obligatorio">'
-        html += '<option value="Hora">Hora</option>'
-        html += '<option value="Día">Día</option>'
-        html += '<option value="Semana">Semana</option>'
-        html += '<option value="Mes">Mes</option>'
-        html += '<option value="Año">Año</option> '
-        html += '</select>';
-        html += "</td>";
-        html += "<td>";
-        html += '<input type="text" name="frecuencia[]"  class=" form-control obligatorio  " value="">';
-        html += "</td>";
-        html += "<td>";
-        html += '<input type="text" name="valor_minimo[]"  class=" form-control obligatorio  number" value="">';
-        html += "</td>";
-        html += "<td>";
-        html += '<input type="text" name="valor_maximo[]"  class=" form-control obligatorio  number" value="">';
-        html += "</td>";
-        html += "<td>";
-        html += '<a href="javascript:" class="eliminar">Eliminar</a>';
-        html += "</td>";
-        html += "</tr>";
-        $('#agregar_examen').append(html)
+        var url = '<?php echo base_url('index.php/Equipos/traer_variables') ?>'
+        $.post(url, {id_examen: id_examen})
+                .done(function (msg) {
+                    var html = "<tr>";
+                    html += "<td>";
+                    html += "<input type='hidden' name='examen[]' value='" + id_examen + "'>" + examen + " ";
+                    html += "</td>";
+                    html += "<td>";
+                    html += msg;
+                    html += "</td>";
+                    html += "<td>";
+                    html += '<select name="valor_frecuencia[]"  class=" form-control obligatorio">'
+                    html += '<option value="Hora">Hora</option>'
+                    html += '<option value="Día">Día</option>'
+                    html += '<option value="Semana">Semana</option>'
+                    html += '<option value="Mes">Mes</option>'
+                    html += '<option value="Año">Año</option> '
+                    html += '</select>';
+                    html += "</td>";
+                    html += "<td>";
+                    html += '<input type="text" name="frecuencia[]"  class=" form-control obligatorio  " value="">';
+                    html += "</td>";
+                    html += "<td>";
+                    html += '<input type="text" name="valor_minimo[]"  class=" form-control obligatorio  number" value="">';
+                    html += "</td>";
+                    html += "<td>";
+                    html += '<input type="text" name="valor_maximo[]"  class=" form-control obligatorio  number" value="">';
+                    html += "</td>";
+                    html += "<td>";
+                    html += '<a href="javascript:" class="eliminar">Eliminar</a>';
+                    html += "</td>";
+                    html += "</tr>";
+                    $('#examen_cod').val('');
+                    $('#agregar_examen').append(html)
+                }).fail(function () {
+
+        })
     })
     $('body').delegate('.eliminar', 'click', function () {
         $(this).parent().parent().remove();
@@ -741,8 +758,3 @@
 
 
 </script>
-<style>
-    #descripcion{
-        height: 150px !important;
-    }
-</style>

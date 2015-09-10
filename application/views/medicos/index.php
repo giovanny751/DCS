@@ -134,16 +134,37 @@
 <script>
     $('#nombre').change(function() {
         var nombre = $('#nombre').val();
-        var tipo_equipo_cod = $('#tipo_equipo_cod').val();
+        var medico_codigo = $('#medico_codigo').val();
         $('#boton_cargar').show();
         $('#boton_guardar').hide();
-        $.post('<?php echo base_url('index.php/Medicos/referencia') ?>', {nombre: nombre, tipo_equipo_cod: tipo_equipo_cod})
+        $.post('<?php echo base_url('index.php/Medicos/referencia') ?>', {nombre: nombre, medico_codigo: medico_codigo})
                 .done(function(msg) {
                     if (msg == 0) {
                         alerta('verde', 'Nombre valido')
                     } else {
                         alerta('rojo', 'Nombre no valido')
                         $('#nombre').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
+    $('#matricula_profesional').change(function() {
+        var matricula_profesional = $('#matricula_profesional').val();
+        var medico_codigo = $('#medico_codigo').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Medicos/referencia2') ?>', {matricula_profesional: matricula_profesional, medico_codigo: medico_codigo})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Nombre valido')
+                    } else {
+                        alerta('rojo', 'Nombre no valido')
+                        $('#matricula_profesional').val('');
                     }
                     $('#boton_cargar').hide();
                     $('#boton_guardar').show();

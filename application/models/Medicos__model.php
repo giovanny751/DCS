@@ -15,7 +15,6 @@ class Medicos__model extends CI_Model {
             $id=$this->db->insert_id();
         }
         return $id;
-        
     }
     function delete_medicos($post){
         $this->db->set('ACTIVO','N');
@@ -78,6 +77,16 @@ class Medicos__model extends CI_Model {
         $this->db->where('ACTIVO', 'S');
         $datos = $this->db->get('medicos');
         $datos =$datos->result();
+        return count($datos);
+    }
+    public function referencia2($post) {
+        if(!empty($post['medico_codigo']))
+        $this->db->where_not_in('medico_codigo', $post['medico_codigo']);
+        $this->db->where('matricula_profesional', $post['matricula_profesional']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('medicos');
+        $datos =$datos->result();
+//        echo $this->db->last_query();
         return count($datos);
     }
 }

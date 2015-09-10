@@ -7,39 +7,63 @@ class Pacientes__model extends CI_Model {
     }
 
     function save_pacientes($post) {
-        if(isset($post['descripcion'])){
-            $s="";
-            foreach ($post['descripcion'] as $des){
-                $s.=$des.",";
-            }
-            $post['descripcion']=$s;
+
+        if (isset($post['equipo_id'])) {
+            $equipo_id = $post['equipo_id'];
+            unset($post['equipo_id']);
         }
-        if(isset($post['contacto_id'])){
-            $s="";
-            foreach ($post['contacto_id'] as $des){
-                $s.=$des.",";
-            }
-            $post['contacto_id']=$s;
+        if (isset($post['tipo_equipo_cod'])) {
+            $tipo_equipo_cod = $post['tipo_equipo_cod'];
+            unset($post['tipo_equipo_cod']);
         }
-        
-        $examen = $post['examen'];
-        $variable_codigo = $post['variable_codigo'];
-        $valor_frecuencia = $post['valor_frecuencia'];
-        $frecuencia = $post['frecuencia'];
-        $valor_minimo = $post['valor_minimo'];
-        $valor_maximo = $post['valor_maximo'];
-        $contacto_id = $post['contacto_id'];
+
+        if (isset($post['examen']))
+            $examen = $post['examen'];
+        if (isset($post['variable_codigo']))
+            $variable_codigo = $post['variable_codigo'];
+        if (isset($post['valor_frecuencia']))
+            $valor_frecuencia = $post['valor_frecuencia'];
+        if (isset($post['frecuencia']))
+            $frecuencia = $post['frecuencia'];
+        if (isset($post['valor_minimo']))
+            $valor_minimo = $post['valor_minimo'];
+        if (isset($post['valor_maximo']))
+            $valor_maximo = $post['valor_maximo'];
+        if (isset($post['contacto_id']))
+            $contacto_id = $post['contacto_id'];
+        if (isset($post['aseguradora2']))
+            $aseguradora2 = $post['aseguradora2'];
+        if (isset($post['hospitales2']))
+            $hospitales2 = $post['hospitales2'];
+
+
         if (empty($post['foto']))
             unset($post['foto']);
-        unset($post['examen']);
-        unset($post['contacto_id2']);
-        unset($post['contacto_id']);
-        unset($post['variable_codigo']);
-        unset($post['valor_frecuencia']);
-        unset($post['frecuencia']);
-        unset($post['valor_minimo']);
-        unset($post['valor_maximo']);
-        
+        if (isset($post['examen']))
+            unset($post['examen']);
+        if (isset($post['aseguradora2']))
+            unset($post['aseguradora2']);
+        if (isset($post['hospitales2']))
+            unset($post['hospitales2']);
+        if (isset($post['hospitales']))
+            unset($post['hospitales']);
+        if (isset($post['aseguradora']))
+            unset($post['aseguradora']);
+        if (isset($post['contacto_id2']))
+            unset($post['contacto_id2']);
+        if (isset($post['contacto_id']))
+            unset($post['contacto_id']);
+        if (isset($post['variable_codigo']))
+            unset($post['variable_codigo']);
+        if (isset($post['valor_frecuencia']))
+            unset($post['valor_frecuencia']);
+        if (isset($post['frecuencia']))
+            unset($post['frecuencia']);
+        if (isset($post['valor_minimo']))
+            unset($post['valor_minimo']);
+        if (isset($post['valor_maximo']))
+            unset($post['valor_maximo']);
+
         if (isset($post['campo'])) {
             $this->db->where($post["campo"], $post[$post["campo"]]);
             $id = $post[$post["campo"]];
@@ -51,30 +75,62 @@ class Pacientes__model extends CI_Model {
         }
         $this->db->where('id_paciente', $id);
         $this->db->delete('paciente_examen_variable');
-        for ($i = 0; $i < count($variable_codigo); $i++) {
-            $this->db->set('examen_cod', $examen[$i]);
-            $this->db->set('variable_codigo', $variable_codigo[$i]);
-            $this->db->set('id_paciente', $id);
-            $this->db->set('valor_frecuencia', $valor_frecuencia[$i]);
-            $this->db->set('frecuencia', $frecuencia[$i]);
-            $this->db->set('valor_minimo', $valor_minimo[$i]);
-            $this->db->set('valor_maximo', $valor_maximo[$i]);
-            $this->db->insert('paciente_examen_variable');
-        }
+        if (isset($variable_codigo))
+            for ($i = 0; $i < count($variable_codigo); $i++) {
+                $this->db->set('examen_cod', $examen[$i]);
+                $this->db->set('variable_codigo', $variable_codigo[$i]);
+                $this->db->set('id_paciente', $id);
+                $this->db->set('valor_frecuencia', $valor_frecuencia[$i]);
+                $this->db->set('frecuencia', $frecuencia[$i]);
+                $this->db->set('valor_minimo', $valor_minimo[$i]);
+                $this->db->set('valor_maximo', $valor_maximo[$i]);
+                $this->db->insert('paciente_examen_variable');
+            }
         $this->db->where('id_paciente', $id);
         $this->db->delete('paciente_contacto');
-        for ($i = 0; $i < count($contacto_id); $i++) {
-            $this->db->set('contacto_id', $contacto_id[$i]);
-            $this->db->set('valor_frecuencia', $valor_frecuencia[$i]);
-            $this->db->insert('paciente_contacto');
-        }
+//        echo "<pre>";
+//        print_r($contacto_id);
+        if (isset($contacto_id))
+            for ($i = 0; $i < count($contacto_id); $i++) {
+                $this->db->set('id_paciente', $id);
+                $this->db->set('contacto_id', $contacto_id[$i]);
+                $this->db->insert('paciente_contacto');
+            }
+        $this->db->where('id_paciente', $id);
+        $this->db->delete('paciente_hospitales');
+        if (isset($hospitales2))
+            for ($i = 0; $i < count($hospitales2); $i++) {
+                $this->db->set('id_paciente', $id);
+                $this->db->set('codigo_hospital', $hospitales2[$i]);
+                $this->db->insert('paciente_hospitales');
+            }
+        $this->db->where('id_paciente', $id);
+        $this->db->delete('aseguradora_paciente');
+        if (isset($aseguradora2))
+            for ($i = 0; $i < count($aseguradora2); $i++) {
+                $this->db->set('id_paciente', $id);
+                $this->db->set('aseguradora_id', $aseguradora2[$i]);
+                $this->db->insert('aseguradora_paciente');
+            }
+        $this->db->where('id_paciente', $id);
+        $this->db->delete('paciente_equipo_tipoEquipo');
+//        echo count($tipo_equipo_cod);
+        if (isset($tipo_equipo_cod))
+            for ($i = 0; $i < count($tipo_equipo_cod); $i++) {
+                $this->db->set('id_paciente', $id);
+                $this->db->set('tipo_equipo_cod', $tipo_equipo_cod[$i]);
+                $this->db->set('id_equipo', $equipo_id[$i]);
+                $this->db->insert('paciente_equipo_tipoEquipo');
+//                echo $this->db->last_query();
+            }
 //        die();
         return $id;
     }
-    function buscador($tabla,$nombrecampo,$palabra){
+
+    function buscador($tabla, $nombrecampo, $palabra) {
 //        $CI = & get_instance();
-        $this->db->like($nombrecampo,$palabra);
-        $this->db->where('activo','S');
+        $this->db->like($nombrecampo, $palabra);
+        $this->db->where('activo', 'S');
         $user = $this->db->get($tabla);
         return $user->result();
     }
@@ -90,11 +146,21 @@ class Pacientes__model extends CI_Model {
         $datos = $this->db->get('pacientes', $post);
         return $datos = $datos->result();
     }
+
     function paciente_examen_variable($post) {
         $this->db->select('paciente_examen_variable.*,examenes.examen_nombre');
         $this->db->where('id_paciente', $post[$post["campo"]]);
-        $this->db->join('examenes','examenes.examen_cod=paciente_examen_variable.examen_cod');
+        $this->db->join('examenes', 'examenes.examen_cod=paciente_examen_variable.examen_cod');
         $datos = $this->db->get('paciente_examen_variable');
+        return $datos = $datos->result();
+    }
+
+    function paciente_equipo_tipoEquipo($post) {
+        $this->db->select('equipos.*,tipo_equipo.referencia');
+        $this->db->where('id_paciente', $post[$post["campo"]]);
+        $this->db->join('tipo_equipo', 'tipo_equipo.tipo_equipo_cod=paciente_equipo_tipoEquipo.tipo_equipo_cod');
+        $this->db->join('equipos', 'equipos.id_equipo=paciente_equipo_tipoEquipo.id_equipo');
+        $datos = $this->db->get('paciente_equipo_tipoEquipo');
         return $datos = $datos->result();
     }
 
@@ -254,56 +320,62 @@ class Pacientes__model extends CI_Model {
         $datos = $datos->result();
         return $datos;
     }
-    function consultavariables(){
-        $this->db->where("ACTIVO","S");
+
+    function consultavariables() {
+        $this->db->where("ACTIVO", "S");
         $variable = $this->db->get("variables");
         return $variable->result();
-        
     }
-    function contactos($id){
+
+    function contactos($id) {
         $this->db->select("contacto.*");
         $this->db->select("paciente_contacto.id_paciente_contacto as con_id");
-        $this->db->where("paciente_contacto.id_paciente",$id['id_paciente']);
-        $this->db->join("paciente_contacto","paciente_contacto.contacto_id = contacto.contacto_id");
+        $this->db->where("paciente_contacto.id_paciente", $id['id_paciente']);
+        $this->db->join("paciente_contacto", "paciente_contacto.contacto_id = contacto.contacto_id");
         $contacto = $this->db->get("contacto");
         return $contacto->result();
-        
     }
-    function eliminar_pacientes($con_id){
-        
-        $this->db->where("id_paciente_contacto",$con_id);
+
+    function eliminar_pacientes($con_id) {
+
+        $this->db->where("id_paciente_contacto", $con_id);
         $this->db->delete("paciente_contacto");
 //        echo $this->db->last_query();die;
     }
-    function eliminar_aseguradorapaciente($id){
-        
-        $this->db->where("asePac_id",$id);
+
+    function eliminar_aseguradorapaciente($id) {
+
+        $this->db->where("asePac_id", $id);
         $this->db->delete("aseguradora_paciente");
 //        echo $this->db->last_query();die;
     }
-    function eliminar_hospitalpaciente($id){
-        
-        $this->db->where("hosPac_id",$id);
-        $this->db->delete("hospital_pacientes");
+
+    function eliminar_hospitalpaciente($id) {
+
+        $this->db->where("hosPac_id", $id);
+        $this->db->delete("paciente_hospitales");
 //        echo $this->db->last_query();die;
     }
-    function aseguradora_paciente($id){
-        
+
+    function aseguradora_paciente($id) {
+
         $this->db->select("aseguradoras.*");
         $this->db->select("aseguradora_paciente.asePac_id");
-        $this->db->where("aseguradora_paciente.id_paciente",$id['id_paciente']);
-        $this->db->join("aseguradoras","aseguradoras.aseguradora_id = aseguradora_paciente.aseguradora_id");
+        $this->db->where("aseguradora_paciente.id_paciente", $id['id_paciente']);
+        $this->db->join("aseguradoras", "aseguradoras.aseguradora_id = aseguradora_paciente.aseguradora_id");
         $paciente = $this->db->get("aseguradora_paciente");
 //        echo $this->db->last_query();die;
         return $paciente->result();
     }
-    function hospital_paciente($id){
-        
-        $this->db->where("hospital_pacientes.id_paciente",$id['id_paciente']);
-        $this->db->join("hospitales","hospitales.codigo_hospital = hospital_pacientes.codigo_hospital");
-        $paciente = $this->db->get("hospital_pacientes");
+
+    function hospital_paciente($id) {
+
+        $this->db->where("paciente_hospitales.id_paciente", $id['id_paciente']);
+        $this->db->join("hospitales", "hospitales.codigo_hospital = paciente_hospitales.codigo_hospital");
+        $paciente = $this->db->get("paciente_hospitales");
         return $paciente->result();
     }
+
 }
 
 ?>

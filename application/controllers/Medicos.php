@@ -41,6 +41,12 @@ class Medicos extends My_Controller {
         echo $datos = $this->Medicos__model->referencia($post);
 //        $this->layout->view('clientes/consult_clientes', $this->data);
     }
+    function referencia2() {
+        $post = $this->input->post();
+        $this->data['post'] = $this->input->post();
+        echo $datos = $this->Medicos__model->referencia2($post);
+//        $this->layout->view('clientes/consult_clientes', $this->data);
+    }
 
     function delete_medicos() {
         $post = $this->input->post();

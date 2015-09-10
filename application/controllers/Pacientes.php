@@ -67,6 +67,7 @@ class Pacientes extends My_Controller {
         $this->data['aseguradora'] = $this->Pacientes__model->aseguradora_paciente($this->data['post']);
         $this->data['hospital'] = $this->Pacientes__model->hospital_paciente($this->data['post']);
         $this->data['paciente_examen_variable'] = $this->Pacientes__model->paciente_examen_variable($this->data['post']);
+        $this->data['paciente_equipo_tipoEquipo'] = $this->Pacientes__model->paciente_equipo_tipoEquipo($this->data['post']);
         $this->layout->view('pacientes/index', $this->data);
     }
     function eliminarcontacto(){
@@ -97,6 +98,10 @@ class Pacientes extends My_Controller {
         $info = $this->auto3("aseguradoras", "aseguradora_id", "nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+    function autocomplete_descripcion() {
+        $info = $this->auto5("equipos", "id_equipo", "descripcion", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
     function auto3($tabla,$idcampo,$nombrecampo,$letra) {
             $search = buscador($tabla,$nombrecampo,$letra);
             $h = 0;
@@ -105,6 +110,19 @@ class Pacientes extends My_Controller {
                     'id' => $result->$idcampo,
                        'label' => $result->$nombrecampo,
                        'value' => $result->tipo." :: ".$result->nombre." :: ".$result->direccion." :: ".$result->telefono_fijo." :: ".$result->celular." :: ".$result->aseguradora_id
+                );
+                $h++;
+            }
+            return $data;
+    }
+    function auto5($tabla,$idcampo,$nombrecampo,$letra) {
+            $search = buscador($tabla,$nombrecampo,$letra);
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->$nombrecampo,
+                       'value' => $result->descripcion." :: ".$result->serial." :: ".$result->fecha_ultima_calibracion." :: ".$result->id_equipo
                 );
                 $h++;
             }

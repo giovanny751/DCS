@@ -40,7 +40,7 @@
                                                         Fecha inicio contrato                        </label>
                     </div>
                     <div class="col-md-3">
-                                                    <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato)?$datos[0]->fecha_inicio_contrato:'' ) ?>" class=" form-control  fecha " id="fecha_inicio_contrato" name="fecha_inicio_contrato">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato)?$datos[0]->fecha_inicio_contrato:'' ) ?>" class="form-control fecha" id="fecha_inicio_contrato" name="fecha_inicio_contrato">
 
                             
                                                 <br>
@@ -53,7 +53,7 @@
                                                         Fecha fin contrato                        </label>
                     </div>
                     <div class="col-md-3">
-                                                    <input type="text" value="<?php echo (isset($datos[0]->fecha_fin_contrato)?$datos[0]->fecha_fin_contrato:'' ) ?>" class=" form-control  fecha " id="fecha_fin_contrato" name="fecha_fin_contrato">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->fecha_fin_contrato)?$datos[0]->fecha_fin_contrato:'' ) ?>" class=" form-control fecha " id="fecha_fin_contrato" name="fecha_fin_contrato">
 
                             
                                                 <br>
@@ -141,7 +141,7 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker({ dateFormat: 'yy-mm-dd' });
+//    $('.fecha').datepicker({ dateFormat: 'yy-mm-dd' });
 
 
 </script>

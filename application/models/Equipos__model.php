@@ -9,7 +9,7 @@ class Equipos__model extends CI_Model {
     function save_equipos($post) {
         $variable_codigo = $post['variable_codigo'];
         $examen = $post['examen'];
-        $estado_examen = $post['estado_examen'];
+//        $estado_examen = $post['estado_examen'];
         
         if (empty($post['imagen']))
             unset($post['imagen']);
@@ -17,7 +17,7 @@ class Equipos__model extends CI_Model {
             unset($post['adjuntar_certificado']);
         unset($post['variable_codigo']);
         unset($post['examen']);
-        unset($post['estado_examen']);
+//        unset($post['estado_examen']);
 
         if (isset($post['campo'])) {
             $this->db->where($post["campo"], $post[$post["campo"]]);
@@ -36,7 +36,7 @@ class Equipos__model extends CI_Model {
             $this->db->set('examen_cod', $examen[$i]);
             $this->db->set('variable_codigo', $variable_codigo[$i]);
             $this->db->set('id_equipo', $id);
-            $this->db->set('estado', $estado_examen[$i]);
+//            $this->db->set('estado', $estado_examen[$i]);
             $this->db->insert('equipo_examen_variable');
         }
 

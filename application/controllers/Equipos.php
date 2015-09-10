@@ -80,6 +80,10 @@ class Equipos extends My_Controller {
         $info = auto("equipos", "id_equipo", "ubicacion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+    function traer_variables() {
+        $post= $this->input->post();
+        echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S","examen_cod"=>$post['id_examen']), /* readOnly? */ false);
+    }
 
 }
 

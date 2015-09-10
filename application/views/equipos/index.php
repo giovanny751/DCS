@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-md-6">
                             <?php if (!empty($id) && $datos[0]->imagen != '') { ?>
-                                <img style="width: 350px;float: right;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->imagen ?>">
+                                <img style="width: 230px;float: right;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->imagen ?>">
                             <?php } ?>
 
                             <br>
@@ -180,11 +180,12 @@
                             <input type="file" value="<?php echo (isset($datos[0]->adjuntar_certificado) ? $datos[0]->adjuntar_certificado : '' ) ?>" class="    " id="adjuntar_certificado" name="adjuntar_certificado">
                             <br>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="float:right;text-align: center;">
                             <?php
                             if (!empty($id) && $datos[0]->adjuntar_certificado != '') {
                                 $s = explode('.', $datos[0]->adjuntar_certificado);
-                                if ($s[2] = 'gif' || $s[2] = 'jpg' || $s[2] = 'png') {
+//                                print_r($s);
+                                if ($s[1] == 'gif' || $s[1] == 'jpg' || $s[1] == 'png') {
                                     ?>
                                     <img style="width: 250px;float: right;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
                                 <?php } else { ?>
@@ -217,38 +218,29 @@
                                 <thead>
                                 <th>Examen</th>
                                 <th>Variable</th>
-                                <th>Estado</th>
                                 <th>Acción</th>
                                 </thead>
                                 <tbody id="agregar_examen">
                                     <?php
-                                    if (isset($equipo_examen_variable)) 
-                                    if (count($equipo_examen_variable) > 0) {
-                                        foreach ($equipo_examen_variable as $value) {
-                                            ?>
-                                            <tr>
-                                                <td>
-                                                    <input type='hidden' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                                                </td>
-                                                <td>
-                                                    <select class="form-control obligatorio" name="estado_examen[]">
-                                                        <option value="DISPONIBLE" <?php echo (($value->variable_codigo == 'DISPONIBLE') ? 'selected="selected"' : '') ?>>DISPONIBLE</option>
-                                                        <option value="EN OPERACIÓN" <?php echo (($value->variable_codigo == 'EN OPERACIÓN') ? 'selected="selected"' : '') ?>>EN OPERACIÓN</option>
-                                                        <option value="ASIGNADO" <?php echo (($value->variable_codigo == 'ASIGNADO') ? 'selected="selected"' : '') ?>>ASIGNADO</option>
-                                                        <option value="EN TRANSITO" <?php echo (($value->variable_codigo == 'EN TRANSITO') ? 'selected="selected"' : '') ?>>EN TRANSITO</option>
-                                                        <option value="MANTENIMIENTO" <?php echo (($value->variable_codigo == 'MANTENIMIENTO') ? 'selected="selected"' : '') ?>>MANTENIMIENTO</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <a href="javascript:" class="eliminar">Eliminar</a>
-                                                </td>
-                                            </tr>
-                                            <?php
+                                    if (isset($equipo_examen_variable))
+                                        if (count($equipo_examen_variable) > 0) {
+                                            foreach ($equipo_examen_variable as $value) {
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <input type='hidden' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S","examen_cod"=>$value->examen_cod), /* readOnly? */ false); ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="javascript:" class="eliminar">Eliminar</a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
                                         }
-                                    }
                                     ?>
                                 </tbody>
                             </table>
@@ -287,27 +279,25 @@
             alerta('rojo', 'Seleccione un examen');
             return false;
         }
-        var html = "<tr>";
-        html += "<td>";
-        html += "<input type='hidden' name='examen[]' value='" + id_examen + "'>" + examen + " ";
-        html += "</td>";
-        html += "<td>";
-        html += "<?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->tipo_equipo_cod)) ? $datos[0]->tipo_equipo_cod : null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>";
-        html += "</td>";
-        html += "<td>";
-        html += '<select name="estado_examen[]" class="form-control obligatorio">';
-        html += '<option value="DISPONIBLE">DISPONIBLE</option>';
-        html += '<option value="EN OPERACIÓN">EN OPERACIÓN</option>';
-        html += '<option value="ASIGNADO">ASIGNADO</option>';
-        html += '<option value="EN TRANSITO">EN TRANSITO</option>';
-        html += '<option value="MANTENIMIENTO">MANTENIMIENTO</option>';
-        html += '</select>';
-        html += "</td>";
-        html += "<td>";
-        html += '<a href="javascript:" class="eliminar">Eliminar</a>';
-        html += "</td>";
-        html += "</tr>";
-        $('#agregar_examen').append(html)
+        var url = '<?php echo base_url('index.php/Equipos/traer_variables') ?>'
+        $.post(url, {id_examen: id_examen})
+                .done(function (msg) {
+                    var html = "<tr>";
+                    html += "<td>";
+                    html += "<input type='hidden' name='examen[]' value='" + id_examen + "'>" + examen + " ";
+                    html += "</td>";
+                    html += "<td>";
+                    html += msg;
+                    html += "</td>";
+                    html += "<td>";
+                    html += '<a href="javascript:" class="eliminar">Eliminar</a>';
+                    html += "</td>";
+                    html += "</tr>";
+                    $('#agregar_examen').append(html)
+                }).fail(function(){
+                    
+                })
+
     })
     $('body').delegate('.eliminar', 'click', function () {
         $(this).parent().parent().remove();
@@ -317,16 +307,16 @@
         $(this).tab('show')
     })
     function campos() {
-        $('input[type="file"]').each(function (key, val) {
-            var img = $(this).val();
-            if (img != "") {
-                var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
-                if (r === false) {
-                    alert('Tipo de archivo no valido');
-                    return false;
-                }
-            }
-        });
+//        $('input[type="file"]').each(function (key, val) {
+//            var img = $(this).val();
+//            if (img != "") {
+//                var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
+//                if (r === false) {
+//                    alert('Tipo de archivo no valido');
+//                    return false;
+//                }
+//            }
+//        });
         if (obligatorio('obligatorio') == false) {
             return false
         } else {
