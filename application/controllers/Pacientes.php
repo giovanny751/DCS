@@ -18,6 +18,9 @@ class Pacientes extends My_Controller {
     function index() {
         $this->data['post'] = $this->input->post();
         $this->data['variables'] = $this->Pacientes__model->consultavariables();
+        $this->data['contactos'] = "";
+        $this->data['aseguradora'] = "";
+        $this->data['hospital'] = "";
         $this->layout->view('pacientes/index', $this->data);
     }
 
@@ -60,12 +63,38 @@ class Pacientes extends My_Controller {
         if (!isset($this->data['post']['campo']))
             redirect('index.php/Pacientes/consult_pacientes', 'location');
         $this->data['datos'] = $this->Pacientes__model->edit_pacientes($this->data['post']);
+        $this->data['contactos'] = $this->Pacientes__model->contactos($this->data['post']);
+        $this->data['aseguradora'] = $this->Pacientes__model->aseguradora_paciente($this->data['post']);
+        $this->data['hospital'] = $this->Pacientes__model->hospital_paciente($this->data['post']);
         $this->data['paciente_examen_variable'] = $this->Pacientes__model->paciente_examen_variable($this->data['post']);
         $this->layout->view('pacientes/index', $this->data);
+    }
+    function eliminarcontacto(){
+        
+        $this->data['datos'] = $this->Pacientes__model->eliminar_pacientes($this->input->post("con_id"));
+
+    }
+    function eliminar_hospitalpaciente(){
+        
+        $this->data['datos'] = $this->Pacientes__model->eliminar_hospitalpaciente($this->input->post("id"));
+
+    }
+    function eliminar_aseguradorapaciente(){
+        
+        $this->data['datos'] = $this->Pacientes__model->eliminar_aseguradorapaciente($this->input->post("id"));
+
     }
 
     function autocomplete_cedula_paciente() {
         $info = auto("pacientes", "id_paciente", "cedula_paciente", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_hospitales() {
+        $info = auto("hospitales", "codigo_hospital", "nombre", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_aseguradora() {
+        $info = auto("aseguradoras", "aseguradora_id", "nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
     function autocomplete_contacto_id() {

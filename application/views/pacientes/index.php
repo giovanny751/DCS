@@ -341,8 +341,7 @@
                     <br />
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="contacto_id2">
-                                                             Nombre contacto                        </label>
+                            <label for="contacto_id2">Nombre contacto</label>
                         </div>
                         <div class="col-md-3">
                             <script>
@@ -374,11 +373,43 @@
                             <th>Acción</th>
                             </thead>
                             <tbody id="tabla_contacto">
-                                
+                                <?php
+                                if (!empty($contactos)) {
+                                    foreach ($contactos as $c) {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $c->nombre ?></td>
+                                            <td><?php echo $c->direccion ?></td>
+                                            <td><?php echo $c->telefono_fijo ?></td>
+                                            <td><?php echo $c->celular ?></td>
+                                            <td><?php echo $c->email ?></td>
+                                            <td><?php echo $c->parentesco ?></td>
+                                            <td><?php echo $c->llaves ?></td>
+                                            <td><button type="button" class="btn btn-danger eliminarcontacto" con_id="<?php echo $c->con_id ?>">Eliminar</button></td>
+                                        </tr>
+                                    <?php }
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <script>
+                    $('body').delegate(".eliminarcontacto", "click", function () {
+
+                        var propio = $(this);
+                        if (confirm("Esta seguro de eliminar el contacto")) {
+                            $.post("<?php echo base_url("index.php/pacientes/eliminarcontacto") ?>",
+                                    {con_id: $(this).attr('con_id')}
+                            ).done(function (msg) {
+                                propio.parents('tr').remove();
+                                alerta("verde", "Eliminado con Exito")
+                            }).fail(function (msg) {
+
+                            });
+                        }
+                    });
+                </script>
                 <!-- Tab Equipos -->
                 <div role="tabpanel" class="tab-pane" id="tabEquipos">
                     <br />
@@ -390,7 +421,7 @@
                                     *                             Tipo de Equipo                        </label>
                             </div>
                             <div class="col-md-6">
-                                <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+<?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
                             </div>
                             <div class="col-md-6">
                                 <label for="estado">
@@ -432,38 +463,28 @@
                 </div>
                 <!-- Tab Sistema -->
                 <div role="tabpanel" class="tab-pane" id="tabSistema">
-                    <br />
+<!--                    <br />
                     <div class="col-md-3">
-                        <label for="prioridad">
-                            *                             Prioridad                        </label>
+                        <label for="prioridad">*Prioridad</label>
                     </div>
                     <div class="col-md-3">
                         <input type="text" value="<?php echo (isset($datos[0]->prioridad) ? $datos[0]->prioridad : '' ) ?>" class=" form-control obligatorio  " id="prioridad" name="prioridad">
-
-
                         <br>
                     </div>
-
-
-
                     <div class="col-md-3">
-                        <label for="codigo_hospital">
-                            *                             Nombre hospital                        </label>
+                        <label for="codigo_hospital">* Nombre hospital</label>
                     </div>
                     <div class="col-md-3">
-                        <?php echo lista("codigo_hospital", "codigo_hospital", "form-control obligatorio", "hospitales", "codigo_hospital", "nombre", (isset($datos[0]->codigo_hospital) ? $datos[0]->codigo_hospital : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+<?php echo lista("codigo_hospital", "codigo_hospital", "form-control obligatorio", "hospitales", "codigo_hospital", "nombre", (isset($datos[0]->codigo_hospital) ? $datos[0]->codigo_hospital : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
                     </div>
 
 
 
                     <div class="col-md-3">
-                        <label for="tipo">
-                            *                             Tipo                        </label>
+                        <label for="tipo">*Tipo</label>
                     </div>
                     <div class="col-md-3">
                         <input type="text" value="<?php echo (isset($datos[0]->tipo) ? $datos[0]->tipo : '' ) ?>" class=" form-control obligatorio  " id="tipo" name="tipo">
-
-
                         <br>
                     </div>
 
@@ -474,15 +495,135 @@
                             *                             Nombre aseguradora                        </label>
                     </div>
                     <div class="col-md-3">
-                        <?php echo lista("aseguradora_id", "aseguradora_id", "form-control obligatorio", "aseguradoras", "aseguradora_id", "nombre", (isset($datos[0]->aseguradora_id) ? $datos[0]->aseguradora_id : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+<?php echo lista("aseguradora_id", "aseguradora_id", "form-control obligatorio", "aseguradoras", "aseguradora_id", "nombre", (isset($datos[0]->aseguradora_id) ? $datos[0]->aseguradora_id : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                    </div>-->
+                    <center><h4>HOSPITALES</h4></center>
+                    <div class="row" >
+                        <div gclass="col-md-5">
+                            <label for="hospitales">Hospital</label>
+                            <input type="text" name="hospitales" id="hospitales" />
+                            <a href="javascript:" id="agregarhospital">Agregar</a>
+                        </div>
+                         <script>
+                                $('document').ready(function () {
+                                    $('#hospitales').autocomplete({
+                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_hospitales") ?>",
+                                        minLength: 3
+                                    });
+                                });
+                            </script>
+                    </div>    
+                    <br>
+                    <table  class="table table-bordered table-hover">
+                        <thead>
+                        <!--<th>Prioridad</th>-->
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono fijo</th>
+                        <th>Celular</th>
+                        <th>Email</th>
+                        <th>Acción</th>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($hospital)) {
+                                foreach ($hospital as $h) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $h->nombre ?></td>
+                                        <td><?php echo $h->direccion ?></td>
+                                        <td><?php echo $h->telefono_fijo ?></td>
+                                        <td><?php echo $h->celular ?></td>
+                                        <td><?php echo $h->email ?></td>
+                                        <td><button type="button" class="btn btn-danger eliminarhospital" tid="<?php echo $h->hosPac_id ?>">Eliminar</button></td>
+                                    </tr>
+    <?php }
+} ?>
+                        </tbody>
+                    </table>
+                    <script>
+                    $('body').delegate(".eliminarhospital", "click", function () {
+
+                        var propio = $(this);
+                        if (confirm("Esta seguro de eliminar")) {
+                            $.post("<?php echo base_url("index.php/pacientes/eliminar_hospitalpaciente") ?>",
+                                    {id: $(this).attr('tid')}
+                            ).done(function (msg) {
+                                propio.parents('tr').remove();
+                                alerta("verde", "Eliminado con Exito")
+                            }).fail(function (msg) {
+
+                            });
+                        }
+                    });
+                </script>
+                    <br>
+                    <center><h4>ASEGURADORAS</h4></center>
+                    <div class="row">
+                        <div class="col-md-5" >
+                            <label for="aseguradora">Aseguradoras</label><input type="text" name="aseguradora" id="aseguradora" />
+                            <a href="javascript:" id="agregaraseguradora">Agregar</a>
+                        </div>
+                        <script>
+                                $('document').ready(function () {
+                                    $('#aseguradora').autocomplete({
+                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_aseguradora") ?>",
+                                        minLength: 3
+                                    });
+                                });
+                            </script>
                     </div>
+                    <br>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <th>Tipo</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono fijo</th>
+                        <th>Celular</th>
+                        <th>Acción</th>
+                        </thead>
+                        <tbody>
+<?php
+if (!empty($aseguradora)) {
+    foreach ($aseguradora as $as) {
+        ?>
+                                    <tr>
+                                        <td><?php echo $as->tipo ?></td>
+                                        <td><?php echo $as->nombre ?></td>
+                                        <td><?php echo $as->direccion ?></td>
+                                        <td><?php echo $as->telefono_fijo ?></td>
+                                        <td><?php echo $as->celular ?></td>
+                                        <td><button type="button" class="btn btn-danger eliminaraseguradora" tid="<?php echo $as->asePac_id ?>">Eliminar</button></td>
+                                    </tr>
+    <?php }
+} ?>
+                        </tbody>
+                    </table>
+                    <script>
+                    $('body').delegate(".eliminaraseguradora", "click", function () {
+
+                        var propio = $(this);
+                        if (confirm("Esta seguro de eliminar")) {
+                            $.post("<?php echo base_url("index.php/pacientes/eliminar_aseguradorapaciente") ?>",
+                                    {id: $(this).attr('tid')}
+                            ).done(function (msg) {
+                                propio.parents('tr').remove();
+                                alerta("verde", "Eliminado con Exito")
+                            }).fail(function (msg) {
+
+                            });
+                        }
+                    });
+                </script>
+
                 </div>
             </div>
         </div>
-        <?php if (isset($post['campo'])) { ?>
+<?php if (isset($post['campo'])) { ?>
             <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
             <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
-        <?php } ?>
+<?php } ?>
         <div class="row">
             <span id="boton_guardar">
                 <button class="btn btn-success" >Guardar</button> 
@@ -502,16 +643,16 @@
         var info = $('#contacto_id2').val();
         var info2 = info.split(' :: ');
         if (info2.length == 8) {
-            var html="<tr>";
-             html+="<td><input type='hidden' name='contacto_id[]' value='"+info2[7]+"'>"+info2[0]+"</td>";
-             html+="<td>"+info2[1]+"</td>";
-             html+="<td>"+info2[2]+"</td>";
-             html+="<td>"+info2[3]+"</td>";
-             html+="<td>"+info2[4]+"</td>";
-             html+="<td>"+info2[5]+"</td>";
-             html+="<td>"+info2[6]+"</td>";
-             html+="<td>"+'<a href="javascript:" class="eliminar">Eliminar</a>'+"</td>";
-             html+="</tr>";
+            var html = "<tr>";
+            html += "<td><input type='hidden' name='contacto_id[]' value='" + info2[7] + "'>" + info2[0] + "</td>";
+            html += "<td>" + info2[1] + "</td>";
+            html += "<td>" + info2[2] + "</td>";
+            html += "<td>" + info2[3] + "</td>";
+            html += "<td>" + info2[4] + "</td>";
+            html += "<td>" + info2[5] + "</td>";
+            html += "<td>" + info2[6] + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "</tr>";
             $('#tabla_contacto').append(html);
         } else {
             alerta('rojo', 'Cadena no valida');

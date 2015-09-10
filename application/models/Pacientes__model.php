@@ -260,6 +260,50 @@ class Pacientes__model extends CI_Model {
         return $variable->result();
         
     }
+    function contactos($id){
+        $this->db->select("contacto.*");
+        $this->db->select("paciente_contacto.id_paciente_contacto as con_id");
+        $this->db->where("paciente_contacto.id_paciente",$id['id_paciente']);
+        $this->db->join("paciente_contacto","paciente_contacto.contacto_id = contacto.contacto_id");
+        $contacto = $this->db->get("contacto");
+        return $contacto->result();
+        
+    }
+    function eliminar_pacientes($con_id){
+        
+        $this->db->where("id_paciente_contacto",$con_id);
+        $this->db->delete("paciente_contacto");
+//        echo $this->db->last_query();die;
+    }
+    function eliminar_aseguradorapaciente($id){
+        
+        $this->db->where("asePac_id",$id);
+        $this->db->delete("aseguradora_paciente");
+//        echo $this->db->last_query();die;
+    }
+    function eliminar_hospitalpaciente($id){
+        
+        $this->db->where("hosPac_id",$id);
+        $this->db->delete("hospital_pacientes");
+//        echo $this->db->last_query();die;
+    }
+    function aseguradora_paciente($id){
+        
+        $this->db->select("aseguradoras.*");
+        $this->db->select("aseguradora_paciente.asePac_id");
+        $this->db->where("aseguradora_paciente.id_paciente",$id['id_paciente']);
+        $this->db->join("aseguradoras","aseguradoras.aseguradora_id = aseguradora_paciente.aseguradora_id");
+        $paciente = $this->db->get("aseguradora_paciente");
+//        echo $this->db->last_query();die;
+        return $paciente->result();
+    }
+    function hospital_paciente($id){
+        
+        $this->db->where("hospital_pacientes.id_paciente",$id['id_paciente']);
+        $this->db->join("hospitales","hospitales.codigo_hospital = hospital_pacientes.codigo_hospital");
+        $paciente = $this->db->get("hospital_pacientes");
+        return $paciente->result();
+    }
 }
 
 ?>
