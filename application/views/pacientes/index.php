@@ -501,8 +501,8 @@
                     <div class="row" >
                         <div gclass="col-md-5">
                             <label for="hospitales">Hospital</label>
-                            <input type="text" name="hospitales" id="hospitales" />
-                            <a href="javascript:" id="agregarhospital">Agregar</a>
+                            <input type="text" class="form-control" name="hospitales" id="hospitales" />
+                            <a href="javascript:" id="agregar_contacto2">Agregar</a>
                         </div>
                          <script>
                                 $('document').ready(function () {
@@ -514,7 +514,7 @@
                             </script>
                     </div>    
                     <br>
-                    <table  class="table table-bordered table-hover">
+                    <table  class="table table-bordered table-hover" >
                         <thead>
                         <!--<th>Prioridad</th>-->
                         <th>Nombre</th>
@@ -524,21 +524,8 @@
                         <th>Email</th>
                         <th>Acción</th>
                         </thead>
-                        <tbody>
-                            <?php
-                            if (!empty($hospital)) {
-                                foreach ($hospital as $h) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $h->nombre ?></td>
-                                        <td><?php echo $h->direccion ?></td>
-                                        <td><?php echo $h->telefono_fijo ?></td>
-                                        <td><?php echo $h->celular ?></td>
-                                        <td><?php echo $h->email ?></td>
-                                        <td><button type="button" class="btn btn-danger eliminarhospital" tid="<?php echo $h->hosPac_id ?>">Eliminar</button></td>
-                                    </tr>
-    <?php }
-} ?>
+                        <tbody id="tabla_contacto2">
+                            
                         </tbody>
                     </table>
                     <script>
@@ -561,8 +548,8 @@
                     <center><h4>ASEGURADORAS</h4></center>
                     <div class="row">
                         <div class="col-md-5" >
-                            <label for="aseguradora">Aseguradoras</label><input type="text" name="aseguradora" id="aseguradora" />
-                            <a href="javascript:" id="agregaraseguradora">Agregar</a>
+                            <label for="aseguradora">Aseguradoras</label><input type="text" class="form-control" name="aseguradora" id="aseguradora" />
+                            <a href="javascript:" id="agregar_contacto3">Agregar</a>
                         </div>
                         <script>
                                 $('document').ready(function () {
@@ -583,21 +570,8 @@
                         <th>Celular</th>
                         <th>Acción</th>
                         </thead>
-                        <tbody>
-<?php
-if (!empty($aseguradora)) {
-    foreach ($aseguradora as $as) {
-        ?>
-                                    <tr>
-                                        <td><?php echo $as->tipo ?></td>
-                                        <td><?php echo $as->nombre ?></td>
-                                        <td><?php echo $as->direccion ?></td>
-                                        <td><?php echo $as->telefono_fijo ?></td>
-                                        <td><?php echo $as->celular ?></td>
-                                        <td><button type="button" class="btn btn-danger eliminaraseguradora" tid="<?php echo $as->asePac_id ?>">Eliminar</button></td>
-                                    </tr>
-    <?php }
-} ?>
+                        <tbody  id="tabla_contacto3">
+                                
                         </tbody>
                     </table>
                     <script>
@@ -654,6 +628,40 @@ if (!empty($aseguradora)) {
             html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
             html += "</tr>";
             $('#tabla_contacto').append(html);
+        } else {
+            alerta('rojo', 'Cadena no valida');
+        }
+    })
+    $('#agregar_contacto2').click(function () {
+        var info = $('#hospitales').val();
+        var info2 = info.split(' :: ');
+        if (info2.length == 6) {
+            var html = "<tr>";
+            html += "<td><input type='hidden' name='contacto_id[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
+            html += "<td>" + info2[1] + "</td>";
+            html += "<td>" + info2[2] + "</td>";
+            html += "<td>" + info2[3] + "</td>";
+            html += "<td>" + info2[4] + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "</tr>";
+            $('#tabla_contacto2').append(html);
+        } else {
+            alerta('rojo', 'Cadena no valida');
+        }
+    })
+    $('#agregar_contacto3').click(function () {
+        var info = $('#aseguradora').val();
+        var info2 = info.split(' :: ');
+        if (info2.length == 6) {
+            var html = "<tr>";
+            html += "<td><input type='hidden' name='contacto_id[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
+            html += "<td>" + info2[1] + "</td>";
+            html += "<td>" + info2[2] + "</td>";
+            html += "<td>" + info2[3] + "</td>";
+            html += "<td>" + info2[4] + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "</tr>";
+            $('#tabla_contacto3').append(html);
         } else {
             alerta('rojo', 'Cadena no valida');
         }

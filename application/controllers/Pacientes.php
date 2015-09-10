@@ -90,12 +90,40 @@ class Pacientes extends My_Controller {
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
     function autocomplete_hospitales() {
-        $info = auto("hospitales", "codigo_hospital", "nombre", $this->input->get('term'));
+        $info = $this->auto4("hospitales", "codigo_hospital", "nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
     function autocomplete_aseguradora() {
-        $info = auto("aseguradoras", "aseguradora_id", "nombre", $this->input->get('term'));
+        $info = $this->auto3("aseguradoras", "aseguradora_id", "nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function auto3($tabla,$idcampo,$nombrecampo,$letra) {
+            $search = buscador($tabla,$nombrecampo,$letra);
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->$nombrecampo,
+                       'value' => $result->tipo." :: ".$result->nombre." :: ".$result->direccion." :: ".$result->telefono_fijo." :: ".$result->celular." :: ".$result->aseguradora_id
+                );
+                $h++;
+            }
+            return $data;
+    }
+    function auto4($tabla,$idcampo,$nombrecampo,$letra) {
+            $search = buscador($tabla,$nombrecampo,$letra);
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->$nombrecampo,
+                       'value' => $result->nombre." :: ".$result->direccion." :: ".$result->telefono_fijo." :: ".$result->celular." :: ".$result->email." :: ".$result->codigo_hospital
+                );
+                $h++;
+            }
+            
+            
+            return $data;
     }
     function autocomplete_contacto_id() {
         $info = $this->auto2("contacto", "contacto_id", "nombre", $this->input->get('term'));
