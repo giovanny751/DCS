@@ -14,6 +14,7 @@ class Estados_model extends CI_Model {
             $this->db->where_in('est_id', $datos);
         }
         $estados = $this->db->get("estados");
+//        echo "<br><p><br>".$this->db->last_query();
         return $estados->result();
     }
 

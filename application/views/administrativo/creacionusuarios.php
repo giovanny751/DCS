@@ -96,6 +96,20 @@
                 .fail(function(msg) {
                 })
     })
+    $('#usuario').change(function() {
+        var usuario = $('#usuario').val();
+        $.post('<?php echo base_url('index.php/administrativo/confirm_usuario') ?>', {usuario: usuario})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'Usuario valido')
+                    } else {
+                        alerta('rojo', 'Usuario ya se encuentra regitrado')
+                        $('#usuario').val('');
+                    }
+                })
+                .fail(function(msg) {
+                })
+    })
 
     $('#guardar').click(function() {
         var email = $('#email').val();

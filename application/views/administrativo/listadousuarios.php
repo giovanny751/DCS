@@ -10,11 +10,32 @@
                 <div class="form-group">
                     <label for="cedula">Cedula</label><input type="text" name="cedula" id="cedula" class="form-control">
                 </div>
+                <script>
+                    $('document').ready(function() {
+                        $('#cedula').autocomplete({
+                            source: "<?php echo base_url("index.php//Administrativo/autocomplete_cedula") ?>",
+                            minLength: 3
+                        });
+                    });
+                    $('document').ready(function() {
+                        $('#nombre').autocomplete({
+                            source: "<?php echo base_url("index.php//Administrativo/autocomplete_nombre") ?>",
+                            minLength: 3
+                        });
+                    });
+                    $('document').ready(function() {
+                        $('#apellido').autocomplete({
+                            source: "<?php echo base_url("index.php//Administrativo/autocomplete_apellido") ?>",
+                            minLength: 3
+                        });
+                    });
+                </script>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <div class="form-group">
                     <label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" class="form-control">
                 </div>
+                
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <div class="form-group">
@@ -28,7 +49,7 @@
                     <label for="estado">Estado</label>
                     <select name="estado" id="estado" class="form-control">
                         <option value="">::Seleccionar::</option>
-                        <?php foreach ($estado as $e) { ?>
+                        <?php foreach ($estados as $e) { ?>
                             <option value="<?php echo $e->est_id ?>"><?php echo $e->est_nombre ?></option>
                         <?php } ?>
                     </select>
@@ -55,7 +76,7 @@
             <th>Estado</th>
             <th>Fecha actualización</th>
             <th>Fecha creación</th>
-            <th>Ultimo Ingreso</th>
+            <th>Último Ingreso</th>
             <th>Opciones</th>
             </thead>
             <tbody id="bodyuser">
@@ -85,6 +106,7 @@
     <input type="hidden" value="" name="usu_id" id="usu_id">
 </form>
 <script>
+
     $('.eliminar').click(function(){
         var url="<?php echo base_url("index.php/administrativo/eliminar_usuarios") ?>";
         $.post(url,{usu_id:$(this).attr('usu_id')})
@@ -125,7 +147,7 @@ $('#apellido').autocomplete({
                 body += "<td>" + val.usu_usuario + "</td>";
                 body += "<td>" + val.usu_nombre + "</td>";
                 body += "<td>" + val.usu_apellido + "</td>";
-                body += "<td>" + val.est_id + "</td>";
+                body += "<td>" + ((val.est_id==1)?'Activo':'Inactivo') + "</td>";
                 body += "<td>" + val.usu_fechaActualizacion + "</td>";
                 body += "<td>" + val.usu_fechaCreacion + "</td>";
                 body += "<td>" + val.Ing_id + "</td>";

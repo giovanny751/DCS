@@ -51,7 +51,7 @@
 <!--<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js'); ?>" type="text/javascript"></script>-->
 <!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>"></script>-->
 <!--<script src="<?php echo base_url('/assets/admin/pages/scripts/components-pickers.js'); ?>"></script>-->
-
+<script src="<?= base_url('js/jquery.blockUI.js') ?>" type="text/javascript"></script>
 
 
 

@@ -59,11 +59,14 @@ class User_model extends CI_Model {
         if (!empty($cedula))
             $this->db->where('usu_cedula', $cedula);
         if (!empty($estado))
-            $this->db->where('est_id', $estado);
+            $this->db->where('user.est_id', $estado);
         if (!empty($nombre))
             $this->db->where('usu_nombre', $nombre);
         $this->db->join("ingreso","ingreso.usu_id = user.usu_id","LEFT");
+        $this->db->order_by('ingreso.ing_fechaIngreso','DESC');
+        $this->db->group_by('user.usu_id ');
         $user = $this->db->get('user');
+//                echo "<br><p><br>".$this->db->last_query();
         return $user->result();
     }
     function consultageneral(){
@@ -103,6 +106,11 @@ class User_model extends CI_Model {
     }
     function validaexistencia($cc){
         $this->db->where("usu_cedula",$cc);
+        $data = $this->db->get('user');
+        return $data->result();
+    }
+    function validaexistencia_usuario($user){
+        $this->db->where("usu_usuario",$user);
         $data = $this->db->get('user');
         return $data->result();
     }

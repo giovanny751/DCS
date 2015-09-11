@@ -73,10 +73,17 @@
     </div>
 </div>    
 <script>
+    $(".seleccionados").click(function(){
+        alert($(this).next().children().children().prop('tagName'))
+    })
+    
 //------------------------------------------------------------------------------
 //                      ELIMINAR ROL    
 //------------------------------------------------------------------------------ 
     $('body').delegate('.eliminar', 'click', function() {
+        var r=confirm('¿Desea eliminar el rol?');
+        if(r==false)
+            return false;
         $(this).parents().parents('tr').remove();
 //        return false;
         $.post("<?php echo base_url('index.php/presentacion/eliminarrol'); ?>", {id: $(this).attr('rol')})

@@ -157,6 +157,11 @@ class Administrativo extends My_Controller {
         $datos=$this->User_model->validaexistencia($this->input->post('cedula'));
         echo count($datos);
     }
+    function confirm_usuario(){
+        $this->load->model('User_model');
+        $datos=$this->User_model->validaexistencia_usuario($this->input->post('usuario'));
+        echo count($datos);
+    }
 
     function cargos() {
         $this->load->model('Cargo_model');
@@ -263,6 +268,18 @@ class Administrativo extends My_Controller {
         $this->load->model('User_model');
         $post=$this->input->post();
         $this->User_model->eliminar_usuarios($post);
+    }
+    function autocomplete_cedula() {
+        $info = auto("user", "usu_id", "usu_cedula", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_nombre() {
+        $info = auto("user", "usu_id", "usu_nombre", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_apellido() {
+        $info = auto("user", "usu_id", "usu_apellido", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
 
 }
