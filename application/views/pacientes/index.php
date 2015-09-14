@@ -219,7 +219,7 @@
                                                         <input type='hidden' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
                                                     </td>
                                                     <td>
-                                                        <?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S", "examen_cod" => $value->examen_cod), /* readOnly? */ false); ?>
+                                                        <?php echo lista("variable_codigo[]", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S", "examen_cod" => $value->examen_cod), /* readOnly? */ false); ?>
                                                     </td>
                                                     <td>
                                                         <select class=" form-control obligatorio"  name="valor_frecuencia[]">
@@ -312,7 +312,7 @@
                                                 ?>
                                                 <tr>
                                                     <td>
-                                                        <input type="hidden" value="<?php echo $c->contacto_id ?>" name="contacto_id[]">
+                                                        <input type="hidden" value="<?php echo $c->contacto_id ?>" class="contacto_id" name="contacto_id[]">
                                                         <?php echo $c->nombre ?></td>
                                                     <td><?php echo $c->direccion ?></td>
                                                     <td><?php echo $c->telefono_fijo ?></td>
@@ -376,7 +376,7 @@
                             <br>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div style="width: 80%;margin: 0 auto;">
                             <div class="row">
@@ -396,8 +396,8 @@
                                                     ?>
                                                     <tr>
                                                         <td>
-                                                            <input type='hidden' name='equipo_id[]' value='<?php echo $value->id_equipo; ?>'>
-                                                            <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", $value->tipo_equipo_cod, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
+                                                            <input type='hidden' name='equipo_id[]' class='equipo_id' value='<?php echo $value->id_equipo; ?>'>
+                                                            <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio tipo_equipo_cod", "tipo_equipo", "tipo_equipo_cod", "referencia", $value->tipo_equipo_cod, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
                                                         </td>
                                                         <td>
                                                             <?php echo $value->descripcion; ?>
@@ -420,8 +420,8 @@
                                 </table>
                             </div>
                             <div class="row">
-                        <center><a href="<?php echo base_url('index.php/Equipos'); ?>" class="btn btn-success" id="">Nuevo Equipo</a></center>
-                    </div>
+                                <center><a href="<?php echo base_url('index.php/Equipos'); ?>" class="btn btn-success" id="">Nuevo Equipo</a></center>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -469,7 +469,7 @@
                                                 ?>
                                                 <tr>
                                                     <td>
-                                                        <input type="hidden" value="<?php echo $c->codigo_hospital ?>" name="hospitales2[]">
+                                                        <input type="hidden" class="hospitales2" value="<?php echo $c->codigo_hospital ?>" name="hospitales2[]">
                                                         <?php echo $c->nombre ?></td>
                                                     <td><?php echo $c->direccion ?></td>
                                                     <td><?php echo $c->telefono_fijo ?></td>
@@ -545,7 +545,7 @@
                                                 ?>
                                                 <tr>
                                                     <td>
-                                                        <input type="hidden" value="<?php echo $c->aseguradora_id ?>" name="aseguradora[]">
+                                                        <input type="hidden" value="<?php echo $c->aseguradora_id ?>" class="aseguradora2" name="aseguradora2[]">
                                                         <?php echo $c->tipo ?></td>
                                                     <?php echo $c->nombre ?></td>
                                                     <td><?php echo $c->direccion ?></td>
@@ -608,7 +608,7 @@
         var info2 = info.split(' :: ');
         if (info2.length == 4) {
             var html = "<tr>";
-            html += "<td><input type='hidden' name='equipo_id[]' value='" + info2[3] + "'><?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?></td>";
+            html += "<td><input type='hidden' name='equipo_id[]' class='equipo_id' value='" + info2[3] + "'><?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio tipo_equipo_cod", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?></td>";
             html += "<td>" + info2[0] + "</td>";
             html += "<td>" + info2[1] + "</td>";
             html += "<td>" + info2[2] + "</td>";
@@ -621,11 +621,23 @@
         }
     })
     $('#agregar_contacto').click(function () {
+
         var info = $('#contacto_id2').val();
         var info2 = info.split(' :: ');
+        var r = 0;
+        $('.contacto_id').each(function () {
+            if ($(this).val() == info2[7]) {
+                alerta('rojo', 'Contacto ya existe');
+                $('#contacto_id2').val('');
+                r = 1;
+            }
+        });
+        if (r == 1) {
+            return false;
+        }
         if (info2.length == 8) {
             var html = "<tr>";
-            html += "<td><input type='hidden' name='contacto_id[]' value='" + info2[7] + "'>" + info2[0] + "</td>";
+            html += "<td><input type='hidden' class='contacto_id' name='contacto_id[]' value='" + info2[7] + "'>" + info2[0] + "</td>";
             html += "<td>" + info2[1] + "</td>";
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
@@ -643,9 +655,20 @@
     $('#agregar_contacto2').click(function () {
         var info = $('#hospitales').val();
         var info2 = info.split(' :: ');
+        var r = 0;
+        $('.hospitales2').each(function () {
+            if ($(this).val() == info2[5]) {
+                alerta('rojo', 'Hospitales ya existe');
+                $('#contacto_id2').val('');
+                r = 1;
+            }
+        });
+        if (r == 1) {
+            return false;
+        }
         if (info2.length == 6) {
             var html = "<tr>";
-            html += "<td><input type='hidden' name='hospitales2[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
+            html += "<td><input type='hidden' class='hospitales2' name='hospitales2[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
             html += "<td>" + info2[1] + "</td>";
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
@@ -661,9 +684,19 @@
     $('#agregar_contacto3').click(function () {
         var info = $('#aseguradora').val();
         var info2 = info.split(' :: ');
+        $('.aseguradora2').each(function () {
+            if ($(this).val() == info2[5]) {
+                alerta('rojo', 'Aseguradora ya existe');
+                $('#contacto_id2').val('');
+                r = 1;
+            }
+        });
+        if (r == 1) {
+            return false;
+        }
         if (info2.length == 6) {
             var html = "<tr>";
-            html += "<td><input type='hidden' name='aseguradora2[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
+            html += "<td><input type='hidden' class='aseguradora2' name='aseguradora2[]' value='" + info2[5] + "'>" + info2[0] + "</td>";
             html += "<td>" + info2[1] + "</td>";
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
@@ -675,6 +708,30 @@
         } else {
             alerta('rojo', 'Cadena no valida');
         }
+    })
+    $('body').delegate('.variable_codigo','change',function(){
+        var y=new Array();
+        $('.variable_codigo').each(function(){
+            if($.inArray($(this).val(),y)!= -1){
+                $(this).val('')
+                alerta('rojo','Existe una variable con este examen.')
+            }else{
+                y.push($(this).val())
+            }
+        })
+//        console.log(y)
+    })
+    $('body').delegate('.tipo_equipo_cod','change',function(){
+        var y=new Array();
+        $('.tipo_equipo_cod').each(function(){
+            if($.inArray($(this).val()+"-"+$(this).prev().val(),y)!= -1){
+                $(this).val('El Tipo ya existe con el equipo')
+                alerta('rojo','')
+            }else{
+                y.push($(this).val()+"-"+$(this).prev().val())
+            }
+        })
+//        console.log(y)
     })
     $('#agregar').click(function () {
 
@@ -741,6 +798,9 @@
                 }
             }
         });
+
+
+
         if (obligatorio('obligatorio') == false) {
             return false
         } else {
