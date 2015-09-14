@@ -128,11 +128,6 @@
                             <br>
                         </div>
                     </div>
-
-
-
-
-
                     <div class="row">
                         <div class="col-md-3">
                             <label for="observaciones">
@@ -231,7 +226,7 @@
                                                         <input type='hidden' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
                                                     </td>
                                                     <td>
-                                                        <?php echo lista("variable_codigo[]", "1", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S","examen_cod"=>$value->examen_cod), /* readOnly? */ false); ?>
+                                                        <?php echo lista("variable_codigo[]", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S","examen_cod"=>$value->examen_cod), /* readOnly? */ false); ?>
                                                     </td>
 
                                                     <td>
@@ -271,6 +266,18 @@
     </form>
 </div>
 <script>
+    $('body').delegate('.variable_codigo','change',function(){
+        var y=new Array();
+        $('.variable_codigo').each(function(){
+            if($.inArray($(this).val(),y)!= -1){
+                $(this).val('')
+                alerta('rojo','Existe una variable con este examen.')
+            }else{
+                y.push($(this).val())
+            }
+        })
+//        console.log(y)
+    })
     $('#agregar').click(function () {
 
         var examen = $('#examen_cod option:selected').text();

@@ -684,6 +684,7 @@
     $('#agregar_contacto3').click(function () {
         var info = $('#aseguradora').val();
         var info2 = info.split(' :: ');
+        var r = 0;
         $('.aseguradora2').each(function () {
             if ($(this).val() == info2[5]) {
                 alerta('rojo', 'Aseguradora ya existe');
