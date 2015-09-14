@@ -74,7 +74,7 @@
 </div>    
 <script>
     $(".seleccionados").click(function(){
-        alert($(this).next().children().children().prop('tagName'))
+//        alert($(this).next().children().children().prop('tagName'))
     })
     
 //------------------------------------------------------------------------------

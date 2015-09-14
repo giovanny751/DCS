@@ -113,14 +113,14 @@ class Pacientes__model extends CI_Model {
                 $this->db->insert('aseguradora_paciente');
             }
         $this->db->where('id_paciente', $id);
-        $this->db->delete('paciente_equipo_tipoEquipo');
+        $this->db->delete('paciente_equipo_tipoequipo');
 //        echo count($tipo_equipo_cod);
         if (isset($tipo_equipo_cod))
             for ($i = 0; $i < count($tipo_equipo_cod); $i++) {
                 $this->db->set('id_paciente', $id);
                 $this->db->set('tipo_equipo_cod', $tipo_equipo_cod[$i]);
                 $this->db->set('id_equipo', $equipo_id[$i]);
-                $this->db->insert('paciente_equipo_tipoEquipo');
+                $this->db->insert('paciente_equipo_tipoequipo');
 //                echo $this->db->last_query();
             }
 //        die();
@@ -158,9 +158,9 @@ class Pacientes__model extends CI_Model {
     function paciente_equipo_tipoEquipo($post) {
         $this->db->select('equipos.*,tipo_equipo.referencia');
         $this->db->where('id_paciente', $post[$post["campo"]]);
-        $this->db->join('tipo_equipo', 'tipo_equipo.tipo_equipo_cod=paciente_equipo_tipoEquipo.tipo_equipo_cod');
-        $this->db->join('equipos', 'equipos.id_equipo=paciente_equipo_tipoEquipo.id_equipo');
-        $datos = $this->db->get('paciente_equipo_tipoEquipo');
+        $this->db->join('tipo_equipo', 'tipo_equipo.tipo_equipo_cod=paciente_equipo_tipoequipo.tipo_equipo_cod');
+        $this->db->join('equipos', 'equipos.id_equipo=paciente_equipo_tipoequipo.id_equipo');
+        $datos = $this->db->get('paciente_equipo_tipoequipo');
         return $datos = $datos->result();
     }
 

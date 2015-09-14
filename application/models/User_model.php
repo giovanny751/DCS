@@ -8,6 +8,7 @@ class User_model extends CI_Model {
     public function get_user($username, $pass) {
         $this->db->where('usu_usuario', $username);
         $this->db->where('usu_contrasena', $pass);
+        $this->db->where('est_id', 1);
         $query = $this->db->get('user');
         return $query->result_array();
     }

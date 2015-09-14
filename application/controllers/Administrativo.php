@@ -162,7 +162,25 @@ class Administrativo extends My_Controller {
         $datos=$this->User_model->validaexistencia_usuario($this->input->post('usuario'));
         echo count($datos);
     }
+    function actualizarusuario() {
+        $this->load->model('User_model');
+        $data = array(
+            'usu_contrasena' => $this->input->post('contrasena'),
+            'est_id' => $this->input->post('estado'),
+            'usu_cedula' => $this->input->post('cedula'),
+            'usu_nombre' => $this->input->post('nombres'),
+            'usu_apellido' => $this->input->post('apellidos'),
+            'usu_usuario' => $this->input->post('usuario'),
+            'usu_email' => $this->input->post('email'),
+            'sex_id' => $this->input->post('genero'),
+            'car_id' => $this->input->post('cargo'),
+            'emp_id' => $this->input->post('empleado'),
+//            'usu_cambiocontrasena' => $this->input->post('cambiocontrasena'),
+            'usu_fechaCreacion' => date('Y-m-d H:i:s')
+        );
 
+        $this->User_model->update($data, $this->input->post('usuid'));
+    }
     function cargos() {
         $this->load->model('Cargo_model');
         $this->data["cargo"] = $this->Cargo_model->detail();

@@ -116,7 +116,7 @@ class Pacientes extends My_Controller {
             return $data;
     }
     function auto5($tabla,$idcampo,$nombrecampo,$letra) {
-            $search = buscador($tabla,$nombrecampo,$letra);
+            $search = buscador($tabla,$nombrecampo,$letra,'serial');
             $h = 0;
             foreach($search as $result){
                 $data[$h] = array(

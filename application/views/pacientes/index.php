@@ -184,7 +184,7 @@
                 <div role="tabpanel" class="tab-pane" id="tabPrograma">
                     <br />
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="examen_cod">
                                 Examen                        </label>
                         </div>
@@ -270,7 +270,7 @@
                 <div role="tabpanel" class="tab-pane" id="tabContactos">
                     <br />
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="contacto_id2">Nombre contacto</label>
                         </div>
                         <div class="col-md-3">
@@ -355,9 +355,9 @@
                     <br />
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="descripcion">
-                                Equipo                        </label>
+                                Descripción/Serial                        </label>
                         </div>
                         <div class="col-md-3">
                             <script>
@@ -485,7 +485,7 @@
                             </table>
                         </div>
                         <div class="row">
-                            <center><a href="<?php echo base_url('index.php/Contacto'); ?>" class="btn btn-success" id="">Nuevo Hospital</a></center>
+                            <center><a href="<?php echo base_url('index.php/Hospitales'); ?>" class="btn btn-success" id="">Nuevo Hospital</a></center>
                         </div>
                     </div>
                     <script>
@@ -561,7 +561,7 @@
                             </table>
                         </div>
                         <div class="row">
-                        <center><a href="<?php echo base_url('index.php/Contacto');?>" class="btn btn-success" id="">Nueva Aseguradora</a></center>
+                        <center><a href="<?php echo base_url('index.php/Aseguradoras');?>" class="btn btn-success" id="">Nueva Aseguradora</a></center>
                     </div>
                     </div>
                     <script>

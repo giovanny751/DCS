@@ -89,7 +89,7 @@
                     if (msg == 0) {
                         alerta('verde', 'Cédula valido')
                     } else {
-                        alerta('rojo', 'Cédula ya se encuentra regitrada')
+                        alerta('rojo', 'Cédula ya se encuentra registrada')
                         $('#cedula').val('');
                     }
                 })
@@ -103,7 +103,7 @@
                     if (msg == 0) {
                         alerta('verde', 'Usuario valido')
                     } else {
-                        alerta('rojo', 'Usuario ya se encuentra regitrado')
+                        alerta('rojo', 'Usuario ya se encuentra registrado')
                         $('#usuario').val('');
                     }
                 })

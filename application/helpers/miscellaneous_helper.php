@@ -400,11 +400,18 @@ function lista($name, $id, $class, $tabla, $option_value, $option_name, $value, 
             }
             return $data;
     }
-    function buscador($tabla,$nombrecampo,$palabra){
+    function buscador($tabla,$nombrecampo,$palabra,$campo1=null,$campo2=null,$campo3=null){
         $CI = & get_instance();
         $CI->db->like($nombrecampo,$palabra);
+        if($campo1!=null)
+        $CI->db->or_like($campo1,$palabra);
+        if($campo2!=null)
+        $CI->db->or_like($campo2,$palabra);
+        if($campo3!=null)
+        $CI->db->or_like($campo3,$palabra);
         $CI->db->where('activo','S');
         $user = $CI->db->get($tabla);
+//        echo $CI->db->last_query();
         return $user->result();
     }
     function listaMultiple2($name, $id, $class, $tabla, $option_value, $option_name, $value, $where, $bloqued) {

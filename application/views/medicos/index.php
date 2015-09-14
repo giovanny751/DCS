@@ -161,9 +161,9 @@
         $.post('<?php echo base_url('index.php/Medicos/referencia2') ?>', {matricula_profesional: matricula_profesional, medico_codigo: medico_codigo})
                 .done(function(msg) {
                     if (msg == 0) {
-                        alerta('verde', 'Nombre valido')
+                        alerta('verde', 'Matricula valido')
                     } else {
-                        alerta('rojo', 'Nombre no valido')
+                        alerta('rojo', 'Matricula no valido')
                         $('#matricula_profesional').val('');
                     }
                     $('#boton_cargar').hide();
