@@ -47,6 +47,7 @@ class Tipo_alarma extends My_Controller {
         if(!isset($this->data['post']['campo']))
         redirect('index.php/Tipo_alarma/consult_tipo_alarma', 'location');
         $this->data['datos']=$this->Tipo_alarma__model->edit_tipo_alarma($this->data['post']);
+        $this->data['tipo_alarma_nivel']=$this->Tipo_alarma__model->tipo_alarma_nivel($this->data['post']);
         $this->layout->view('tipo_alarma/index', $this->data);
     }
 }

@@ -86,7 +86,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">NYGSOFT</span>
+                <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -118,11 +118,8 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     <div class="row" style="">
         <div class="container">
             <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center">
-                <!--<img src="<?php echo base_url('uploads/Logo_PSAT_Final.png'); ?>" style="width: 90px">-->
             </div>
-            <!--<div class="col-md-4 col-lg-4 col-sm-4 col-sx-4"><center><p class="text-muted" style='margin-top:10%'>Copyright -  NYGSOFT right Reserved</p></center></div>-->
-            <!--<div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><a href="http://www.nygsoft.com"><img src="<?php echo base_url('img/blanco.jpg'); ?>" style="width: 31%;height: 16%"></a></div>-->
-        </div>  
+            </div>  
     </div>  
 </footer>
 <style>

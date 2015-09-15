@@ -102,6 +102,23 @@ class Pacientes extends My_Controller {
         $info = $this->auto5("equipos", "id_equipo", "descripcion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+    function autocomplete_nivel() {
+        $info = $this->auto6("niveles_alarma", "id_niveles_alarma", "descripcion", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function auto6($tabla,$idcampo,$nombrecampo,$letra) {
+            $search = buscador($tabla,$nombrecampo,$letra);
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->$nombrecampo,
+                       'value' => $result->descripcion." :: ".$result->id_niveles_alarma
+                );
+                $h++;
+            }
+            return $data;
+    }
     function auto3($tabla,$idcampo,$nombrecampo,$letra) {
             $search = buscador($tabla,$nombrecampo,$letra);
             $h = 0;

@@ -196,6 +196,19 @@
                             <br>
                         </div>
                     </div>
+<!--                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="examen_cod">
+                                Examen                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                        <div class="col-md-3">
+                            <a href="javascript:" id="agregar">Copiar</a>
+                            <br>
+                        </div>
+                    </div>-->
                     <div style="width: 80%;margin: 0 auto;">
                         <div class="row">
                             <table class="table">
