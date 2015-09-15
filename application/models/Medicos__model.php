@@ -66,6 +66,7 @@ class Medicos__model extends CI_Model {
                                 $this->db->select('celular');
                                 $this->db->select('email');
                         $this->db->where('ACTIVO','S');
+                        if(empty($post))$this->db->where("1",2);
         $datos=$this->db->get('medicos');
         $datos=$datos->result();
         return $datos;

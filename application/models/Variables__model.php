@@ -58,6 +58,7 @@ class Variables__model extends CI_Model {
         $this->db->join('examenes','examenes.examen_cod=variables.examen_cod','left');
         $this->db->where('variables.ACTIVO', 'S');
         $this->db->where('examenes.ACTIVO', 'S');
+        if(empty($post))$this->db->where("1",2);
         $datos = $this->db->get('variables');
         $datos = $datos->result();
         return $datos;

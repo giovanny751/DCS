@@ -299,6 +299,18 @@ class Administrativo extends My_Controller {
         $info = auto("user", "usu_id", "usu_apellido", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+    function autocomplete_cedulausuario() {
+        $info = auto("user", "usu_id", "usu_contrasena", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_nombreusuario() {
+        $info = auto("user", "usu_id", "usu_nombre", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_apellidousuario() {
+        $info = auto("user", "usu_id", "usu_apellido", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
 
 }
 

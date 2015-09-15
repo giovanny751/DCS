@@ -72,6 +72,7 @@ class Niveles_alarma__model extends CI_Model {
                                 $this->db->select('color');
 //                                $this->db->select('id_protocolo');
                         $this->db->where('ACTIVO','S');
+                        if(empty($post))$this->db->where("1",2);
         $datos=$this->db->get('niveles_alarma');
         $datos=$datos->result();
         return $datos;

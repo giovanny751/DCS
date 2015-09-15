@@ -55,7 +55,6 @@
 
 
 
-
 <?php
 function modulos($datosmodulos, $idusuario, $dato = null) {
 
@@ -92,7 +91,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php base_url('index.php/presentacion/principal') ?>">NYGSOFT</a>
+            <a class="navbar-brand" href="<?php base_url('index.php/presentacion/principal') ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
         </div>
         <div class="navbar-collapse collapse">
             <?php echo modulos('prueba', $id, null); ?>
@@ -102,7 +101,6 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OPCIONES</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="<?php echo base_url('index.php/presentacion/recordarcontrasena'); ?>">Cambiar Contraseña</a></li>
-                        <li><a href="<?php echo base_url('index.php/presentacion/rol'); ?>">Cambiar de Rol</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo base_url('index.php/login/logout'); ?>">Cerrar sesion</a></li>
                     </ul>
@@ -122,8 +120,8 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center">
                 <!--<img src="<?php echo base_url('uploads/Logo_PSAT_Final.png'); ?>" style="width: 90px">-->
             </div>
-            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4"><center><p class="text-muted" style='margin-top:10%'>Copyright -  NYGSOFT right Reserved</p></center></div>
-            <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><a href="http://www.nygsoft.com"><img src="<?php echo base_url('img/blanco.jpg'); ?>" style="width: 31%;height: 16%"></a></div>
+            <!--<div class="col-md-4 col-lg-4 col-sm-4 col-sx-4"><center><p class="text-muted" style='margin-top:10%'>Copyright -  NYGSOFT right Reserved</p></center></div>-->
+            <!--<div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center"><a href="http://www.nygsoft.com"><img src="<?php echo base_url('img/blanco.jpg'); ?>" style="width: 31%;height: 16%"></a></div>-->
         </div>  
     </div>  
 </footer>
@@ -180,6 +178,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     }
 </style>
 <script>
+    
     $('.limpiar').click(function () {
         $('select,input').val('');
     });
@@ -270,8 +269,14 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     });
     $('.fecha').datepicker({
         dateFormat: "yy-mm-dd",
-        autoclose: true
-          
+        autoclose: true,
+        dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+        dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ],
+        monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+        monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ],
+        changeMonth: true,
+        changeYear: true
     });
     
     
@@ -315,4 +320,5 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     $.blockUI.defaults.message = 'Procesando...';
     $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 });
+//$('.table').DataTable();
 </script>

@@ -26,7 +26,15 @@ class Tipo_alarma extends My_Controller {
     }
     function save_tipo_alarma(){
         $post=$this->input->post();
-        $this->Tipo_alarma__model->save_tipo_alarma($post);
+        unset($post['id_niveles_alarma']);
+        $id = $this->Tipo_alarma__model->save_tipo_alarma($post);
+        $data = $this->input->post('id_niveles_alarma');
+        $insert = array();
+        for($i = 0;$i<count($data);$i++){
+            $insert[] = array('id_tipo_alarma'=>$id,'id_niveles_alarma'=>$data[$i]);
+        }
+        $this->Tipo_alarma__model->save_nivel_tipo($insert);
+        
         redirect('index.php/Tipo_alarma/consult_tipo_alarma', 'location');
     }
     function delete_tipo_alarma(){

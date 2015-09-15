@@ -46,6 +46,7 @@ class Tipo_cliente__model extends CI_Model {
                                     $this->db->select('id_tipo_cliente');
                                 $this->db->select('descripcion');
                         $this->db->where('ACTIVO','S');
+                        if(empty($post))$this->db->where("1",2);
         $datos=$this->db->get('tipo_cliente');
         $datos=$datos->result();
         return $datos;

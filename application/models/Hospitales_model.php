@@ -25,7 +25,8 @@ class Hospitales_model extends CI_Model {
         return $datos=$datos->result();
     }
     function consult_hospitales($post){
-            if(isset($post['codigo_hospital']))
+        
+        if(isset($post['codigo_hospital']))
         if($post['codigo_hospital']!="")
         $this->db->like('codigo_hospital',$post['codigo_hospital']);
                     if(isset($post['nombre']))
@@ -60,6 +61,7 @@ class Hospitales_model extends CI_Model {
                                 $this->db->select('celular');
                                 $this->db->select('email');
                         $this->db->where('ACTIVO','S');
+        if(empty($post))$this->db->where("1",2);                
         $datos=$this->db->get('hospitales');
         $datos=$datos->result();
         return $datos;

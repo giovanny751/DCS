@@ -1,4 +1,4 @@
-<div class="widgetTitle" >
+    <div class="widgetTitle" >
     <h5>
         <i class="glyphicon glyphicon-ok"></i>LISTADO USUARIOS
     </h5>
@@ -106,6 +106,21 @@
     <input type="hidden" value="" name="usu_id" id="usu_id">
 </form>
 <script>
+
+ $('document').ready(function() {
+                            $('#cedula').autocomplete({
+                                source: "<?php echo base_url("index.php/administrativo/autocomplete_cedulausuario") ?>",
+                                minLength: 3
+                            });
+                            $('#nombre').autocomplete({
+                                source: "<?php echo base_url("index.php/administrativo/autocomplete_nombreusuario") ?>",
+                                minLength: 3
+                            });
+                            $('#apellido').autocomplete({
+                                source: "<?php echo base_url("index.php/administrativo/autocomplete_apellidousuario") ?>",
+                                minLength: 3
+                            });
+                        });
 
     $('.eliminar').click(function(){
         var url="<?php echo base_url("index.php/administrativo/eliminar_usuarios") ?>";

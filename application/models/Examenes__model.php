@@ -51,6 +51,7 @@ class Examenes__model extends CI_Model {
         $this->db->select('examen_nombre');
         $this->db->select('estado');
         $this->db->where('ACTIVO', 'S');
+        if(empty($post))$this->db->where("1",2);
         $datos = $this->db->get('examenes');
         $datos = $datos->result();
         return $datos;

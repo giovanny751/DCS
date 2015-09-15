@@ -67,6 +67,7 @@ class Aseguradoras__model extends CI_Model {
                                 $this->db->select('celular');
                                 $this->db->select('email');
                         $this->db->where('ACTIVO','S');
+        if(empty($post))$this->db->where("1",2);                
         $datos=$this->db->get('aseguradoras');
         $datos=$datos->result();
         return $datos;

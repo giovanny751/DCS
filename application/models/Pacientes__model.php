@@ -315,6 +315,7 @@ class Pacientes__model extends CI_Model {
 //        $this->db->select('codigo_hospital');
 //        $this->db->select('tipo');
 //        $this->db->select('aseguradora_id');
+        if(empty($post))$this->db->where("1",2);
         $this->db->where('ACTIVO', 'S');
         $datos = $this->db->get('pacientes');
         $datos = $datos->result();

@@ -68,6 +68,7 @@ class Protocolos__model extends CI_Model {
         $this->db->select('enviar_sms');
         $this->db->select('enviar_email');
         $this->db->where('ACTIVO', 'S');
+        if(empty($post))$this->db->where("1",2);
         $datos = $this->db->get('protocolos');
         $datos = $datos->result();
         return $datos;

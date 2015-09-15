@@ -47,6 +47,7 @@ class Tipo_equipo__model extends CI_Model {
                                 $this->db->select('referencia');
                                 $this->db->select('estado');
                         $this->db->where('ACTIVO','S');
+                        if(empty($post))$this->db->where("1",2);
         $datos=$this->db->get('tipo_equipo');
         $datos=$datos->result();
         return $datos;

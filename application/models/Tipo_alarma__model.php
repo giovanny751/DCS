@@ -12,6 +12,7 @@ class Tipo_alarma__model extends CI_Model {
         }else{
             $this->db->insert('tipo_alarma',$post);
         }
+        return $this->db->insert_id();
         
     }
     function delete_tipo_alarma($post){
@@ -52,9 +53,15 @@ class Tipo_alarma__model extends CI_Model {
                                 $this->db->select('analisis_resultados');
 //                                $this->db->select('id_niveles_alarma');
                         $this->db->where('ACTIVO','S');
+                        if(empty($post))$this->db->where("1",2);
         $datos=$this->db->get('tipo_alarma');
         $datos=$datos->result();
         return $datos;
+    }
+    function save_nivel_tipo($data){
+        
+        $this->db->insert_batch('nivel_tipo_alarma',$data);
+        
     }
 }
 ?>

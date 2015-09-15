@@ -73,6 +73,7 @@ class Clientes__model extends CI_Model {
         $this->db->join('tipo_cliente','clientes.id_tipo_cliente=tipo_cliente.id_tipo_cliente');
         $this->db->where('clientes.ACTIVO', 'S');
         $this->db->where('tipo_cliente.ACTIVO', 'S');
+        if(empty($post))$this->db->where("1",2);
         $datos = $this->db->get('clientes');
         $datos = $datos->result();
         return $datos;

@@ -131,6 +131,7 @@ class Equipos__model extends CI_Model {
         $this->db->select('responsable');
         $this->db->join('tipo_equipo', 'equipos.tipo_equipo_cod=tipo_equipo.tipo_equipo_cod');
         $this->db->where('equipos.ACTIVO', 'S');
+        if(empty($post))$this->db->where("1",2);
         $datos = $this->db->get('equipos');
         $datos = $datos->result();
         return $datos;

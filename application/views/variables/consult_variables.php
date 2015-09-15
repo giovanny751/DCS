@@ -35,6 +35,7 @@
 
 
         </div>
+        <button type="button" class="btn btn-danger limpiar">Limpiar</button>
         <button class="btn btn-success">Consultar</button>
 </form>
 
