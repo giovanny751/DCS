@@ -110,7 +110,7 @@
                                                     ?>
                                                     <tr>
                                                         <td>
-                                                            <input type="hidden" value="<?php echo $c->id_niveles_alarma ?>" class="contacto_id" name="contacto_id[]">
+                                                            <input type="hidden" value="<?php echo $c->id_niveles_alarma ?>" class="equipo_id" name="equipo_id[]">
                                                             <?php echo $c->descripcion ?></td>
                                                         <td><a class="eliminar" href="javascript:">Eliminar</a></td>
                                                     </tr>
@@ -167,6 +167,7 @@
             $('#id_niveles_alarma').val('');
         } else {
             alerta('rojo', 'Cadena no valida');
+            $('#id_niveles_alarma').val('');
         }
     })
     $('body').delegate('.eliminar', 'click', function () {
