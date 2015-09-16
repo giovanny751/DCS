@@ -75,6 +75,14 @@ class Equipos extends My_Controller {
         $this->data['equipo_examen_variable'] = $this->Equipos__model->equipo_examen_variable($this->data['post']);
         $this->layout->view('equipos/index', $this->data);
     }
+    function edit_equipos2() {
+        $this->data['post'] = $this->input->post();
+        if (!isset($this->data['post']['campo']))
+            redirect('index.php/Equipos/consult_equipos', 'location');
+        $this->data['datos'] = $this->Equipos__model->edit_equipos($this->data['post']);
+        $this->data['equipo_examen_variable'] = $this->Equipos__model->equipo_examen_variable($this->data['post']);
+        $this->load->view('equipos/index', $this->data);
+    }
 
     function autocomplete_ubicacion() {
         $info = auto("equipos", "id_equipo", "ubicacion", $this->input->get('term'));

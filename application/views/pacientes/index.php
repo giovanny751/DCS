@@ -196,19 +196,27 @@
                             <br>
                         </div>
                     </div>
-<!--                    <div class="row">
+                    <div class="row">
                         <div class="col-md-2">
                             <label for="examen_cod">
-                                Examen                        </label>
+                                Nombre paciente                        </label>
                         </div>
                         <div class="col-md-3">
-                            
+                            <script>
+                                $('document').ready(function () {
+                                    $('#nom_paciente').autocomplete({
+                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_nom_paciente") ?>",
+                                        minLength: 3
+                                    });
+                                });
+                            </script>
+                            <input id="nom_paciente" class=" form-control " type="text" name="nom_paciente" value="">
                         </div>
                         <div class="col-md-3">
-                            <a href="javascript:" id="agregar">Copiar</a>
+                            <a href="javascript:" id="copiar">Copiar</a>
                             <br>
                         </div>
-                    </div>-->
+                    </div>
                     <div style="width: 80%;margin: 0 auto;">
                         <div class="row">
                             <table class="table">
@@ -267,7 +275,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="observaciones_programas">
                                 *                             Observaciones                        </label>
                         </div>
@@ -574,8 +582,8 @@
                             </table>
                         </div>
                         <div class="row">
-                        <center><a href="<?php echo base_url('index.php/Aseguradoras');?>" class="btn btn-success" id="">Nueva Aseguradora</a></center>
-                    </div>
+                            <center><a href="<?php echo base_url('index.php/Aseguradoras'); ?>" class="btn btn-success" id="">Nueva Aseguradora</a></center>
+                        </div>
                     </div>
                     <script>
                         $('body').delegate(".eliminaraseguradora", "click", function () {
@@ -614,6 +622,22 @@
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
     </form>
 </div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <span id="body_modal"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <script>
 
     $('#agregar_equipo').click(function () {
@@ -625,7 +649,7 @@
             html += "<td>" + info2[0] + "</td>";
             html += "<td>" + info2[1] + "</td>";
             html += "<td>" + info2[2] + "</td>";
-            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>&nbsp;&nbsp;<a href="javascript:" class="vista_equipo" tabla="equipos" campo="id_equipo" url="Equipos/edit_Equipos2" codigo="' + info2[3] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
             html += "</tr>";
             $('#tabla_equipo').append(html);
             $('#descripcion').val('');
@@ -657,7 +681,7 @@
             html += "<td>" + info2[4] + "</td>";
             html += "<td>" + info2[5] + "</td>";
             html += "<td>" + info2[6] + "</td>";
-            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a> &nbsp;&nbsp;<a href="javascript:" class="vista_contacto" tabla="contacto" campo="contacto_id" url="Contacto/edit_contacto2" codigo="' + info2[7] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
             html += "</tr>";
             $('#tabla_contacto').append(html);
             $('#contacto_id2').val('');
@@ -686,7 +710,7 @@
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
             html += "<td>" + info2[4] + "</td>";
-            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a> <a href="javascript:" class="vista" tabla="hospitales" campo="codigo_hospital" url="Hospitales/edit_hospitales2" codigo="' + info2[5] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
             html += "</tr>";
             $('#hospitales').val('');
             $('#tabla_contacto2').append(html);
@@ -715,7 +739,7 @@
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
             html += "<td>" + info2[4] + "</td>";
-            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>  &nbsp;<a href="javascript:" class="vista_aseguradora" url="Aseguradoras/edit_aseguradoras2" campo="aseguradora_id" codigo="' + info2[5] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Vista previa</a>' + "</td>";
             html += "</tr>";
             $('#tabla_contacto3').append(html);
             $('#aseguradora').val('');
@@ -723,26 +747,26 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('body').delegate('.variable_codigo','change',function(){
-        var y=new Array();
-        $('.variable_codigo').each(function(){
-            if($.inArray($(this).val(),y)!= -1){
+    $('body').delegate('.variable_codigo', 'change', function () {
+        var y = new Array();
+        $('.variable_codigo').each(function () {
+            if ($.inArray($(this).val(), y) != -1) {
                 $(this).val('')
-                alerta('rojo','Existe una variable con este examen.')
-            }else{
+                alerta('rojo', 'Existe una variable con este examen.')
+            } else {
                 y.push($(this).val())
             }
         })
 //        console.log(y)
     })
-    $('body').delegate('.tipo_equipo_cod','change',function(){
-        var y=new Array();
-        $('.tipo_equipo_cod').each(function(){
-            if($.inArray($(this).val()+"-"+$(this).prev().val(),y)!= -1){
+    $('body').delegate('.tipo_equipo_cod', 'change', function () {
+        var y = new Array();
+        $('.tipo_equipo_cod').each(function () {
+            if ($.inArray($(this).val() + "-" + $(this).prev().val(), y) != -1) {
                 $(this).val('El Tipo ya existe con el equipo')
-                alerta('rojo','')
-            }else{
-                y.push($(this).val()+"-"+$(this).prev().val())
+                alerta('rojo', '')
+            } else {
+                y.push($(this).val() + "-" + $(this).prev().val())
             }
         })
 //        console.log(y)
@@ -793,8 +817,93 @@
 
         })
     })
+    $('#copiar').click(function () {
+
+//        var examen = $('#examen_cod option:selected').text();
+        var nom_paciente = $('#nom_paciente').val();
+        if (nom_paciente == '') {
+            alerta('rojo', 'Seleccione un paciente');
+            return false;
+        }
+        var info = $('#nom_paciente').val();
+        var info2 = info.split(' :: ');
+        if (info2.length == 3) {
+            var url = '<?php echo base_url('index.php/Pacientes/copiar_paciente') ?>'
+            $.post(url, {id_paciente: info2[2], campo: 'id_paciente'})
+                    .done(function (msg) {
+                        $('#agregar_examen').html(msg);
+                        $('#nom_paciente').val('')
+                    }).fail(function () {
+            })
+        } else {
+            alerta('rojo', 'Cadena no valida');
+        }
+
+
+    })
     $('body').delegate('.eliminar', 'click', function () {
         $(this).parent().parent().remove();
+    })
+
+    $('body').delegate('.vista', 'click', function () {
+        var codigo_hospital = $(this).attr('codigo');
+        var campo = $(this).attr('campo');
+        var tabla = $(this).attr('tabla');
+        var url2 = $(this).attr('url');
+        var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
+        $.post(url, {codigo_hospital: codigo_hospital, campo: campo, tabla: tabla})
+                .done(function (msg) {
+                    $('#body_modal').html(msg);
+                    $('#body_modal #boton_guardar').remove()
+                }).fail(function () {
+
+        })
+
+    })
+    $('body').delegate('.vista_aseguradora', 'click', function () {
+        var aseguradora_id = $(this).attr('codigo');
+        var campo = $(this).attr('campo');
+        var tabla = $(this).attr('tabla');
+        var url2 = $(this).attr('url');
+        var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
+        $.post(url, {aseguradora_id: aseguradora_id, campo: campo, tabla: tabla})
+                .done(function (msg) {
+                    $('#body_modal').html(msg);
+                    $('#body_modal #boton_guardar').remove()
+                }).fail(function () {
+
+        })
+
+    })
+    $('body').delegate('.vista_equipo', 'click', function () {
+        var id_equipo = $(this).attr('codigo');
+        var campo = $(this).attr('campo');
+        var tabla = $(this).attr('tabla');
+        var url2 = $(this).attr('url');
+        var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
+        $.post(url, {id_equipo: id_equipo, campo: campo, tabla: tabla})
+                .done(function (msg) {
+                    $('#body_modal').html(msg);
+                    $('#body_modal #boton_guardar').remove()
+                }).fail(function () {
+
+        })
+
+    })
+    $('body').delegate('.vista_contacto', 'click', function () {
+        var contacto_id = $(this).attr('codigo');
+        var campo = $(this).attr('campo');
+        var tabla = $(this).attr('tabla');
+        var url2 = $(this).attr('url');
+        var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
+        $.post(url, {contacto_id: contacto_id, campo: campo, tabla: tabla})
+                .done(function (msg) {
+                    $('#body_modal').html(msg);
+                    $('#body_modal #boton_guardar').remove()
+                }).fail(function () {
+
+        })
+
     })
     $('#myTabs a').click(function (e) {
         e.preventDefault()

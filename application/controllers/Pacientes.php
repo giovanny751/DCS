@@ -70,6 +70,11 @@ class Pacientes extends My_Controller {
         $this->data['paciente_equipo_tipoEquipo'] = $this->Pacientes__model->paciente_equipo_tipoEquipo($this->data['post']);
         $this->layout->view('pacientes/index', $this->data);
     }
+    function copiar_paciente(){
+        $this->data['post'] = $this->input->post();
+        $this->data['paciente_examen_variable'] = $this->Pacientes__model->paciente_examen_variable($this->data['post']);
+        echo $d=$this->load->view('pacientes/copiar_paciente', $this->data,true);
+    }
     function eliminarcontacto(){
         
         $this->data['datos'] = $this->Pacientes__model->eliminar_pacientes($this->input->post("con_id"));
@@ -105,6 +110,23 @@ class Pacientes extends My_Controller {
     function autocomplete_nivel() {
         $info = $this->auto6("niveles_alarma", "id_niveles_alarma", "descripcion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_nom_paciente() {
+        $info = $this->auto7("pacientes", "id_paciente", "nombres", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function auto7($tabla,$idcampo,$nombrecampo,$letra) {
+            $search = buscador($tabla,$nombrecampo,$letra,'cedula_paciente');
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->$nombrecampo,
+                       'value' => $result->cedula_paciente." :: ".$result->nombres." :: ".$result->id_paciente
+                );
+                $h++;
+            }
+            return $data;
     }
     function auto6($tabla,$idcampo,$nombrecampo,$letra) {
             $search = buscador($tabla,$nombrecampo,$letra);

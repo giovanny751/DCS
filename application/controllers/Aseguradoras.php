@@ -49,6 +49,13 @@ class Aseguradoras extends My_Controller {
         $this->data['datos']=$this->Aseguradoras__model->edit_aseguradoras($this->data['post']);
         $this->layout->view('aseguradoras/index', $this->data);
     }
+    function edit_aseguradoras2(){
+        $this->data['post']=$this->input->post();
+        if(!isset($this->data['post']['campo']))
+        redirect('index.php/Aseguradoras/consult_aseguradoras', 'location');
+        $this->data['datos']=$this->Aseguradoras__model->edit_aseguradoras($this->data['post']);
+        $this->load->view('aseguradoras/index', $this->data);
+    }
                     function autocomplete_nombre(){
                   $info = auto("aseguradoras","aseguradora_id","nombre",$this->input->get('term'));
                   $this->output->set_content_type('application/json')->set_output(json_encode($info));

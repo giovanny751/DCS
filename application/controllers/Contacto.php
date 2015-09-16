@@ -48,6 +48,13 @@ class Contacto extends My_Controller {
         $this->data['datos'] = $this->Contacto__model->edit_contacto($this->data['post']);
         $this->layout->view('contacto/index', $this->data);
     }
+    function edit_contacto2() {
+        $this->data['post'] = $this->input->post();
+        if (!isset($this->data['post']['campo']))
+            redirect('index.php/Contacto/consult_contacto', 'location');
+        $this->data['datos'] = $this->Contacto__model->edit_contacto($this->data['post']);
+        $this->load->view('contacto/index', $this->data);
+    }
 
     function autocomplete_nombre() {
         $info = auto("contacto", "contacto_id", "nombre", $this->input->get('term'));
