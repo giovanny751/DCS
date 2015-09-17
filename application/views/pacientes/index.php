@@ -287,6 +287,22 @@
                             <br>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="foto">Documento </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="file" value="<?php echo (isset($datos[0]->documento) ? $datos[0]->documento : '' ) ?>" class="   " id="documento" name="documento">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <?php if (!empty($id) && $datos[0]->documento != '') { ?>
+                            <a href="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->documento ?>">Documento</a>
+                            <?php } ?>    
+                        </div>
+
+                    </div>
                 </div>
                 <!-- Tab Contactos -->
                 <div role="tabpanel" class="tab-pane" id="tabContactos">
@@ -381,7 +397,7 @@
                                 Tipo                        </label>
                         </div>
                         <div class="col-md-3">
-                            <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio tipo_equipo_cod", "tipo_equipo", "tipo_equipo_cod", "referencia", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
+                            <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control  tipo_equipo_cod", "tipo_equipo", "tipo_equipo_cod", "referencia", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
                             <br>
                         </div>
                     </div>
@@ -392,9 +408,9 @@
                         </div>
                         <div class="col-md-3">
                             <script>
-                                $('document').ready(function () {
+                                $('document').ready(function() {
                                     $('#descripcion').autocomplete({
-                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_descripcion") ?>/"+$('#tipo_equipo_cod').val(),
+                                        source: "<?php echo base_url("index.php/Pacientes/autocomplete_descripcion") ?>?ss=" + $('#tipo_equipo_cod').val()+"",
                                         minLength: 3
                                     });
                                 });
@@ -429,6 +445,7 @@
                                                     <tr>
                                                         <td>
                                                             <input type='hidden' name='equipo_id[]' class='equipo_id' value='<?php echo $value->id_equipo; ?>'>
+                                                            <?php echo $value->referencia; ?>
                                                         </td>
                                                         <td>
                                                             <?php echo $value->descripcion; ?>
@@ -471,12 +488,12 @@
                             <a href="javascript:" id="agregar_contacto2">Agregar</a>
                         </div>
                         <script>
-                    $('document').ready(function() {
-                        $('#hospitales').autocomplete({
-                            source: "<?php echo base_url("index.php//Pacientes/autocomplete_hospitales") ?>",
-                            minLength: 3
-                        });
-                    });
+                            $('document').ready(function() {
+                                $('#hospitales').autocomplete({
+                                    source: "<?php echo base_url("index.php//Pacientes/autocomplete_hospitales") ?>",
+                                    minLength: 3
+                                });
+                            });
                         </script>
                     </div>    
                     <br>
@@ -932,16 +949,7 @@
     })
 
     function campos() {
-        $('input[type="file"]').each(function(key, val) {
-            var img = $(this).val();
-            if (img != "") {
-                var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
-                if (r === false) {
-                    alert('Tipo de archivo no valido');
-                    return false;
-                }
-            }
-        });
+
 
 
 

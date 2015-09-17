@@ -32,29 +32,28 @@ class Login extends My_Controller {
     }
 
     function verify() {
-        
+
 //        echo $this->input->post('username')."***".$this->input->post('password');die;
-        
+
         $user = $this->user_model->get_user($this->input->post('username'), $this->input->post('password'));
         if (!empty($user) > 0) {
             $this->data['username'] = $user[0]["usu_email"];
-            $this->data['password'] = $user[0]["usu_contrasena"];      
+            $this->data['password'] = $user[0]["usu_contrasena"];
             if ($user[0]['usu_politicas'] == 0) {
                 $this->data['inicio'] = $this->user_model->admin_inicio();
                 $this->load->view('login/politicas', $this->data);
             } else {
                 $this->acceso($user);
                 $data[] = array(
-                    'usu_id'=>$user[0]['usu_id'],  
-                    'ing_fechaIngreso'=>date('Y-m-d H:i:s')   
+                    'usu_id' => $user[0]['usu_id'],
+                    'ing_fechaIngreso' => date('Y-m-d H:i:s')
                 );
                 $this->Ingreso_model->insertingreso($data);
-                if(!empty($user[0]['rol_id'])){
+                if (!empty($user[0]['rol_id'])) {
                     redirect('index.php/presentacion/principal', 'location');
-                }else{
+                } else {
                     redirect('index.php/presentacion/rol', 'location');
                 }
-                
             }
         } else {
             $this->session->set_flashdata(array('message' => 'Su n&uacute;mero de documento no se encuentra registrado en el sistema.', 'message_type' => 'warning'));
@@ -67,6 +66,7 @@ class Login extends My_Controller {
         $this->session->sess_destroy();
         redirect('index.php/login', 'location');
     }
+
     function acceso($user = null, $id = NULL) {
         $i = 0;
         if (!empty($id)) {
@@ -79,12 +79,16 @@ class Login extends My_Controller {
             redirect($ruta, 'location');
         }
     }
+
     function reset() {
         $mail = $this->input->post('email');
-        $password = $this->user_model->reset($mail);
-        $actualizar = $this->user_model->actualizar($mail);
-        $data = mail($mail, "Actualizacion de Contraseña", 'clave: ' . $password);
-        
+
+        $datos = $this->user_model->confirmar($mail);
+        if (count($datos) > 0) {
+            $password = $this->user_model->reset($mail);
+            $actualizar = $this->user_model->actualizar($mail);
+            $data = mail($mail, "Actualizacion de Contraseña", 'clave: ' . $password);
+        }
         redirect('index.php', 'location');
     }
 

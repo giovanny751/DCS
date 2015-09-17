@@ -34,6 +34,7 @@ class Pacientes extends My_Controller {
     function save_pacientes() {
         $post = $this->input->post();
         $post['foto'] = basename($_FILES['foto']['name']);
+        $post['documento'] = basename($_FILES['documento']['name']);
         $id = $this->Pacientes__model->save_pacientes($post);
 
         $targetPath = "./uploads/pacientes";
@@ -46,6 +47,10 @@ class Pacientes extends My_Controller {
         }
         $target_path = $targetPath . '/' . basename($_FILES['foto']['name']);
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $target_path)) {
+            
+        }
+        $target_path = $targetPath . '/' . basename($_FILES['documento']['name']);
+        if (move_uploaded_file($_FILES['documento']['tmp_name'], $target_path)) {
             
         }
 

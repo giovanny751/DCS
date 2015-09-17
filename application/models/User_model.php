@@ -39,10 +39,16 @@ class User_model extends CI_Model {
         $this->db->get('user');
         return $datos;
     }
-    function actualizar($mail) {
-        $this->db->set('usu_cambiocontrasena', 1);
+    function confirmar($mail) {
         $this->db->where('usu_email', $mail);
-        $this->db->get('user');
+        $datos=$this->db->get('user');
+        $datos=$datos->result();
+        return $datos;
+    }
+    function actualizar($mail) {
+//        $this->db->set('usu_cambiocontrasena', 1);
+        $this->db->where('usu_email', $mail);
+        $this->db->update('user');
         return $datos;
     }
 
