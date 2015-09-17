@@ -16,6 +16,9 @@ class Pacientes__model extends CI_Model {
             $tipo_equipo_cod = $post['tipo_equipo_cod'];
             unset($post['tipo_equipo_cod']);
         }
+        if (isset($post['nom_paciente'])) {
+            unset($post['nom_paciente']);
+        }
 
         if (isset($post['examen']))
             $examen = $post['examen'];

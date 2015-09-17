@@ -172,10 +172,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="observaciones"> * Observaciones </label>
+                            <label for="observaciones">  Observaciones </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->observaciones) ? $datos[0]->observaciones : '' ) ?>" class=" form-control obligatorio  " id="observaciones" name="observaciones">
+                            <textarea class=" form-control  " id="observaciones" name="observaciones"><?php echo (isset($datos[0]->observaciones) ? $datos[0]->observaciones : '' ) ?></textarea>
                             <br>
                         </div>
                     </div>
@@ -277,11 +277,10 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label for="observaciones_programas">
-                                *                             Observaciones                        </label>
+                                Observaciones                        </label>
                         </div>
-                        <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->observaciones_programas) ? $datos[0]->observaciones_programas : '' ) ?>" class=" form-control obligatorio  " id="observaciones_programas" name="observaciones_programas">
-
+                        <div class="col-md-6">
+                            <textarea class=" form-control   " id="observaciones_programas" name="observaciones_programas"><?php echo (isset($datos[0]->observaciones_programas) ? $datos[0]->observaciones_programas : '' ) ?></textarea>
 
                             <br>
                         </div>
