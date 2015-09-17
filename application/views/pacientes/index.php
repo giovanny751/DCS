@@ -158,16 +158,18 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="cliente">* Cliente </label>
-                        </div>
-                        <div class="col-md-3">
-                            <?php echo lista("cliente", "cliente", "form-control obligatorio", "clientes", "id_cliente", "nombre", (isset($datos[0]->cliente) ? $datos[0]->cliente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                        </div>
-                        <div class="col-md-3">
                             <label for="medico">* Médico </label>
                         </div>
                         <div class="col-md-3">
                             <?php echo lista("medico", "medico", "form-control obligatorio", "medicos", "medico_codigo", "nombre", (isset($datos[0]->medico) ? $datos[0]->medico : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cliente">* Cliente </label>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="clientess">
+                                <?php echo lista("cliente", "cliente", "form-control obligatorio", "clientes", "id_cliente", "nombre", (isset($datos[0]->cliente) ? $datos[0]->cliente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                            </span>
                         </div>
                     </div>
                     <div class="row">
@@ -203,7 +205,7 @@
                         </div>
                         <div class="col-md-3">
                             <script>
-                                $('document').ready(function () {
+                                $('document').ready(function() {
                                     $('#nom_paciente').autocomplete({
                                         source: "<?php echo base_url("index.php//Pacientes/autocomplete_nom_paciente") ?>",
                                         minLength: 3
@@ -295,7 +297,7 @@
                         </div>
                         <div class="col-md-3">
                             <script>
-                                $('document').ready(function () {
+                                $('document').ready(function() {
                                     $('#contacto_id2').autocomplete({
                                         source: "<?php echo base_url("index.php//Pacientes/autocomplete_contacto_id") ?>",
                                         minLength: 3
@@ -355,16 +357,16 @@
                     </div>
                 </div>
                 <script>
-                    $('body').delegate(".eliminarcontacto", "click", function () {
+                    $('body').delegate(".eliminarcontacto", "click", function() {
 
                         var propio = $(this);
                         if (confirm("Esta seguro de eliminar el contacto")) {
                             $.post("<?php echo base_url("index.php/pacientes/eliminarcontacto") ?>",
                                     {con_id: $(this).attr('con_id')}
-                            ).done(function (msg) {
+                            ).done(function(msg) {
                                 propio.parents('tr').remove();
                                 alerta("verde", "Eliminado con Exito")
-                            }).fail(function (msg) {
+                            }).fail(function(msg) {
 
                             });
                         }
@@ -373,7 +375,16 @@
                 <!-- Tab Equipos -->
                 <div role="tabpanel" class="tab-pane" id="tabEquipos">
                     <br />
-
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="descripcion">
+                                Tipo                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio tipo_equipo_cod", "tipo_equipo", "tipo_equipo_cod", "referencia", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
+                            <br>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-2">
                             <label for="descripcion">
@@ -383,7 +394,7 @@
                             <script>
                                 $('document').ready(function () {
                                     $('#descripcion').autocomplete({
-                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_descripcion") ?>",
+                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_descripcion") ?>/"+$('#tipo_equipo_cod').val(),
                                         minLength: 3
                                     });
                                 });
@@ -396,6 +407,7 @@
                             <br>
                         </div>
                     </div>
+
 
                     <div class="row">
                         <div style="width: 80%;margin: 0 auto;">
@@ -417,7 +429,6 @@
                                                     <tr>
                                                         <td>
                                                             <input type='hidden' name='equipo_id[]' class='equipo_id' value='<?php echo $value->id_equipo; ?>'>
-                                                            <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio tipo_equipo_cod", "tipo_equipo", "tipo_equipo_cod", "referencia", $value->tipo_equipo_cod, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
                                                         </td>
                                                         <td>
                                                             <?php echo $value->descripcion; ?>
@@ -460,12 +471,12 @@
                             <a href="javascript:" id="agregar_contacto2">Agregar</a>
                         </div>
                         <script>
-                            $('document').ready(function () {
-                                $('#hospitales').autocomplete({
-                                    source: "<?php echo base_url("index.php//Pacientes/autocomplete_hospitales") ?>",
-                                    minLength: 3
-                                });
-                            });
+                    $('document').ready(function() {
+                        $('#hospitales').autocomplete({
+                            source: "<?php echo base_url("index.php//Pacientes/autocomplete_hospitales") ?>",
+                            minLength: 3
+                        });
+                    });
                         </script>
                     </div>    
                     <br>
@@ -509,16 +520,16 @@
                         </div>
                     </div>
                     <script>
-                        $('body').delegate(".eliminarhospital", "click", function () {
+                        $('body').delegate(".eliminarhospital", "click", function() {
 
                             var propio = $(this);
                             if (confirm("Esta seguro de eliminar")) {
                                 $.post("<?php echo base_url("index.php/pacientes/eliminar_hospitalpaciente") ?>",
                                         {id: $(this).attr('tid')}
-                                ).done(function (msg) {
+                                ).done(function(msg) {
                                     propio.parents('tr').remove();
                                     alerta("verde", "Eliminado con Exito")
-                                }).fail(function (msg) {
+                                }).fail(function(msg) {
 
                                 });
                             }
@@ -537,7 +548,7 @@
                             <a href="javascript:" id="agregar_contacto3">Agregar</a>
                         </div>
                         <script>
-                            $('document').ready(function () {
+                            $('document').ready(function() {
                                 $('#aseguradora').autocomplete({
                                     source: "<?php echo base_url("index.php//Pacientes/autocomplete_aseguradora") ?>",
                                     minLength: 3
@@ -585,16 +596,16 @@
                         </div>
                     </div>
                     <script>
-                        $('body').delegate(".eliminaraseguradora", "click", function () {
+                        $('body').delegate(".eliminaraseguradora", "click", function() {
 
                             var propio = $(this);
                             if (confirm("Esta seguro de eliminar")) {
                                 $.post("<?php echo base_url("index.php/pacientes/eliminar_aseguradorapaciente") ?>",
                                         {id: $(this).attr('tid')}
-                                ).done(function (msg) {
+                                ).done(function(msg) {
                                     propio.parents('tr').remove();
                                     alerta("verde", "Eliminado con Exito")
-                                }).fail(function (msg) {
+                                }).fail(function(msg) {
 
                                 });
                             }
@@ -638,13 +649,24 @@
     </div>
 </div>
 <script>
-
-    $('#agregar_equipo').click(function () {
+    $('#tipo_cliente').change(function() {
+        var url = "<?php echo base_url('index.php/Pacientes/cliente') ?>"
+        $.post(url, {id_tipo_cliente: $(this).val()})
+                .done(function(msg) {
+                    $('.clientess').html(msg);
+                })
+                .fail(function() {
+                    alerta('rojo', 'Error al consultar');
+                    $('#tipo_cliente').val('');
+                    $('.clientess').html('');
+                })
+    })
+    $('#agregar_equipo').click(function() {
         var info = $('#descripcion').val();
         var info2 = info.split(' :: ');
-        if (info2.length == 4) {
+        if (info2.length == 5) {
             var html = "<tr>";
-            html += "<td><input type='hidden' name='equipo_id[]' class='equipo_id' value='" + info2[3] + "'><?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control obligatorio tipo_equipo_cod", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod) ? $datos[0]->tipo_equipo_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?></td>";
+            html += "<td><input type='hidden' name='equipo_id[]' class='equipo_id' value='" + info2[3] + "'>" + info2[4] + "</td>";
             html += "<td>" + info2[0] + "</td>";
             html += "<td>" + info2[1] + "</td>";
             html += "<td>" + info2[2] + "</td>";
@@ -656,12 +678,12 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('#agregar_contacto').click(function () {
+    $('#agregar_contacto').click(function() {
 
         var info = $('#contacto_id2').val();
         var info2 = info.split(' :: ');
         var r = 0;
-        $('.contacto_id').each(function () {
+        $('.contacto_id').each(function() {
             if ($(this).val() == info2[7]) {
                 alerta('rojo', 'Contacto ya existe');
                 $('#contacto_id2').val('');
@@ -688,11 +710,11 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('#agregar_contacto2').click(function () {
+    $('#agregar_contacto2').click(function() {
         var info = $('#hospitales').val();
         var info2 = info.split(' :: ');
         var r = 0;
-        $('.hospitales2').each(function () {
+        $('.hospitales2').each(function() {
             if ($(this).val() == info2[5]) {
                 alerta('rojo', 'Hospitales ya existe');
                 $('#contacto_id2').val('');
@@ -717,11 +739,11 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('#agregar_contacto3').click(function () {
+    $('#agregar_contacto3').click(function() {
         var info = $('#aseguradora').val();
         var info2 = info.split(' :: ');
         var r = 0;
-        $('.aseguradora2').each(function () {
+        $('.aseguradora2').each(function() {
             if ($(this).val() == info2[5]) {
                 alerta('rojo', 'Aseguradora ya existe');
                 $('#contacto_id2').val('');
@@ -746,9 +768,9 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('body').delegate('.variable_codigo', 'change', function () {
+    $('body').delegate('.variable_codigo', 'change', function() {
         var y = new Array();
-        $('.variable_codigo').each(function () {
+        $('.variable_codigo').each(function() {
             if ($.inArray($(this).val(), y) != -1) {
                 $(this).val('')
                 alerta('rojo', 'Existe una variable con este examen.')
@@ -758,9 +780,9 @@
         })
 //        console.log(y)
     })
-    $('body').delegate('.tipo_equipo_cod', 'change', function () {
+    $('body').delegate('.tipo_equipo_cod', 'change', function() {
         var y = new Array();
-        $('.tipo_equipo_cod').each(function () {
+        $('.tipo_equipo_cod').each(function() {
             if ($.inArray($(this).val() + "-" + $(this).prev().val(), y) != -1) {
                 $(this).val('El Tipo ya existe con el equipo')
                 alerta('rojo', '')
@@ -770,7 +792,7 @@
         })
 //        console.log(y)
     })
-    $('#agregar').click(function () {
+    $('#agregar').click(function() {
 
         var examen = $('#examen_cod option:selected').text();
         var id_examen = $('#examen_cod').val();
@@ -780,7 +802,7 @@
         }
         var url = '<?php echo base_url('index.php/Equipos/traer_variables') ?>'
         $.post(url, {id_examen: id_examen})
-                .done(function (msg) {
+                .done(function(msg) {
                     var html = "<tr>";
                     html += "<td>";
                     html += "<input type='hidden' name='examen[]' value='" + id_examen + "'>" + examen + " ";
@@ -812,11 +834,11 @@
                     html += "</tr>";
                     $('#examen_cod').val('');
                     $('#agregar_examen').append(html)
-                }).fail(function () {
+                }).fail(function() {
 
         })
     })
-    $('#copiar').click(function () {
+    $('#copiar').click(function() {
 
 //        var examen = $('#examen_cod option:selected').text();
         var nom_paciente = $('#nom_paciente').val();
@@ -829,10 +851,10 @@
         if (info2.length == 3) {
             var url = '<?php echo base_url('index.php/Pacientes/copiar_paciente') ?>'
             $.post(url, {id_paciente: info2[2], campo: 'id_paciente'})
-                    .done(function (msg) {
+                    .done(function(msg) {
                         $('#agregar_examen').html(msg);
                         $('#nom_paciente').val('')
-                    }).fail(function () {
+                    }).fail(function() {
             })
         } else {
             alerta('rojo', 'Cadena no valida');
@@ -840,77 +862,77 @@
 
 
     })
-    $('body').delegate('.eliminar', 'click', function () {
+    $('body').delegate('.eliminar', 'click', function() {
         $(this).parent().parent().remove();
     })
 
-    $('body').delegate('.vista', 'click', function () {
+    $('body').delegate('.vista', 'click', function() {
         var codigo_hospital = $(this).attr('codigo');
         var campo = $(this).attr('campo');
         var tabla = $(this).attr('tabla');
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {codigo_hospital: codigo_hospital, campo: campo, tabla: tabla})
-                .done(function (msg) {
+                .done(function(msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
-                }).fail(function () {
+                }).fail(function() {
 
         })
 
     })
-    $('body').delegate('.vista_aseguradora', 'click', function () {
+    $('body').delegate('.vista_aseguradora', 'click', function() {
         var aseguradora_id = $(this).attr('codigo');
         var campo = $(this).attr('campo');
         var tabla = $(this).attr('tabla');
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {aseguradora_id: aseguradora_id, campo: campo, tabla: tabla})
-                .done(function (msg) {
+                .done(function(msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
-                }).fail(function () {
+                }).fail(function() {
 
         })
 
     })
-    $('body').delegate('.vista_equipo', 'click', function () {
+    $('body').delegate('.vista_equipo', 'click', function() {
         var id_equipo = $(this).attr('codigo');
         var campo = $(this).attr('campo');
         var tabla = $(this).attr('tabla');
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {id_equipo: id_equipo, campo: campo, tabla: tabla})
-                .done(function (msg) {
+                .done(function(msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
-                }).fail(function () {
+                }).fail(function() {
 
         })
 
     })
-    $('body').delegate('.vista_contacto', 'click', function () {
+    $('body').delegate('.vista_contacto', 'click', function() {
         var contacto_id = $(this).attr('codigo');
         var campo = $(this).attr('campo');
         var tabla = $(this).attr('tabla');
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {contacto_id: contacto_id, campo: campo, tabla: tabla})
-                .done(function (msg) {
+                .done(function(msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
-                }).fail(function () {
+                }).fail(function() {
 
         })
 
     })
-    $('#myTabs a').click(function (e) {
+    $('#myTabs a').click(function(e) {
         e.preventDefault()
         $(this).tab('show')
     })
 
     function campos() {
-        $('input[type="file"]').each(function (key, val) {
+        $('input[type="file"]').each(function(key, val) {
             var img = $(this).val();
             if (img != "") {
                 var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
@@ -931,7 +953,7 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function (tecla) {
+    $('body').delegate('.number', 'keypress', function(tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });

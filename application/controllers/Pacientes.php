@@ -104,8 +104,23 @@ class Pacientes extends My_Controller {
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
     function autocomplete_descripcion() {
-        $info = $this->auto5("equipos", "id_equipo", "descripcion", $this->input->get('term'));
+        $info = $this->auto5("equipos", "id_equipo", "equipos.descripcion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function auto5($tabla,$idcampo,$nombrecampo,$letra) {
+        $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod='.$tabla.'.tipo_equipo_cod');
+            $search = buscador($tabla,$nombrecampo,$letra,'serial');
+//            print_r($search);
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->descripcion,
+                       'value' => $result->descripcion." :: ".$result->serial." :: ".$result->fecha_ultima_calibracion." :: ".$result->id_equipo." :: ".$result->referencia
+                );
+                $h++;
+            }
+            return $data;
     }
     function autocomplete_nivel() {
         $info = $this->auto6("niveles_alarma", "id_niveles_alarma", "descripcion", $this->input->get('term'));
@@ -154,19 +169,7 @@ class Pacientes extends My_Controller {
             }
             return $data;
     }
-    function auto5($tabla,$idcampo,$nombrecampo,$letra) {
-            $search = buscador($tabla,$nombrecampo,$letra,'serial');
-            $h = 0;
-            foreach($search as $result){
-                $data[$h] = array(
-                    'id' => $result->$idcampo,
-                       'label' => $result->$nombrecampo,
-                       'value' => $result->descripcion." :: ".$result->serial." :: ".$result->fecha_ultima_calibracion." :: ".$result->id_equipo
-                );
-                $h++;
-            }
-            return $data;
-    }
+    
     function auto4($tabla,$idcampo,$nombrecampo,$letra) {
             $search = buscador($tabla,$nombrecampo,$letra);
             $h = 0;
@@ -208,6 +211,10 @@ class Pacientes extends My_Controller {
     function autocomplete_apellidos() {
         $info = auto("pacientes", "id_paciente", "apellidos", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function cliente(){
+        $post=$this->input->post();
+        echo lista("cliente", "cliente", "form-control obligatorio", "clientes", "id_cliente", "nombre", null, array("ACTIVO" => "S",'id_tipo_cliente'=>$post['id_tipo_cliente']), /* readOnly? */ false);
     }
 
 }

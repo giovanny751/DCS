@@ -37,7 +37,7 @@
                             *                             Lectura equipo                        </label>
                     </div>
                     <div class="col-md-3">
-                        <?php echo lista("id_lectura_equipo", "id_lectura_equipo", "form-control obligatorio", "lectura_equipo", "id_lectura_equipo", "id_paciente", (isset($datos[0]->id_lectura_equipo)?$datos[0]->id_lectura_equipo:'' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                        <?php echo lista("id_lectura_equipo", "id_lectura_equipo", "form-control obligatorio", "lectura_equipo", "id_lectura_equipo", "id_lectura_equipo", (isset($datos[0]->id_lectura_equipo)?$datos[0]->id_lectura_equipo:'' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
                     </div>
 
                     
