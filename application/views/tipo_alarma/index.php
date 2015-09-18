@@ -5,16 +5,16 @@
 </div>
 <div class='well'>
     <form action="<?php echo base_url('index.php/') . "/Tipo_alarma/save_tipo_alarma"; ?>" method="post" onsubmit="return campos()">
-        <div>
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                <li role="presentation" class="active"><a href="#tabDatos" aria-controls="tabDatos" role="tab" data-toggle="tab">General</a></li>
-                <li role="presentation"><a href="#tabSistema" aria-controls="tabSistema" role="tab" data-toggle="tab">Niveles</a></li>
+        <div class="tabContainter">
+            <ul class="tabLinks">
+                <li class="active"><a href="#tabGeneral">General</a></li>
+                <li><a href="#tabNiveles">Niveles</a></li>
+            </ul>
             </ul>
             <!-- Tab panes -->
-            <div class="tab-content">
-                <!--Tab Datos -->
-                <div role="tabpanel" class="tab-pane active" id="tabDatos">
+            <div class="tabContenido">
+                <!--Tab General -->
+                <div class="tab active" id="tabGeneral">
                     <div class="row">
 
                         <div class="col-md-3">
@@ -71,7 +71,7 @@
                         <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
                     <?php } ?>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="tabSistema">
+                <div class="tab" id="tabNiveles">
                     <div class="row">
                         <div class="col-md-12"><br><p></div>
                         <div class="col-md-3">
