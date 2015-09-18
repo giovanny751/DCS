@@ -138,9 +138,9 @@
         <?php } ?>
         <div class="row">
             <span id="boton_guardar">
-                <button class="btn btn-success" >Guardar</button> 
-                <input class="btn btn-success" type="reset" value="Limpiar">
-                <a href="<?php echo base_url('index.php') . "/Niveles_alarma/consult_niveles_alarma" ?>" class="btn btn-success">Listado </a>
+                <button class="btn btn-dcs" >Guardar</button> 
+                <input class="btn btn-dcs" type="reset" value="Limpiar">
+                <a href="<?php echo base_url('index.php') . "/Niveles_alarma/consult_niveles_alarma" ?>" class="btn btn-dcs">Listado </a>
             </span>
             <span id="boton_cargar" style="display: none">
                 <h2>Cargando ...</h2>
