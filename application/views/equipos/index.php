@@ -4,19 +4,15 @@
 </div>
 <div class='well'>
     <form action="<?php echo base_url('index.php/') . "/Equipos/save_equipos"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
-
-        <div>
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                <li role="presentation" class="active"><a href="#tabDatos" aria-controls="tabDatos" role="tab" data-toggle="tab">Datos</a></li>
-                <li role="presentation"><a href="#tabCalibracion" aria-controls="tabCalibracion" role="tab" data-toggle="tab">Calibración</a></li>
-                <li role="presentation"><a href="#tabExamenes" aria-controls="tabExamenes" role="tab" data-toggle="tab">Exámenes</a></li>
+        
+        <div class="tabContainter">
+            <ul class="tabLinks">
+                <li class="active"><a href="#tabDatos">Datos</a></li>
+                <li><a href="#tabCalibracion">Calibración</a></li>
+                <li><a href="#tabExamenes">Exámenes</a></li>
             </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <!--Tab Datos -->
-                <div role="tabpanel" class="tab-pane active" id="tabDatos">
+            <div class="tabContenido">
+                <div id="tabDatos" class="tab active">
                     <br />
                     <?php $id = (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>
                     <input type="hidden" value="<?php echo (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>" class=" form-control   " id="id_equipo" name="id_equipo">
@@ -138,8 +134,7 @@
                         </div>
                     </div>
                 </div>
-                <!--Tab Calibracion -->
-                <div role="tabpanel" class="tab-pane" id="tabCalibracion">
+                <div id="tabCalibracion" class="tab">
                     <br />
                     <div class="row">
                         <div class="col-md-3">
@@ -190,8 +185,7 @@
                         </div>
                     </div>
                 </div>
-                <!--Tab Examenes -->
-                <div role="tabpanel" class="tab-pane" id="tabExamenes">
+                <div id="tabExamenes" class="tab">
                     <br />
                     <div class="row">
                         <div class="col-md-3">
@@ -241,12 +235,9 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
-
 
         <?php if (isset($post['campo'])) { ?>
             <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
@@ -254,9 +245,9 @@
         <?php } ?>
         <div class="row">
             <span id="boton_guardar">
-                <button class="btn btn-success" >Guardar</button> 
-                <input class="btn btn-success" type="reset" value="Limpiar">
-                <a href="<?php echo base_url('index.php') . "/Equipos/consult_equipos" ?>" class="btn btn-success">Listado </a>
+                <button class="btn btn-dcs" >Guardar</button> 
+                <input class="btn btn-dcs" type="reset" value="Limpiar">
+                <a href="<?php echo base_url('index.php') . "/Equipos/consult_equipos" ?>" class="btn btn-dcs">Listado </a>
             </span>
             <span id="boton_cargar" style="display: none">
                 <h2>Cargando ...</h2>

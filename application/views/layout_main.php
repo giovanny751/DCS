@@ -53,8 +53,24 @@
 <!--<script src="<?php echo base_url('/assets/admin/pages/scripts/components-pickers.js'); ?>"></script>-->
 <script src="<?= base_url('js/jquery.blockUI.js') ?>" type="text/javascript"></script>
 
+
+<!--Fondo Letra -->
+<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+<!-- Menu Vertical -->
 <link rel="stylesheet" href="<?= base_url('css/menuVertical.css') ?>" />
 <script type="text/javascript" src="<?= base_url('js/menuVertical.js') ?>"></script>
+<!-- Tabs -->
+<link rel="stylesheet" href="<?= base_url('css/tabs.css') ?>" />
+
+<style type="text/css">
+    .btn-dcs{
+        background-color: #009FE3 !important;
+        color: white !important;
+    }
+    .form-control{
+        border-radius: 0px;
+    }
+</style>
 
 
 
@@ -175,6 +191,19 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     }
 </style>
 <script>
+    // _________________________ TABS ______________________
+    $('.tabContainter .tabLinks a').on('click', function(e)  {
+        var currentAttrValue = jQuery(this).attr('href');
+ 
+        // Show/Hide Tabs
+        $('.tabContainter ' + currentAttrValue).show().siblings().hide();
+ 
+        // Change/remove current tab to active
+        $(this).parent('li').addClass('active').siblings().removeClass('active');
+ 
+        e.preventDefault();
+    });
+    // _______________________ FIN TABS ______________________
     $('.limpiar').click(function () {
         $('select,input').val('');
     });

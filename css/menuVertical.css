@@ -12,14 +12,10 @@
 }
 .contenidoLayout{
     margin-left: 220px;
-    margin-right: 10px!important;
     box-sizing: border-box;
 }
 .container{
     padding-top: 0px !important;
-}
-body{
-    overflow: hidden;
 }
 header{
     border-bottom: 1px solid #009FE3;
