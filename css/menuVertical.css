@@ -13,6 +13,7 @@
 .contenidoLayout{
     margin-left: 220px;
     box-sizing: border-box;
+    /*width: 100px;*/
 }
 .container{
     padding-top: 0px !important;
