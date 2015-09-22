@@ -27,7 +27,17 @@ class Alarmas_generadas__model extends CI_Model {
 
     function edit_alarmas_generadas($post) {
         $this->db->where($post["campo"], $post[$post["campo"]]);
-        $datos = $this->db->get('alarmas_generadas', $post);
+        $this->db->select('alarmas_generadas.id_alarmas_generadas,pacientes.id_paciente,foto,cedula_paciente,estatura,nombres,peso,fecha_nacimiento,apellidos,lectura_equipo.fecha_creacion');
+        $this->db->select('tipo_alarma.analisis_resultados,examen_nombre,alarmas_generadas.analisis_resultado');
+        $this->db->select('lectura_numerica,alarmas_generadas.estado_id,alarmas_generadas.fecha_atencion,alarmas_generadas.descripcion');
+        $this->db->where('alarmas_generadas.ACTIVO', 'S');
+        $this->db->join('niveles_alarma', 'niveles_alarma.id_niveles_alarma=alarmas_generadas.id_niveles_alarma', 'left');
+        $this->db->join('lectura_equipo', 'lectura_equipo.id_lectura_equipo=alarmas_generadas.id_lectura_equipo', 'left');
+        $this->db->join('pacientes', 'pacientes.id_paciente=lectura_equipo.id_paciente', 'left');
+        $this->db->join('tipo_alarma', 'alarmas_generadas.id_tipo_alarma=tipo_alarma.id_tipo_alarma', 'left');
+        $this->db->join('examenes', 'tipo_alarma.examen=examenes.examen_cod', 'left');
+        $datos = $this->db->get('alarmas_generadas');
+//        echo $this->db->last_query();
         return $datos = $datos->result();
     }
 
@@ -59,16 +69,30 @@ class Alarmas_generadas__model extends CI_Model {
         if (isset($post['activo']))
             if ($post['activo'] != "")
                 $this->db->like('activo', $post['activo']);
-        $this->db->select('id_alarmas_generadas');
-        $this->db->select('niveles_alarma.descripcion');
-        $this->db->select('alarmas_generadas.descripcion descripcion2');
-        $this->db->select('alarmas_generadas.id_lectura_equipo');
-        $this->db->select('alarmas_generadas.analisis_resultado');
+        $this->db->select('alarmas_generadas.id_alarmas_generadas,cedula_paciente,nombres,apellidos,lectura_equipo.fecha_creacion');
+        $this->db->select('tipo_alarma.descripcion,tipo_alarma.analisis_resultados,examen_nombre,alarmas_generadas.analisis_resultado');
+        $this->db->select('lectura_numerica,alarmas_generadas.estado_id,alarmas_generadas.fecha_atencion,alarmas_generadas.descripcion descrip');
         $this->db->where('alarmas_generadas.ACTIVO', 'S');
-        $this->db->join('niveles_alarma', 'niveles_alarma.id_niveles_alarma=alarmas_generadas.id_niveles_alarma','left');
-        $this->db->join('lectura_equipo', 'lectura_equipo.id_lectura_equipo=alarmas_generadas.id_lectura_equipo','left');
+        $this->db->join('niveles_alarma', 'niveles_alarma.id_niveles_alarma=alarmas_generadas.id_niveles_alarma', 'left');
+        $this->db->join('lectura_equipo', 'lectura_equipo.id_lectura_equipo=alarmas_generadas.id_lectura_equipo', 'left');
+        $this->db->join('pacientes', 'pacientes.id_paciente=lectura_equipo.id_paciente', 'left');
+        $this->db->join('tipo_alarma', 'alarmas_generadas.id_tipo_alarma=tipo_alarma.id_tipo_alarma', 'left');
+        $this->db->join('examenes', 'tipo_alarma.examen=examenes.examen_cod', 'left');
         $datos = $this->db->get('alarmas_generadas');
         $datos = $datos->result();
+        return $datos;
+    }
+    function buscar_pacientes($post){
+        $this->db->where('cedula_paciente',$post['cedula']);
+        $datos=$this->db->get('pacientes');
+        $datos=$datos->result();
+        return $datos;
+    }
+    function buscar_pacientes_examen($post){
+        $this->db->select('examen_cod');
+        $this->db->where('id_paciente',$post['id_paciente']);
+        $datos=$this->db->get('paciente_examen_variable');
+        $datos=$datos->result();
         return $datos;
     }
 

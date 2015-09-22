@@ -79,7 +79,7 @@ class Tipo_alarma__model extends CI_Model {
     }
     function tipo_alarma_nivel($post) {
 
-        $this->db->where("id_tipo_alarma", $post[$post["campo"]]);
+        $this->db->where("tipo_alarma_nivel.id_tipo_alarma", $post[$post["campo"]]);
         $this->db->join("niveles_alarma", "niveles_alarma.id_niveles_alarma = tipo_alarma_nivel.id_niveles_alarma");
         $paciente = $this->db->get("tipo_alarma_nivel");
         return $paciente->result();

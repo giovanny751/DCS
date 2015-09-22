@@ -53,15 +53,26 @@
         <div class="col-md-12">
             <table class="table table-bordered">
                 <thead>
-                <th></th>
-                <th>Niveles alarma</th>
-                <th>Descripción</th>
-                <th>Lectura equipo</th>
-                <th>Analisis resultado</th>
+                <th>Codigo</th>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha Creacion</th>
+                <th>Descripción alarma</th>
+                <th>Nivel</th>
+                <th>Examen</th>
+                <th>Análisis resultado</th>
+                <th>Lectura</th>
+                <th>Estado</th>
+                <th>Fecha atención</th>
+                <th>Onservaciones</th>
                 <th>Acción</th>
                 </thead>
                 <tbody>
                     <?php
+//                    echo "<pre>";
+//                    print_r($datos);
+//                    echo "</pre>";
                     foreach ($datos as $key => $value) {
                         echo "<tr>";
                         $i = 0;
@@ -76,7 +87,6 @@
                         }
                         echo "<td>"
                         . '<a href="javascript:" class="btn btn-success" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
-                        . '<a href="javascript:" class="btn btn-danger" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>'
                         . "</td>";
                         echo "</tr>";
                     }

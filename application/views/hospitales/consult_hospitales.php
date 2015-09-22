@@ -32,8 +32,8 @@
                 <br>
             </div>
         </div>
-        <button type="button" class="btn btn-dcs limpiar">Limpiar</button>
-        <button class="btn btn-dcs">Buscar</button>
+        <button type="button" class="btn btn-danger limpiar">Limpiar</button>
+        <button class="btn btn-success">Buscar</button>
 </form>
 
 <div class="row">
@@ -64,8 +64,8 @@
                         $i++;
                     }
                     echo "<td>"
-                    . '<a href="javascript:" class="btn btn-dcs" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
-                    . '<a href="javascript:" class="btn btn-dcs" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>'
+                    . '<a href="javascript:" class="btn btn-success" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
+                    . '<a href="javascript:" class="btn btn-danger" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>'
                     . "</td>";
                     echo "</tr>";
                 }
@@ -77,7 +77,7 @@
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">
-        <a href="<?php echo base_url() . "/index.php/Hospitales/index" ?>" class="btn btn-dcs" >Crear Hospital</a>
+        <a href="<?php echo base_url() . "/index.php/Hospitales/index" ?>" class="btn btn-success" >Crear Hospital</a>
     </div>
 </div>
 <?php if (isset($campo)) { ?>

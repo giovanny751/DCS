@@ -53,9 +53,6 @@
 <!--<script src="<?php echo base_url('/assets/admin/pages/scripts/components-pickers.js'); ?>"></script>-->
 <script src="<?= base_url('js/jquery.blockUI.js') ?>" type="text/javascript"></script>
 
-<link rel="stylesheet" href="<?= base_url('css/menuVertical.css') ?>" />
-<script type="text/javascript" src="<?= base_url('js/menuVertical.js') ?>"></script>
-
 
 
 <?php
@@ -68,13 +65,13 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     $i = array();
     foreach ($menu as $modulo)
         $i[$modulo['menu_id']][$modulo['menu_nombrepadre']][$modulo['menu_idpadre']] [] = array($modulo['menu_idhijo'], $modulo['menu_controlador'], $modulo['menu_accion']);
-    echo ($datosmodulos == 'prueba')?"<ul id='principalMenu'>":"<ul>";
+    echo ($datosmodulos == 'prueba')?"<ul class='nav navbar-nav'>":"<ul class='dropdown-menu'>";
     foreach ($i as $padre => $nombrepapa)
         foreach ($nombrepapa as $nombrepapa => $menuidpadre)
             foreach ($menuidpadre as $modulos => $menu)
                 foreach ($menu as $submenus):
                     if ($submenus[1] == "" && $submenus[2] == "") {
-                        echo "<li class='active has-sub'><a href='javascript:'>" . strtoupper($nombrepapa) . "</a>";
+                        echo "<li><a href='#'>" . strtoupper($nombrepapa) . "</a>";
                     } else {
                         echo "<li><a href='" . base_url("index.php/" . $submenus[1] . "/" . $submenus[2]) . "'>" . strtoupper($nombrepapa) . "</a>";
                     }
@@ -82,42 +79,45 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                         modulos($submenus[0], $idusuario);
                     echo "</li>";
                 endforeach;
-    if($datosmodulos == 'prueba'){
-            echo "<li class='has-sub'>";
-                echo "<a href='#'>OPCIONES</a>";
-                echo "<ul>";
-            echo "<li><a href='". base_url('index.php/presentacion/recordarcontrasena') ."' >Cambiar Contraseña</a></li>";
-                    echo "<li><a href='". base_url('index.php/presentacion/rol')."'>Cambiar de Rol</a></li>";
-                echo "</ul>";
-            echo "</li>";
-            echo "<li><a href='". base_url('index.php/login/logout')."'>Cerrar sesion</a></li>";
-//            echo "<li><a href='#'> strtoupper($nombre) </a></li>";
-    }
     echo "</ul>";
 }
-
 ?>
-
-<header>
-    <h1>
-        <img src="<?= base_url('img/homeCare.PNG') ?>" alt="Logo" />
-    </h1>
-</header>
-<div id="cssmenu">
-        <?php echo modulos('prueba', $id, null); ?>
-</div>
-<div class="contenidoLayout">
-    <div class="container">
-        <div class="row contenido" >
-            <?php echo $content_for_layout ?>
+<div class="row" >
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<?php base_url('index.php/presentacion/principal') ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
         </div>
+        <div class="navbar-collapse collapse">
+            <?php echo modulos('prueba', $id, null); ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><b><?php echo strtoupper($nombre); ?></b></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OPCIONES</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="<?php echo base_url('index.php/presentacion/recordarcontrasena'); ?>">Cambiar Contraseña</a></li>
+                        <li class="divider"></li>
+                        <li><a href="<?php echo base_url('index.php/login/logout'); ?>">Cerrar sesion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container ">
+    <div class="row contenido" >
+        <?php echo $content_for_layout ?>
     </div>
 </div>
 <footer class="footer">
     <div class="row" style="">
         <div class="container">
             <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center">
-                
             </div>
             </div>  
     </div>  
@@ -175,6 +175,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     }
 </style>
 <script>
+    
     $('.limpiar').click(function () {
         $('select,input').val('');
     });
@@ -316,4 +317,5 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     $.blockUI.defaults.message = 'Procesando...';
     $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 });
+//$('.table').DataTable();
 </script>

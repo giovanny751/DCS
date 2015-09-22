@@ -110,6 +110,10 @@ class Pacientes extends My_Controller {
     }
     function autocomplete_descripcion() {
         $info = $this->auto5("equipos", "id_equipo", "equipos.descripcion", $this->input->get('term'));
+        if(!empty($this->input->get('tipo_equipo_cod'))){
+            $this->db->where('tipo_equipo_cod',$this->input->get('tipo_equipo_cod'));
+        }
+        
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
     function auto5($tabla,$idcampo,$nombrecampo,$letra) {

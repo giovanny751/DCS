@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-6">
                             <?php if (!empty($id) && $datos[0]->foto != '') { ?>
-                                <img style="width: 200px;float: right;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
+                                <img style="width: 300px;float: right;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
                             <?php } ?>
                         </div>
                     </div>
@@ -298,7 +298,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <?php if (!empty($id) && $datos[0]->documento != '') { ?>
-                            <a target="_black" href="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->documento ?>">Documento</a>
+                            <a href="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->documento ?>">Documento</a>
                             <?php } ?>    
                         </div>
 

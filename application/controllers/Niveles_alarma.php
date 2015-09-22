@@ -41,5 +41,9 @@ class Niveles_alarma extends My_Controller {
         $this->data['datos']=$this->Niveles_alarma__model->edit_niveles_alarma($this->data['post']);
         $this->layout->view('niveles_alarma/index', $this->data);
     }
+    function tipo_alarma(){
+        $this->data['post']=$this->input->post();
+        echo lista("id_tipo_alarma", "id_tipo_alarma", "form-control obligatorio", "tipo_alarma", "id_tipo_alarma", "descripcion", null, array("ACTIVO" => "S",'examen'=>$this->data['post']['examen_cod']), /* readOnly? */ false); 
+    }
 }
 ?>

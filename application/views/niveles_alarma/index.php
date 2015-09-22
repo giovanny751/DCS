@@ -8,16 +8,9 @@
 
         <div class="row">
 
-            <div class="col-md-3">
-                <label for="id_niveles_alarma">
-                </label>
-            </div>
-            <div class="col-md-3">
-                <input type="hidden" value="<?php echo (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : '' ) ?>" class="form-control   " id="id_niveles_alarma" name="id_niveles_alarma">
-                <br>
-            </div>
+            <input type="hidden" value="<?php echo (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : '' ) ?>" class="form-control   " id="id_niveles_alarma" name="id_niveles_alarma">
 
-        </div><div class="row">
+
 
             <div class="col-md-3">
                 <label for="descripcion">
@@ -28,36 +21,28 @@
                 <br>
             </div>
 
-        </div><div class="row">
 
-            <div class="col-md-3">
+<!--            <div class="col-md-3">
                 <label for="examen_cod">
                     Examen                            </label>
             </div>
             <div class="col-md-3">
-                <!--<input type="text" value="<?php echo (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : '' ) ?>" class="form-control   " id="examen_cod" name="examen_cod">-->
-                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre",  (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : '' ) , array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                <input type="text" value="<?php echo (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : '' ) ?>" class="form-control   " id="examen_cod" name="examen_cod">
+                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
             </div>
 
 
-
             <div class="col-md-3">
-                <label for="analisis_resultado">
-                    Analisis resultado                            </label>
+                <label for="id_tipo_alarma">
+                    Tipo alarma                            </label>
             </div>
             <div class="col-md-3">
-                <select  class="form-control   " id="analisis_resultado" name="analisis_resultado">
-                    <option value=""></option>
-                    <option value="Normal">Normal</option>
-                    <option value="Baja">Baja</option>
-                    <option value="Alta">Alta</option>
-                </select>
+                <span id="traer_tipo_alarma">
+                    <?php echo lista("id_tipo_alarma", "id_tipo_alarma", "form-control obligatorio", "tipo_alarma", "id_tipo_alarma", "descripcion", (isset($datos[0]->id_tipo_alarma) ? $datos[0]->id_tipo_alarma : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                </span>
                 <br>
-            </div>
-
-
-
+            </div>-->
             <div class="col-md-3">
                 <label for="n_repeticiones_minimas">
                     *         N° repeticiones mínimas                            </label>
@@ -66,8 +51,6 @@
                 <input type="text" value="<?php echo (isset($datos[0]->n_repeticiones_minimas) ? $datos[0]->n_repeticiones_minimas : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_minimas" name="n_repeticiones_minimas">
                 <br>
             </div>
-
-
 
             <div class="col-md-3">
                 <label for="n_repeticiones_maximas">
@@ -127,7 +110,7 @@
             </div>
             <div class="col-md-3">
                 <!--<input type="text" value="<?php echo (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : '' ) ?>" class="form-control obligatorio  " id="id_protocolo" name="id_protocolo">-->
-                <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : '' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
             </div>
 
@@ -138,9 +121,9 @@
         <?php } ?>
         <div class="row">
             <span id="boton_guardar">
-                <button class="btn btn-dcs" >Guardar</button> 
-                <input class="btn btn-dcs" type="reset" value="Limpiar">
-                <a href="<?php echo base_url('index.php') . "/Niveles_alarma/consult_niveles_alarma" ?>" class="btn btn-dcs">Listado </a>
+                <button class="btn btn-success" >Guardar</button> 
+                <input class="btn btn-success" type="reset" value="Limpiar">
+                <a href="<?php echo base_url('index.php') . "/Niveles_alarma/consult_niveles_alarma" ?>" class="btn btn-success">Listado </a>
             </span>
             <span id="boton_cargar" style="display: none">
                 <h2>Cargando ...</h2>
@@ -150,7 +133,19 @@
     </form>
 </div>
 <script>
-    
+
+    $('#examen_cod').change(function() {
+        var url = "<?php echo base_url('index.php/Niveles_alarma/tipo_alarma') ?>"
+        $.post(url, {examen_cod: $(this).val()})
+                .done(function(msg) {
+                    $('#traer_tipo_alarma').html(msg);
+                })
+                .fail(function() {
+                    alerta('rojo', 'Error al consultar');
+                    $('#id_tipo_alarma').val('');
+                })
+    })
+
     $('#frecuencia').val("<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>");
     $('#analisis_resultado').val("<?php echo (isset($datos[0]->analisis_resultado) ? $datos[0]->analisis_resultado : '' ) ?>");
     function campos() {

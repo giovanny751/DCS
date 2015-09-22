@@ -7,15 +7,6 @@
     <form action="<?php echo base_url('index.php/') . '/Niveles_alarma/consult_niveles_alarma'; ?>" method="post" >
 
         <div class="row">                <div class="col-md-3">
-                <label for="id_niveles_alarma">
-                </label>
-            </div>
-            <div class="col-md-3">
-                <input type="hidden" value="<?php echo (isset($post['id_niveles_alarma']) ? $post['id_niveles_alarma'] : '' ) ?>" class="form-control   " id="id_niveles_alarma" name="id_niveles_alarma">
-                <br>
-            </div>
-
-        </div><div class="row">                <div class="col-md-3">
                 <label for="descripcion">
                     Descripción                        </label>
             </div>
@@ -23,28 +14,12 @@
                 <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
                 <br>
             </div>
-
-        </div><div class="row">                <div class="col-md-3">
+                <div class="col-md-3">
                 <label for="examen_cod">
                     Examen                        </label>
             </div>
             <div class="col-md-3">
                 <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre",  (isset($post['examen_cod']) ? $post['examen_cod'] : '' ) , array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
-            </div>
-
-            <div class="col-md-3">
-                <label for="analisis_resultado">
-                    Analisis resultado                        </label>
-            </div>
-            <div class="col-md-3">
-                <!--<input type="text" value="<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>" class="form-control   " id="analisis_resultado" name="analisis_resultado">-->
-                <select  class="form-control   " id="analisis_resultado" name="analisis_resultado">
-                    <option value=""></option>
-                    <option value="Normal">Normal</option>
-                    <option value="Baja">Baja</option>
-                    <option value="Alta">Alta</option>
-                </select>
                 <br>
             </div>
 
@@ -103,8 +78,8 @@
             </div>
 
         </div>
-        <button type="button" class="btn btn-dcs limpiar">Limpiar</button>
-        <button class="btn btn-dcs">Consultar</button>
+        <button type="button" class="btn btn-danger limpiar">Limpiar</button>
+        <button class="btn btn-success">Consultar</button>
     </form>
 
 <div class="row">
@@ -138,8 +113,8 @@
                         $i++;
                     }
                     echo "<td>"
-                    . '<a href="javascript:" class="btn btn-dcs" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
-                    . '<a href="javascript:" class="btn btn-dcs" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>'
+                    . '<a href="javascript:" class="btn btn-success" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
+                    . '<a href="javascript:" class="btn btn-danger" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>'
                     . "</td>";
                     echo "</tr>";
                 }
@@ -151,7 +126,7 @@
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">
-        <a href="<?php echo base_url() . "/index.php/Niveles_alarma/index" ?>" class="btn btn-dcs" >Nuevo</a>
+        <a href="<?php echo base_url() . "/index.php/Niveles_alarma/index" ?>" class="btn btn-success" >Nuevo</a>
     </div>
 </div>
 <?php if (isset($campo)) { ?>

@@ -42,6 +42,8 @@ class Pacientes__model extends CI_Model {
 
         if (empty($post['foto']))
             unset($post['foto']);
+        if (empty($post['documento']))
+            unset($post['documento']);
         if (isset($post['examen']))
             unset($post['examen']);
         if (isset($post['aseguradora2']))
@@ -318,7 +320,8 @@ class Pacientes__model extends CI_Model {
 //        $this->db->select('codigo_hospital');
 //        $this->db->select('tipo');
 //        $this->db->select('aseguradora_id');
-        if(empty($post))$this->db->where("1",2);
+        if (empty($post))
+            $this->db->where("1", 2);
         $this->db->where('ACTIVO', 'S');
         $datos = $this->db->get('pacientes');
         $datos = $datos->result();

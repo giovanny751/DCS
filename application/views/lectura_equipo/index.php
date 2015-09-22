@@ -6,12 +6,12 @@
     <form action="<?php echo base_url('index.php/')."/Lectura_equipo/save_lectura_equipo"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
         <div class="row">
                                     <?php $id=(isset($datos[0]->id_lectura_equipo)?$datos[0]->id_lectura_equipo:'' ) ?>
-                                                <input type="hidden" value="<?php echo (isset($datos[0]->id_lectura_equipo)?$datos[0]->id_lectura_equipo:'' ) ?>" class=" form-control   " id="id_lectura_equipo" name="id_lectura_equipo">
+                                                <input type="hidden" value="<?php echo (isset($datos[0]->id_lectura_equipo)?$datos[0]->id_lectura_equipo:'' ) ?>" class=" form-control obligatorio  " id="id_lectura_equipo" name="id_lectura_equipo">
                     
 
                     <div class="col-md-3">
                         <label for="id_paciente">
-                            *                             paciente                        </label>
+                            *                             Paciente                        </label>
                     </div>
                     <div class="col-md-3">
                         <?php echo lista("id_paciente", "id_paciente", "form-control obligatorio", "pacientes", "id_paciente", "nombres", (isset($datos[0]->id_paciente)?$datos[0]->id_paciente:'' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
@@ -20,8 +20,18 @@
                     
 
                     <div class="col-md-3">
+                        <label for="id_equipo">
+                            *                             Equipo                        </label>
+                    </div>
+                    <div class="col-md-3">
+                        <?php echo lista("id_equipo", "id_equipo", "form-control obligatorio", "equipos", "id_equipo", "descripcion", (isset($datos[0]->id_equipo)?$datos[0]->id_equipo:'' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
                         <label for="variable_codigo">
-                            *                             Variable                        </label>
+                            *                             variable_codigo                        </label>
                     </div>
                     <div class="col-md-3">
                         <?php echo lista("variable_codigo", "variable_codigo", "form-control obligatorio", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->variable_codigo)?$datos[0]->variable_codigo:'' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
@@ -31,7 +41,7 @@
 
                     <div class="col-md-3">
                         <label for="lectura_numerica">
-                            *                             Lectura Numerica                        </label>
+                            *                             lectura_numerica                        </label>
                     </div>
                     <div class="col-md-3">
                                                     <input type="text" value="<?php echo (isset($datos[0]->lectura_numerica)?$datos[0]->lectura_numerica:'' ) ?>" class=" form-control obligatorio  number" id="lectura_numerica" name="lectura_numerica">
@@ -44,10 +54,23 @@
 
                     <div class="col-md-3">
                         <label for="lectura_texto">
-                            *                             Lectura Texto                        </label>
+                                                        lectura_texto                        </label>
                     </div>
                     <div class="col-md-3">
-                                                    <input type="text" value="<?php echo (isset($datos[0]->lectura_texto)?$datos[0]->lectura_texto:'' ) ?>" class=" form-control obligatorio  " id="lectura_texto" name="lectura_texto">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->lectura_texto)?$datos[0]->lectura_texto:'' ) ?>" class=" form-control   " id="lectura_texto" name="lectura_texto">
+
+                            
+                                                <br>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
+                        <label for="serial_equipo">
+                            *                             serial_equipo                        </label>
+                    </div>
+                    <div class="col-md-3">
+                                                    <input type="text" value="<?php echo (isset($datos[0]->serial_equipo)?$datos[0]->serial_equipo:'' ) ?>" class=" form-control obligatorio  " id="serial_equipo" name="serial_equipo">
 
                             
                                                 <br>

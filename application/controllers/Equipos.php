@@ -92,6 +92,10 @@ class Equipos extends My_Controller {
         $post= $this->input->post();
         echo lista("variable_codigo[]", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S","examen_cod"=>$post['id_examen']), /* readOnly? */ false);
     }
+    function traer_variables2() {
+        $post= $this->input->post();
+        echo lista("variable_codigo", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S","examen_cod"=>$post['id_examen']), /* readOnly? */ false);
+    }
 
 }
 

@@ -70,10 +70,8 @@
                                 Variable                            </label>
                         </div>
                         <div class="col-md-3">
-                            <span id="cod_variables">
                            <?php echo lista("variable_codigo", "variable_codigo", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->variable_codigo) ? $datos[0]->variable_codigo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                            </span>
-                                <br>
+                            <br>
                         </div>
                     </div>
                     <?php if (isset($post['campo'])) { ?>
@@ -199,19 +197,5 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-   $('#examen').change(function(){
-       var id_examen=$('#examen').val();
-       if(id_examen==''){
-           return false;
-       }
-        var url = '<?php echo base_url('index.php/Equipos/traer_variables2') ?>'
-        $.post(url, {id_examen: id_examen})
-                .done(function(msg){
-                    $('#cod_variables').html(msg);
-                })
-                .fail(function(){
-                    alerta('rojo','Error en la consulta');
-                    $('#variable_codigo').val('');
-                })
-   })
+    $('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
 </script>

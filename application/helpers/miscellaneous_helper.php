@@ -365,7 +365,7 @@ function lista($name, $id, $class, $tabla, $option_value, $option_name, $value, 
         }
         $query = $CI->db->get($tabla); //var_dump($this->db1->last_query());echo '</br>';
         if ($query->num_rows() > 0) {
-            $html = "<select id=$id class='$class' name=$name   value=$value  >";
+            $html = "<select id=$id class='$class' name=$name >";
             if ($bloqued) {
                 $html .= "<option value='' disabled=disabled>Seleccione</option>";
             } else {

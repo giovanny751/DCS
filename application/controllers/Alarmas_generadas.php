@@ -49,6 +49,26 @@ class Alarmas_generadas extends My_Controller {
         $this->layout->view('alarmas_generadas/index', $this->data);
     }
 
+    function datos_pacientes() {
+        $this->layout->view('alarmas_generadas/datos_pacientes');
+    }
+
+    function buscar_pacientes() {
+        $post = $this->input->post();
+        $datos=$this->Alarmas_generadas__model->buscar_pacientes($post);
+        echo json_encode($datos);
+    }
+    function buscar_pacientes_examen() {
+        $post = $this->input->post();
+        $datos=$this->Alarmas_generadas__model->buscar_pacientes_examen($post);
+        foreach ($datos as $value) {
+            $s[]=$value->examen_cod;
+        }
+        $this->db->where_in('examen_cod',$s);
+        echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", null, array("ACTIVO" => "S"), /* readOnly? */ false);
+//        echo json_encode($datos);
+    }
+
 }
 
 ?>
