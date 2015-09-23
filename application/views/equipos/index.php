@@ -14,7 +14,7 @@
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tabContenido">
                 <!--Tab Datos -->
                 <div id="tabDatos" class="tab active">
                     <br />

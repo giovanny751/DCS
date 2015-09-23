@@ -5,20 +5,20 @@
 <div class='well'>
     <form action="<?php echo base_url('index.php/') . "/Pacientes/save_pacientes"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
 
-        <div>
+        <div class="tabContainter">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                <li role="presentation" class="active"><a href="#tabDatos" aria-controls="tabDatos" role="tab" data-toggle="tab">Datos</a></li>
-                <li role="presentation"><a href="#tabPrograma" aria-controls="tabPrograma" role="tab" data-toggle="tab">Programa</a></li>
-                <li role="presentation"><a href="#tabContactos" aria-controls="tabContactos" role="tab" data-toggle="tab">Contactos</a></li>
-                <li role="presentation"><a href="#tabEquipos" aria-controls="tabEquipos" role="tab" data-toggle="tab">Equipos</a></li>
-                <li role="presentation"><a href="#tabSistema" aria-controls="tabSistema" role="tab" data-toggle="tab">Sistema De Salud</a></li>
+            <ul class="tabLinks">              
+                <li class="active"><a href="#tabDatos">Datos</a></li>
+                <li><a href="#tabPrograma">Programa</a></li>
+                <li><a href="#tabContactos">Contactos</a></li>
+                <li><a href="#tabEquipos">Equipos</a></li>
+                <li><a href="#tabSistema">Sistema De Salud</a></li>
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tabContenido">
                 <!--Tab Datos -->
-                <div role="tabpanel" class="tab-pane active" id="tabDatos">
+                <div id="tabDatos" class="tab active">
                     <br />
                     <div class="row">
                         <?php $id = (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>
@@ -183,7 +183,7 @@
                     </div>
                 </div>
                 <!-- Tab programa -->
-                <div role="tabpanel" class="tab-pane" id="tabPrograma">
+                <div id="tabPrograma" class="tab">
                     <br />
                     <div class="row">
                         <div class="col-md-2">
@@ -305,7 +305,7 @@
                     </div>
                 </div>
                 <!-- Tab Contactos -->
-                <div role="tabpanel" class="tab-pane" id="tabContactos">
+                <div id="tabContactos" class="tab">
                     <br />
                     <div class="row">
                         <div class="col-md-2">
@@ -389,7 +389,7 @@
                     });
                 </script>
                 <!-- Tab Equipos -->
-                <div role="tabpanel" class="tab-pane" id="tabEquipos">
+                <div id="tabEquipos" class="tab">
                     <br />
                     <div class="row">
                         <div class="col-md-2">
@@ -480,8 +480,7 @@
                     </div>
                 </div>
                 <!-- Tab Sistema -->
-                <div role="tabpanel" class="tab-pane" id="tabSistema">
-
+                <div id="tabSistema" class="tab">
                     <center><h4>HOSPITALES</h4></center>
                     <div class="row" >
                         <div class="col-md-2">
