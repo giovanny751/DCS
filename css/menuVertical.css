@@ -1,15 +1,14 @@
 /* -.-.-.-.-.-.-.-.-.-.-. Menu Vertical -.-.-.-.-.-.-.-.-.-.-.*/
 #cssmenu {
-    margin-left: 150px;
     height: 100%;
     position: absolute !important;
-    width: 200px;
+    width: 215px;
     font-family: Helvetica, Arial, sans-serif;
     color: #ffffff; 
     left: 0;
     right: auto;
     overflow: auto;
-}
+} 
 .contenidoLayout{
     margin-left: 220px;
     box-sizing: border-box;

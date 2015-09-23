@@ -120,9 +120,9 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 </header>
 <div id="cssmenu">
         <?php echo modulos('prueba', $id, null); ?>
-</div>
-<div class="container">
+</div> 
     <div class="contenidoLayout">
+<div class="container">
         <div class="row contenido" >
             <?php echo $content_for_layout ?>
         </div>
