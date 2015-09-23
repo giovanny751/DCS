@@ -5,7 +5,7 @@
 <div class='well'>
     <form action="<?php echo base_url('index.php/') . "/Equipos/save_equipos"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
 
-        <div class="tabContainter"><div>
+        <div class="tabContainter">
             <!-- Nav tabs -->
             <ul class="tabLinks">
                 <li class="active"><a href="#tabDatos">Datos</a></li>
