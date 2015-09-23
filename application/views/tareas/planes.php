@@ -47,7 +47,7 @@
     </div>
 </form>    
 <div class="row" style="text-align: center">
-    <button type="button" id="guardarplan" class="guardar btn btn-success">Guardar</button>
+    <button type="button" id="guardarplan" class="guardar btn btn-dcs">Guardar</button>
 </div>
 <hr>
 <div class="row">

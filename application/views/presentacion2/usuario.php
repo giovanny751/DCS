@@ -69,7 +69,7 @@
                                         <option value="<?php echo $rol['rol_id']; ?>"><?php echo $rol['rol_nombre']; ?></option>
                                     <?php } ?>
                                 </select>
-                                <button type="button" class="btn btn-success insertarrol">Asignar</button>
+                                <button type="button" class="btn btn-dcs insertarrol">Asignar</button>
                             </div>
                         </div>
                         <div class="row">

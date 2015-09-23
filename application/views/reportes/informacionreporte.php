@@ -6,6 +6,6 @@
         ?>
     </div>
     <div class="row" align="center">
-        <input type="submit" class="btn btn-success" value="REPORTE">
+        <input type="submit" class="btn btn-dcs" value="REPORTE">
     </div>
 </form>

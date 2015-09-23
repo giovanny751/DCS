@@ -89,11 +89,11 @@
             <a href="<?php echo base_url('index.php/pacientes'); ?>">
         </div>
         <div class="col-md-1">
-            <input type="reset" class="btn btn-success" value="Limpiar">
+            <input type="reset" class="btn btn-dcs" value="Limpiar">
             <p>
         </div>
         <div class="col-md-1">
-            <button class="btn btn-success">Buscar</button>
+            <button class="btn btn-dcs">Buscar</button>
             <p>
         </div>
     </div>

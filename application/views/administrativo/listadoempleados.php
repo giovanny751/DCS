@@ -57,8 +57,8 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="text-align: center">
                 <div class="form-group" style="margin-top: 29px">
-                    <label>&nbsp;</label><button type="button" class="btn btn-danger limpiar">Limpiar</button>
-                    <label>&nbsp;</label><button type="button" class="btn btn-success consultar">Consultar</button>
+                    <label>&nbsp;</label><button type="button" class="btn btn-dcs">Limpiar</button>
+                    <label>&nbsp;</label><button type="button" class="btn btn-dcs consultar">Consultar</button>
                     <label>&nbsp;</label><button type="button" class="btn btn-info contratos">Contratos Vencidos</button>
                 </div>
             </div>

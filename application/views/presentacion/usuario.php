@@ -95,7 +95,7 @@
             <div class="modal-footer">
                 <div class="row marginV10">
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 col-md-offset-8 col-lg-offset-8 col-sm-offset-8 col-sx-offset-8 margenlogo' align='center' >
-                        <button type="button" class="btn btn-success insertarrol">Asignar</button>
+                        <button type="button" class="btn btn-dcs insertarrol">Asignar</button>
                     </div>
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
                         <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>

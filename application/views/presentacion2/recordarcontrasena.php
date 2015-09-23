@@ -17,7 +17,7 @@
 
             </div>
             <div class="row" align="right">
-                <button type="text" id="guardar" class="btn btn-success guardar">Guardar</button>
+                <button type="text" id="guardar" class="btn btn-dcs guardar">Guardar</button>
             </div>
         </div>
     </div> 

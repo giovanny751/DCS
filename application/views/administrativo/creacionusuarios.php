@@ -75,9 +75,9 @@
     </form>
     <div class="row" style="text-align:center">
 
-        <button type="button" class="btn btn-success" id="guardar"><?php echo (!empty($usuario[0]->usu_id)) ? "Actualizar" : "Guardar"; ?></button>
-        <input class="btn btn-success" type="reset" value="Limpiar">
-        <a href="<?php echo base_url('index.php') . "/Administrativo/listadousuarios" ?>" class="btn btn-success">Listado </a>
+        <button type="button" class="btn btn-dcs" id="guardar"><?php echo (!empty($usuario[0]->usu_id)) ? "Actualizar" : "Guardar"; ?></button>
+        <input class="btn btn-dcs" type="reset" value="Limpiar">
+        <a href="<?php echo base_url('index.php') . "/Administrativo/listadousuarios" ?>" class="btn btn-dcs">Listado </a>
         
     </div>    
 </div>    

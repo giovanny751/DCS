@@ -17,7 +17,7 @@
                         <td><?php echo $datos['rol_nombre']; ?></td>
                         <td><?php echo $datos['rol_estado']; ?></td>
                         <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>"  data-toggle="modal" data-target="#myModal"  class="btn btn-info modificar">Opciones</button></td>
-                        <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-danger eliminar">Eliminar</button></td>
+                        <td align="center"><button type="button" rol="<?php echo $datos['rol_id']; ?>" class="btn btn-dcseliminar">Eliminar</button></td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -90,7 +90,7 @@
                     filas += "<tr>";
                     filas += "<td>" + val.rol_nombre + "</td>";
                     filas += "<td>" + val.rol_estado + "</td>";
-                    filas += "<td><button type='button' rol='" + val.rol_id + "' class='btn btn-danger eliminar'>Eliminar</button></td>";
+                    filas += "<td><button type='button' rol='" + val.rol_id + "' class='btn btn-dcseliminar'>Eliminar</button></td>";
                     filas += "<td><button type='button' rol='" + val.rol_id + "' class='btn btn-info opciones'>Opciones</button></td>";
                     filas += "</tr>";
                 });

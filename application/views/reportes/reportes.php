@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-5 col-lg-5 col-sm-5 col-sx-5">
         <div class="row" align="right">
-            <button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-success opciones">Nuevo</button>
+            <button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-dcs opciones">Nuevo</button>
         </div>
         <div class="row">
             <div class="table-responsive">
@@ -21,7 +21,7 @@
                                 <td><?php echo $totalreportes['rep_nombre']; ?></td>
                                 <!--<td><?php echo $totalreportes['rep_estado']; ?></td>-->
                                 <td align="center"><button  data-toggle="modal" data-target="#myModal2"  class="btn btn-info opciones" repid="<?php echo $totalreportes['rep_id']; ?>">Opciones</button></td>
-                                <td align="center"><button    class="btn btn-success reporte" repid="<?php echo $totalreportes['rep_id']; ?>">Reporte</button></td>
+                                <td align="center"><button    class="btn btn-dcs reporte" repid="<?php echo $totalreportes['rep_id']; ?>">Reporte</button></td>
                             </tr>
                             <?php
                         }
@@ -58,10 +58,10 @@
                 </select>
             </div>
             <div class="row" align="right">
-                <button type="button" class="guardarquery btn btn-success">Validar</button>
+                <button type="button" class="guardarquery btn btn-dcs">Validar</button>
             </div>
             <div class="row" align="center">
-                <button type="button" class="guardartotalreporte btn btn-success">Guardar</button>
+                <button type="button" class="guardartotalreporte btn btn-dcs">Guardar</button>
             </div>
         </div>
     </form>
@@ -137,7 +137,7 @@
                         <button type="button" class="btn btn-primary guardareditado">Guardar</button>
                     </div>
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
-                        <button type="button" class="btn btn-danger guardar">Eliminar</button>
+                        <button type="button" class="btn btn-dcsguardar">Eliminar</button>
                     </div>
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
                         <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>

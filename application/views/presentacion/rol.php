@@ -19,8 +19,8 @@
         </tbody>
     </table>
     <div class="row" style="text-align:center">
-        <!--<button type="button" class="btn btn-success ingresar">Ingresar</button>-->
-        <button type="button" class="btn btn-success defecto">Rol por defecto</button>
+        <!--<button type="button" class="btn btn-dcs ingresar">Ingresar</button>-->
+        <button type="button" class="btn btn-dcs defecto">Rol por defecto</button>
     </div>
     </form>   
 </div>

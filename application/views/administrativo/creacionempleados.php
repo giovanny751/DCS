@@ -218,10 +218,10 @@
     <div class="row" style="text-align:center">
         <?php if (!empty($empleado[0])) { ?>
             
-            <button type="button" id="actualizar" class="btn btn-success">Actualizar</button>   
+            <button type="button" id="actualizar" class="btn btn-dcs">Actualizar</button>   
         <?php } else { ?>
             <button type="button" class="btn btn-info registro">Registro exámenes</button>
-            <button type="button" id="guardar" class="btn btn-success">Guardar</button>
+            <button type="button" id="guardar" class="btn btn-dcs">Guardar</button>
         <?php } ?>
     </div>
 </div>

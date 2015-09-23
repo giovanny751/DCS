@@ -78,10 +78,10 @@
             <div class="modal-footer">
                 <div class="row marginV10">
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
-                        <button type="button" class="btn btn-success guardar">Guardar</button>
+                        <button type="button" class="btn btn-dcs guardar">Guardar</button>
                     </div>
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
-                        <button type="button"  class="btn btn-danger eliminar">Eliminar</button>
+                        <button type="button"  class="btn btn-dcseliminar">Eliminar</button>
                     </div>
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
                         <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>
@@ -116,7 +116,7 @@
             <div class="modal-footer">
                 <div class="row marginV10">
                     <div class='col-md-12 col-lg-12 col-sm-12 col-sx-12 margenlogo' align='right' >
-                        <button type="button" general="<?= $idgeneral ?>" padre="<?= $hijo ?>" class="btn btn-success" id="guardar">Guardar</button>
+                        <button type="button" general="<?= $idgeneral ?>" padre="<?= $hijo ?>" class="btn btn-dcs" id="guardar">Guardar</button>
                     </div>
                 </div>
             </div>

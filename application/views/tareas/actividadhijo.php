@@ -66,7 +66,7 @@
     </div>
 </form>    
 <div class="row" style="text-align: center">
-    <button type="button" id="guardar" class="btn btn-success">Guardar</button>
+    <button type="button" id="guardar" class="btn btn-dcs">Guardar</button>
 </div>    
 <script>
     $('#guardar').click(function () {

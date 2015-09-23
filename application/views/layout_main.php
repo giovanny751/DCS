@@ -56,7 +56,22 @@
 <link rel="stylesheet" href="<?= base_url('css/menuVertical.css') ?>" />
 <script type="text/javascript" src="<?= base_url('js/menuVertical.js') ?>"></script>
 
+<link rel="stylesheet" href="<?= base_url('css/tabs.css') ?>" />
+<script type="text/javascript" src="<?= base_url('js/tabs.js') ?>"></script>
 
+
+<style type="text/css">
+    .btn.btn-dcs{ 
+        background-color: #009FE3 !important;
+        color: white !important;
+    }
+    .form-control{
+        border-radius: 0px !important;
+    }
+    .container{
+        width: 95% !important;
+    }
+</style>
 
 <?php
 function modulos($datosmodulos, $idusuario, $dato = null) {
@@ -106,8 +121,8 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 <div id="cssmenu">
         <?php echo modulos('prueba', $id, null); ?>
 </div>
-<div class="contenidoLayout">
-    <div class="container">
+<div class="container">
+    <div class="contenidoLayout">
         <div class="row contenido" >
             <?php echo $content_for_layout ?>
         </div>
@@ -119,7 +134,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
             <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center">
                 
             </div>
-            </div>  
+        </div>  
     </div>  
 </footer>
 <style>

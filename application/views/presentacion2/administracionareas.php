@@ -6,7 +6,7 @@
         <label>Nombre Area</label><input type="text" class="form-control" id="area" name="area">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button type="button" class="btn btn-success" id="guardararea">Guardar</button>
+        <button type="button" class="btn btn-dcs" id="guardararea">Guardar</button>
     </div>
 </div>
 <div class="row">
@@ -22,7 +22,7 @@
         <label>Cargo</label><input type="text" class="form-control" id="cargo" name="cargo">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button type="button" class="btn btn-success" id="guardarcargo">Guardar</button>
+        <button type="button" class="btn btn-dcs" id="guardarcargo">Guardar</button>
     </div>
 </div>
 <div class="row" align="center">
@@ -33,7 +33,7 @@
         <label>Nombre Pais</label><input type="text" class="form-control" id="pais" name="pais">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button type="button" class="btn btn-success" id="guardarpais">Guardar</button>
+        <button type="button" class="btn btn-dcs" id="guardarpais">Guardar</button>
     </div>
 </div>
 <div class="row">
@@ -49,7 +49,7 @@
         <label>Ciudad</label><input type="text" class="form-control" id="ciudad" name="ciudad">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button type="button" class="btn btn-success" id="guardarciudad">Guardar</button>
+        <button type="button" class="btn btn-dcs" id="guardarciudad">Guardar</button>
     </div>
 </div>
 
@@ -61,7 +61,7 @@
         <label>Tipo Producto</label><input type="text" class="form-control" id="producto" name="producto">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button type="button" class="btn btn-success" id="guardarproducto">Guardar</button>
+        <button type="button" class="btn btn-dcs" id="guardarproducto">Guardar</button>
     </div>
 </div>
 

@@ -9,7 +9,7 @@
             <div class="form-group">
                 <label for="descripcion"><span class="campoobligatorio">*</span>Descripción</label>
                 <input type="text" name="descripcion" id="descripcion" class="form-control obligatorio"/>
-                <button type="button" class="btn btn-success guardar">Guardar</button>
+                <button type="button" class="btn btn-dcs guardar">Guardar</button>
             </div>
         </div>
     </div>

@@ -55,7 +55,7 @@
     </div>
 </form>
 
-<center><button id="guardar" style="display: none" class="btn btn-success">Guardar</button></center>
+<center><button id="guardar" style="display: none" class="btn btn-dcs">Guardar</button></center>
 <script>
 
     $('#guardar').click(function() {

@@ -18,7 +18,7 @@
                     </select>
                     <label for="porcentaje"><span class="campoobligatorio">*</span>%Cotizacion ARL</label><input type="text" name="porcentaje[]" id="porcentaje" class="form-control obligatorio number" />
                     <!--<i class="fa fa-plus-circle fa-2x mas btn btn-info"></i>-->
-                    <button type="button" class="btn btn-success guardarcargo">Guardar</button>
+                    <button type="button" class="btn btn-dcs guardarcargo">Guardar</button>
                 </div>
             </form>
         </div>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-success guardarmodificacion">Guardar</button>
+                        <button type="button" class="btn btn-dcs guardarmodificacion">Guardar</button>
                     </div>
                 </div>
             </div>

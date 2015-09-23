@@ -25,7 +25,7 @@
                         <tr id="<?= $modulo['rep_id'] ?>">
                             <td><?= $modulo['rep_nombrepadre'] ?></td>
                             <td align="center"><button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones"  idgeneral="<?= $modulo['rep_id'] ?>" nombre="<?= $modulo['rep_nombrepadre'] ?>" idpadre="<?= $modulo['rep_id'] ?>" >XML</button>
-                            <td align="center"><button type="button" class="btn btn-danger eliminar"  idgeneral="<?= $modulo['rep_id'] ?>" nombre="<?= $modulo['rep_nombrepadre'] ?>" idpadre="<?= $modulo['rep_id'] ?>" >Eliminar</button></td>
+                            <td align="center"><button type="button" class="btn btn-dcseliminar"  idgeneral="<?= $modulo['rep_id'] ?>" nombre="<?= $modulo['rep_nombrepadre'] ?>" idpadre="<?= $modulo['rep_id'] ?>" >Eliminar</button></td>
                             <td align="center"><input type="radio" class="submodulo" idgeneral="<?= $modulo['rep_id'] ?>" idpadre="<?= $modulo['rep_idpadre'] ?>" nombrepadre="<?= $modulo['rep_nombrepadre'] ?>" name="submodulo" menu="<?= $modulo['rep_idhijo'] ?>"></td>
                         </tr>    
                     <?php } ?>
@@ -82,7 +82,7 @@
             <div class="modal-footer">
                 <div class="row marginV10">
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
-                        <button type="button" class="guardartotalreporte btn btn-success">Guardar</button>
+                        <button type="button" class="guardartotalreporte btn btn-dcs">Guardar</button>
                     </div>
                     <div class='col-md-2 col-lg-2 col-sm-2 col-sx-2 margenlogo' align='center' >
                         <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>
@@ -117,7 +117,7 @@
             <div class="modal-footer">
                 <div class="row marginV10">
                     <div class='col-md-12 col-lg-12 col-sm-12 col-sx-12 margenlogo' align='right' >
-                        <button type="button" general="<?= $idgeneral ?>" padre="<?= $hijo ?>" class="btn btn-success" id="guardar">Guardar</button>
+                        <button type="button" general="<?= $idgeneral ?>" padre="<?= $hijo ?>" class="btn btn-dcs" id="guardar">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
             var tabla = "";
             var eliminar ="";
             $.each(data, function (key, val) {
-                eliminar = '<td align="center"><button type="button" class="btn btn-danger eliminar"  idgeneral="'+val.rep_id+'" nombre="'+val.rep_nombrepadre+'" idpadre="'+val.rep_id+'" >Eliminar</button></td>';
+                eliminar = '<td align="center"><button type="button" class="btn btn-dcseliminar"  idgeneral="'+val.rep_id+'" nombre="'+val.rep_nombrepadre+'" idpadre="'+val.rep_id+'" >Eliminar</button></td>';
                 tabla += "<tr><td>" + val.rep_nombrepadre + "</td><td align='center'><button class='btn btn-info opciones' data-target='#myModal' data-toggle='modal' idpadre='" + val.rep_idpadre + "' nombre='" + val.rep_nombrepadre + "' idgeneral='" + val.rep_id + "' type='button'>Opcion</button></td>"+eliminar+"<td align='center'><input menu='" + val.rep_idhijo + "' nombrepadre='" + val.rep_nombrepadre + "' idgeneral='" + val.rep_id + "' type='radio' name='submodulo' class='submodulo'></td></tr>";
             });
             $('#cuerpomodulo').append(tabla);

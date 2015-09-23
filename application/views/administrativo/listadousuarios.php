@@ -59,8 +59,8 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align: center">
                 <div class="form-group">
-                    <label>&nbsp;</label><button type="button" class="btn btn-danger limpiar">Limpiar</button>
-                    <label>&nbsp;</label><button type="button" class="btn btn-success consultar">Consultar</button>
+                    <label>&nbsp;</label><button type="button" class="btn btn-dcs">Limpiar</button>
+                    <label>&nbsp;</label><button type="button" class="btn btn-dcs consultar">Consultar</button>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
             </tbody>
         </table>
         <br>
-        <a href="<?php echo base_url() . "/index.php/Administrativo/creacionusuarios" ?>" class="btn btn-success" >Nuevo</a>
+        <a href="<?php echo base_url() . "/index.php/Administrativo/creacionusuarios" ?>" class="btn btn-dcs" >Nuevo</a>
     </div>    
 </div>    
 <form id="f10" method="post" action="<?php echo base_url("index.php/administrativo/creacionusuarios") ?>">

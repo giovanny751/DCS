@@ -20,7 +20,7 @@
         <tr>
             <td><?php echo  $principal['NOMBRE_MENU'] ?></td>
             <td><?php  if($principal['ESTADO'] == 1){echo "Activo";}else{ echo "Inactivo";} ?></td>
-            <td align="center"><button type="button" estado="<?php echo  $principal['ESTADO'] ?>" class="btn btn-success menu" nombre="<?php echo  $principal['NOMBRE_MENU'] ?>" idmenu="<?php echo  $principal['ID_MENU'] ?>">Modificar</button></td>
+            <td align="center"><button type="button" estado="<?php echo  $principal['ESTADO'] ?>" class="btn btn-dcs menu" nombre="<?php echo  $principal['NOMBRE_MENU'] ?>" idmenu="<?php echo  $principal['ID_MENU'] ?>">Modificar</button></td>
         </tr>
         <?php } ?>
     </tbody>

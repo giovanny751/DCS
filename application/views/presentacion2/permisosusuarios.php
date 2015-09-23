@@ -19,7 +19,7 @@
         <?php foreach($usuarios as $todosusuarios){?>
         <tr>
             <td><?php echo  $todosusuarios['usu_nombres_apellido'] ?></td>
-            <td align="center"><button type="button" class="btn btn-success" id="opciones">Opción</button></td>
+            <td align="center"><button type="button" class="btn btn-dcs" id="opciones">Opción</button></td>
             <td align="center"><button type="button" class="btn btn-info permisos" usuario="<?php echo  $todosusuarios['usu_id'] ?>">Permisos</button></td>
         </tr>
         <?php } ?>

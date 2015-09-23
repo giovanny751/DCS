@@ -85,7 +85,7 @@
         <a href="<?php echo base_url("index.php/administrativo/cargos") ?>"><button type="" class="btn btn-info">Cargo</button></a>
         <a href="<?php echo base_url("index.php/administrativo/dimension") ?>"><button type="" class="btn btn-info">Dimensión 1</button></a>
         <a href="<?php echo base_url("index.php/administrativo/dimension") ?>"><button type="" class="btn btn-info">Dimensión 2</button></a>
-        <button type="button" id="guardar" class="btn btn-success">Guardar</button>
+        <button type="button" id="guardar" class="btn btn-dcs">Guardar</button>
     </div>
 </div>
 <script>
