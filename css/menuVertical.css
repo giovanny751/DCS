@@ -114,7 +114,7 @@
     border-left-color: inherit; }
   #cssmenu ul ul li a {
     cursor: pointer;
-    border-bottom: 1px solid #32373e;
+    border-bottom: 1px solid #3552a0;
     border-left: 1px solid #32373e;
     border-right: 1px solid #32373e;
     padding: 10px 20px;
@@ -122,10 +122,15 @@
     text-decoration: none;
     font-size: 13px;
     color: #eeeeee;
-    background: #49505a;
+    background: #58acfa;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1); }
-  #cssmenu ul ul li:hover > a, #cssmenu ul ul li.open > a, #cssmenu ul ul li.active > a {
-    background: #424852;
+  #cssmenu ul ul li:hover > a
+  ,#cssmenu ul ul li.open:hover > a
+  ,#cssmenu ul ul li.active:hover > a{
+    background: #3552A0;
+    color: #ffffff; }
+  #cssmenu ul ul li.open > a, #cssmenu ul ul li.active > a {
+    background: #58acfa;
     color: #ffffff; }
   #cssmenu ul ul li:first-child > a {
     box-shadow: none; }

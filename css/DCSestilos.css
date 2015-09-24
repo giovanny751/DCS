@@ -59,6 +59,7 @@ header {
     background-color: #009FE3 !important;
     color: white !important;
     font-family: futura-lt !important;
+    border-radius: 15px;
 }
  /*Border Esquineros intacto*/
 .form-control{

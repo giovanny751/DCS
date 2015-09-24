@@ -18,61 +18,68 @@
             <div class="tabContenido">
                 <!--Tab Datos -->
                 <div id="tabDatos" class="tab active">
-                    <br />
+                    <div class="row">
+                        <span class="tituloH">Datos Equipos</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
                     <?php $id = (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>
                     <input type="hidden" value="<?php echo (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : '' ) ?>" class=" form-control   " id="id_equipo" name="id_equipo">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="col-md-6">
-                                <label for="descripcion">
-                                    *                             Descripción                        </label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="descripcion">
+                                        *                             Descripción                        </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">
-
-
-                                <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="estado">
+                                        *                             Estado                        </label>
+                                </div>
+                                <div class="col-md-6" >
+                                    <select  class="form-control obligatorio  " id="estado" name="estado" <?php echo (isset($datos[0]->estado) ? '' : 'disabled="disabled"') ?>>
+                                        <option value="DISPONIBLE" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'DISPONIBLE') ? 'selected="selected"' : '') : '' ) ?>>DISPONIBLE</option>
+                                        <option value="EN OPERACIÓN" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN OPERACIÓN') ? 'selected="selected"' : '') : '' ) ?>>EN OPERACIÓN</option>
+                                        <option value="ASIGNADO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'ASIGNADO') ? 'selected="selected"' : '') : '' ) ?>>ASIGNADO</option>
+                                        <option value="EN TRANSITO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN TRANSITO') ? 'selected="selected"' : '') : '' ) ?>>EN TRANSITO</option>
+                                        <option value="MANTENIMIENTO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'MANTENIMIENTO') ? 'selected="selected"' : '') : '' ) ?>>MANTENIMIENTO</option>
+                                    </select>
+                                </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <label for="estado">
-                                    *                             Estado                        </label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="ubicacion">
+                                        *                             Ubicación                        </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : '' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
+                                </div>
                             </div>
-                            <div class="col-md-6" >
-                                <select  class="form-control obligatorio  " id="estado" name="estado" <?php echo (isset($datos[0]->estado) ? '' : 'disabled="disabled"') ?>>
-                                    <option value="DISPONIBLE" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'DISPONIBLE') ? 'selected="selected"' : '') : '' ) ?>>DISPONIBLE</option>
-                                    <option value="EN OPERACIÓN" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN OPERACIÓN') ? 'selected="selected"' : '') : '' ) ?>>EN OPERACIÓN</option>
-                                    <option value="ASIGNADO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'ASIGNADO') ? 'selected="selected"' : '') : '' ) ?>>ASIGNADO</option>
-                                    <option value="EN TRANSITO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN TRANSITO') ? 'selected="selected"' : '') : '' ) ?>>EN TRANSITO</option>
-                                    <option value="MANTENIMIENTO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'MANTENIMIENTO') ? 'selected="selected"' : '') : '' ) ?>>MANTENIMIENTO</option>
-                                </select>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="ubicacion">
-                                    *                             Ubicación                        </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : '' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="serial">
-                                    *                             Serial N°                         </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->serial) ? $datos[0]->serial : '' ) ?>" class=" form-control obligatorio  number" id="serial" name="serial">
-
-
-                                <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="serial">
+                                        *                             Serial N°                         </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" value="<?php echo (isset($datos[0]->serial) ? $datos[0]->serial : '' ) ?>" class=" form-control obligatorio  number" id="serial" name="serial">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <?php if (!empty($id) && $datos[0]->imagen != '') { ?>
-                                <img style="width: 230px;float: right;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->imagen ?>">
+                                <center>
+                                    <img class="img-thumbnail" style="width: 230px;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->imagen ?>">
+                                    <span class="cuadroImg1"></span>
+                                    <span class="cuadroImg2"></span>
+                                    <span class="cuadroImg3"></span>
+                                </center>
                             <?php } ?>
-
-                            <br>
                         </div>
                     </div>
 
@@ -84,7 +91,6 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->fabricante) ? $datos[0]->fabricante : '' ) ?>" class=" form-control   " id="fabricante" name="fabricante">
-                            <br>
                         </div>
 
                         <div class="col-md-3">
@@ -93,9 +99,6 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->fecha_fabricacion) ? $datos[0]->fecha_fabricacion : '' ) ?>" class=" form-control  fecha " id="fecha_fabricacion" name="fecha_fabricacion">
-
-
-                            <br>
                         </div>
                     </div>
 
@@ -106,7 +109,6 @@
                         </div>
                         <div class="col-md-3">
                             <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", (isset($datos[0]->tipo_equipo_cod)) ? $datos[0]->tipo_equipo_cod : null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                            <br>
                         </div>
                         <div class="col-md-3">
                             <label for="responsable">
@@ -114,9 +116,6 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->responsable) ? $datos[0]->responsable : '' ) ?>" class=" form-control   " id="responsable" name="responsable">
-
-
-                            <br>
                         </div>
                     </div>
                     <div class="row">
@@ -126,7 +125,6 @@
                         </div>
                         <div class="col-md-3">
                             <input type="file" value="<?php echo (isset($datos[0]->imagen) ? $datos[0]->imagen : '' ) ?>" class="   " id="imagen" name="imagen">
-                            <br>
                         </div>
                     </div>
                     <div class="row">
@@ -141,7 +139,12 @@
                 </div>
                 <!--Tab Calibracion -->
                 <div id="tabCalibracion" class="tab">
-                    <br />
+                    <div class="row">
+                        <span class="tituloH">Calibración</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
                     <div class="row">
                         <div class="col-md-3">
                             <label for="fecha_ultima_calibracion">
@@ -149,9 +152,6 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->fecha_ultima_calibracion) ? $datos[0]->fecha_ultima_calibracion : '' ) ?>" class=" form-control  fecha " id="fecha_ultima_calibracion" name="fecha_ultima_calibracion">
-
-
-                            <br>
                         </div>
 
 
@@ -162,9 +162,6 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->empresa_certificadora) ? $datos[0]->empresa_certificadora : '' ) ?>" class=" form-control   " id="empresa_certificadora" name="empresa_certificadora">
-
-
-                            <br>
                         </div>
                     </div>
                     <div class="row">
@@ -174,7 +171,6 @@
                         </div>
                         <div class="col-md-3">
                             <input type="file" value="<?php echo (isset($datos[0]->adjuntar_certificado) ? $datos[0]->adjuntar_certificado : '' ) ?>" class="    " id="adjuntar_certificado" name="adjuntar_certificado">
-                            <br>
                         </div>
                         <div class="col-md-6" style="float:right;text-align: center;">
                             <?php
@@ -183,7 +179,14 @@
 //                                print_r($s);
                                 if ($s[1] == 'gif' || $s[1] == 'jpg' || $s[1] == 'png') {
                                     ?>
-                                    <img style="width: 250px;float: right;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
+                                    <center>
+                                        <img class="img-thumbnail" style="width: 250px;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
+                                        <span class="cuadroImg1"></span>
+                                        <span class="cuadroImg2"></span>
+                                        <span class="cuadroImg3"></span>
+                                    </center>
+                                    
+                                    
                                 <?php } else { ?>
                                     <a href="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">Documento</a>
                                 <?php } ?>
@@ -193,7 +196,12 @@
                 </div>
                 <!--Tab Examenes -->
                 <div id="tabExamenes" class="tab">
-                    <br />
+                    <div class="row">
+                        <span class="tituloH">Exámenes</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
                     <div class="row">
                         <div class="col-md-3">
                             <label for="examen_cod">
@@ -201,15 +209,14 @@
                         </div>
                         <div class="col-md-3">
                             <?php echo lista("examen_cod", "examen_cod", "form-control", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->tipo_equipo_cod)) ? $datos[0]->examen_cod : null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                            <br>
                         </div>
                         <div class="col-md-3">
                             <a href="javascript:" id="agregar">Agregar</a>
-                            <br>
                         </div>
                     </div>
                     <div style="width: 80%;margin: 0 auto;">
                         <div class="row">
+                            <br />
                             <table class="table">
                                 <thead>
                                 <th>Examen</th>

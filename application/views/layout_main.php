@@ -157,6 +157,9 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     * { 
         font-family: HelveticaLTStd;
     }
+    label{
+        font-size: 16px !important;
+    }
     .campoobligatorio{
         color:red;
         font-size:16px;
