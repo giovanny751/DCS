@@ -53,6 +53,7 @@
         <div class="col-md-12 table-responsive" style="font-size: 8px">
             <table class="table table-bordered">
                 <thead>
+                <th></th>
                 <th>Codigo</th>
                 <th>Cédula</th>
                 <th>Nombre</th>
@@ -79,10 +80,19 @@
                         $i = 0;
 
                         foreach ($value as $key2 => $value2) {
-                            echo "<td>" . $value->$key2 . "</td>";
                             if ($i == 0) {
                                 $campo = $key2;
+                                if (empty($value->descrip)) {
+                                    echo '<td><span class="charSelected_' . $value->$key2 . '"><b>O</b></span></td>';
+                                }else{
+                                    echo '<td><span class="charSelecte_' . $value->$key2 . '"><b>O</b></span></td>';
+                                }
+                            } else if ($i == 1) {
+                                $campo = $key2;
                                 $valor = "'" . $value->$key2 . "'";
+                                echo "<td>" . $value->$key2 . "</td>";
+                            } else {
+                                echo "<td>" . $value->$key2 ."</td>";
                             }
                             $i++;
                         }
@@ -131,8 +141,122 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker({
-        rtl: Metronic.isRTL(),
-        autoclose: true
-    });
 </script>
+
+<style>
+
+
+    .charSelecte_Verde{
+        background-color: green;
+        padding: 1px 3px;
+        border-radius: 15px;
+    }
+    .charSelecte_Amarillo{
+        background-color: yellow;
+        padding: 1px 3px;
+        border-radius: 15px;
+    }
+    .charSelecte_Rojo{
+        background-color: red;
+        padding: 1px 3px;
+        border-radius: 15px;
+    }
+    .charSelecte_Naranja{
+        background-color: orange;
+        padding: 1px 3px;
+        border-radius: 15px;
+    }
+    ///// de aka para abajo se pintan y desaparecen 
+    .charSelected_Verde{
+        background-color: green;
+        animation: parpadeo 1s;
+        -webkit-animation: parpadeo_green 1s;
+        -moz-animation: parpadeo_green 1s;
+        animation-iteration-count:infinite;
+        -webkit-animation-iteration-count:infinite;
+        -moz-animation-iteration-count:infinite;
+        padding: 1px 3px;
+        border-radius: 15px;
+    }
+    
+
+
+    .charSelected_Amarillo{
+        background-color: yellow;
+        animation: parpadeo 1s;
+        -webkit-animation: parpadeo_yellow 1s;
+        -moz-animation: parpadeo_yellow 1s;
+        animation-iteration-count:infinite;
+        -webkit-animation-iteration-count:infinite;
+        -moz-animation-iteration-count:infinite;
+        padding: 1px 3px;
+        border-radius: 15px;
+    }
+    
+
+
+    .charSelected_Rojo{
+        background-color: red;
+        animation: parpadeo 1s;
+        -webkit-animation: parpadeo_red 1s;
+        -moz-animation: parpadeo_red 1s;
+        animation-iteration-count:infinite;
+        -webkit-animation-iteration-count:infinite;
+        -moz-animation-iteration-count:infinite;
+        padding: 1px 3px;
+        border-radius: 15px;
+    }
+    
+
+
+    .charSelected_Naranja{
+        background-color: orange;
+        animation: parpadeo 1s;
+        -webkit-animation: parpadeo_orange 1s;
+        -moz-animation: parpadeo_orange 1s;
+        animation-iteration-count:infinite;
+        -webkit-animation-iteration-count:infinite;
+        -moz-animation-iteration-count:infinite;
+        padding: 1px 3px;
+        border-radius: 15px;
+    }
+    
+    @keyframes parpadeo_orange {
+        0% {background-color: white}
+        100%{background-color: orange}
+    }
+
+    @-webkit-keyframes parpadeo_orange {
+        0% {background-color: white}
+        100%{background-color: orange}
+    }
+    @keyframes parpadeo_green {
+        0% {background-color: white}
+        100%{background-color: green}
+    }
+
+    @-webkit-keyframes parpadeo_green {
+        0% {background-color: white}
+        100%{background-color: green}
+    }
+    @keyframes parpadeo_yellow {
+        0% {background-color: white}
+        100%{background-color: yellow}
+    }
+
+    @-webkit-keyframes parpadeo_yellow {
+        0% {background-color: white}
+        100%{background-color: yellow}
+    }
+    @keyframes parpadeo_red {
+        0% {background-color: white}
+        100%{background-color: red}
+    }
+
+    @-webkit-keyframes parpadeo_red {
+        0% {background-color: white}
+        100%{background-color: red}
+    }
+
+
+</style>
