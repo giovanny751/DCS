@@ -50,7 +50,7 @@
     </form>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive" style="font-size: 8px">
             <table class="table table-bordered">
                 <thead>
                 <th>Codigo</th>
@@ -62,7 +62,8 @@
                 <th>Nivel</th>
                 <th>Examen</th>
                 <th>Análisis resultado</th>
-                <th>Lectura</th>
+                <th>Valor leido</th>
+                <th>Protocolo</th>
                 <th>Estado</th>
                 <th>Fecha atención</th>
                 <th>Onservaciones</th>

@@ -85,12 +85,14 @@
             <div class="col-md-12">
                 <table class="table">
                     <thead>
-                    <th style="width: 60%">Protocolo _______</th>
+                    <th style="width: 60%">Protocolo <?php echo $datos[0]->nombre_procolo; ?></th>
                     <th>Observaciones</th>
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td>
+                                <?php echo $datos[0]->descripcion_protocolo; ?>
+                            </td>
                             <td>
                                 <textarea name="descripcion" style="width: 100%;height: 100%"><?php echo $datos[0]->descripcion ?></textarea>
                                 <input type="hidden" name="fecha_atencion" value="<?php echo date('Y-m-d H:i:s') ?>">

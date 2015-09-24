@@ -82,11 +82,11 @@
                 <!--<input type="text" value="<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>" >-->
                 <select class="form-control obligatorio  " id="frecuencia" name="frecuencia">
                     <option value=""></option>
-                    <option value="Hora">Hora</option>
-                    <option value="Día">Día</option>
-                    <option value="Semana">Semana</option>
-                    <option value="Mes">Mes</option>
-                    <option value="Año">Año</option>
+                    <option value="Hora" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Hora'?'selected':'') : '' ) ?>>Hora</option>
+                    <option value="Día" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Día'?'selected':'') : '' ) ?>>Día</option>
+                    <option value="Semana" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Semana'?'selected':'') : '' ) ?>>Semana</option>
+                    <option value="Mes" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Mes'?'selected':'') : '' ) ?>>Mes</option>
+                    <option value="Año" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Año'?'selected':'') : '' ) ?>>Año</option>
                 </select>
                 <br>
             </div>
@@ -98,7 +98,12 @@
                     *         Color                            </label>
             </div>
             <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->color) ? $datos[0]->color : '' ) ?>" class="form-control obligatorio  " id="color" name="color">
+                <select class="form-control obligatorio  " id="color" name="color"  >
+                    <option value="Verde" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Verde'?'selected':'') : '' ) ?> >Verde</option>
+                    <option value="Amarillo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Amarillo'?'selected':'') : '' ) ?> >Amarillo</option>
+                    <option value="Naranja" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Naranja'?'selected':'') : '' ) ?> >Naranja</option>
+                    <option value="Rojo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Rojo'?'selected':'') : '' ) ?> >Rojo</option>
+                </select>
                 <br>
             </div>
 
