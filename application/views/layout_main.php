@@ -59,17 +59,57 @@
 <link rel="stylesheet" href="<?= base_url('css/tabs.css') ?>" />
 <script type="text/javascript" src="<?= base_url('js/tabs.js') ?>"></script>
 
-
 <style type="text/css">
+    @font-face {
+        font-family: futura-lt;
+        src: url("<?= base_url('fonts/futura-lt-book.woff') ?>");
+    }
+    @font-face {
+        font-family: BebasNeue;
+        src: url("<?= base_url('fonts/BebasNeue-Regular.ttf') ?>");
+    }
+    h1,h2,h3,h4{
+        font-family: BebasNeue;
+        color: #009FE3;
+    }
     .btn.btn-dcs{ 
         background-color: #009FE3 !important;
         color: white !important;
+        font-family: futura-lt !important;
     }
     .form-control{
         border-radius: 0px !important;
     }
     .container{
         width: 95% !important;
+    }
+    .img-thumbnail{
+        padding: 1px;
+        border: 7px solid #009FE3 !important;
+    }
+    .cuadro1{
+        background-color: #009fe3;
+        height: 35px;
+        margin-left: 67%;
+        margin-top: -50px;
+        position: absolute;
+        width: 35px;
+    }
+    .cuadro2{
+        background-color: #266fb4;
+        height: 25px;
+        margin-left: 75%;
+        margin-top: -10px;
+        position: absolute;
+        width: 25px;
+    }
+    .cuadro3{
+        background-color: #3552a0;
+        height: 18px;
+        margin-left: 74%;
+        margin-top: 5%;
+        position: absolute;
+        width: 18px;
     }
 </style>
 

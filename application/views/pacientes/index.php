@@ -56,7 +56,12 @@
                         </div>
                         <div class="col-md-6">
                             <?php if (!empty($id) && $datos[0]->foto != '') { ?>
-                                <img style="width: 200px;float: right;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
+                            <div class="cuadro1"></div>
+                            <div class="cuadro2"></div>
+                            <div class="cuadro3"></div>
+                            <center>
+                                <img class="img-thumbnail" style="width: 275px;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
+                            </center>
                             <?php } ?>
                         </div>
                     </div>
