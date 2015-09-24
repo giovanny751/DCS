@@ -1,9 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>ROLES
-    </h5>
+<div class="row">
+    <span class="tituloH">ROLES</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form method="post" id="f20">
     <table class="table table-hover table-bordered">
         <thead>
@@ -23,7 +23,6 @@
         <button type="button" class="btn btn-dcs defecto">Rol por defecto</button>
     </div>
     </form>   
-</div>
 <script>
     
     $('.ingresar').click(function(){

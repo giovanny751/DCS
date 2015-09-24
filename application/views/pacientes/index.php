@@ -1,4 +1,9 @@
-
+<div class="row">
+    <span class="tituloH">Pacientes</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
+</div>
     <form action="<?php echo base_url('index.php/') . "/Pacientes/save_pacientes"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
 
         <div class="tabContainter">

@@ -1,9 +1,10 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>REGISTRO USUARIO
-    </h5>
+<div class="row">
+    <span class="tituloH">REGISTRO USUARIO</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
+
     <div class="row">
         <div class="table-responsive ">
             <table class="table table-responsive table-striped table-bordered">
@@ -41,8 +42,6 @@
             <div id="alerta"></div>
         </div>
     </div>
-</div>
-
 <!--Modal-->
 
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >

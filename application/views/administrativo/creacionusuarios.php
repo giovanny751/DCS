@@ -1,9 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>CREACIÓN USUARIOS
-    </h5>
+<div class="row">
+    <span class="tituloH">CREACIÓN USUARIOS</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form id="f3" method="post">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -80,7 +80,6 @@
         <a href="<?php echo base_url('index.php') . "/Administrativo/listadousuarios" ?>" class="btn btn-dcs">Listado </a>
         
     </div>    
-</div>    
 <script>
     $('#cedula').change(function() {
         var cedula = $('#cedula').val();

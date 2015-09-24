@@ -1,9 +1,9 @@
-    <div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>LISTADO USUARIOS
-    </h5>
+<div class="row">
+    <span class="tituloH">LISTADO USUARIOS</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form method="post" id="f4">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -101,7 +101,6 @@
         <br>
         <a href="<?php echo base_url() . "/index.php/Administrativo/creacionusuarios" ?>" class="btn btn-dcs" >Nuevo</a>
     </div>    
-</div>    
 <form id="f10" method="post" action="<?php echo base_url("index.php/administrativo/creacionusuarios") ?>">
     <input type="hidden" value="" name="usu_id" id="usu_id">
 </form>

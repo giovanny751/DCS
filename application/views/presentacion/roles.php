@@ -1,9 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>ADMINISTRACIÓN DE ROLES
-    </h5>
+<div class="row">
+    <span class="tituloH">ADMINISTRACIÓN DE ROLES</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <div class="row">
         <button type="button" data-toggle="modal" data-target="#myModal"  class="btn btn-info opciones">Nuevo Rol</button>
     </div>
@@ -29,7 +29,6 @@
             </table>
         </div>    
     </div>
-</div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

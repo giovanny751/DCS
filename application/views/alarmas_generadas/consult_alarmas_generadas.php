@@ -1,8 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Alarmas Generadas    </h5>
+<div class="row">
+    <span class="tituloH">Alarmas Generadas</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form action="<?php echo base_url('index.php/') . '/Alarmas_generadas/consult_alarmas_generadas'; ?>" method="post" >
         <div class="row">
 
@@ -107,7 +108,6 @@
             </table>
         </div>
     </div>
-</div>
 <div class="row">
     <div class="col-md-12" style="float:right">
         <a href="<?php echo base_url() . "/index.php/Alarmas_generadas/index" ?>" class="btn btn-dcs" >Nuevo</a>
