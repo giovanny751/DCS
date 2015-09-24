@@ -14,12 +14,12 @@
 .tabLinks a {
   text-align: center;
   min-width: 100px;
-  padding: 1px 15px;
+  padding: 0px 15px;
   display: inline-block;
   border-radius: 50px 50px 0px 0px;
   background: #009FE3;
   font-family: futura-lt;
-  font-size: 12px;
+  font-size: 14px;
   color: white;
   transition: all linear 0.15s; }
 .tabLinks a:hover {
@@ -30,7 +30,7 @@
   color: white; }
 
 .tabContenido {
-  padding: 15px;
+  padding: 0 15px 5px;
   border-radius: 3px;
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
   background: #fff; }

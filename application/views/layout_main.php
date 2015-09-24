@@ -53,65 +53,14 @@
 <!--<script src="<?php echo base_url('/assets/admin/pages/scripts/components-pickers.js'); ?>"></script>-->
 <script src="<?= base_url('js/jquery.blockUI.js') ?>" type="text/javascript"></script>
 
+<!-- Estilos principales de botones y/o elementos -->
+<link rel="stylesheet" href="<?= base_url('css/DCSestilos.css') ?>" />
+
 <link rel="stylesheet" href="<?= base_url('css/menuVertical.css') ?>" />
 <script type="text/javascript" src="<?= base_url('js/menuVertical.js') ?>"></script>
 
 <link rel="stylesheet" href="<?= base_url('css/tabs.css') ?>" />
 <script type="text/javascript" src="<?= base_url('js/tabs.js') ?>"></script>
-
-<style type="text/css">
-    @font-face {
-        font-family: futura-lt;
-        src: url("<?= base_url('fonts/futura-lt-book.woff') ?>");
-    }
-    @font-face {
-        font-family: BebasNeue;
-        src: url("<?= base_url('fonts/BebasNeue-Regular.ttf') ?>");
-    }
-    h1,h2,h3,h4{
-        font-family: BebasNeue;
-        color: #009FE3;
-    }
-    .btn.btn-dcs{ 
-        background-color: #009FE3 !important;
-        color: white !important;
-        font-family: futura-lt !important;
-    }
-    .form-control{
-        border-radius: 0px !important;
-    }
-    .container{
-        width: 95% !important;
-    }
-    .img-thumbnail{
-        padding: 1px;
-        border: 7px solid #009FE3 !important;
-    }
-    .cuadro1{
-        background-color: #009fe3;
-        height: 35px;
-        margin-left: 67%;
-        margin-top: -50px;
-        position: absolute;
-        width: 35px;
-    }
-    .cuadro2{
-        background-color: #266fb4;
-        height: 25px;
-        margin-left: 75%;
-        margin-top: -10px;
-        position: absolute;
-        width: 25px;
-    }
-    .cuadro3{
-        background-color: #3552a0;
-        height: 18px;
-        margin-left: 74%;
-        margin-top: 5%;
-        position: absolute;
-        width: 18px;
-    }
-</style>
 
 <?php
 function modulos($datosmodulos, $idusuario, $dato = null) {
@@ -154,9 +103,13 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 ?>
 
 <header>
-    <h1>
+    <span class="tituloH">HOME CARE</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
+<!--    <h1>
         <img src="<?= base_url('img/homeCare.PNG') ?>" alt="Logo" />
-    </h1>
+    </h1>-->
 </header>
 <div id="cssmenu">
         <?php echo modulos('prueba', $id, null); ?>
@@ -200,11 +153,9 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     }
     .container{
         padding-top: 83px;
-
     }
     * { 
-        font-family: "calibri", Garamond, 'Comic Sans'; 
-        font: 12px/2em sans-serif;
+        font-family: HelveticaLTStd;
     }
     .campoobligatorio{
         color:red;

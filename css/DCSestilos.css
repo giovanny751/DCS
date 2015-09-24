@@ -1,0 +1,104 @@
+/*Este estilo para los botones, menu y Tabs */
+@font-face {
+    font-family: futura-lt;
+    src: url("../fonts/futura-lt-book.woff");
+}
+/*Este estilo para las etiquetas H# */
+@font-face {
+    font-family: BebasNeue;
+    src: url("../fonts/BebasNeue-Regular.ttf");
+}
+/*Este estilo para las etiquetas label */
+@font-face {
+    font-family: HelveticaLTStd;
+    src: url("../fonts/HelveticaLTStd-Light.otf");
+}
+
+header {
+    border-bottom: 1px solid #009fe3;
+    padding-top: 8px;
+}
+
+/*__________________ Estilos para etiquetas H# ____________________*/
+
+.tituloH{
+    font-family: BebasNeue;
+    color: #009FE3;
+    font-size: 36px;
+    padding-left: 10px;
+}
+.cuadroH1{
+    background-color: #009fe3;
+    height: 11px;
+    margin-left: -7px;
+    margin-top: -2px;
+    position: absolute;
+    width: 11px;
+}
+.cuadroH2{
+    background-color: #266fb4;
+    height: 7px;
+    margin-left: 7px;
+    margin-top: 11px;
+    position: absolute;
+    width: 7px;
+}
+.cuadroH3{
+    background-color: #3552a0;
+    height: 4px;
+    margin-left: 5px;
+    margin-top: 22px;
+    position: absolute;
+    width: 4px;
+}
+
+
+/*_________________________________________________________________*/
+ /*Nuevo Boton para DCS*/
+.btn.btn-dcs{ 
+    background-color: #009FE3 !important;
+    color: white !important;
+    font-family: futura-lt !important;
+}
+ /*Border Esquineros intacto*/
+.form-control{
+    border-radius: 0px !important;
+}
+ /*Acomodar contenedor en la pantalla*/
+.container{
+    width: 95% !important;
+}
+
+/*__________________________ IMAGENES ____________________________*/
+
+.img-thumbnail{
+    padding: 1px;
+    border: 7px solid #009FE3 !important;
+}
+
+/* Cuadritos para parte superior de las imagenes */
+
+.cuadroImg1{
+    background-color: #009fe3;
+    height: 35px;
+    margin-left: 67%;
+    margin-top: -50px;
+    position: absolute;
+    width: 35px;
+}
+.cuadroImg2{
+    background-color: #266fb4;
+    height: 25px;
+    margin-left: 75%;
+    margin-top: -10px;
+    position: absolute;
+    width: 25px;
+}
+.cuadroImg3{
+    background-color: #3552a0;
+    height: 18px;
+    margin-left: 74%;
+    margin-top: 5%;
+    position: absolute;
+    width: 18px;
+}

@@ -1,8 +1,4 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Pacientes    </h5>
-</div>
-<div class='well'>
+
     <form action="<?php echo base_url('index.php/') . "/Pacientes/save_pacientes"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
 
         <div class="tabContainter">
@@ -19,7 +15,12 @@
             <div class="tabContenido">
                 <!--Tab Datos -->
                 <div id="tabDatos" class="tab active">
-                    <br />
+                    <div class="row">
+                        <span class="tituloH">Datos Paciente</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
                     <div class="row">
                         <?php $id = (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>
                         <input type="hidden" value="<?php echo (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>" class=" form-control   " id="id_paciente" name="id_paciente">
@@ -56,9 +57,9 @@
                         </div>
                         <div class="col-md-6">
                             <?php if (!empty($id) && $datos[0]->foto != '') { ?>
-                            <div class="cuadro1"></div>
-                            <div class="cuadro2"></div>
-                            <div class="cuadro3"></div>
+                                <div class="cuadroImg1"></div>
+                                <div class="cuadroImg2"></div>
+                                <div class="cuadroImg3"></div>
                             <center>
                                 <img class="img-thumbnail" style="width: 275px;" src="<?php echo base_url('uploads') ?>/pacientes/<?php echo $id . "/" . $datos[0]->foto ?>">
                             </center>
@@ -189,7 +190,12 @@
                 </div>
                 <!-- Tab programa -->
                 <div id="tabPrograma" class="tab">
-                    <br />
+                    <div class="row">
+                        <span class="tituloH">Programa</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
                     <div class="row">
                         <div class="col-md-2">
                             <label for="examen_cod">
@@ -311,7 +317,12 @@
                 </div>
                 <!-- Tab Contactos -->
                 <div id="tabContactos" class="tab">
-                    <br />
+                    <div class="row">
+                        <span class="tituloH">Contactos</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
                     <div class="row">
                         <div class="col-md-2">
                             <label for="contacto_id2">Nombre contacto</label>
@@ -395,7 +406,12 @@
                 </script>
                 <!-- Tab Equipos -->
                 <div id="tabEquipos" class="tab">
-                    <br />
+                    <div class="row">
+                        <span class="tituloH">Equipos</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
                     <div class="row">
                         <div class="col-md-2">
                             <label for="descripcion">
@@ -486,7 +502,18 @@
                 </div>
                 <!-- Tab Sistema -->
                 <div id="tabSistema" class="tab">
-                    <center><h4>HOSPITALES</h4></center>
+                    <div class="row">
+                        <span class="tituloH">Sistema De Salud</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
+                    <center>
+                        <span class="tituloH">Hospitales</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </center>
                     <div class="row" >
                         <div class="col-md-2">
                             <label for="hospitales">Hospital</label>
@@ -563,7 +590,12 @@
                         });
                     </script>
                     <br>
-                    <center><h4>ASEGURADORAS</h4></center>
+                    <center>
+                        <span class="tituloH">Aseguradoras</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </center>
                     <div class="row">
                         <div class="col-md-2" >
                             <label for="aseguradora">Aseguradoras</label>
@@ -658,7 +690,7 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
     </form>
-</div>
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">

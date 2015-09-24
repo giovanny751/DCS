@@ -17,9 +17,6 @@
 .container{
     padding-top: 0px !important;
 }
-header{
-    border-bottom: 1px solid #009FE3;
-}
   #cssmenu, #cssmenu ul, #cssmenu ul li, #cssmenu ul li a {
     margin: 0;
     padding: 0;
