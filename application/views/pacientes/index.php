@@ -51,7 +51,7 @@
                                 <label for="fecha_afiliacion">* Fecha Afiliación </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio    " id="fecha_afiliacion" name="fecha_afiliacion">
+                                <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  fecha  " id="fecha_afiliacion" name="fecha_afiliacion">
                                 <br>
                             </div>
                         </div>
@@ -374,7 +374,10 @@
                                                     <td><?php echo $c->email ?></td>
                                                     <td><?php echo $c->parentesco ?></td>
                                                     <td><?php echo $c->llaves ?></td>
-                                                    <td><a class="eliminar" href="javascript:">Eliminar</a></td>
+                                                    <td>
+                                                        <a class="eliminar" href="javascript:">Eliminar</a>
+                                                    &nbsp;&nbsp;<a href="javascript:" class="vista_contacto" tabla="contacto" campo="contacto_id" url="Contacto/edit_contacto2" codigo="<?php echo $c->contacto_id ?>" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>
+                                                    </td>
                                                 </tr>
                                                 <?php
                                             }
@@ -484,7 +487,8 @@
                                                             <?php echo $value->fecha_ultima_calibracion; ?>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:" class="eliminar">Eliminar</a>
+                                                            <a href="javascript:" class="eliminar">Eliminar</a> &nbsp; 
+                                                            <a href="javascript:" class="vista_equipo" tabla="equipos" campo="id_equipo" url="Equipos/edit_Equipos2" codigo="<?php echo $value->id_equipo; ?>" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -560,7 +564,10 @@
                                                     <td><?php echo $c->telefono_fijo ?></td>
                                                     <td><?php echo $c->celular ?></td>
                                                     <td><?php echo $c->email ?></td>
-                                                    <td><a class="eliminar" href="javascript:">Eliminar</a></td>
+                                                    <td>
+                                                        <a class="eliminar" href="javascript:">Eliminar</a> &nbsp;&nbsp;&nbsp;
+                                                        <a href="javascript:" class="vista" tabla="hospitales" campo="codigo_hospital" url="Hospitales/edit_hospitales2" codigo="<?php echo $c->codigo_hospital ?>" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>
+                                                    </td>
                                                 </tr>
                                                 <?php
                                             }
@@ -790,7 +797,7 @@
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
             html += "<td>" + info2[4] + "</td>";
-            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a> <a href="javascript:" class="vista" tabla="hospitales" campo="codigo_hospital" url="Hospitales/edit_hospitales2" codigo="' + info2[5] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a> &nbsp;&nbsp;&nbsp;<a href="javascript:" class="vista" tabla="hospitales" campo="codigo_hospital" url="Hospitales/edit_hospitales2" codigo="' + info2[5] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
             html += "</tr>";
             $('#hospitales').val('');
             $('#tabla_contacto2').append(html);
@@ -1007,8 +1014,6 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-//    $('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
-    $('#fecha_afiliacion').datepicker({dateFormat: 'yy-mm-dd'});
 
 
 </script>
