@@ -9,8 +9,16 @@
                 <div class="col-md-6">
                     Cédula
                 </div>    
-                <div class="col-md-6">
-                    <input type="text" name="cedula" id="cedula">
+                <div class="col-md-4">
+                    <script>
+                        $('document').ready(function() {
+                            $('#cedula').autocomplete({
+                                source: "<?php echo base_url("index.php//Pacientes/autocomplete_cedula_paciente") ?>",
+                                minLength: 3
+                            });
+                        });
+                    </script>
+                    <input type="text" name="cedula" id="cedula" autocomplete="false">
                 </div>
             </div>
             <div class="row">
@@ -55,7 +63,9 @@
             </div>
         </div>
         <div class="col-md-6">
-            <img style="width: 200px;float: center;" src="" id="foto">
+            <center>
+                <img style="width: 200px;float: center;" src="<?php echo base_url('uploads/anonimo.jpg'); ?>" id="foto">
+            </center>
         </div>
     </div>
 
@@ -110,7 +120,7 @@
             <th>Analisis</th>
             </thead>
             <tbody>
-                
+
             </tbody>
         </table>
     </div>
@@ -124,13 +134,12 @@
                     var info = JSON.parse(msg);
                     var id_paciente = "";
                     $.each(info, function(key, val) {
-                        console.log(val.nombres);
                         $('#nombres').html(val.nombres);
                         $('#apellidos').html(val.apellidos);
                         $('#f_nacimiento').html(val.fecha_nacimiento);
                         $('#peso').html(val.peso);
                         $('#estatura').html(val.estatura);
-                        $('#foto').attr('src',"<?php echo base_url('uploads/pacientes') ?>/"+val.id_paciente+"/"+val.foto);
+                        $('#foto').attr('src', "<?php echo base_url('uploads/pacientes') ?>/" + val.id_paciente + "/" + val.foto);
                         id_paciente = val.id_paciente;
                     });
                     var url = "<?php echo base_url('index.php/Alarmas_generadas/buscar_pacientes_examen') ?>";
