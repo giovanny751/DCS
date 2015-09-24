@@ -1,9 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>Niveles alarmas
-    </h5>
+<div class="row">
+    <span class="tituloH">Niveles Alarmas</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form action="<?php echo base_url('index.php/') . '/Niveles_alarma/consult_niveles_alarma'; ?>" method="post" >
 
         <div class="row">                <div class="col-md-3">
@@ -140,7 +140,6 @@
     </form>
 <?php } ?>
     
-    </div>
 <script>
     $('#analisis_resultado').val("<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>");
     function editar(num) {

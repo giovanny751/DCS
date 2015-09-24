@@ -1,9 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>Tipos alarmas
-    </h5>
+<div class="row">
+    <span class="tituloH">Tipos alarmas</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form action="<?php echo base_url('index.php/') . "/Tipo_alarma/save_tipo_alarma"; ?>" method="post" onsubmit="return campos()">
         <div class="tabContainter">
             <!-- Nav tabs -->
@@ -152,8 +152,8 @@
                 <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
             </div>
             </div>
+        </div>
     </form>
-</div>
 <script>
     $('#agregar_equipo').click(function () {
         var info = $('#id_niveles_alarma').val();

@@ -1,8 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Lectura Equipo    </h5>
+<div class="row">
+    <span class="tituloH">Lectura Equipo</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form action="<?php echo base_url('index.php/')."/Lectura_equipo/save_lectura_equipo"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
         <div class="row">
                                     <?php $id=(isset($datos[0]->id_lectura_equipo)?$datos[0]->id_lectura_equipo:'' ) ?>
@@ -93,7 +94,6 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
     </form>
-</div>
 <script>
     function campos() {
         $('input[type="file"]').each(function(key, val) {

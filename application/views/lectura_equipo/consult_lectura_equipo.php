@@ -1,8 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Lectura Equipo    </h5>
+<div class="row">
+    <span class="tituloH">Lectura Equipo</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
 <form action="<?php echo base_url('index.php/').'/Lectura_equipo/consult_lectura_equipo'; ?>" method="post" >
     <div class="row">
                     <div class="col-md-3">
@@ -114,7 +115,6 @@
             </tbody>
         </table>
     </div>
-</div>
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">

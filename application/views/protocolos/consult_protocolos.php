@@ -1,9 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>Protocolos
-    </h5>
+<div class="row">
+    <span class="tituloH">Protocolos</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
 <form action="<?php echo base_url('index.php/').'/Protocolos/consult_protocolos'; ?>" method="post" >
 
     <div class="row">                <div class="col-md-2">
@@ -132,7 +132,6 @@
     <input type="hidden" name="campo" value="<?php echo $campo ?>">
 </form>
 <?php } ?>
-</div>
 <script>
     function editar(num) {
         $('#<?php echo $campo ?>2').val(num);
