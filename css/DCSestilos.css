@@ -81,7 +81,7 @@ header {
 .cuadroImg1{
     background-color: #009fe3;
     height: 35px;
-    margin-left: 67%;
+    margin-left: -24px;
     margin-top: -50px;
     position: absolute;
     width: 35px;
@@ -89,7 +89,7 @@ header {
 .cuadroImg2{
     background-color: #266fb4;
     height: 25px;
-    margin-left: 75%;
+    margin-left: 20px;
     margin-top: -10px;
     position: absolute;
     width: 25px;
@@ -97,7 +97,7 @@ header {
 .cuadroImg3{
     background-color: #3552a0;
     height: 18px;
-    margin-left: 74%;
+    margin-left: 12px;
     margin-top: 5%;
     position: absolute;
     width: 18px;

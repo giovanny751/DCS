@@ -1,10 +1,9 @@
-
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Variables
-    </h5>
+<div class="row">
+    <span class="tituloH">Variables</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
 <form action="<?php echo base_url('index.php/') . "/Variables/save_variables"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
     
         <div class="row">
@@ -74,7 +73,6 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
-</div>
 <script>
     $('#hl7tag').change(function() {
         var hl7tag = $('#hl7tag').val();

@@ -1,8 +1,10 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Datos Paciente   </h5>
+<div class="row">
+    <span class="tituloH">Datos Paciente</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
+
     <div class="row">
         <div class="col-md-6">
             <div class="row">
@@ -18,7 +20,7 @@
                             });
                         });
                     </script>
-                    <input type="text" name="cedula" id="cedula" autocomplete="false">
+                    <input type="text" name="cedula" id="cedula" autocomplete="false" class="form-control">
                 </div>
             </div>
             <div class="row">
@@ -64,7 +66,12 @@
         </div>
         <div class="col-md-6">
             <center>
-                <img style="width: 200px;float: center;" src="<?php echo base_url('uploads/anonimo.jpg'); ?>" id="foto">
+                <center>
+                    <img class="img-thumbnail" style="width: 200px;" src="<?php echo base_url('uploads/anonimo.jpg'); ?>" id="foto">
+                    <span class="cuadroImg1"></span>
+                    <span class="cuadroImg2"></span>
+                    <span class="cuadroImg3"></span>
+                </center>
             </center>
         </div>
     </div>
@@ -83,20 +90,20 @@
                 Fecha Inicial
             </div>    
             <div class="col-md-2">
-                <input type="text" name="f_inicial" id="f_inicial" class="fecha">
+                <input type="text" name="f_inicial" id="f_inicial" class="fecha form-control">
             </div>
             <div class="col-md-2">
                 Fecha Final
             </div>    
             <div class="col-md-2">
-                <input type="text" name="f_fin" id="f_fin" class="fecha">
+                <input type="text" name="f_fin" id="f_fin" class="fecha form-control">
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-1">
-            <a href="<?php echo base_url('index.php/pacientes'); ?>">
+            <a href="<?php echo base_url('index.php/pacientes'); ?>"></a>
         </div>
         <div class="col-md-1">
             <input type="reset" class="btn btn-dcs" value="Limpiar">
@@ -108,23 +115,44 @@
         </div>
     </div>
     <div class="row">
-        <table class="table">
-            <thead>
-            <th>Examen</th>
-            <th>Fecha-Registro</th>
-            <th>Variable</th>
-            <th>HL7TAG</th>
-            <th>Lectura</th>
-            <th>Valor Mínimo</th>
-            <th>Valor Máximo</th>
-            <th>Analisis</th>
-            </thead>
-            <tbody>
+        
+        <div class="tabContainter">
+            <!-- Nav tabs -->
+            <ul class="tabLinks">              
+                <li class="active"><a href="#tabDatos">Datos</a></li>
+                <li><a href="#tabGrafica">Gráfica</a></li>
+                <li><a href="#tabAlarmas">Alarmas</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tabContenido">
+                <!--Tab Datos -->
+                <div id="tabDatos" class="tab active">
+                    <table class="table">
+                        <thead>
+                        <th>Examen</th>
+                        <th>Fecha-Registro</th>
+                        <th>Variable</th>
+                        <th>HL7TAG</th>
+                        <th>Lectura</th>
+                        <th>Valor Mínimo</th>
+                        <th>Valor Máximo</th>
+                        <th>Analisis</th>
+                        </thead>
+                        <tbody>
 
-            </tbody>
-        </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tabGrafica" class="tab">
+                    Este tab es de Gráfca
+                </div>
+                <div id="tabAlarmas" class="tab">
+                    Este tab es de Alarmas
+                </div>
+            </div>
+        </div>
+        
     </div>
-</div>
 
 <script>
     $('#cedula').change(function() {

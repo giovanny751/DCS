@@ -1,4 +1,9 @@
-<h1>Variables</h1>
+<div class="row">
+    <span class="tituloH">Variables-Listado</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
+</div>
 <form action="<?php echo base_url('index.php/') . '/Variables/consult_variables'; ?>" method="post" >
     <div>
         <div class="row">                <div class="col-md-3">

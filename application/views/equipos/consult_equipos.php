@@ -1,8 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Equipos    </h5>
+<div class="row">
+    <span class="tituloH">Equipos</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form action="<?php echo base_url('index.php/') . '/Equipos/consult_equipos'; ?>" method="post" >
         <div class="row">
             <div class="col-md-3">
@@ -132,7 +133,6 @@
             </table>
         </div>
     </div>
-</div>
 <div class="row">
     <div class="col-md-12" style="float:right">
         <a href="<?php echo base_url() . "/index.php/Equipos/index" ?>" class="btn btn-dcs" >Nuevo</a>

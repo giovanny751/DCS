@@ -1,9 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Ficha Contacto
-    </h5>
+<div class="row">
+    <span class="tituloH">Ficha Contacto</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
 <form action="<?php echo base_url('index.php/') . "/Contacto/save_contacto"; ?>" method="post" onsubmit="return campos()">
         <div class="row">
 
@@ -149,7 +149,6 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
-</div>
 <script>
     $('#documento').change(function() {
         var documento = $('#documento').val();

@@ -1,8 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Exámenes    </h5>
+<div class="row">
+    <span class="tituloH">Exámenes</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form action="<?php echo base_url('index.php/')."/Examenes/save_examenes"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
         <div class="row">
                                     <?php $id=(isset($datos[0]->examen_cod)?$datos[0]->examen_cod:'' ) ?>
@@ -52,7 +53,6 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
     </form>
-</div>
 <script>
     $('#examen_nombre').change(function() {
         var examen_cod = $('#examen_cod').val();

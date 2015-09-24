@@ -1,9 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i>Aseguradoras
-    </h5>
+<div class="row">
+    <span class="tituloH">Aseguradoras</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
     <form action="<?php echo base_url('index.php/') . '/Aseguradoras/consult_aseguradoras'; ?>" method="post" >
         <div>
             <div class="row">                <div class="col-md-3">
@@ -122,7 +122,6 @@
             <input type="hidden" name="campo" value="<?php echo $campo ?>">
         </form>
     <?php } ?>
-</div>
 <script>
     function editar(num) {
         $('#<?php echo $campo ?>2').val(num);

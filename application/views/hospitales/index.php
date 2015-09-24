@@ -1,10 +1,9 @@
-<div class="widgetTitle" >
-    <h5>
-        <i class="glyphicon glyphicon-ok"></i> Ficha Hospital
-    </h5>
+<div class="row">
+    <span class="tituloH">Ficha Hospital</span>
+    <span class="cuadroH1"></span>
+    <span class="cuadroH2"></span>
+    <span class="cuadroH3"></span>
 </div>
-<div class='well'>
-
     <form action="<?php echo base_url('index.php/') . "/Hospitales/save_hospitales"; ?>" method="post" onsubmit="return campos()">
 
         <div class="row">
@@ -91,7 +90,6 @@
         </div>
         <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
     </form>
-</div>
 <script>
     $('#nombre').change(function() {
         var nombre = $('#nombre').val();
