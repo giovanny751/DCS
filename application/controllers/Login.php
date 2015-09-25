@@ -88,8 +88,12 @@ class Login extends My_Controller {
             $password = $this->user_model->reset($mail);
             $actualizar = $this->user_model->actualizar($mail);
             $data = mail($mail, "Actualizacion de Contraseña", 'clave: ' . $password);
+            $this->session->set_flashdata(array('message' => 'Correo enviado.', 'message_type' => 'warning'));
+        }else{
+            $this->session->set_flashdata(array('message' => 'Correo no existe.', 'message_type' => 'warning'));
+            redirect('index.php', 'location');
         }
-        redirect('index.php', 'location');
+        
     }
 
 }

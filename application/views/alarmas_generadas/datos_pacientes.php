@@ -1,10 +1,12 @@
+
+  
 <div class="row">
     <span class="tituloH">Datos Paciente</span>
     <span class="cuadroH1"></span>
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
 </div>
-
+<form action="" method="post" id="form1">
     <div class="row">
         <div class="col-md-6">
             <div class="row">
@@ -100,61 +102,167 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-1">
-            <a href="<?php echo base_url('index.php/pacientes'); ?>"></a>
-        </div>
-        <div class="col-md-1">
-            <input type="reset" class="btn btn-dcs" value="Limpiar">
-            <p>
-        </div>
-        <div class="col-md-1">
-            <button class="btn btn-dcs">Buscar</button>
-            <p>
-        </div>
+</form>
+<div class="row">
+    <div class="col-md-1">
+        <a href="<?php echo base_url('index.php/pacientes'); ?>"></a>
     </div>
-    <div class="row">
-        
-        <div class="tabContainter">
-            <!-- Nav tabs -->
-            <ul class="tabLinks">              
-                <li class="active"><a href="#tabDatos">Datos</a></li>
-                <li><a href="#tabGrafica">Gráfica</a></li>
-                <li><a href="#tabAlarmas">Alarmas</a></li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="tabContenido">
-                <!--Tab Datos -->
-                <div id="tabDatos" class="tab active">
-                    <table class="table">
-                        <thead>
-                        <th>Examen</th>
-                        <th>Fecha-Registro</th>
-                        <th>Variable</th>
-                        <th>HL7TAG</th>
-                        <th>Lectura</th>
-                        <th>Valor Mínimo</th>
-                        <th>Valor Máximo</th>
-                        <th>Analisis</th>
-                        </thead>
-                        <tbody>
+    <div class="col-md-1">
+        <input type="reset" class="btn btn-dcs" value="Limpiar">
+        <p>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-dcs buscar">Buscar</button>
+        <p>
+    </div>
+</div>
+<div class="row">
 
-                        </tbody>
-                    </table>
-                </div>
-                <div id="tabGrafica" class="tab">
-                    Este tab es de Gráfca
-                </div>
-                <div id="tabAlarmas" class="tab">
-                    Este tab es de Alarmas
-                </div>
+    <div class="tabContainter">
+        <!-- Nav tabs -->
+        <ul class="tabLinks">              
+            <li class="active"><a href="#tabDatos">Datos</a></li>
+            <li><a href="#tabGrafica">Gráfica</a></li>
+            <li><a href="#tabAlarmas">Alarmas</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tabContenido">
+            <!--Tab Datos -->
+            <div id="tabDatos" class="tab active">
+                <table class="table">
+                    <thead>
+                    <th>Examen</th>
+                    <th>Fecha-Registro</th>
+                    <th>Variable</th>
+                    <th>HL7TAG</th>
+                    <th>Lectura</th>
+                    <th>Valor Mínimo</th>
+                    <th>Valor Máximo</th>
+                    <th>Analisis</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="tabGrafica" class="tab">
+                 
+                <div id="graficas"></div>
+                
+                
+            </div>
+            <div id="tabAlarmas" class="tab">
+                Este tab es de Alarmas
             </div>
         </div>
-        
     </div>
 
+</div>
+
 <script>
+    $('#graficas').highcharts({
+            chart: {
+                type: 'column',
+                options3d: {
+                    enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    viewDistance: 25,
+                    depth: 40
+                },
+                marginTop: 80,
+                marginRight: 40
+            },
+            title: {
+                text: 'REPORTE GENERAL DE USUARIOS'
+            },
+            xAxis: {
+                categories: [
+                    'Tienen Arl',
+                    'Cotiza Sistema Pension',
+                    'Tienen Eps',
+                    'Caja Compensacion'
+                ]
+            },
+            yAxis: {
+                allowDecimals: false,
+                min: 0,
+                title: {
+                    text: 'EMPLEADOS'
+                }
+            },
+            tooltip: {
+                headerFormat: '<b>{point.key}</b><br>',
+                pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    depth: 40
+                }
+            },
+            series: [{
+                    name: 'Si',
+                    data: [ "2",
+                            "3",
+                            "4",
+                            "5"
+                    ],
+                    stack: 'male'
+                }, {
+                    name: 'No',
+                    data: ["6",
+                            "7",
+                            "8",
+                            "9"
+                    ],
+                    stack: 'male'
+                }, {
+                    name: 'NO CONTESTADAS',
+                    data: ["1",
+                            "2",
+                            "3",
+                            "4"
+                    ],
+                    stack: 'male'
+                }
+            ]
+        });
+    
+    
+    
+    $('.buscar').click(function() {
+        var url = "<?php echo base_url('index.php/Alarmas_generadas/busqueda_cedula') ?>";
+        $.post(url, $('#form1').serialize())
+                .done(function(msg) {
+                    $('.table').DataTable().rows().remove();
+                        var datos=JSON.parse(msg);
+                    $.each(datos, function(key, val) {
+                        $('.table').DataTable().row.add([
+                            val.examen_nombre,
+                            val.fecha_creacion,
+                            val.descripcion,
+                            val.hl7tag,
+                            val.lectura_numerica,
+                            val.n_repeticiones_minimas,
+                            val.n_repeticiones_maximas,
+                            val.analisis_resultado
+                        ]).draw();
+                    });
+//                    var url = "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>";
+//                    $.post(url,{msg:msg})
+//                            .done(function(msg){
+//                                $('#graficas').html(msg)
+//                            })
+//                            .fail(function(){
+//                                alerta('roja', 'Error al consultar');
+//                            })
+                })
+                .fail(function() {
+                    alerta('roja', 'Error al consultar');
+                })
+    })
+
     $('#cedula').change(function() {
         var url = "<?php echo base_url('index.php/Alarmas_generadas/buscar_pacientes') ?>";
         $.post(url, {cedula: $(this).val()})
@@ -183,4 +291,5 @@
                     alerta('rojo', 'Error en la consulta')
                 })
     })
+    
 </script>

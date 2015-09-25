@@ -42,6 +42,36 @@ class Alarmas_generadas__model extends CI_Model {
         return $datos = $datos->result();
     }
 
+    function busqueda_cedula($post) {
+        if (isset($post['cedula_paciente']))
+            if ($post['cedula_paciente'] != "")
+                $this->db->where('cedula_paciente', $post['cedula']);
+        if (isset($post['fecha_creacion']))
+            if ($post['fecha_creacion'] != "")
+                $this->db->where('fecha_creacion >=', $post['f_inicial'] . ' 00:00:00');
+        if (isset($post['fecha_creacion']))
+            if ($post['fecha_creacion'] != "")
+                $this->db->where('fecha_creacion <=', $post['f_fin'] . ' 11:59:59');
+        if (isset($post['examen_cod']))
+            if ($post['examen_cod'] != "")
+                $this->db->where('examenes.examen_cod ', $post['examen_cod']);
+
+        $this->db->select('examenes.examen_nombre,alarmas_generadas.fecha_creacion,variables.descripcion,variables.hl7tag');
+        $this->db->select('lectura_numerica,n_repeticiones_minimas,n_repeticiones_maximas,niveles_alarma.analisis_resultado');
+//        $this->db->select('');
+        $this->db->where('alarmas_generadas.ACTIVO', 'S');
+        $this->db->join('niveles_alarma', 'niveles_alarma.id_niveles_alarma=alarmas_generadas.id_niveles_alarma', 'left');
+        $this->db->join('lectura_equipo', 'lectura_equipo.id_lectura_equipo=alarmas_generadas.id_lectura_equipo', 'left');
+        $this->db->join('pacientes', 'pacientes.id_paciente=lectura_equipo.id_paciente', 'left');
+        $this->db->join('tipo_alarma', 'alarmas_generadas.id_tipo_alarma=tipo_alarma.id_tipo_alarma', 'left');
+        $this->db->join('examenes', 'tipo_alarma.examen=examenes.examen_cod', 'left');
+        $this->db->join('protocolos', 'niveles_alarma.id_protocolo=protocolos.id_protocolo', 'left');
+        $this->db->join('variables', 'variables.variable_codigo=lectura_equipo.variable_codigo', 'left');
+        $datos = $this->db->get('alarmas_generadas');
+//        echo $this->db->last_query();
+        return $datos = $datos->result();
+    }
+
     function consult_alarmas_generadas($post) {
         if (isset($post['id_alarmas_generadas']))
             if ($post['id_alarmas_generadas'] != "")
@@ -84,17 +114,19 @@ class Alarmas_generadas__model extends CI_Model {
         $datos = $datos->result();
         return $datos;
     }
-    function buscar_pacientes($post){
-        $this->db->where('cedula_paciente',$post['cedula']);
-        $datos=$this->db->get('pacientes');
-        $datos=$datos->result();
+
+    function buscar_pacientes($post) {
+        $this->db->where('cedula_paciente', $post['cedula']);
+        $datos = $this->db->get('pacientes');
+        $datos = $datos->result();
         return $datos;
     }
-    function buscar_pacientes_examen($post){
+
+    function buscar_pacientes_examen($post) {
         $this->db->select('examen_cod');
-        $this->db->where('id_paciente',$post['id_paciente']);
-        $datos=$this->db->get('paciente_examen_variable');
-        $datos=$datos->result();
+        $this->db->where('id_paciente', $post['id_paciente']);
+        $datos = $this->db->get('paciente_examen_variable');
+        $datos = $datos->result();
         return $datos;
     }
 

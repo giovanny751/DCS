@@ -40,6 +40,11 @@ class Alarmas_generadas extends My_Controller {
         $this->Alarmas_generadas__model->delete_alarmas_generadas($post);
         redirect('index.php/Alarmas_generadas/consult_alarmas_generadas', 'location');
     }
+    function busqueda_cedula() {
+        $post = $this->input->post();
+        $datos=$this->Alarmas_generadas__model->busqueda_cedula($post);
+        echo json_encode($datos);
+    }
 
     function edit_alarmas_generadas() {
         $this->data['post'] = $this->input->post();
@@ -67,6 +72,10 @@ class Alarmas_generadas extends My_Controller {
         $this->db->where_in('examen_cod',$s);
         echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", null, array("ACTIVO" => "S"), /* readOnly? */ false);
 //        echo json_encode($datos);
+    }
+    function graficas(){
+        $this->data['datos']= $this->input->post();
+        $this->load->view('alarmas_generadas/graficas', $this->data);
     }
 
 }
