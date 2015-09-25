@@ -160,78 +160,14 @@
 </div>
 
 <script>
-    $('#graficas').highcharts({
-            chart: {
-                type: 'column',
-                options3d: {
-                    enabled: true,
-                    alpha: 15,
-                    beta: 15,
-                    viewDistance: 25,
-                    depth: 40
-                },
-                marginTop: 80,
-                marginRight: 40
-            },
-            title: {
-                text: 'REPORTE GENERAL DE USUARIOS'
-            },
-            xAxis: {
-                categories: [
-                    'Tienen Arl',
-                    'Cotiza Sistema Pension',
-                    'Tienen Eps',
-                    'Caja Compensacion'
-                ]
-            },
-            yAxis: {
-                allowDecimals: false,
-                min: 0,
-                title: {
-                    text: 'EMPLEADOS'
-                }
-            },
-            tooltip: {
-                headerFormat: '<b>{point.key}</b><br>',
-                pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'normal',
-                    depth: 40
-                }
-            },
-            series: [{
-                    name: 'Si',
-                    data: [ "2",
-                            "3",
-                            "4",
-                            "5"
-                    ],
-                    stack: 'male'
-                }, {
-                    name: 'No',
-                    data: ["6",
-                            "7",
-                            "8",
-                            "9"
-                    ],
-                    stack: 'male'
-                }, {
-                    name: 'NO CONTESTADAS',
-                    data: ["1",
-                            "2",
-                            "3",
-                            "4"
-                    ],
-                    stack: 'male'
-                }
-            ]
-        });
-    
     
     
     $('.buscar').click(function() {
+        var cedula=$('#cedula').val();
+        if(cedula==""){
+            alerta('rojo','Campo cedula obligatorio');
+            return false;
+        }
         var url = "<?php echo base_url('index.php/Alarmas_generadas/busqueda_cedula') ?>";
         $.post(url, $('#form1').serialize())
                 .done(function(msg) {

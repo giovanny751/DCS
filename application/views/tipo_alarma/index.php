@@ -94,7 +94,7 @@
                             <script>
                                 $('document').ready(function () {
                                     $('#id_niveles_alarma').autocomplete({
-                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_nivel") ?>",
+                                        source: "<?php echo base_url("index.php//Pacientes/autocomplete_nivel2") ?>",
                                         minLength: 3
                                     });
                                 });
@@ -111,6 +111,9 @@
                                 <table class="table">
                                     <thead>
                                     <th>Descripción</th>
+                                    <th>Repeticiones minimas</th>
+                                    <th>Repeticiones maximas</th>
+                                    <th>Color</th>
                                     <th>Acción</th>
                                     </thead>
                                     <tbody id="tabla_contacto">
@@ -123,6 +126,9 @@
                                                         <td>
                                                             <input type="hidden" value="<?php echo $c->id_niveles_alarma ?>" class="equipo_id" name="equipo_id[]">
                                                             <?php echo $c->descripcion ?></td>
+                                                        <td><?php echo $c->n_repeticiones_minimas ?></td>
+                                                        <td><?php echo $c->n_repeticiones_maximas ?></td>
+                                                        <td><?php echo $c->color ?></td>
                                                         <td><a class="eliminar" href="javascript:">Eliminar</a></td>
                                                     </tr>
                                                     <?php
@@ -169,9 +175,12 @@
         if (r == 1) {
             return false;
         }
-        if (info2.length == 2) {
+        if (info2.length == 5) {
             var html = "<tr>";
             html += "<td><input type='hidden' class='equipo_id' name='equipo_id[]' class='equipo_id' value='" + info2[1] + "'>" + info2[0] + "</td>";
+            html += "<td>" + info2[2] + "</td>";
+            html += "<td>" + info2[3] + "</td>";
+            html += "<td>" + info2[4] + "</td>";
             html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
             html += "</tr>";
             $('#tabla_contacto').append(html);

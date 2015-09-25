@@ -135,6 +135,23 @@ class Pacientes extends My_Controller {
         $info = $this->auto6("niveles_alarma", "id_niveles_alarma", "descripcion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+    function autocomplete_nivel2() {
+        $info = $this->auto8("niveles_alarma", "id_niveles_alarma", "descripcion", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function auto8($tabla,$idcampo,$nombrecampo,$letra) {
+            $search = buscador($tabla,$nombrecampo,$letra);
+            $h = 0;
+            foreach($search as $result){
+                $data[$h] = array(
+                    'id' => $result->$idcampo,
+                       'label' => $result->$nombrecampo,
+                       'value' => $result->descripcion." :: ".$result->id_niveles_alarma." :: ".$result->n_repeticiones_minimas." :: ".$result->n_repeticiones_maximas." :: ".$result->color
+                );
+                $h++;
+            }
+            return $data;
+    }
     function autocomplete_nom_paciente() {
         $info = $this->auto7("pacientes", "id_paciente", "nombres", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
@@ -152,6 +169,7 @@ class Pacientes extends My_Controller {
             }
             return $data;
     }
+    
     function auto6($tabla,$idcampo,$nombrecampo,$letra) {
             $search = buscador($tabla,$nombrecampo,$letra);
             $h = 0;

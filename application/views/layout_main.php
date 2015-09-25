@@ -249,13 +249,13 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     }
 
 
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         Metronic.init(); // init metronic core componets
 //        Layout.init(); // init layout
-        TableAjax.init();
-        UIBlockUI.init();
+//        TableAjax.init();
+//        UIBlockUI.init();
         //TableAdvanced.init();
-        ComponentsPickers.init();
+//        ComponentsPickers.init();
         //QuickSidebar.init() // init quick sidebar
         //Index.init();
         //Index.initDashboardDaterange();
