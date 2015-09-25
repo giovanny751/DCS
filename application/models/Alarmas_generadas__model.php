@@ -43,14 +43,14 @@ class Alarmas_generadas__model extends CI_Model {
     }
 
     function busqueda_cedula($post) {
-        if (isset($post['cedula_paciente']))
-            if ($post['cedula_paciente'] != "")
+        if (isset($post['cedula']))
+            if ($post['cedula'] != "")
                 $this->db->where('cedula_paciente', $post['cedula']);
-        if (isset($post['fecha_creacion']))
-            if ($post['fecha_creacion'] != "")
+        if (isset($post['f_inicial']))
+            if ($post['f_inicial'] != "")
                 $this->db->where('fecha_creacion >=', $post['f_inicial'] . ' 00:00:00');
-        if (isset($post['fecha_creacion']))
-            if ($post['fecha_creacion'] != "")
+        if (isset($post['f_fin']))
+            if ($post['f_fin'] != "")
                 $this->db->where('fecha_creacion <=', $post['f_fin'] . ' 11:59:59');
         if (isset($post['examen_cod']))
             if ($post['examen_cod'] != "")

@@ -1,5 +1,7 @@
 
-  
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+
 <div class="row">
     <span class="tituloH">Datos Paciente</span>
     <span class="cuadroH1"></span>
@@ -15,14 +17,14 @@
                 </div>    
                 <div class="col-md-4">
                     <script>
-                        $('document').ready(function() {
+                        $('document').ready(function () {
                             $('#cedula').autocomplete({
                                 source: "<?php echo base_url("index.php//Pacientes/autocomplete_cedula_paciente") ?>",
                                 minLength: 3
                             });
                         });
                     </script>
-                    <input type="text" name="cedula" id="cedula" autocomplete="false" class="form-control">
+                    <input type="text" name="cedula" id="cedula" value="" autocomplete="false" class="form-control">
                 </div>
             </div>
             <div class="row">
@@ -129,7 +131,7 @@
         <div class="tabContenido">
             <!--Tab Datos -->
             <div id="tabDatos" class="tab active">
-                <table class="table">
+                <table class="table" id="tablee">
                     <thead>
                     <th>Examen</th>
                     <th>Fecha-Registro</th>
@@ -146,10 +148,10 @@
                 </table>
             </div>
             <div id="tabGrafica" class="tab">
-                 
+
                 <div id="graficas"></div>
-                
-                
+
+                <div id="chart_div"></div>
             </div>
             <div id="tabAlarmas" class="tab">
                 Este tab es de Alarmas
@@ -160,20 +162,40 @@
 </div>
 
 <script>
-    
-    
-    $('.buscar').click(function() {
-        var cedula=$('#cedula').val();
-        if(cedula==""){
-            alerta('rojo','Campo cedula obligatorio');
+// Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages': ['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+
+
+    function drawChart() {
+        var jsonData = $.ajax({
+            url: "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>",
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        // Create our data table out of JSON data loaded from server.
+//        var data = new google.visualization.DataTable(jsonData);
+
+        // Instantiate and draw our chart, passing in some options.
+
+    }
+
+
+
+    $('.buscar').click(function () {
+        var cedula = $('#cedula').val();
+        if (cedula == "") {
+            alerta('rojo', 'Campo cedula obligatorio');
             return false;
         }
+        $('.table').DataTable().rows().remove().draw();
         var url = "<?php echo base_url('index.php/Alarmas_generadas/busqueda_cedula') ?>";
         $.post(url, $('#form1').serialize())
-                .done(function(msg) {
-                    $('.table').DataTable().rows().remove();
-                        var datos=JSON.parse(msg);
-                    $.each(datos, function(key, val) {
+                .done(function (msg) {
+                    var datos = JSON.parse(msg);
+                    $.each(datos, function (key, val) {
                         $('.table').DataTable().row.add([
                             val.examen_nombre,
                             val.fecha_creacion,
@@ -185,27 +207,29 @@
                             val.analisis_resultado
                         ]).draw();
                     });
-//                    var url = "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>";
-//                    $.post(url,{msg:msg})
-//                            .done(function(msg){
-//                                $('#graficas').html(msg)
-//                            })
-//                            .fail(function(){
-//                                alerta('roja', 'Error al consultar');
-//                            })
+                    var url = "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>";
+                    $.post(url,  $('#form1').serialize())
+                            .done(function (msg) {
+                                var data = new google.visualization.DataTable(msg);
+                                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                                chart.draw(data, {width: 800, height: 400});
+                            })
+                            .fail(function () {
+                                alerta('roja', 'Error al consultar');
+                            })
                 })
-                .fail(function() {
+                .fail(function () {
                     alerta('roja', 'Error al consultar');
                 })
     })
 
-    $('#cedula').change(function() {
+    $('#cedula').change(function () {
         var url = "<?php echo base_url('index.php/Alarmas_generadas/buscar_pacientes') ?>";
         $.post(url, {cedula: $(this).val()})
-                .done(function(msg) {
+                .done(function (msg) {
                     var info = JSON.parse(msg);
                     var id_paciente = "";
-                    $.each(info, function(key, val) {
+                    $.each(info, function (key, val) {
                         $('#nombres').html(val.nombres);
                         $('#apellidos').html(val.apellidos);
                         $('#f_nacimiento').html(val.fecha_nacimiento);
@@ -216,16 +240,16 @@
                     });
                     var url = "<?php echo base_url('index.php/Alarmas_generadas/buscar_pacientes_examen') ?>";
                     $.post(url, {id_paciente: id_paciente})
-                            .done(function(msg) {
+                            .done(function (msg) {
                                 $('#datos_examen').html(msg)
                             })
-                            .fail(function() {
+                            .fail(function () {
                                 alerta('rojo', 'Error en la consulta')
                             })
                 })
-                .fail(function() {
+                .fail(function () {
                     alerta('rojo', 'Error en la consulta')
                 })
     })
-    
+
 </script>
