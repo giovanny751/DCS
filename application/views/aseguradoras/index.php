@@ -7,20 +7,15 @@
     <form action="<?php echo base_url('index.php/') . "/Aseguradoras/save_aseguradoras"; ?>" method="post" onsubmit="return campos()"  enctype="multipart/form-data">
         <div class="row">
             <?php $id = (isset($datos[0]->aseguradora_id) ? $datos[0]->aseguradora_id : '' ) ?>
-
-
             <div class="col-md-3">
                 <label for="aseguradora_id">
                 </label>
             </div>
             <div class="col-md-3">
                 <input type="hidden" value="<?php echo (isset($datos[0]->aseguradora_id) ? $datos[0]->aseguradora_id : '' ) ?>" class=" form-control   " id="aseguradora_id" name="aseguradora_id">
-
-
-                <br>
             </div>
-
-        </div><div class="row">
+        </div>
+        <div class="row">
 
             <div class="col-md-3">
                 <label for="nombre">
@@ -28,9 +23,6 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->nombre) ? $datos[0]->nombre : '' ) ?>" class=" form-control obligatorio  " id="nombre" name="nombre">
-
-
-                <br>
             </div>
 
 
@@ -46,12 +38,10 @@
                     <option value="Prepagada" <?php echo (isset($datos[0]->tipo) ? (($datos[0]->tipo == 'Prepagada') ? 'selected="selected"' : '') : '' ) ?>>Prepagada</option>
                     <option value="Red de ambulancias" <?php echo (isset($datos[0]->tipo) ? (($datos[0]->tipo == 'Red de ambulancias') ? 'selected="selected"' : '') : '' ) ?>>Red de ambulancias</option>
                 </select>
-
-
-                <br>
             </div>
 
-        </div><div class="row">
+        </div>
+        <div class="row">
 
             <div class="col-md-3">
                 <label for="estado">
@@ -63,23 +53,16 @@
                     <option value="Activo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Activo') ? 'selected="selected"' : '') : '' ) ?>>Activo</option>
                     <option value="Inactivo" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'Inactivo') ? 'selected="selected"' : '') : '' ) ?>>Inactivo</option>
                 </select>
-                <br>
             </div>
-
-
-
             <div class="col-md-3">
                 <label for="direccion">
                     *                             Dirección                        </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->direccion) ? $datos[0]->direccion : '' ) ?>" class=" form-control obligatorio  " id="direccion" name="direccion">
-
-
-                <br>
             </div>
-
-
+        </div>
+        <div class="row">
 
             <div class="col-md-3">
                 <label for="telefono_fijo">
@@ -87,9 +70,6 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo) ? $datos[0]->telefono_fijo : '' ) ?>" class=" form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
-
-
-                <br>
             </div>
 
 
@@ -100,11 +80,9 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->celular) ? $datos[0]->celular : '' ) ?>" class=" form-control   number" id="celular" name="celular">
-
-
-                <br>
             </div>
-
+        </div>
+        <div class="row">
 
 
             <div class="col-md-3">
@@ -113,9 +91,6 @@
             </div>
             <div class="col-md-3">
                 <input type="email" value="<?php echo (isset($datos[0]->email) ? $datos[0]->email : '' ) ?>" class=" form-control   " id="email" name="email">
-
-
-                <br>
             </div>
 
         </div>

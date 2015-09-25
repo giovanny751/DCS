@@ -13,7 +13,6 @@
             <div class="col-md-3">
 
                 <input type="text" value="<?php echo (isset($post['medico_codigo']) ? $post['medico_codigo'] : '' ) ?>" class="form-control   " id="medico_codigo" name="medico_codigo">
-                <br>
             </div>
 
                       <div class="col-md-3">
@@ -37,7 +36,6 @@
                     });
                 </script>
                 <input type="text" value="<?php echo (isset($post['nombre']) ? $post['nombre'] : '' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
-                <br>
             </div>
 
         </div><div class="row">                <div class="col-md-3">
@@ -51,7 +49,6 @@
                     <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                 </select>
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -61,7 +58,6 @@
             <div class="col-md-3">
 
                 <input type="text" value="<?php echo (isset($post['matricula_profesional']) ? $post['matricula_profesional'] : '' ) ?>" class="form-control obligatorio  " id="matricula_profesional" name="matricula_profesional">
-                <br>
             </div>
 
         </div>

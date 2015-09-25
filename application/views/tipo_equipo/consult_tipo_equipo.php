@@ -6,50 +6,40 @@
 </div>
 <form action="<?php echo base_url('index.php/').'/Tipo_equipo/consult_tipo_equipo'; ?>" method="post" >
     <div class="row">
-                    <div class="col-md-3">
-                    <label for="tipo_equipo_cod">
-                        Código
-                                            </label>
-                </div>
-                <div class="col-md-3">
-                    
-                                            <input type="text" value="<?php echo (isset($post['tipo_equipo_cod'])?$post['tipo_equipo_cod']:'' ) ?>" class="form-control   " id="tipo_equipo_cod" name="tipo_equipo_cod">
-                                            <br>
-                </div>
+        <div class="col-md-3">
+            <label for="tipo_equipo_cod">Código</label>
+        </div>
+        <div class="col-md-3">
+            <input type="text" value="<?php echo (isset($post['tipo_equipo_cod'])?$post['tipo_equipo_cod']:'' ) ?>" class="form-control   " id="tipo_equipo_cod" name="tipo_equipo_cod">
+        </div>
+        <div class="col-md-3">
+            <label for="referencia">Referencia</label>
+        </div>
+        <div class="col-md-3">
+            <script>
+                $('document').ready(function() {
+                    $('#referencia').autocomplete({
+                        source: "<?php echo base_url("index.php//Tipo_equipo/autocomplete_referencia") ?>",
+                        minLength: 3
+                    });
+                });
+            </script>
+            <input type="text" value="<?php echo (isset($post['referencia'])?$post['referencia']:'' ) ?>" class="form-control obligatorio  " id="referencia" name="referencia">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+                    <label for="estado">Estado</label>
+        </div>
+        <div class="col-md-3">
+            <select  class="form-control obligatorio  " id="estado" name="estado">
+                <option value=""></option>
+                <option value="Activo">Activo</option>
+                <option value="Inactivo">Inactivo</option>
+            </select>
+        </div>
 
-                            <div class="col-md-3">
-                    <label for="referencia">
-                    Referencia                        </label>
-                </div>
-                <div class="col-md-3">
-                    
-                                        <script>
-                        $('document').ready(function() {
-                            $('#referencia').autocomplete({
-                                source: "<?php echo base_url("index.php//Tipo_equipo/autocomplete_referencia") ?>",
-                                minLength: 3
-                            });
-                        });
-                    </script>
-                                            <input type="text" value="<?php echo (isset($post['referencia'])?$post['referencia']:'' ) ?>" class="form-control obligatorio  " id="referencia" name="referencia">
-                                            <br>
-                </div>
-
-                            <div class="col-md-3">
-                    <label for="estado">
-                    Estado                        </label>
-                </div>
-                <div class="col-md-3">
-                    
-                                            <select  class="form-control obligatorio  " id="estado" name="estado">
-                            <option value=""></option>
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                        </select>
-                                                    <br>
-                </div>
-
-                </div>
+    </div>
     <button type="button" class="btn btn-dcs">Limpiar</button>
     <button class="btn btn-dcs">Consultar</button>
 </form>

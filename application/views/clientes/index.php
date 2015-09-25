@@ -18,7 +18,6 @@
                                                     <input type="text" value="<?php echo (isset($datos[0]->nombre)?$datos[0]->nombre:'' ) ?>" class=" form-control obligatorio  " id="nombre" name="nombre">
 
                             
-                                                <br>
                     </div>
 
                     
@@ -31,11 +30,9 @@
                                                     <?php echo lista("id_tipo_cliente", "id_tipo_cliente", "form-control ", "tipo_cliente", "id_tipo_cliente", "descripcion", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
 
                             
-                                                <br>
                     </div>
-
-                    
-
+                </div>
+        <div class="row">
                     <div class="col-md-3">
                         <label for="fecha_inicio_contrato">
                                                         Fecha inicio contrato                        </label>
@@ -44,7 +41,6 @@
                                                     <input type="text" value="<?php echo (isset($datos[0]->fecha_inicio_contrato)?$datos[0]->fecha_inicio_contrato:'' ) ?>" class="form-control fecha" id="fecha_inicio_contrato" name="fecha_inicio_contrato">
 
                             
-                                                <br>
                     </div>
 
                     
@@ -55,10 +51,9 @@
                     </div>
                     <div class="col-md-3">
                                                     <input type="text" value="<?php echo (isset($datos[0]->fecha_fin_contrato)?$datos[0]->fecha_fin_contrato:'' ) ?>" class=" form-control fecha " id="fecha_fin_contrato" name="fecha_fin_contrato">
-
-                            
-                                                <br>
                     </div>
+            </div>
+            <div class="row">
 
                     
 
@@ -72,7 +67,6 @@
                                 <option value="Activo" <?php echo (isset($datos[0]->estado)?(($datos[0]->estado=='Activo')?'selected="selected"':''):'' ) ?>>Activo</option>
                                 <option value="Inactivo" <?php echo (isset($datos[0]->estado)?(($datos[0]->estado=='Inactivo')?'selected="selected"':''):'' ) ?>>Inactivo</option>
                             </select>
-                                                <br>
                     </div>
 
                     
@@ -85,7 +79,6 @@
                                                     <input type="email" value="<?php echo (isset($datos[0]->email)?$datos[0]->email:'' ) ?>" class=" form-control   " id="email" name="email">
 
                             
-                                                <br>
                     </div>
 
                             </div>

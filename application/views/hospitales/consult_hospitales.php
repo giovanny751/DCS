@@ -11,15 +11,14 @@
                 Código hospital                </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['codigo_hospital']) ? $post['codigo_hospital'] : '' ) ?>" class="form-control obligatorio  " id="codigo_hospital" name="codigo_hospital">
-                <br>
             </div>
             <div class="col-md-3">
                 Nombre Hospital               </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['nombre']) ? $post['nombre'] : '' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
-                <br>
             </div>
-
+        </div>
+        <div class="row">    
             <div class="col-md-3">
                 Estado                </div>
             <div class="col-md-3">
@@ -28,7 +27,6 @@
                     <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                 </select>
-                <br>
             </div>
         </div>
         <button type="button" class="btn btn-dcs">Limpiar</button>

@@ -12,16 +12,16 @@
         </div>
         <div class="col-md-3">
             <input type="hidden" value="<?php echo (isset($post['id_lectura_equipo']) ? $post['id_lectura_equipo'] : '' ) ?>" class="form-control  " id="id_lectura_equipo" name="id_lectura_equipo">
-            <br>
         </div>
-
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label for="id_paciente">
                 Paciente                        </label>
         </div>
         <div class="col-md-3">
 
-            <?php echo lista("id_paciente", "id_paciente", "form-control ", "pacientes", "id_paciente", "nombres", (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    <br>
+            <?php echo lista("id_paciente", "id_paciente", "form-control ", "pacientes", "id_paciente", "nombres", (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    
         </div>
 
         <div class="col-md-3">
@@ -30,16 +30,17 @@
         </div>
         <div class="col-md-3">
 
-            <?php echo lista("id_equipo", "id_equipo", "form-control ", "equipos", "id_equipo", "descripcion", (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    <br>
+            <?php echo lista("id_equipo", "id_equipo", "form-control ", "equipos", "id_equipo", "descripcion", (isset($datos[0]->id_equipo) ? $datos[0]->id_equipo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    
         </div>
-
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label for="variable_codigo">
                 variable_codigo                        </label>
         </div>
         <div class="col-md-3">
 
-            <?php echo lista("variable_codigo", "variable_codigo", "form-control ", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->variable_codigo) ? $datos[0]->variable_codigo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    <br>
+            <?php echo lista("variable_codigo", "variable_codigo", "form-control ", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->variable_codigo) ? $datos[0]->variable_codigo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>               
         </div>
 
         <div class="col-md-3">
@@ -49,9 +50,9 @@
         <div class="col-md-3">
 
             <input type="text" value="<?php echo (isset($post['lectura_numerica']) ? $post['lectura_numerica'] : '' ) ?>" class="form-control   number" id="lectura_numerica" name="lectura_numerica">
-            <br>
         </div>
-
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <label for="lectura_texto">
                 lectura_texto                        </label>
@@ -59,7 +60,6 @@
         <div class="col-md-3">
 
             <input type="text" value="<?php echo (isset($post['lectura_texto']) ? $post['lectura_texto'] : '' ) ?>" class="form-control   " id="lectura_texto" name="lectura_texto">
-            <br>
         </div>
 
         <div class="col-md-3">
@@ -69,9 +69,7 @@
         <div class="col-md-3">
 
             <input type="text" value="<?php echo (isset($post['serial_equipo']) ? $post['serial_equipo'] : '' ) ?>" class="form-control   " id="serial_equipo" name="serial_equipo">
-            <br>
         </div>
-
     </div>
     <button class="btn btn-dcs">Consultar</button>
 </form>

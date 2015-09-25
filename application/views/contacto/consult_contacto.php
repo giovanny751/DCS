@@ -10,9 +10,7 @@
                 </label>
             </div>
             <div class="col-md-3">
-
                 <input type="hidden" value="<?php echo (isset($post['contacto_id']) ? $post['contacto_id'] : '' ) ?>" class="form-control   " id="contacto_id" name="contacto_id">
-                <br>
             </div>
 
         </div><div class="row">                <div class="col-md-3">
@@ -20,9 +18,7 @@
                     Cédula o NIT                        </label>
             </div>
             <div class="col-md-3">
-
                 <input type="text" value="<?php echo (isset($post['documento']) ? $post['documento'] : '' ) ?>" class="form-control obligatorio  " id="documento" name="documento">
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -40,7 +36,6 @@
                     });
                 </script>
                 <input type="text" value="<?php echo (isset($post['nombre']) ? $post['nombre'] : '' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
-                <br>
             </div>
 
         </div><div class="row">                <div class="col-md-3">
@@ -54,7 +49,6 @@
                     <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                 </select>
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -63,7 +57,6 @@
             </div>
             <div class="col-md-3">
                 <input type="checkbox" value="SI" class="form-control   " id="cuidador" name="cuidador">
-                <br>
             </div>
 
         </div>

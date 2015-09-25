@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50536
 File Encoding         : 65001
 
-Date: 2015-09-24 12:44:50
+Date: 2015-09-24 21:38:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,18 +53,14 @@ CREATE TABLE `alarmas_generadas` (
   `id_tipo_alarma` int(11) DEFAULT NULL,
   `examen_cod` int(11) DEFAULT NULL,
   `fecha_atencion` datetime DEFAULT NULL,
+  `cantidad_alarma` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_alarmas_generadas`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of alarmas_generadas
 -- ----------------------------
-INSERT INTO `alarmas_generadas` VALUES ('15', null, 'yyyysdfsdfsdfsdf', '2015-09-20 18:04:39', '14', 'Baja', null, null, 'S', '15', '8', '2015-09-21 02:59:24');
-INSERT INTO `alarmas_generadas` VALUES ('16', null, 'yyyy', '2015-09-20 18:04:40', '15', 'Baja', null, null, 'S', '15', '8', null);
-INSERT INTO `alarmas_generadas` VALUES ('17', null, 'hola', '2015-09-20 18:04:41', '16', 'Baja', null, null, 'S', '15', '8', '2015-09-21 03:00:25');
-INSERT INTO `alarmas_generadas` VALUES ('18', null, 'yyyy', '2015-09-20 18:04:42', '17', 'Baja', null, null, 'S', '15', '8', null);
-INSERT INTO `alarmas_generadas` VALUES ('19', null, 'yyyy', '2015-09-20 18:39:17', '18', 'Alta', null, null, 'S', null, '8', null);
-INSERT INTO `alarmas_generadas` VALUES ('20', null, 'yyy', '2015-09-21 21:46:43', '19', 'Alta', 'Sin atender', null, 'S', null, '8', null);
+INSERT INTO `alarmas_generadas` VALUES ('66', null, '', '2015-09-24 15:25:23', '89', 'Baja', 'Sin atender', null, 'S', '12', '7', '2015-09-17 00:00:00', '1');
 
 -- ----------------------------
 -- Table structure for `aseguradora_paciente`
@@ -1312,12 +1308,12 @@ INSERT INTO `ingreso` VALUES ('134', '6', '2015-09-19 15:21:43');
 INSERT INTO `ingreso` VALUES ('135', '6', '2015-09-20 13:41:22');
 INSERT INTO `ingreso` VALUES ('136', '6', '2015-09-21 06:04:45');
 INSERT INTO `ingreso` VALUES ('137', '6', '2015-09-21 09:00:13');
-INSERT INTO `ingreso` VALUES ('138', '6', '2015-09-22 01:59:59');
-INSERT INTO `ingreso` VALUES ('139', '6', '2015-09-22 02:28:09');
-INSERT INTO `ingreso` VALUES ('140', '6', '2015-09-22 02:45:46');
-INSERT INTO `ingreso` VALUES ('141', '6', '2015-09-22 14:34:34');
-INSERT INTO `ingreso` VALUES ('142', '6', '2015-09-23 19:57:42');
-INSERT INTO `ingreso` VALUES ('143', '6', '2015-09-24 04:44:24');
+INSERT INTO `ingreso` VALUES ('138', '6', '2015-09-22 04:29:04');
+INSERT INTO `ingreso` VALUES ('139', '6', '2015-09-23 01:20:26');
+INSERT INTO `ingreso` VALUES ('140', '6', '2015-09-24 18:06:54');
+INSERT INTO `ingreso` VALUES ('141', '6', '2015-09-24 20:54:20');
+INSERT INTO `ingreso` VALUES ('142', '6', '2015-09-24 21:28:26');
+INSERT INTO `ingreso` VALUES ('143', '6', '2015-09-25 02:08:01');
 
 -- ----------------------------
 -- Table structure for `inicio`
@@ -1350,23 +1346,12 @@ CREATE TABLE `lectura_equipo` (
   `activo` varchar(1) DEFAULT 'S',
   `serial_equipo` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_lectura_equipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of lectura_equipo
 -- ----------------------------
-INSERT INTO `lectura_equipo` VALUES ('8', '13', null, '4', '30', 'yyyy', '2015-09-20 16:59:15', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('9', '13', null, '4', '30', 'yyyy', '2015-09-20 17:49:45', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('10', '13', null, '4', '3', 'yyyy', '2015-09-20 17:51:30', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('11', '13', null, '4', '3', 'yyyy', '2015-09-20 17:54:51', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('12', '13', null, '4', '3', 'yyyy', '2015-09-20 17:55:08', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('13', '13', null, '4', '3', 'yyyy', '2015-09-20 18:03:54', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('14', '13', null, '4', '3', 'yyyy', '2015-09-20 18:04:39', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('15', '13', null, '4', '3', 'yyyy', '2015-09-20 18:04:40', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('16', '13', null, '4', '3', 'yyyy', '2015-09-20 18:04:41', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('17', '13', null, '4', '3', 'yyyy', '2015-09-20 18:04:42', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('18', '13', null, '4', '90', 'yyyy', '2015-09-20 18:39:17', 'S', '7798098089');
-INSERT INTO `lectura_equipo` VALUES ('19', '13', null, '4', '90', 'yyy', '2015-09-21 21:46:43', 'S', '7798098089');
+INSERT INTO `lectura_equipo` VALUES ('89', '14', null, '6', '20', '', '2015-09-24 15:25:23', 'S', '978740988798');
 
 -- ----------------------------
 -- Table structure for `login_attempts`
@@ -1446,18 +1431,16 @@ INSERT INTO `modulo` VALUES ('85', '74', 'DIMENSION 1', '0', 'administrativo', '
 INSERT INTO `modulo` VALUES ('86', '74', 'DIMENSIÓN 2', '0', 'administrativo', 'dimension', '1');
 INSERT INTO `modulo` VALUES ('87', '74', 'INFORMES', '0', null, null, '1');
 INSERT INTO `modulo` VALUES ('88', '0', 'PROYECTO', '88', null, null, '1');
-INSERT INTO `modulo` VALUES ('89', '0', 'ConfiguraciÓn', '89', '', '', '1');
-INSERT INTO `modulo` VALUES ('90', '0', 'DCS', '0', '', '', '1');
-INSERT INTO `modulo` VALUES ('91', '89', 'Hospitales', '91', null, null, '1');
-INSERT INTO `modulo` VALUES ('92', '89', 'Contactos', '92', 'Contacto', 'index', '1');
-INSERT INTO `modulo` VALUES ('93', '89', 'Aseguradoras', '93', null, null, '1');
-INSERT INTO `modulo` VALUES ('94', '89', 'Medicos', '94', null, null, '1');
-INSERT INTO `modulo` VALUES ('95', '89', 'Variables', '95', null, null, '1');
-INSERT INTO `modulo` VALUES ('96', '89', 'ExÁmenes', '96', '', '', '1');
-INSERT INTO `modulo` VALUES ('97', '89', 'Tipo de Equipos', '97', null, null, '1');
-INSERT INTO `modulo` VALUES ('98', '89', 'Equipos', '98', null, null, '1');
-INSERT INTO `modulo` VALUES ('99', '89', 'Tipo de Clientes', '99', null, null, '1');
-INSERT INTO `modulo` VALUES ('100', '89', 'Clientes', '100', null, null, '1');
+INSERT INTO `modulo` VALUES ('91', '0', 'Hospitales', '91', null, null, '1');
+INSERT INTO `modulo` VALUES ('92', '0', 'Contactos', '92', '', '', '1');
+INSERT INTO `modulo` VALUES ('93', '0', 'Aseguradoras', '93', null, null, '1');
+INSERT INTO `modulo` VALUES ('94', '0', 'Medicos', '94', null, null, '1');
+INSERT INTO `modulo` VALUES ('95', '0', 'Variables', '95', null, null, '1');
+INSERT INTO `modulo` VALUES ('96', '0', 'ExÁmenes', '96', '', '', '1');
+INSERT INTO `modulo` VALUES ('97', '0', 'Tipo de Equipos', '97', null, null, '1');
+INSERT INTO `modulo` VALUES ('98', '0', 'Equipos', '98', null, null, '1');
+INSERT INTO `modulo` VALUES ('99', '0', 'Tipo de Clientes', '99', null, null, '1');
+INSERT INTO `modulo` VALUES ('100', '0', 'Clientes', '100', null, null, '1');
 INSERT INTO `modulo` VALUES ('101', '91', 'Nuevo', '0', 'Hospitales', 'Index', '1');
 INSERT INTO `modulo` VALUES ('102', '91', 'Listado', '0', 'Hospitales', 'consult_hospitales', '1');
 INSERT INTO `modulo` VALUES ('103', '92', 'Nuevo', '0', 'Contacto', 'index', '1');
@@ -1476,9 +1459,9 @@ INSERT INTO `modulo` VALUES ('115', '99', 'Nuevo', '0', 'Tipo_cliente', 'index',
 INSERT INTO `modulo` VALUES ('116', '99', 'Listado', '0', 'Tipo_cliente', 'consult_tipo_cliente', '1');
 INSERT INTO `modulo` VALUES ('117', '100', 'Nuevo', '0', 'Clientes', 'index', '1');
 INSERT INTO `modulo` VALUES ('118', '100', 'Listado', '0', 'Clientes', 'consult_clientes', '1');
-INSERT INTO `modulo` VALUES ('119', '89', 'Tipo de alarmas', '119', null, null, '1');
-INSERT INTO `modulo` VALUES ('120', '89', 'Niveles de alarma', '120', null, null, '1');
-INSERT INTO `modulo` VALUES ('121', '89', 'Protocolos', '121', null, null, '1');
+INSERT INTO `modulo` VALUES ('119', '0', 'Tipo de alarmas', '119', null, null, '1');
+INSERT INTO `modulo` VALUES ('120', '0', 'Niveles de alarma', '120', null, null, '1');
+INSERT INTO `modulo` VALUES ('121', '0', 'Protocolos', '121', null, null, '1');
 INSERT INTO `modulo` VALUES ('122', '119', 'Nuevo', '0', 'Tipo_alarma', 'index', '1');
 INSERT INTO `modulo` VALUES ('123', '119', 'Listado', '0', 'Tipo_alarma', 'consult_tipo_alarma', '1');
 INSERT INTO `modulo` VALUES ('124', '120', 'Nuevo', '0', 'Niveles_alarma', 'index', '1');
@@ -1487,16 +1470,15 @@ INSERT INTO `modulo` VALUES ('126', '121', 'Nuevo', '0', 'Protocolos', 'index', 
 INSERT INTO `modulo` VALUES ('127', '121', 'Listado', '0', 'Protocolos', 'consult_protocolos', '1');
 INSERT INTO `modulo` VALUES ('128', '98', 'Nuevo', '0', 'Equipos', 'index', '1');
 INSERT INTO `modulo` VALUES ('129', '98', 'Listado', '0', 'Equipos', 'consult_equipos', '1');
-INSERT INTO `modulo` VALUES ('130', '89', 'Pacientes', '130', null, null, '1');
+INSERT INTO `modulo` VALUES ('130', '0', 'Pacientes', '130', null, null, '1');
 INSERT INTO `modulo` VALUES ('131', '130', 'Nuevo', '0', 'Pacientes', 'index', '1');
 INSERT INTO `modulo` VALUES ('132', '130', 'Listado', '0', 'Pacientes', 'consult_pacientes', '1');
-INSERT INTO `modulo` VALUES ('134', '89', 'Lectura Equipo', '134', null, null, '1');
+INSERT INTO `modulo` VALUES ('134', '0', 'Lectura Equipo', '134', null, null, '1');
 INSERT INTO `modulo` VALUES ('135', '134', 'Nuevo', '0', 'Lectura_equipo', 'index', '1');
 INSERT INTO `modulo` VALUES ('136', '134', 'Listado', '0', 'Lectura_equipo', 'consult_lectura_equipo', '1');
-INSERT INTO `modulo` VALUES ('137', '89', 'Alarmas Generadas', '137', null, null, '1');
-INSERT INTO `modulo` VALUES ('138', '137', 'Nuevo', '0', 'Alarmas_generadas', 'index', '1');
+INSERT INTO `modulo` VALUES ('137', '0', 'Alarmas Generadas', '137', null, null, '1');
 INSERT INTO `modulo` VALUES ('139', '137', 'Listado', '0', 'Alarmas_generadas', 'consult_alarmas_generadas', '1');
-INSERT INTO `modulo` VALUES ('140', '89', 'Datos Paciente', '0', 'alarmas_generadas', 'datos_pacientes', '1');
+INSERT INTO `modulo` VALUES ('140', '137', 'Datos Paciente', '0', 'alarmas_generadas', 'datos_pacientes', '1');
 
 -- ----------------------------
 -- Table structure for `nivel_tipo_alarma`
@@ -1542,11 +1524,11 @@ CREATE TABLE `niveles_alarma` (
 INSERT INTO `niveles_alarma` VALUES ('1', 'nelson niveles alarma', '2015-09-08 02:59:01', '4', 'asd', '213', '213', '213', 'Día', '1112', '1', 'N', null);
 INSERT INTO `niveles_alarma` VALUES ('2', 'Nivel 1 tensión arterial alta', '2015-09-08 02:59:07', '7', '', '2', '4', '2', 'Semana', 'amarillo', '3', 'N', null);
 INSERT INTO `niveles_alarma` VALUES ('3', 'ss', '2015-09-08 02:58:53', '4', 'Baja', '22', '33', '22', 'Semana', '33', '1', 'N', null);
-INSERT INTO `niveles_alarma` VALUES ('4', 'Nivel 2 tensión arterial alta', null, '7', 'Alta', '3', '5', '7', 'Semana', 'naranja', '3', 'S', null);
-INSERT INTO `niveles_alarma` VALUES ('5', 'Nivel 1 tensión arterial alta', '2015-09-08 03:03:21', '7', 'Alta', '2', '3', '1', 'Semana', 'amarillo', '4', 'S', null);
-INSERT INTO `niveles_alarma` VALUES ('6', 'Nivel bajo Tension arterial baja ', null, '7', 'Baja', '1', '2', '1', 'Semana', 'verde ', '4', 'S', null);
-INSERT INTO `niveles_alarma` VALUES ('7', 'Nivel medio tensiónarterial baja', null, '7', 'Baja', '3', '4', '1', 'Semana', 'amarillo', '4', 'S', null);
-INSERT INTO `niveles_alarma` VALUES ('8', 'Nivel alto tensión arterial baja', '2015-09-20 15:45:50', '8', 'Baja', '5', '7', '1', 'Semana', 'roja', '3', 'S', '9');
+INSERT INTO `niveles_alarma` VALUES ('4', 'Nivel 2 tensión arterial alta', '2015-09-24 14:10:24', '7', 'Alta', '3', '5', '7', 'Semana', 'Naranja', '3', 'S', null);
+INSERT INTO `niveles_alarma` VALUES ('5', 'Nivel 1 tensión arterial alta', '2015-09-24 14:10:45', '7', 'Alta', '2', '3', '1', 'Semana', 'Amarillo', '4', 'S', null);
+INSERT INTO `niveles_alarma` VALUES ('6', 'Nivel bajo Tension arterial baja ', '2015-09-24 14:11:05', '7', 'Baja', '1', '2', '1', 'Semana', 'Verde', '4', 'S', null);
+INSERT INTO `niveles_alarma` VALUES ('7', 'Nivel medio tensiónarterial baja', '2015-09-24 14:11:32', '7', 'Baja', '3', '4', '1', 'Semana', 'Amarillo', '4', 'S', null);
+INSERT INTO `niveles_alarma` VALUES ('8', 'Nivel alto tensión arterial baja', '2015-09-24 14:12:08', '8', 'Baja', '5', '7', '1', 'Semana', 'Rojo', '3', 'S', '9');
 
 -- ----------------------------
 -- Table structure for `numero_empleados`
@@ -1575,7 +1557,7 @@ CREATE TABLE `paciente_contacto` (
   `contacto_id` int(11) NOT NULL DEFAULT '0',
   `id_paciente` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_paciente_contacto`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of paciente_contacto
@@ -1586,7 +1568,8 @@ INSERT INTO `paciente_contacto` VALUES ('4', '2', '7');
 INSERT INTO `paciente_contacto` VALUES ('5', '2', '8');
 INSERT INTO `paciente_contacto` VALUES ('14', '2', '9');
 INSERT INTO `paciente_contacto` VALUES ('19', '6', '11');
-INSERT INTO `paciente_contacto` VALUES ('23', '6', '13');
+INSERT INTO `paciente_contacto` VALUES ('24', '6', '13');
+INSERT INTO `paciente_contacto` VALUES ('25', '6', '14');
 
 -- ----------------------------
 -- Table structure for `paciente_equipo_tipoequipo`
@@ -1598,14 +1581,15 @@ CREATE TABLE `paciente_equipo_tipoequipo` (
   `id_equipo` int(11) NOT NULL DEFAULT '0',
   `id_paciente` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_paciente_equipo_tipoEquipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of paciente_equipo_tipoequipo
 -- ----------------------------
 INSERT INTO `paciente_equipo_tipoequipo` VALUES ('5', '0', '6', '11');
-INSERT INTO `paciente_equipo_tipoequipo` VALUES ('10', '0', '4', '13');
-INSERT INTO `paciente_equipo_tipoequipo` VALUES ('11', '0', '14', '13');
+INSERT INTO `paciente_equipo_tipoequipo` VALUES ('12', '0', '4', '13');
+INSERT INTO `paciente_equipo_tipoequipo` VALUES ('13', '0', '14', '13');
+INSERT INTO `paciente_equipo_tipoequipo` VALUES ('14', '0', '13', '14');
 
 -- ----------------------------
 -- Table structure for `paciente_examen_variable`
@@ -1621,7 +1605,7 @@ CREATE TABLE `paciente_examen_variable` (
   `valor_minimo` varchar(50) NOT NULL DEFAULT '0',
   `valor_maximo` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_paciente_examen_variable`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of paciente_examen_variable
@@ -1650,8 +1634,9 @@ INSERT INTO `paciente_examen_variable` VALUES ('37', '8', '4', 'Semana', '12', '
 INSERT INTO `paciente_examen_variable` VALUES ('38', '7', '6', 'Mes', '10', '2323', '23', '30');
 INSERT INTO `paciente_examen_variable` VALUES ('45', '7', '6', 'Día', '11', '7', '30', '60');
 INSERT INTO `paciente_examen_variable` VALUES ('46', '8', '4', 'Semana', '11', '5', '20', '70');
-INSERT INTO `paciente_examen_variable` VALUES ('53', '7', '6', 'Día', '13', '7', '30', '60');
-INSERT INTO `paciente_examen_variable` VALUES ('54', '8', '4', 'Semana', '13', '5', '20', '70');
+INSERT INTO `paciente_examen_variable` VALUES ('55', '7', '6', 'Día', '13', '7', '30', '60');
+INSERT INTO `paciente_examen_variable` VALUES ('56', '8', '4', 'Semana', '13', '5', '20', '70');
+INSERT INTO `paciente_examen_variable` VALUES ('57', '7', '6', 'Semana', '14', '1', '30', '60');
 
 -- ----------------------------
 -- Table structure for `paciente_hospitales`
@@ -1662,7 +1647,7 @@ CREATE TABLE `paciente_hospitales` (
   `id_paciente` int(11) NOT NULL DEFAULT '0',
   `codigo_hospital` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_paciente_hospitales`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of paciente_hospitales
@@ -1671,6 +1656,7 @@ INSERT INTO `paciente_hospitales` VALUES ('1', '8', '4');
 INSERT INTO `paciente_hospitales` VALUES ('10', '9', '4');
 INSERT INTO `paciente_hospitales` VALUES ('16', '11', '4');
 INSERT INTO `paciente_hospitales` VALUES ('17', '11', '5');
+INSERT INTO `paciente_hospitales` VALUES ('18', '13', '4');
 
 -- ----------------------------
 -- Table structure for `pacientes`
@@ -1717,7 +1703,7 @@ CREATE TABLE `pacientes` (
   `aseguradora_id` int(11) DEFAULT NULL,
   `documento` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_paciente`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of pacientes
@@ -1727,6 +1713,7 @@ INSERT INTO `pacientes` VALUES ('10', '7878', '786', '876', '2015-09-08', null, 
 INSERT INTO `pacientes` VALUES ('11', '52865489', 'Camila', 'Ramirez', '2015-05-01', 'abuelita.jpg', 'Calle 147 #45-68', 'Cedritos', 'Bogota', '2013-08-15', '1.70', '67', '53626282', '3208765687', 'ff@h.com', '2015-01-01', '2017-04-29', '8', '11', '6', 'addkdaldlldlad', 'S', '0', null, null, null, null, null, null, 'sdsffsfsfsf', null, null, '0', null, null, null, null, null, '');
 INSERT INTO `pacientes` VALUES ('12', '67133131313', 'pepe', 'jaramillo', '2015-09-15', 'abuelita.jpg', 'calle 76 36 - 67', 'country', 'bogota', '2013-10-01', '1.67', '67', '6725222', '', '', '2015-01-01', '2016-05-31', '8', '13', '7', 'khkjkkñkñkñkk', 'S', '0', null, null, null, null, null, null, 'snnlsasalmdd', null, null, '0', null, null, null, null, null, null);
 INSERT INTO `pacientes` VALUES ('13', '5626228220', 'andrea', 'Peralta', '2015-02-04', 'abuelita.jpg', 'calle 76 36 - 67', 'Cedritos', 'bogota', '1997-09-01', '1.78', '87', '6726272', '3208765687', 'gg@hotmail.com', '2007-01-03', '2023-09-01', '8', '13', '7', 'kkljbkvlladjlajdlf', 'S', '0', null, null, null, null, null, null, 'aklkslkkdksnf', null, null, '0', null, null, null, null, null, 'CLAVES.txt');
+INSERT INTO `pacientes` VALUES ('14', '52865386', 'Gina Paola', 'Ramirez ', '2015-01-01', 'IMG00050-20130214-1630.jpg', 'Calle 147 #45-68 Cedrtios, Bogotá', 'Cedritos', 'bogotá', '1981-11-28', '1.62', '62', '56789865', '32082923334', 'gramirez@sgm.com.co', '2015-01-01', '2015-12-31', '8', '13', '7', 'dsjfhhdbvdnvbmv', 'S', '0', null, null, null, null, null, null, 'ousgfiosfhdjhgjpifhidofkdhgfigh', null, null, '0', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `pais`
@@ -2223,7 +2210,7 @@ CREATE TABLE `tipo_alarma_nivel` (
   `id_tipo_alarma` int(11) DEFAULT NULL,
   `id_niveles_alarma` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_tipo_alarma_nivel`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tipo_alarma_nivel
@@ -2231,9 +2218,15 @@ CREATE TABLE `tipo_alarma_nivel` (
 INSERT INTO `tipo_alarma_nivel` VALUES ('7', '14', '6');
 INSERT INTO `tipo_alarma_nivel` VALUES ('8', '14', '7');
 INSERT INTO `tipo_alarma_nivel` VALUES ('9', '14', '8');
-INSERT INTO `tipo_alarma_nivel` VALUES ('10', '13', '5');
-INSERT INTO `tipo_alarma_nivel` VALUES ('11', '13', '4');
 INSERT INTO `tipo_alarma_nivel` VALUES ('12', '12', '4');
+INSERT INTO `tipo_alarma_nivel` VALUES ('13', '15', '6');
+INSERT INTO `tipo_alarma_nivel` VALUES ('14', '15', '5');
+INSERT INTO `tipo_alarma_nivel` VALUES ('15', '15', '4');
+INSERT INTO `tipo_alarma_nivel` VALUES ('16', '13', '5');
+INSERT INTO `tipo_alarma_nivel` VALUES ('17', '13', '4');
+INSERT INTO `tipo_alarma_nivel` VALUES ('18', '16', '6');
+INSERT INTO `tipo_alarma_nivel` VALUES ('19', '16', '7');
+INSERT INTO `tipo_alarma_nivel` VALUES ('20', '16', '8');
 
 -- ----------------------------
 -- Table structure for `tipo_aseguradora`
@@ -2518,6 +2511,20 @@ declare min int;
 declare max int;
 declare id_t_alarma int;
 declare  examen_id int  ;
+declare  id_nivel int  ;
+declare tipo_nivel varchar(40);
+declare cantidad_alarma int;
+declare t_frecuencia varchar(40);
+declare fechas_reporte date;
+
+SELECT   valor_frecuencia into t_frecuencia
+FROM paciente_examen_variable 
+join paciente_equipo_tipoequipo a on a.id_paciente=paciente_examen_variable .id_paciente
+join equipos b on b.id_equipo=a.id_equipo
+where 
+paciente_examen_variable.variable_codigo=new.variable_codigo 
+and paciente_examen_variable .id_paciente=new.id_paciente 
+and serial=new.serial_equipo;
 
 SELECT   valor_maximo into max
 FROM paciente_examen_variable 
@@ -2549,74 +2556,74 @@ and serial=new.serial_equipo;
 
 
 if new.lectura_numerica > min and  new.lectura_numerica < max THEN
-select id_tipo_alarma into id_t_alarma
-from tipo_alarma
-where variable_codigo=new.variable_codigo 
-and examen=examen_id
-and analisis_resultados='Normal';
-
-insert into alarmas_generadas (
-id_lectura_equipo,
-analisis_resultado,
-descripcion,
-id_tipo_alarma,
-examen_cod
-) values (
-new.id_lectura_equipo,
-'Normal',
-new.lectura_texto,
-id_t_alarma,
-examen_id
-);
+set tipo_nivel ='Normal';
 END IF;
-
-
 
 if   new.lectura_numerica > max THEN
-select id_tipo_alarma into id_t_alarma
-from tipo_alarma
-where variable_codigo=new.variable_codigo 
-and examen=examen_id
-and analisis_resultados='Alta';
-
-insert into alarmas_generadas (
-id_lectura_equipo,
-analisis_resultado,
-descripcion,
-id_tipo_alarma,
-examen_cod
-) values (
-new.id_lectura_equipo,
-'Alta',
-new.lectura_texto,
-id_t_alarma,
-examen_id
-);
+set tipo_nivel ='Alta';
 END IF;
-
-
 
 if new.lectura_numerica < min  THEN
+set tipo_nivel ='Baja';
+END IF;
+
+
+
+if t_frecuencia ='Hora' THEN
+set fechas_reporte =NOW();
+end if;
+if t_frecuencia ='Día' then
+set fechas_reporte =NOW();
+end if;
+if t_frecuencia ='Semana' then
+set fechas_reporte =date_add(NOW(), INTERVAL -7 DAY);
+end if;
+if t_frecuencia ='Mes' then
+set fechas_reporte =date_add(NOW(), INTERVAL -30 DAY);
+end if;
+if t_frecuencia ='Año' then
+set fechas_reporte =date_add(NOW(), INTERVAL -360 DAY);
+end if;
+
+select count(serial_equipo) serial  into cantidad_alarma
+from lectura_equipo
+where serial_equipo=new.serial_equipo and 
+fecha_creacion > fechas_reporte ;
+
 select id_tipo_alarma into id_t_alarma
 from tipo_alarma
 where variable_codigo=new.variable_codigo 
 and examen=examen_id
-and analisis_resultados='Baja';
+and analisis_resultados=tipo_nivel limit 1;
+
+select  tipo_alarma_nivel.id_niveles_alarma into id_nivel
+from tipo_alarma_nivel
+join   niveles_alarma on  niveles_alarma.id_niveles_alarma=tipo_alarma_nivel.id_niveles_alarma
+where 
+tipo_alarma_nivel.id_tipo_alarma = id_t_alarma
+and n_repeticiones_minimas <=cantidad_alarma
+and n_repeticiones_maximas >=cantidad_alarma
+group by tipo_alarma_nivel.id_niveles_alarma limit 1;
 
 insert into alarmas_generadas (
 id_lectura_equipo,
 analisis_resultado,
 descripcion,
 id_tipo_alarma,
-examen_cod
+examen_cod,
+id_niveles_alarma,
+cantidad_alarma,
+fecha_atencion
 ) values (
 new.id_lectura_equipo,
-'Baja',
+tipo_nivel,
 new.lectura_texto,
 id_t_alarma,
-examen_id
+examen_id,
+id_nivel,
+cantidad_alarma,
+fechas_reporte 
 );
-END IF;
 
 end
 ;;

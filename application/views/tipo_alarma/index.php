@@ -16,29 +16,29 @@
                 <!--Tab General -->
                 <div id="tabGeneral" class="tab active">
                     <div class="row">
-
+                        <span class="tituloH">General</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <label for="id_tipo_alarma">
                             </label>
                         </div>
                         <div class="col-md-3">
                             <input type="hidden" value="<?php echo (isset($datos[0]->id_tipo_alarma) ? $datos[0]->id_tipo_alarma : '' ) ?>" class="form-control   " id="id_tipo_alarma" name="id_tipo_alarma">
-                            <br>
                         </div>
 
-                    </div><div class="row">
-
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <label for="descripcion">
                                 *         Descripción                            </label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
-                            <br>
                         </div>
-
-                    </div><div class="row">
-
                         <div class="col-md-3">
                             <label for="examen">
                                 *         Examen                            </label>
@@ -46,11 +46,9 @@
                         <div class="col-md-3">
                             <!--<input type="text" value="<?php echo (isset($datos[0]->examen) ? $datos[0]->examen : '' ) ?>" class="form-control obligatorio  " id="examen" name="examen">-->
                             <?php echo lista("examen", "examen", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen) ? $datos[0]->examen : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                            <br>
                         </div>
-
-
-
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <label for="analisis_resultados">
                                 Análisis resultados                            </label>
@@ -63,7 +61,6 @@
                                 <option value="Baja">Baja</option>
                                 <option value="Alta">Alta</option>
                             </select>
-                            <br>
                         </div>
                         <div class="col-md-3">
                             <label for="analisis_resultados">
@@ -73,7 +70,6 @@
                             <span id="cod_variables">
                            <?php echo lista("variable_codigo", "variable_codigo", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->variable_codigo) ? $datos[0]->variable_codigo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                             </span>
-                                <br>
                         </div>
                     </div>
                     <?php if (isset($post['campo'])) { ?>
@@ -84,7 +80,12 @@
                 <!--Tab Niveles -->
                 <div id="tabNiveles" class="tab">
                     <div class="row">
-                        <div class="col-md-12"><br><p></div>
+                        <span class="tituloH">Niveles</span>
+                        <span class="cuadroH1"></span>
+                        <span class="cuadroH2"></span>
+                        <span class="cuadroH3"></span>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <label for="id_niveles_alarma">
                                 *         Niveles                            </label>
@@ -100,12 +101,12 @@
                                 });
                             </script>
                             <input type="text" id="id_niveles_alarma" name="id_niveles_alarma" class="form-control ">
-                            <br>
                         </div>
                         <div class="col-md-3">
                             <a href="javascript:" id="agregar_equipo">Agregar</a>
-                            <br>
                         </div>
+                    </div>
+                    <div class="row">    
                         <div style="width: 80%;margin: 0 auto;">
                             <div class="row">
                                 <table class="table">

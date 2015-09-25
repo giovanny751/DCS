@@ -31,33 +31,37 @@
                         <input type="hidden" value="<?php echo (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>" class=" form-control   " id="id_paciente" name="id_paciente">
 
                         <div class="col-md-6">
-                            <div class="col-md-6">
-                                <label for="cedula_paciente">* Cédula paciente </label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="cedula_paciente">* Cédula paciente </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" value="<?php echo (isset($datos[0]->cedula_paciente) ? $datos[0]->cedula_paciente : '' ) ?>" class=" form-control obligatorio  number" id="cedula_paciente" name="cedula_paciente">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->cedula_paciente) ? $datos[0]->cedula_paciente : '' ) ?>" class=" form-control obligatorio  number" id="cedula_paciente" name="cedula_paciente">
-                                <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="nombres">* Nombres </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" value="<?php echo (isset($datos[0]->nombres) ? $datos[0]->nombres : '' ) ?>" class=" form-control obligatorio  " id="nombres" name="nombres">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="nombres">* Nombres </label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="apellidos">* Apellidos </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" value="<?php echo (isset($datos[0]->apellidos) ? $datos[0]->apellidos : '' ) ?>" class=" form-control obligatorio  " id="apellidos" name="apellidos">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->nombres) ? $datos[0]->nombres : '' ) ?>" class=" form-control obligatorio  " id="nombres" name="nombres">
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="apellidos">* Apellidos </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->apellidos) ? $datos[0]->apellidos : '' ) ?>" class=" form-control obligatorio  " id="apellidos" name="apellidos">
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="fecha_afiliacion">* Fecha Afiliación </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  fecha  " id="fecha_afiliacion" name="fecha_afiliacion">
-                                <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="fecha_afiliacion">* Fecha Afiliación </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  fecha  " id="fecha_afiliacion" name="fecha_afiliacion">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -189,7 +193,6 @@
                         </div>
                         <div class="col-md-3">
                             <textarea class=" form-control  " id="observaciones" name="observaciones"><?php echo (isset($datos[0]->observaciones) ? $datos[0]->observaciones : '' ) ?></textarea>
-                            <br>
                         </div>
                     </div>
                 </div>
@@ -207,11 +210,10 @@
                                 Examen                        </label>
                         </div>
                         <div class="col-md-3">
-                            <?php echo lista("examen_cod", "examen_cod", "form-control ", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                        <br>
+                            <?php echo lista("examen_cod", "examen_cod", "form-control ", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?> 
                         </div>
                         <div class="col-md-3">
                             <a href="javascript:" id="agregar">Agregar</a>
-                            <br>
                         </div>
                     </div>
                     <div class="row">
@@ -232,7 +234,6 @@
                         </div>
                         <div class="col-md-3">
                             <a href="javascript:" id="copiar">Copiar</a>
-                            <br>
                         </div>
                     </div>
                     <div style="width: 80%;margin: 0 auto;">
@@ -299,8 +300,6 @@
                         </div>
                         <div class="col-md-6">
                             <textarea class=" form-control   " id="observaciones_programas" name="observaciones_programas"><?php echo (isset($datos[0]->observaciones_programas) ? $datos[0]->observaciones_programas : '' ) ?></textarea>
-
-                            <br>
                         </div>
                     </div>
                     <div class="row">
@@ -342,11 +341,9 @@
                                 });
                             </script>
                             <input type="text" id="contacto_id2" name="contacto_id2" class="form-control ">
-                            <br>
                         </div>
                         <div class="col-md-3">
                             <a href="javascript:" id="agregar_contacto">Agregar</a>
-                            <br>
                         </div>
                     </div>
 
@@ -427,7 +424,6 @@
                         </div>
                         <div class="col-md-3">
                             <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control  tipo_equipo_cod tipo_equipo_cod3", "tipo_equipo", "tipo_equipo_cod", "referencia", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
-                            <br>
                         </div>
                     </div>
                     <div class="row">
@@ -451,11 +447,9 @@
                                 });
                             </script>
                             <input type="text" id="descripcion" name="descripcion" class="form-control ">
-                            <br>
                         </div>
                         <div class="col-md-3">
                             <a href="javascript:" id="agregar_equipo">Agregar</a>
-                            <br>
                         </div>
                     </div>
 
@@ -601,7 +595,6 @@
                             }
                         });
                     </script>
-                    <br>
                     <center>
                         <span class="tituloH">Aseguradoras</span>
                         <span class="cuadroH1"></span>

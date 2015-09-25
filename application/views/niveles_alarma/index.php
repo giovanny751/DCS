@@ -18,7 +18,6 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
-                <br>
             </div>
 
 
@@ -49,16 +48,15 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->n_repeticiones_minimas) ? $datos[0]->n_repeticiones_minimas : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_minimas" name="n_repeticiones_minimas">
-                <br>
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="n_repeticiones_maximas">
                     *         N° repeticiones máximas                            </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->n_repeticiones_maximas) ? $datos[0]->n_repeticiones_maximas : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_maximas" name="n_repeticiones_maximas">
-                <br>
             </div>
 
 
@@ -69,11 +67,9 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->tiempo) ? $datos[0]->tiempo : '' ) ?>" class="form-control obligatorio  number" id="tiempo" name="tiempo">
-                <br>
             </div>
-
-
-
+        </div>
+        <div class="row">    
             <div class="col-md-3">
                 <label for="frecuencia">
                     *         Frecuencia                            </label>
@@ -88,7 +84,6 @@
                     <option value="Mes" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Mes'?'selected':'') : '' ) ?>>Mes</option>
                     <option value="Año" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Año'?'selected':'') : '' ) ?>>Año</option>
                 </select>
-                <br>
             </div>
 
 
@@ -104,11 +99,9 @@
                     <option value="Naranja" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Naranja'?'selected':'') : '' ) ?> >Naranja</option>
                     <option value="Rojo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Rojo'?'selected':'') : '' ) ?> >Rojo</option>
                 </select>
-                <br>
             </div>
-
-
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="id_protocolo">
                     *         protocolo                            </label>
@@ -116,7 +109,6 @@
             <div class="col-md-3">
                 <!--<input type="text" value="<?php echo (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : '' ) ?>" class="form-control obligatorio  " id="id_protocolo" name="id_protocolo">-->
                 <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
             </div>
 
         </div>

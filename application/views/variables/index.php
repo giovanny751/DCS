@@ -14,12 +14,10 @@
             </div>
             <div class="col-md-3">
                 <input type="hidden" value="<?php echo (isset($datos[0]->variable_codigo) ? $datos[0]->variable_codigo : '' ) ?>" class=" form-control   " id="variable_codigo" name="variable_codigo">
-
-
-                <br>
             </div>
 
-        </div><div class="row">
+        </div>
+        <div class="row">
 
             <div class="col-md-3">
                 <label for="hl7tag">
@@ -27,9 +25,6 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->hl7tag) ? $datos[0]->hl7tag : '' ) ?>" class=" form-control obligatorio  " id="hl7tag" name="hl7tag">
-
-
-                <br>
             </div>
 
 
@@ -40,11 +35,9 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class=" form-control obligatorio  " id="descripcion" name="descripcion">
-
-
-                <br>
             </div>
-
+        </div>
+        <div class="row">
 
 
             <div class="col-md-3">
@@ -53,7 +46,6 @@
             </div>
             <div class="col-md-3">
                 <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
             </div>
 
         </div>

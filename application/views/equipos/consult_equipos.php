@@ -13,7 +13,6 @@
             <div class="col-md-3">
 
                 <input type="text" value="<?php echo (isset($post['id_equipo']) ? $post['id_equipo'] : '' ) ?>" class="form-control   " id="id_equipo" name="id_equipo">
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -23,9 +22,9 @@
             <div class="col-md-3">
 
                 <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
-                <br>
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="estado">
                     Estado                        </label>
@@ -40,7 +39,6 @@
                     <option value="EN TRANSITO">EN TRANSITO</option>
                     <option value="MANTENIMIENTO">MANTENIMIENTO</option>
                 </select>
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -58,12 +56,9 @@
                     });
                 </script>
                 <input type="text" value="<?php echo (isset($post['ubicacion']) ? $post['ubicacion'] : '' ) ?>" class="form-control obligatorio  " id="ubicacion" name="ubicacion">
-                <br>
             </div>
-
-
-
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="tipo_equipo_cod">
                     Tipo equipo                        </label>
@@ -72,7 +67,6 @@
 
 <!--                                            <input type="text" value="<?php echo (isset($post['tipo_equipo_cod']) ? $post['tipo_equipo_cod'] : '' ) ?>" class="form-control obligatorio  " id="tipo_equipo_cod" name="tipo_equipo_cod">-->
                 <?php echo lista("tipo_equipo_cod", "tipo_equipo_cod", "form-control obligatorio", "tipo_equipo", "tipo_equipo_cod", "referencia", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
             </div>
 
 
@@ -83,10 +77,7 @@
             <div class="col-md-3">
 
                 <input type="text" value="<?php echo (isset($post['responsable']) ? $post['responsable'] : '' ) ?>" class="form-control   " id="responsable" name="responsable">
-                <br>
             </div>
-
-
         </div>
         <button type="button" class="btn btn-dcs">Limpiar</button>
         <button class="btn btn-dcs">Consultar</button>

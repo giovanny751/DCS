@@ -7,7 +7,6 @@
     <form action="<?php echo base_url('index.php/') . '/Pacientes/consult_pacientes'; ?>" method="post" >
         <div class="row">
 
-
             <div class="col-md-3">
                 <label for="cedula_paciente">
                     Cédula paciente                        </label>
@@ -23,7 +22,6 @@
                     });
                 </script>
                 <input type="text" value="<?php echo (isset($post['cedula_paciente']) ? $post['cedula_paciente'] : '' ) ?>" class="form-control obligatorio  number" id="cedula_paciente" name="cedula_paciente">
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -41,9 +39,9 @@
                     });
                 </script>
                 <input type="text" value="<?php echo (isset($post['nombres']) ? $post['nombres'] : '' ) ?>" class="form-control obligatorio  " id="nombres" name="nombres">
-                <br>
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="apellidos">
                     Apellidos                        </label>
@@ -59,7 +57,6 @@
                     });
                 </script>
                 <input type="text" value="<?php echo (isset($post['apellidos']) ? $post['apellidos'] : '' ) ?>" class="form-control obligatorio  " id="apellidos" name="apellidos">
-                <br>
             </div>
 
 
@@ -74,7 +71,6 @@
                     <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                 </select>
-                <br>
             </div>
         </div>
         <button type="button" class="btn btn-dcs">Limpiar</button>

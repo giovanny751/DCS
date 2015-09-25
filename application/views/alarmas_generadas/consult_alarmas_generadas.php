@@ -6,15 +6,13 @@
 </div>
     <form action="<?php echo base_url('index.php/') . '/Alarmas_generadas/consult_alarmas_generadas'; ?>" method="post" >
         <div class="row">
-
-
             <div class="col-md-3">
                 <label for="id_niveles_alarma">
                     Niveles alarma                        </label>
             </div>
             <div class="col-md-3">
 
-                <?php echo lista("id_niveles_alarma", "id_niveles_alarma", "form-control obligatorio", "niveles_alarma", "id_niveles_alarma", "descripcion", (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    <br>
+                <?php echo lista("id_niveles_alarma", "id_niveles_alarma", "form-control obligatorio", "niveles_alarma", "id_niveles_alarma", "descripcion", (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    
             </div>
 
             <div class="col-md-3">
@@ -24,16 +22,16 @@
             <div class="col-md-3">
 
                 <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
-                <br>
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="id_lectura_equipo">
                     Lectura equipo                        </label>
             </div>
             <div class="col-md-3">
 
-                <?php echo lista("id_lectura_equipo", "id_lectura_equipo", "form-control obligatorio", "lectura_equipo", "id_lectura_equipo", "id_lectura_equipo", (isset($datos[0]->id_lectura_equipo) ? $datos[0]->id_lectura_equipo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    <br>
+                <?php echo lista("id_lectura_equipo", "id_lectura_equipo", "form-control obligatorio", "lectura_equipo", "id_lectura_equipo", "id_lectura_equipo", (isset($datos[0]->id_lectura_equipo) ? $datos[0]->id_lectura_equipo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                  
             </div>
 
             <div class="col-md-3">
@@ -43,9 +41,7 @@
             <div class="col-md-3">
 
                 <input type="text" value="<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>" class="form-control obligatorio  " id="analisis_resultado" name="analisis_resultado">
-                <br>
             </div>
-
         </div>
         <button class="btn btn-dcs">Consultar</button>
     </form>

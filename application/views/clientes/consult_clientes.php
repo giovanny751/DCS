@@ -13,7 +13,6 @@
                 <div class="col-md-3">
                     
                                             <input type="text" value="<?php echo (isset($post['id_cliente'])?$post['id_cliente']:'' ) ?>" class="form-control   " id="id_cliente" name="id_cliente">
-                                            <br>
                 </div>
 
                             <div class="col-md-3">
@@ -31,8 +30,9 @@
                         });
                     </script>
                                             <input type="text" value="<?php echo (isset($post['nombre'])?$post['nombre']:'' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
-                                            <br>
                 </div>
+            </div>
+        <div class="row">
 
                             <div class="col-md-3">
                     <label for="id_tipo_cliente">
@@ -41,7 +41,6 @@
                 <div class="col-md-3">
                     <?php echo lista("id_tipo_cliente", "id_tipo_cliente", "form-control ", "tipo_cliente", "id_tipo_cliente", "descripcion", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                                             <!--<input type="text" value="<?php echo (isset($post['id_tipo_cliente'])?$post['id_tipo_cliente']:'' ) ?>" class="form-control   " id="id_tipo_cliente" name="id_tipo_cliente">-->
-                                            <br>
                 </div>
 
 
@@ -56,7 +55,6 @@
                             <option value="Activo">Activo</option>
                             <option value="Inactivo">Inactivo</option>
                         </select>
-                                                    <br>
                 </div>
 
                 </div>

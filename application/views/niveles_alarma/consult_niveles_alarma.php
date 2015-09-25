@@ -6,13 +6,13 @@
 </div>
     <form action="<?php echo base_url('index.php/') . '/Niveles_alarma/consult_niveles_alarma'; ?>" method="post" >
 
-        <div class="row">                <div class="col-md-3">
+        <div class="row">                
+            <div class="col-md-3">
                 <label for="descripcion">
                     Descripción                        </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
-                <br>
             </div>
                 <div class="col-md-3">
                 <label for="examen_cod">
@@ -20,16 +20,15 @@
             </div>
             <div class="col-md-3">
                 <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre",  (isset($post['examen_cod']) ? $post['examen_cod'] : '' ) , array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="n_repeticiones_minimas">
                     N° repeticiones mínimas                        </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['n_repeticiones_minimas']) ? $post['n_repeticiones_minimas'] : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_minimas" name="n_repeticiones_minimas">
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -38,16 +37,15 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['n_repeticiones_maximas']) ? $post['n_repeticiones_maximas'] : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_maximas" name="n_repeticiones_maximas">
-                <br>
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="tiempo">
                     Tiempo                        </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['tiempo']) ? $post['tiempo'] : '' ) ?>" class="form-control obligatorio  number" id="tiempo" name="tiempo">
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -56,16 +54,15 @@
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['frecuencia']) ? $post['frecuencia'] : '' ) ?>" class="form-control obligatorio  " id="frecuencia" name="frecuencia">
-                <br>
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="color">
                     Color                        </label>
             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['color']) ? $post['color'] : '' ) ?>" class="form-control obligatorio  " id="color" name="color">
-                <br>
             </div>
 
             <div class="col-md-3">
@@ -74,7 +71,6 @@
             </div>
             <div class="col-md-3">
                 <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($post['id_protocolo']) ? $post['id_protocolo'] : '' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
             </div>
 
         </div>
