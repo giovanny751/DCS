@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50536
 File Encoding         : 65001
 
-Date: 2015-09-24 21:38:24
+Date: 2015-09-27 23:42:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1166,7 +1166,7 @@ CREATE TABLE `ingreso` (
   `usu_id` int(11) NOT NULL,
   `ing_fechaIngreso` datetime NOT NULL,
   PRIMARY KEY (`ing_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ingreso
@@ -1314,6 +1314,14 @@ INSERT INTO `ingreso` VALUES ('140', '6', '2015-09-24 18:06:54');
 INSERT INTO `ingreso` VALUES ('141', '6', '2015-09-24 20:54:20');
 INSERT INTO `ingreso` VALUES ('142', '6', '2015-09-24 21:28:26');
 INSERT INTO `ingreso` VALUES ('143', '6', '2015-09-25 02:08:01');
+INSERT INTO `ingreso` VALUES ('144', '6', '2015-09-25 04:21:24');
+INSERT INTO `ingreso` VALUES ('145', '6', '2015-09-25 14:29:58');
+INSERT INTO `ingreso` VALUES ('146', '6', '2015-09-25 18:18:00');
+INSERT INTO `ingreso` VALUES ('147', '6', '2015-09-25 18:18:30');
+INSERT INTO `ingreso` VALUES ('148', '6', '2015-09-25 18:21:59');
+INSERT INTO `ingreso` VALUES ('149', '6', '2015-09-25 19:10:06');
+INSERT INTO `ingreso` VALUES ('150', '6', '2015-09-25 19:14:47');
+INSERT INTO `ingreso` VALUES ('151', '6', '2015-09-28 02:51:23');
 
 -- ----------------------------
 -- Table structure for `inicio`
