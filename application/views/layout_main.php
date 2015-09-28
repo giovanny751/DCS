@@ -94,7 +94,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                     echo "<li><a href='". base_url('index.php/presentacion/rol')."'>Cambiar de Rol</a></li>";
                 echo "</ul>";
             echo "</li>";
-            echo "<li><a href='". base_url('index.php/login/logout')."'>Cerrar sesion</a></li>";
+            echo "<li><a href='". base_url('index.php/login/logout')."'>CERRAR SESION</a></li>";
 //            echo "<li><a href='#'> strtoupper($nombre) </a></li>";
     }
     echo "</ul>";

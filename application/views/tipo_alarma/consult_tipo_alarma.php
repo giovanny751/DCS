@@ -50,14 +50,14 @@
                 <br>
             </div>
 
-            <div class="col-md-3">
+<!--            <div class="col-md-3">
                 <label for="id_niveles_alarma">
                     Niveles                        </label>
             </div>
             <div class="col-md-3">
                 <?php echo lista("id_niveles_alarma", "id_niveles_alarma", "form-control obligatorio", "niveles_alarma", "id_niveles_alarma", "descripcion", (isset($post['id_niveles_alarma']) ? $post['id_niveles_alarma'] : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                 <br>
-            </div>
+            </div>-->
 
         </div>
         <button type="button" class="btn btn-dcs">Limpiar</button>

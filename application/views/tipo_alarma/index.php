@@ -70,7 +70,30 @@
                             <span id="cod_variables">
                            <?php echo lista("variable_codigo", "variable_codigo", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", (isset($datos[0]->variable_codigo) ? $datos[0]->variable_codigo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                             </span>
+                            <br>
                         </div>
+                        <div class="col-md-3">
+                <label for="tiempo">
+                    *         Tiempo                            </label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" value="<?php echo (isset($datos[0]->tiempo) ? $datos[0]->tiempo : '' ) ?>" class="form-control obligatorio  number" id="tiempo" name="tiempo">
+            </div>
+                        <div class="col-md-3">
+                <label for="frecuencia">
+                    *         Frecuencia                            </label>
+            </div>
+            <div class="col-md-3">
+                <!--<input type="text" value="<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>" >-->
+                <select class="form-control obligatorio  " id="frecuencia" name="frecuencia">
+                    <option value=""></option>
+                    <option value="Hora" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Hora'?'selected':'') : '' ) ?>>Hora</option>
+                    <option value="Día" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Día'?'selected':'') : '' ) ?>>Día</option>
+                    <option value="Semana" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Semana'?'selected':'') : '' ) ?>>Semana</option>
+                    <option value="Mes" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Mes'?'selected':'') : '' ) ?>>Mes</option>
+                    <option value="Año" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Año'?'selected':'') : '' ) ?>>Año</option>
+                </select>
+            </div>
                     </div>
                     <?php if (isset($post['campo'])) { ?>
                         <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
@@ -161,6 +184,24 @@
             </div>
         </div>
     </form>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <span id="body_modal"></span>
+            </div>
+            <div class="modal-footer">
+<!--                <button type="button" class="btn btn-default" data-dismiss="modal">Actializar</button>-->
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <script>
     $('#agregar_equipo').click(function () {
         var info = $('#id_niveles_alarma').val();
@@ -182,7 +223,7 @@
             html += "<td>" + info2[2] + "</td>";
             html += "<td>" + info2[3] + "</td>";
             html += "<td>" + info2[4] + "</td>";
-            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>' + "</td>";
+            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>&nbsp;&nbsp;<a href="javascript:" class="vista_niveles_alarma" tabla="niveles_alarma" campo="id_niveles_alarma" url="Niveles_alarma/edit_niveles_alarma2" codigo="' + info2[1] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
             html += "</tr>";
             $('#tabla_contacto').append(html);
             $('#id_niveles_alarma').val('');
@@ -191,6 +232,23 @@
             $('#id_niveles_alarma').val('');
         }
     })
+    
+    $('body').delegate('.vista_niveles_alarma', 'click', function() {
+        var contacto_id = $(this).attr('codigo');
+        var campo = $(this).attr('campo');
+        var tabla = $(this).attr('tabla');
+        var url2 = $(this).attr('url');
+        var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
+        $.post(url, {id_niveles_alarma: contacto_id, campo: campo, tabla: tabla})
+                .done(function(msg) {
+                    $('#body_modal').html(msg);
+                    $('#body_modal #boton_guardar').remove()
+                }).fail(function() {
+
+        })
+
+    })
+    
     $('body').delegate('.eliminar', 'click', function () {
         $(this).parent().parent().remove();
     })

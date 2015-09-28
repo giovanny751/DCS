@@ -12,6 +12,10 @@ class Pacientes__model extends CI_Model {
             $equipo_id = $post['equipo_id'];
             unset($post['equipo_id']);
         }
+        if (isset($post['prioridad'])) {
+            $prioridad = $post['prioridad'];
+            unset($post['prioridad']);
+        }
         if (isset($post['tipo_equipo_cod'])) {
             $tipo_equipo_cod = $post['tipo_equipo_cod'];
             unset($post['tipo_equipo_cod']);
@@ -106,6 +110,7 @@ class Pacientes__model extends CI_Model {
         if (isset($hospitales2))
             for ($i = 0; $i < count($hospitales2); $i++) {
                 $this->db->set('id_paciente', $id);
+                $this->db->set('prioridad', $prioridad[$i]);
                 $this->db->set('codigo_hospital', $hospitales2[$i]);
                 $this->db->insert('paciente_hospitales');
             }

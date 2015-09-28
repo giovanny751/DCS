@@ -4,7 +4,7 @@
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
 </div>
-    <form action="<?php echo base_url('index.php/') . "/Niveles_alarma/save_niveles_alarma"; ?>" method="post" onsubmit="return campos()">
+<form id="form1_alarma" action="<?php echo base_url('index.php/') . "/Niveles_alarma/save_niveles_alarma"; ?>" method="post" onsubmit="return campos()">
 
         <div class="row">
 
@@ -61,33 +61,9 @@
 
 
 
-            <div class="col-md-3">
-                <label for="tiempo">
-                    *         Tiempo                            </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->tiempo) ? $datos[0]->tiempo : '' ) ?>" class="form-control obligatorio  number" id="tiempo" name="tiempo">
-            </div>
+            
         </div>
         <div class="row">    
-            <div class="col-md-3">
-                <label for="frecuencia">
-                    *         Frecuencia                            </label>
-            </div>
-            <div class="col-md-3">
-                <!--<input type="text" value="<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>" >-->
-                <select class="form-control obligatorio  " id="frecuencia" name="frecuencia">
-                    <option value=""></option>
-                    <option value="Hora" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Hora'?'selected':'') : '' ) ?>>Hora</option>
-                    <option value="Día" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Día'?'selected':'') : '' ) ?>>Día</option>
-                    <option value="Semana" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Semana'?'selected':'') : '' ) ?>>Semana</option>
-                    <option value="Mes" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Mes'?'selected':'') : '' ) ?>>Mes</option>
-                    <option value="Año" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Año'?'selected':'') : '' ) ?>>Año</option>
-                </select>
-            </div>
-
-
-
             <div class="col-md-3">
                 <label for="color">
                     *         Color                            </label>
