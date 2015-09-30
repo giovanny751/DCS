@@ -93,31 +93,13 @@ class Alarmas_generadas extends My_Controller {
         $cols.='],';
         $cols.= '"rows": [';
         foreach ($datos as $value) {
-            $cols.='{"c":[{"v":"'.$value->fecha_creacion.'","f":null},{"v":'.$value->lectura_numerica.',"f":null}]},';
+            $fecha=$value->fecha_creacion;
+            $fecha=  explode(' ', $fecha);
+            $cols.='{"c":[{"v":"'.$fecha[0].'","f":null},{"v":'.$value->lectura_numerica.',"f":null}]},';
         }
         echo $cols.=']}';
 
 
-//        echo json_encode($datos);
-//        echo '{
-//  "cols": [
-//        {"id":"","label":"","pattern":"","type":"string"},
-//        {"id":"","label":"Framework","pattern":"","type":"number"},
-//        {"id":"","label":"nelson","pattern":"","type":"number"}
-//      ],
-//  "rows": [
-//        {"c":[{"v":"Laravel","f":null},{"v":2112,"f":null}]},
-//        {"c":[{"v":"Symfony2","f":null},{"v":1005,"f":null}]},
-//        {"c":[{"v":"Nette","f":null},{"v":703,"f":null}]},
-//        {"c":[{"v":"Yii 2","f":null},{"v":620,"f":null}]},
-//        {"c":[{"v":"CodeIgniter","f":null},{"v":482,"f":null}]},
-//        {"c":[{"v":"PHPixie","f":null},{"v":420,"f":null}]},
-//        {"c":[{"v":"Zend 2","f":null},{"v":346,"f":null}]},
-//        {"c":[{"v":"No Framework","f":null},{"v":306,"f":null}]},
-//        {"c":[{"v":"Yii 1","f":null},{"v":293,"f":null}]},
-//        {"c":[{"v":"Phalcon","f":null},{"v":231,"f":null}]}
-//      ]
-//} ';
     }
 
 }

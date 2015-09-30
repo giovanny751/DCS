@@ -63,6 +63,38 @@
                                 <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  fecha  " id="fecha_afiliacion" name="fecha_afiliacion">
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="direccion">* Dirección </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" value="<?php echo (isset($datos[0]->direccion) ? $datos[0]->direccion : '' ) ?>" class=" form-control obligatorio  " id="direccion" name="direccion">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="barrio">* Barrio </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" value="<?php echo (isset($datos[0]->barrio) ? $datos[0]->barrio : '' ) ?>" class=" form-control obligatorio  " id="barrio" name="barrio">
+                            </div>
+                        </div>
+                        <div class="row">   
+                            <div class="col-md-6">
+                                <label for="ciudad">* Ciudad </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" value="<?php echo (isset($datos[0]->ciudad) ? $datos[0]->ciudad : '' ) ?>" class=" form-control obligatorio  " id="ciudad" name="ciudad">
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-6">
+                                <label for="fecha_nacimiento">* Fecha Nacimiento </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" value="<?php echo (isset($datos[0]->fecha_nacimiento) ? $datos[0]->fecha_nacimiento : '' ) ?>" class=" form-control obligatorio fecha   " id="fecha_nacimiento" name="fecha_nacimiento">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <?php if (!empty($id) && $datos[0]->foto != '') { ?>
@@ -87,34 +119,8 @@
                     </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="direccion">* Dirección </label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" value="<?php echo (isset($datos[0]->direccion) ? $datos[0]->direccion : '' ) ?>" class=" form-control obligatorio  " id="direccion" name="direccion">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="barrio">* Barrio </label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" value="<?php echo (isset($datos[0]->barrio) ? $datos[0]->barrio : '' ) ?>" class=" form-control obligatorio  " id="barrio" name="barrio">
-                    </div>
-                </div>
-                <div class="row">   
-                    <div class="col-md-3">
-                        <label for="ciudad">* Ciudad </label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" value="<?php echo (isset($datos[0]->ciudad) ? $datos[0]->ciudad : '' ) ?>" class=" form-control obligatorio  " id="ciudad" name="ciudad">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="fecha_nacimiento">* Fecha Nacimiento </label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" value="<?php echo (isset($datos[0]->fecha_nacimiento) ? $datos[0]->fecha_nacimiento : '' ) ?>" class=" form-control obligatorio fecha   " id="fecha_nacimiento" name="fecha_nacimiento">
-                    </div>
-                </div>
+
+
                 <div class="row">
                     <div class="col-md-3">
                         <label for="estatura">* Estatura </label>
@@ -858,7 +864,7 @@
                 y.push($(this).val())
             }
         })
-//        console.log(y)
+        //        console.log(y)
     })
     $('body').delegate('.tipo_equipo_cod', 'change', function() {
         var y = new Array();
@@ -870,7 +876,7 @@
                 y.push($(this).val() + "-" + $(this).prev().val())
             }
         })
-//        console.log(y)
+        //        console.log(y)
     })
     $('#agregar').click(function() {
 
@@ -920,7 +926,7 @@
     })
     $('#copiar').click(function() {
 
-//        var examen = $('#examen_cod option:selected').text();
+        //        var examen = $('#examen_cod option:selected').text();
         var nom_paciente = $('#nom_paciente').val();
         if (nom_paciente == '') {
             alerta('rojo', 'Seleccione un paciente');

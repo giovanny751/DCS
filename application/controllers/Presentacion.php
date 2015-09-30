@@ -196,8 +196,7 @@ class Presentacion extends My_Controller {
         $guardarpermisos = $this->Ingreso_model->permisosmodulo($datos);
     }
 
-    function permisoroles($datosmodulos, $html = null) {
-        
+    function permisoroles($datosmodulos, $html = null,$s=null) {
         $menu = $this->Ingreso_model->permisoroles($datosmodulos);
         $i = array();
         foreach ($menu as $modulo)
@@ -208,17 +207,17 @@ class Presentacion extends My_Controller {
             foreach ($nombrepapa as $nombrepapa => $menuidpadre)
                 foreach ($menuidpadre as $modulos => $menu)
                     foreach ($menu as $submenus):
-                        $html .= "<li>" . strtoupper($nombrepapa) . "<input type='checkbox' class='seleccionados' name='permisorol[]' value='" . $padre . "'>";
+                        $html .= "<tr><td>".($s==null?'':'&nbsp;&nbsp;&nbsp;')."<input type='checkbox' class='seleccionados ".($s==null?'':$s)."'  atr='".str_replace(' ','',strtoupper($nombrepapa))."' name='permisorol[]' value='" . $padre . "'></td><td>".($s==null?'<br><b>':'')."<li>" . strtoupper($nombrepapa) . "";
                         if (!empty($submenus[0]))
-                            $html .=$this->permisoroles($submenus[0]);
-                        $html .= "</li>";
+                            $html .=$this->permisoroles($submenus[0],' ',  str_replace(' ','',strtoupper($nombrepapa)));
+                        $html .= "</li></td></tr>";
                     endforeach;
         $html.="</ul>";
         return $html;
     }
 
     function roles() {
-        $this->data['content'] = $this->permisoroles('prueba', null);
+        $this->data['content'] = "<table border='0' width='100%'>".$this->permisoroles('prueba', null)."</table>";
         $this->data['roles'] = $this->Roles_model->roles();
         $this->layout->view('presentacion/roles', $this->data);
     }

@@ -185,9 +185,15 @@
 
 
     $('.buscar').click(function () {
+    
         var cedula = $('#cedula').val();
         if (cedula == "") {
             alerta('rojo', 'Campo cedula obligatorio');
+            return false;
+        }
+        var cedula = $('#examen_cod').val();
+        if (cedula == "") {
+            alerta('rojo', 'Campo examen obligatorio');
             return false;
         }
         $('.table').DataTable().rows().remove().draw();
@@ -212,7 +218,7 @@
                             .done(function (msg) {
                                 var data = new google.visualization.DataTable(msg);
                                 var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-                                chart.draw(data, {width: 800, height: 400});
+                                chart.draw(data, {width: 1000, height: 400});
                             })
                             .fail(function () {
                                 alerta('roja', 'Error al consultar');

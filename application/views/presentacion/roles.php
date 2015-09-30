@@ -72,28 +72,37 @@
     </div>
 </div>    
 <script>
-    $(".seleccionados").click(function(){
-//        alert($(this).next().children().children().prop('tagName'))
+
+    $('.seleccionados').click(function() {
+        var atr = $(this).attr('atr')
+        var marcado = $(this).is(":checked");
+        if(marcado==true)
+            var r=true;
+        else
+            var r=false;
+        $("."+atr).each(function() {
+            $(this).prop('checked', r);
+        });
     })
-    
+
 //------------------------------------------------------------------------------
 //                      ELIMINAR ROL    
 //------------------------------------------------------------------------------ 
     $('body').delegate('.eliminar', 'click', function() {
-        var r=confirm('¿Desea eliminar el rol?');
-        if(r==false)
+        var r = confirm('¿Desea eliminar el rol?');
+        if (r == false)
             return false;
         $(this).parents().parents('tr').remove();
 //        return false;
         $.post("<?php echo base_url('index.php/presentacion/eliminarrol'); ?>", {id: $(this).attr('rol')})
                 .done(function(msg) {
-                    alerta('verde','Rol eliminado con exito');
+                    alerta('verde', 'Rol eliminado con exito');
 //                    $(this).parents('')
 //                    $(this).parents('tr').remove();
-        
+
                 }).fail(function(msg) {
-                    alerta('rojo','Error al eliminar');
-                    location.reload();
+            alerta('rojo', 'Error al eliminar');
+            location.reload();
         });
     });
 //------------------------------------------------------------------------------
@@ -102,9 +111,9 @@
     $('body').delegate('.guardar', 'click', function() {
 
         $.post("<?php echo base_url('index.php/presentacion/guardarroles'); ?>",
-                $('#nuevorol').serialize())           
-            .done(function(data) {
-            $('#myModal').modal('hide');
+                $('#nuevorol').serialize())
+                .done(function(data) {
+                    $('#myModal').modal('hide');
 //            var filas = "";
 //            $.each(data, function(key, val) {
 //                filas += "<tr>";
@@ -117,9 +126,9 @@
 //            $('#cuerporol *').remove();
 //            $('#cuerporol').append(filas);
 //            $('#nombre').val('');
-            alerta('verde', 'Guardado con exito');
-            location.reload();
-        }).fail(function() {
+                    alerta('verde', 'Guardado con exito');
+                    location.reload();
+                }).fail(function() {
             alerta('rojo', 'No se pudo Guardar el Registro');
         })
 
