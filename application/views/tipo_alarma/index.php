@@ -87,11 +87,11 @@
                 <!--<input type="text" value="<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>" >-->
                 <select class="form-control obligatorio  " id="frecuencia" name="frecuencia">
                     <option value=""></option>
-                    <option value="Hora" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Hora'?'selected':'') : '' ) ?>>Hora</option>
-                    <option value="Día" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Día'?'selected':'') : '' ) ?>>Día</option>
-                    <option value="Semana" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Semana'?'selected':'') : '' ) ?>>Semana</option>
-                    <option value="Mes" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Mes'?'selected':'') : '' ) ?>>Mes</option>
-                    <option value="Año" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Año'?'selected':'') : '' ) ?>>Año</option>
+                    <option value="Hora" <?php echo (isset($datos[0]->frecuencia) ? ($datos[0]->frecuencia=='Hora'?'selected':'') : '' ) ?>>Hora</option>
+                    <option value="Día" <?php echo (isset($datos[0]->frecuencia) ? ($datos[0]->frecuencia=='Día'?'selected':'') : '' ) ?>>Día</option>
+                    <option value="Semana" <?php echo (isset($datos[0]->frecuencia) ? ($datos[0]->frecuencia=='Semana'?'selected':'') : '' ) ?>>Semana</option>
+                    <option value="Mes" <?php echo (isset($datos[0]->frecuencia) ? ($datos[0]->frecuencia=='Mes'?'selected':'') : '' ) ?>>Mes</option>
+                    <option value="Año" <?php echo (isset($datos[0]->frecuencia) ? ($datos[0]->frecuencia=='Año'?'selected':'') : '' ) ?>>Año</option>
                 </select>
             </div>
                     </div>

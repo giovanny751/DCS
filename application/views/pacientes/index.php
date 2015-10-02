@@ -119,8 +119,6 @@
                     </div>
 
                 </div>
-
-
                 <div class="row">
                     <div class="col-md-3">
                         <label for="estatura">* Estatura </label>
@@ -197,7 +195,7 @@
                     <div class="col-md-3">
                         <label for="observaciones">  Observaciones </label>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-9">
                         <textarea class=" form-control  " id="observaciones" name="observaciones"><?php echo (isset($datos[0]->observaciones) ? $datos[0]->observaciones : '' ) ?></textarea>
                     </div>
                 </div>
@@ -963,11 +961,12 @@
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
                 }).fail(function() {
-
+            alerta('rojo', 'Error al consultar');
         })
 
     })
     $('body').delegate('.vista_aseguradora', 'click', function() {
+        $('#body_modal').html('Cargando...');
         var aseguradora_id = $(this).attr('codigo');
         var campo = $(this).attr('campo');
         var tabla = $(this).attr('tabla');
@@ -978,11 +977,12 @@
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
                 }).fail(function() {
-
+            alerta('rojo', 'Error al consultar');
         })
 
     })
     $('body').delegate('.vista_equipo', 'click', function() {
+        $('#body_modal').html('Cargando...');
         var id_equipo = $(this).attr('codigo');
         var campo = $(this).attr('campo');
         var tabla = $(this).attr('tabla');
@@ -993,11 +993,12 @@
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
                 }).fail(function() {
-
+            alerta('rojo', 'Error al consultar');
         })
 
     })
     $('body').delegate('.vista_contacto', 'click', function() {
+        $('#body_modal').html('Cargando...');
         var contacto_id = $(this).attr('codigo');
         var campo = $(this).attr('campo');
         var tabla = $(this).attr('tabla');
@@ -1008,7 +1009,7 @@
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
                 }).fail(function() {
-
+            alerta('rojo', 'Error al consultar');
         })
 
     })

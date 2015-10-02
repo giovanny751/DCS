@@ -39,23 +39,7 @@
                 <input type="text" value="<?php echo (isset($post['n_repeticiones_maximas']) ? $post['n_repeticiones_maximas'] : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_maximas" name="n_repeticiones_maximas">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="tiempo">
-                    Tiempo                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['tiempo']) ? $post['tiempo'] : '' ) ?>" class="form-control obligatorio  number" id="tiempo" name="tiempo">
-            </div>
-
-            <div class="col-md-3">
-                <label for="frecuencia">
-                    Frecuencia                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['frecuencia']) ? $post['frecuencia'] : '' ) ?>" class="form-control obligatorio  " id="frecuencia" name="frecuencia">
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col-md-3">
                 <label for="color">
@@ -88,8 +72,6 @@
             <th>Analisis resultado</th>
             <th>N° repeticiones mínimas</th>
             <th>N° repeticiones máximas</th>
-            <th>Tiempo</th>
-            <th>Frecuencia</th>
             <th>Color</th>
             <!--<th>protocolo</th>-->
             <th>Acción</th>

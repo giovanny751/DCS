@@ -181,6 +181,7 @@ class Ingreso_model extends CI_Model {
     function totalusuarios() {
 
 //        $this->db->where();
+        $this->db->where('user.activo', 'S');
         $usuarios = $this->db->get('user');
         return $usuarios->result_array();
     }

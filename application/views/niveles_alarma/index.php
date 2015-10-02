@@ -6,104 +6,75 @@
 </div>
 <form id="form1_alarma" action="<?php echo base_url('index.php/') . "/Niveles_alarma/save_niveles_alarma"; ?>" method="post" onsubmit="return campos()">
 
-        <div class="row">
+    <div class="row">
 
-            <input type="hidden" value="<?php echo (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : '' ) ?>" class="form-control   " id="id_niveles_alarma" name="id_niveles_alarma">
-
-
-
-            <div class="col-md-3">
-                <label for="descripcion">
-                    *         Descripción                            </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
-            </div>
+        <input type="hidden" value="<?php echo (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : '' ) ?>" class="form-control   " id="id_niveles_alarma" name="id_niveles_alarma">
 
 
-<!--            <div class="col-md-3">
-                <label for="examen_cod">
-                    Examen                            </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : '' ) ?>" class="form-control   " id="examen_cod" name="examen_cod">
-                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                <br>
-            </div>
 
-
-            <div class="col-md-3">
-                <label for="id_tipo_alarma">
-                    Tipo alarma                            </label>
-            </div>
-            <div class="col-md-3">
-                <span id="traer_tipo_alarma">
-                    <?php echo lista("id_tipo_alarma", "id_tipo_alarma", "form-control obligatorio", "tipo_alarma", "id_tipo_alarma", "descripcion", (isset($datos[0]->id_tipo_alarma) ? $datos[0]->id_tipo_alarma : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                </span>
-                <br>
-            </div>-->
-            <div class="col-md-3">
-                <label for="n_repeticiones_minimas">
-                    *         N° repeticiones mínimas                            </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->n_repeticiones_minimas) ? $datos[0]->n_repeticiones_minimas : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_minimas" name="n_repeticiones_minimas">
-            </div>
+        <div class="col-md-3">
+            <label for="descripcion">
+                *         Descripción                            </label>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="n_repeticiones_maximas">
-                    *         N° repeticiones máximas                            </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($datos[0]->n_repeticiones_maximas) ? $datos[0]->n_repeticiones_maximas : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_maximas" name="n_repeticiones_maximas">
-            </div>
-
-
-
-            
+        <div class="col-md-3">
+            <input type="text" value="<?php echo (isset($datos[0]->descripcion) ? $datos[0]->descripcion : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
         </div>
-        <div class="row">    
-            <div class="col-md-3">
-                <label for="color">
-                    *         Color                            </label>
-            </div>
-            <div class="col-md-3">
-                <select class="form-control obligatorio  " id="color" name="color"  >
-                    <option value="Verde" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Verde'?'selected':'') : '' ) ?> >Verde</option>
-                    <option value="Amarillo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Amarillo'?'selected':'') : '' ) ?> >Amarillo</option>
-                    <option value="Naranja" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Naranja'?'selected':'') : '' ) ?> >Naranja</option>
-                    <option value="Rojo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color=='Rojo'?'selected':'') : '' ) ?> >Rojo</option>
-                </select>
-            </div>
+        <div class="col-md-3">
+            <label for="n_repeticiones_minimas">
+                *         N° repeticiones mínimas                            </label>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="id_protocolo">
-                    *         protocolo                            </label>
-            </div>
-            <div class="col-md-3">
-                <!--<input type="text" value="<?php echo (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : '' ) ?>" class="form-control obligatorio  " id="id_protocolo" name="id_protocolo">-->
-                <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-            </div>
+        <div class="col-md-3">
+            <input type="text" value="<?php echo (isset($datos[0]->n_repeticiones_minimas) ? $datos[0]->n_repeticiones_minimas : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_minimas" name="n_repeticiones_minimas">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="color">
+                *         Color                            </label>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control obligatorio  " id="color" name="color"  >
+                <option value="Verde" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Verde' ? 'selected' : '') : '' ) ?> >Verde</option>
+                <option value="Amarillo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Amarillo' ? 'selected' : '') : '' ) ?> >Amarillo</option>
+                <option value="Naranja" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Naranja' ? 'selected' : '') : '' ) ?> >Naranja</option>
+                <option value="Rojo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Rojo' ? 'selected' : '') : '' ) ?> >Rojo</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="n_repeticiones_maximas">
+                *         N° repeticiones máximas                            </label>
+        </div>
+        <div class="col-md-3">
+            <input type="text" value="<?php echo (isset($datos[0]->n_repeticiones_maximas) ? $datos[0]->n_repeticiones_maximas : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_maximas" name="n_repeticiones_maximas">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="id_protocolo">
+                *         protocolo                            </label>
+        </div>
+        <div class="col-md-3">
+            <!--<input type="text" value="<?php echo (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : '' ) ?>" class="form-control obligatorio  " id="id_protocolo" name="id_protocolo">-->
+            <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($datos[0]->id_protocolo) ? $datos[0]->id_protocolo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+        </div>
 
-        </div>
-        <?php if (isset($post['campo'])) { ?>
-            <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
-            <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
-        <?php } ?>
-        <div class="row">
-            <span id="boton_guardar">
-                <button class="btn btn-dcs" >Guardar</button> 
-                <input class="btn btn-dcs" type="reset" value="Limpiar">
-                <a href="<?php echo base_url('index.php') . "/Niveles_alarma/consult_niveles_alarma" ?>" class="btn btn-dcs">Listado </a>
-            </span>
-            <span id="boton_cargar" style="display: none">
-                <h2>Cargando ...</h2>
-            </span>
-        </div>
-        <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
-    </form>
+    </div>
+    <?php if (isset($post['campo'])) { ?>
+        <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
+        <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
+    <?php } ?>
+    <div class="row">
+        <span id="boton_guardar">
+            <button class="btn btn-dcs" >Guardar</button> 
+            <input class="btn btn-dcs" type="reset" value="Limpiar">
+            <a href="<?php echo base_url('index.php') . "/Niveles_alarma/consult_niveles_alarma" ?>" class="btn btn-dcs">Listado </a>
+        </span>
+        <span id="boton_cargar" style="display: none">
+            <h2>Cargando ...</h2>
+        </span>
+    </div>
+    <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
+</form>
 <script>
 
     $('#examen_cod').change(function() {

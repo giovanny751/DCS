@@ -9,7 +9,7 @@
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   
   
-  
+
 
 <!--<script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>-->
 <!--<script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>-->
@@ -40,12 +40,12 @@
 <!--<link href="<?php echo base_url('/assets/global/plugins/select2/select2.css'); ?>" rel="stylesheet">-->
 <!--<link href="<?php echo base_url('/assets/global/plugins/jquery-multi-select/css/multi-select.css'); ?>" rel="stylesheet">-->
 <!--<link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>-->
-<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js'); ?>"></script>
-<script src="<?php echo base_url('/assets/global/scripts/datatable.js'); ?>"></script>
+<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>-->
+<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js'); ?>"></script>-->
+<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js'); ?>"></script>-->
+<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js'); ?>"></script>-->
+<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js'); ?>"></script>-->
+<!--<script src="<?php echo base_url('/assets/global/scripts/datatable.js'); ?>"></script>-->
 <!--<script type="text/javascript" src="<?php echo base_url('/assets/admin/pages/scripts/table-ajax.js'); ?>"></script>-->
 <!--<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/moment.min.js'); ?>" type="text/javascript"></script>-->
 <!--<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js'); ?>" type="text/javascript"></script>-->
@@ -61,7 +61,9 @@
 
 <link rel="stylesheet" href="<?= base_url('css/tabs.css') ?>" />
 <script type="text/javascript" src="<?= base_url('js/tabs.js') ?>"></script>
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
 <?php
 function modulos($datosmodulos, $idusuario, $dato = null) {
 
@@ -170,10 +172,13 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     .table tbody tr td {
         border: 1px solid #CCC !important;
     }
+    .dataTables_info, .dataTables_paginate{
+        font-size: 14px !important;
+    }
 
     .table tr th {
         border: 1px solid #CCC !important;
-        background-color: #008ac9;
+        background-color: #008ac9 !important;
         color: #FFF
     }
 
@@ -325,4 +330,5 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     $.blockUI.defaults.message = 'Procesando...';
     $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 });
+$('.table').DataTable();
 </script>
