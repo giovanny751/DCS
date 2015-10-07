@@ -28,7 +28,7 @@ class Alarmas_generadas__model extends CI_Model {
     function edit_alarmas_generadas($post) {
         $this->db->where($post["campo"], $post[$post["campo"]]);
         $this->db->select('fecha_nacimiento,foto,peso,estatura,lectura_equipo.id_paciente,alarmas_generadas.id_alarmas_generadas,cedula_paciente,nombres,apellidos,lectura_equipo.fecha_creacion');
-        $this->db->select('alarmas_generadas.descripcion,tipo_alarma.analisis_resultados,examen_nombre,niveles_alarma.analisis_resultado');
+        $this->db->select('niveles_alarma.descripcion DES_ALAR,tipo_alarma.analisis_resultados,examen_nombre,niveles_alarma.analisis_resultado');
         $this->db->select('lectura_numerica,protocolos.descripcion descripcion_protocolo,protocolos.nombre nombre_procolo,alarmas_generadas.estado_id,alarmas_generadas.fecha_atencion,alarmas_generadas.descripcion descrip');
         $this->db->where('alarmas_generadas.ACTIVO', 'S');
         $this->db->join('niveles_alarma', 'niveles_alarma.id_niveles_alarma=alarmas_generadas.id_niveles_alarma', 'left');
@@ -101,7 +101,7 @@ class Alarmas_generadas__model extends CI_Model {
             if ($post['activo'] != "")
                 $this->db->like('activo', $post['activo']);
         $this->db->select('color,alarmas_generadas.id_alarmas_generadas,cedula_paciente,nombres,apellidos,lectura_equipo.fecha_creacion');
-        $this->db->select('alarmas_generadas.descripcion,tipo_alarma.analisis_resultados,examen_nombre,niveles_alarma.analisis_resultado');
+        $this->db->select('niveles_alarma.descripcion DES_ALAR,tipo_alarma.analisis_resultados,examen_nombre,niveles_alarma.analisis_resultado');
         $this->db->select('lectura_numerica,protocolos.nombre nombre_procolo,alarmas_generadas.estado_id,alarmas_generadas.fecha_atencion,alarmas_generadas.descripcion descrip');
         $this->db->where('alarmas_generadas.ACTIVO', 'S');
         $this->db->join('niveles_alarma', 'niveles_alarma.id_niveles_alarma=alarmas_generadas.id_niveles_alarma', 'left');

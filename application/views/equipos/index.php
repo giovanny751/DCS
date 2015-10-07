@@ -321,16 +321,6 @@
         $(this).tab('show')
     })
     function campos() {
-//        $('input[type="file"]').each(function (key, val) {
-//            var img = $(this).val();
-//            if (img != "") {
-//                var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
-//                if (r === false) {
-//                    alert('Tipo de archivo no valido');
-//                    return false;
-//                }
-//            }
-//        });
         if (obligatorio('obligatorio') == false) {
             return false
         } else {

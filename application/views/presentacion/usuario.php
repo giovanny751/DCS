@@ -11,7 +11,6 @@
                 <thead>
                 <th style="width: 220px">Usuario</th>
                 <th style="width: 220px">Email</th>
-                <th style="width: 220px">Numero Celular</th>
                 <th style="width: 220px">Estado</th>
                 <th style="width: 220px">Roles</th>
                 </thead>
@@ -20,13 +19,7 @@
                         <tr>
                             <td><?php echo $todosusuarios['usu_nombre'] . " " . $todosusuarios['usu_apellido']; ?></td>
                             <td><?php echo $todosusuarios['usu_email']; ?></td>
-                            <td><?php
-                                if (!empty($todosusuarios['phone'])) {
-                                    echo $todosusuarios['phone'];
-                                } else {
-                                    echo 0;
-                                }
-                                ?></td>
+                            
                             <td><?php
                                 if ($todosusuarios['est_id'] == 1)
                                     echo "Activo";

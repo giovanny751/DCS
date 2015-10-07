@@ -64,7 +64,7 @@
                 <th>Protocolo</th>
                 <th>Estado</th>
                 <th>Fecha atención</th>
-                <th>Onservaciones</th>
+                <th>Observaciones</th>
                 <th>Acción</th>
                 </thead>
                 <tbody>

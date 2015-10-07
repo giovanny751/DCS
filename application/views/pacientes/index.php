@@ -960,6 +960,8 @@
                 .done(function(msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
+                    $('#body_modal input').attr('disabled','disabled');
+                    $('#body_modal select').attr('disabled','disabled');
                 }).fail(function() {
             alerta('rojo', 'Error al consultar');
         })
@@ -976,6 +978,8 @@
                 .done(function(msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
+                    $('#body_modal input').attr('disabled','disabled');
+                    $('#body_modal select').attr('disabled','disabled');
                 }).fail(function() {
             alerta('rojo', 'Error al consultar');
         })
@@ -991,7 +995,9 @@
         $.post(url, {id_equipo: id_equipo, campo: campo, tabla: tabla})
                 .done(function(msg) {
                     $('#body_modal').html(msg);
-                    $('#body_modal #boton_guardar').remove()
+                    $('#body_modal #boton_guardar').remove();
+                    $('#body_modal input').attr('disabled','disabled');
+                    $('#body_modal select').attr('disabled','disabled');
                 }).fail(function() {
             alerta('rojo', 'Error al consultar');
         })
@@ -1007,7 +1013,10 @@
         $.post(url, {contacto_id: contacto_id, campo: campo, tabla: tabla})
                 .done(function(msg) {
                     $('#body_modal').html(msg);
-                    $('#body_modal #boton_guardar').remove()
+                    $('#body_modal #boton_guardar').remove();
+                    $('#body_modal input').attr('disabled','disabled');
+                    $('#body_modal select').attr('disabled','disabled');
+                    
                 }).fail(function() {
             alerta('rojo', 'Error al consultar');
         })
