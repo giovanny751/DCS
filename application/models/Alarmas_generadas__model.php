@@ -58,6 +58,10 @@ class Alarmas_generadas__model extends CI_Model {
 
         $this->db->select('examenes.examen_nombre,alarmas_generadas.fecha_creacion,variables.descripcion,variables.hl7tag');
         $this->db->select('lectura_numerica,n_repeticiones_minimas,n_repeticiones_maximas,niveles_alarma.analisis_resultado');
+
+        $this->db->select('color,alarmas_generadas.id_alarmas_generadas,cedula_paciente,nombres,apellidos,lectura_equipo.fecha_creacion');
+        $this->db->select('tipo_alarma.descripcion t_descrip,niveles_alarma.descripcion DES_ALAR,examen_nombre,niveles_alarma.analisis_resultado');
+        $this->db->select('lectura_numerica,protocolos.nombre nombre_procolo,alarmas_generadas.estado_id,alarmas_generadas.fecha_atencion,alarmas_generadas.descripcion descrip');
 //        $this->db->select('');
         $this->db->where('alarmas_generadas.ACTIVO', 'S');
         $this->db->join('niveles_alarma', 'niveles_alarma.id_niveles_alarma=alarmas_generadas.id_niveles_alarma', 'left');
@@ -99,7 +103,8 @@ class Alarmas_generadas__model extends CI_Model {
                 $this->db->like('lectura_id', $post['lectura_id']);
         if (isset($post['activo']))
             if ($post['activo'] != "")
-                $this->db->like('activo', $post['activo']);
+                $this->db->where('activo', $post['activo']);
+        $this->db->where('tipo_alarma.analisis_resultados <>', 'Normal');
         $this->db->select('color,alarmas_generadas.id_alarmas_generadas,cedula_paciente,nombres,apellidos,lectura_equipo.fecha_creacion');
         $this->db->select('tipo_alarma.descripcion t_descrip,niveles_alarma.descripcion DES_ALAR,examen_nombre,niveles_alarma.analisis_resultado');
         $this->db->select('lectura_numerica,protocolos.nombre nombre_procolo,alarmas_generadas.estado_id,alarmas_generadas.fecha_atencion,alarmas_generadas.descripcion descrip');

@@ -26,6 +26,9 @@
                     </script>
                     <input type="text" name="cedula" id="cedula" value="" autocomplete="false" class="form-control">
                 </div>
+                <div class="col-md-1">
+                    <a href="javascript:" onclick="cl();">Buscar</a>
+                </div>   
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -131,7 +134,7 @@
         <div class="tabContenido">
             <!--Tab Datos -->
             <div id="tabDatos" class="tab active">
-                <table class="table" id="tablee">
+                <table class="table tablee3" >
                     <thead>
                     <th>Examen</th>
                     <th>Fecha-Registro</th>
@@ -154,7 +157,27 @@
                 <div id="chart_div"></div>
             </div>
             <div id="tabAlarmas" class="tab">
-                Este tab es de Alarmas
+                <table class="table tablee table-responsive">
+                    <thead>
+                    <th></th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha Creacion</th>
+                    <th>Descripción alarma</th>
+                    <th>Nivel</th>
+                    <th>Examen</th>
+                    <th>Análisis resultado</th>
+                    <th>Valor leido</th>
+                    <th>Protocolo</th>
+                    <th>Estado</th>
+                    <th>Fecha atención</th>
+                    <th>Observaciones</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -185,7 +208,7 @@
 
 
     $('.buscar').click(function () {
-    
+
         var cedula = $('#cedula').val();
         if (cedula == "") {
             alerta('rojo', 'Campo cedula obligatorio');
@@ -202,7 +225,7 @@
                 .done(function (msg) {
                     var datos = JSON.parse(msg);
                     $.each(datos, function (key, val) {
-                        $('.table').DataTable().row.add([
+                        $('.tablee3').DataTable().row.add([
                             val.examen_nombre,
                             val.fecha_creacion,
                             val.descripcion,
@@ -213,8 +236,40 @@
                             val.analisis_resultado
                         ]).draw();
                     });
+                    $.each(datos, function (key, val) {
+                        var colo="";
+                        if(val.color=='Verde'){
+                            colo='<i class="fa fa-check-circle fa-2"  style="color: green"></i>'
+                        }
+                        if(val.color=='Rojo'){
+                            colo='<i class="fa fa-exclamation-triangle fa-2"  style="color: red"></i>'
+                        }
+                        if(val.color=='Amarillo'){
+                            colo='<i class="fa fa-bell fa-2"  style="color: yellow"></i>'
+                        }
+                        if(val.color=='Naranja'){
+                            colo='<i class="fa fa-hourglass-half"  style="color: yellow"></i>'
+                        }
+                        
+                        $('.tablee').DataTable().row.add([
+                            colo,
+                            val.cedula_paciente,
+                            val.nombres,
+                            val.apellidos,
+                            val.fecha_creacion,
+                            val.t_descrip,
+                            val.DES_ALAR,
+                            val.examen_nombre,
+                            val.analisis_resultado,
+                            val.lectura_numerica,
+                            val.nombre_procolo,
+                            val.estado_id,
+                            val.fecha_atencion,
+                            val.descrip
+                        ]).draw();
+                    });
                     var url = "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>";
-                    $.post(url,  $('#form1').serialize())
+                    $.post(url, $('#form1').serialize())
                             .done(function (msg) {
                                 var data = new google.visualization.DataTable(msg);
                                 var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
@@ -228,6 +283,9 @@
                     alerta('roja', 'Error al consultar');
                 })
     })
+    function cl() {
+        $('#cedula').trigger('change');
+    }
 
     $('#cedula').change(function () {
         var url = "<?php echo base_url('index.php/Alarmas_generadas/buscar_pacientes') ?>";

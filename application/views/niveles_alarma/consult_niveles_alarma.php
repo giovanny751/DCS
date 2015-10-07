@@ -4,63 +4,64 @@
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
 </div>
-    <form action="<?php echo base_url('index.php/') . '/Niveles_alarma/consult_niveles_alarma'; ?>" method="post" >
+<form action="<?php echo base_url('index.php/') . '/Niveles_alarma/consult_niveles_alarma'; ?>" method="post" >
 
-        <div class="row">                
-            <div class="col-md-3">
-                <label for="descripcion">
-                    Descripción                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
-            </div>
-                <div class="col-md-3">
-                <label for="examen_cod">
-                    Examen                        </label>
-            </div>
-            <div class="col-md-3">
-                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre",  (isset($post['examen_cod']) ? $post['examen_cod'] : '' ) , array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-            </div>
+    <div class="row">                
+        <div class="col-md-3">
+            <label for="descripcion">
+                Descripción                        </label>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="n_repeticiones_minimas">
-                    N° repeticiones mínimas                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['n_repeticiones_minimas']) ? $post['n_repeticiones_minimas'] : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_minimas" name="n_repeticiones_minimas">
-            </div>
-
-            <div class="col-md-3">
-                <label for="n_repeticiones_maximas">
-                    N° repeticiones máximas                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['n_repeticiones_maximas']) ? $post['n_repeticiones_maximas'] : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_maximas" name="n_repeticiones_maximas">
-            </div>
+        <div class="col-md-3">
+            <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
         </div>
-        
-        <div class="row">
-            <div class="col-md-3">
-                <label for="color">
-                    Color                        </label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" value="<?php echo (isset($post['color']) ? $post['color'] : '' ) ?>" class="form-control obligatorio  " id="color" name="color">
-            </div>
-
-            <div class="col-md-3">
-                <label for="id_protocolo">
-                    protocolo                        </label>
-            </div>
-            <div class="col-md-3">
-                <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($post['id_protocolo']) ? $post['id_protocolo'] : '' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-            </div>
-
+        <!--                <div class="col-md-3">
+                        <label for="examen_cod">
+                            Examen                        </label>
+                    </div>
+                    <div class="col-md-3">
+        <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($post['examen_cod']) ? $post['examen_cod'] : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                    </div>-->
+        <div class="col-md-3">
+            <label for="id_protocolo">
+                protocolo                        </label>
         </div>
-        <button type="button" class="btn btn-dcs">Limpiar</button>
-        <button class="btn btn-dcs">Consultar</button>
-    </form>
+        <div class="col-md-3">
+            <?php echo lista("id_protocolo", "id_protocolo", "form-control obligatorio", "protocolos", "id_protocolo", "nombre", (isset($post['id_protocolo']) ? $post['id_protocolo'] : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="n_repeticiones_minimas">
+                N° repeticiones mínimas                        </label>
+        </div>
+        <div class="col-md-3">
+            <input type="text" value="<?php echo (isset($post['n_repeticiones_minimas']) ? $post['n_repeticiones_minimas'] : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_minimas" name="n_repeticiones_minimas">
+        </div>
+
+        <div class="col-md-3">
+            <label for="n_repeticiones_maximas">
+                N° repeticiones máximas                        </label>
+        </div>
+        <div class="col-md-3">
+            <input type="text" value="<?php echo (isset($post['n_repeticiones_maximas']) ? $post['n_repeticiones_maximas'] : '' ) ?>" class="form-control obligatorio  number" id="n_repeticiones_maximas" name="n_repeticiones_maximas">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label for="color">
+                Color                        </label>
+        </div>
+        <div class="col-md-3">
+            <input type="text" value="<?php echo (isset($post['color']) ? $post['color'] : '' ) ?>" class="form-control obligatorio  " id="color" name="color">
+        </div>
+
+
+
+    </div>
+    <button type="button" class="btn btn-dcs">Limpiar</button>
+    <button class="btn btn-dcs">Consultar</button>
+</form>
 
 <div class="row">
     <div class="col-md-12">
@@ -117,7 +118,7 @@
         <input type="hidden" name="campo" value="<?php echo $campo ?>">
     </form>
 <?php } ?>
-    
+
 <script>
     $('#analisis_resultado').val("<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>");
     function editar(num) {
