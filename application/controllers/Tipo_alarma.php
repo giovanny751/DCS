@@ -50,5 +50,14 @@ class Tipo_alarma extends My_Controller {
         $this->data['tipo_alarma_nivel']=$this->Tipo_alarma__model->tipo_alarma_nivel($this->data['post']);
         $this->layout->view('tipo_alarma/index', $this->data);
     }
+    function confirmar_duplicado(){
+        $post=$this->input->post();
+        if(!empty($post['anteriores'])){
+            $post['anteriores'] = substr($post['anteriores'], 0, -1);
+            $this->Tipo_alarma__model->confirmar_duplicado($post);
+        }else{
+            echo '00';
+        }
+    }
 }
 ?>

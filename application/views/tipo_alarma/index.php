@@ -116,7 +116,7 @@
                     <div class="col-md-3">
                         <!--<input type="text" value="<?php echo (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : '' ) ?>" class="form-control obligatorio  " id="id_niveles_alarma" name="id_niveles_alarma">-->
                         <script>
-                            $('document').ready(function() {
+                            $('document').ready(function () {
                                 $('#id_niveles_alarma').autocomplete({
                                     source: "<?php echo base_url("index.php//Pacientes/autocomplete_nivel2") ?>",
                                     minLength: 3
@@ -203,11 +203,13 @@
     </div>
 </div>
 <script>
-    $('#agregar_equipo').click(function() {
+    $('#agregar_equipo').click(function () {
         var info = $('#id_niveles_alarma').val();
         var info2 = info.split(' :: ');
         var r = 0;
-        $('.equipo_id').each(function() {
+        var f = "";
+        $('.equipo_id').each(function () {
+            f += $(this).val() + ",";
             if ($(this).val() == info2[1]) {
                 alerta('rojo', 'Nivel ya existe');
                 $('#contacto_id2').val('');
@@ -217,23 +219,38 @@
         if (r == 1) {
             return false;
         }
-        if (info2.length == 5) {
-            var html = "<tr>";
-            html += "<td><input type='hidden' class='equipo_id' name='equipo_id[]' class='equipo_id' value='" + info2[1] + "'>" + info2[0] + "</td>";
-            html += "<td>" + info2[2] + "</td>";
-            html += "<td>" + info2[3] + "</td>";
-            html += "<td>" + info2[4] + "</td>";
-            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>&nbsp;&nbsp;<a href="javascript:" class="vista_niveles_alarma" tabla="niveles_alarma" campo="id_niveles_alarma" url="Niveles_alarma/edit_niveles_alarma2" codigo="' + info2[1] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
-            html += "</tr>";
-            $('#tabla_contacto').append(html);
-            $('#id_niveles_alarma').val('');
-        } else {
-            alerta('rojo', 'Cadena no valida');
-            $('#id_niveles_alarma').val('');
-        }
+
+        var url = '<?php echo base_url('index.php/Tipo_alarma/confirmar_duplicado') ?>'
+        $.post(url, {anteriores: f, nuevo: info2[1]})
+                .done(function (msg) {
+                    if (msg == 00) {
+                        if (info2.length == 5) {
+                            var html = "<tr>";
+                            html += "<td><input type='hidden' class='equipo_id' name='equipo_id[]' class='equipo_id' value='" + info2[1] + "'>" + info2[0] + "</td>";
+                            html += "<td>" + info2[2] + "</td>";
+                            html += "<td>" + info2[3] + "</td>";
+                            html += "<td>" + info2[4] + "</td>";
+                            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>&nbsp;&nbsp;<a href="javascript:" class="vista_niveles_alarma" tabla="niveles_alarma" campo="id_niveles_alarma" url="Niveles_alarma/edit_niveles_alarma2" codigo="' + info2[1] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
+                            html += "</tr>";
+                            $('#tabla_contacto').append(html);
+                            $('#id_niveles_alarma').val('');
+                        } else {
+                            alerta('rojo', 'Cadena no valida');
+                            $('#id_niveles_alarma').val('');
+                        }
+                    }else{
+                        alerta('roja','La repeticiones del nivel ya se encuentran en la tabla');
+                        $('#id_niveles_alarma').val('');
+                    }
+                })
+                .fail(function () {
+                    alerta('rojo', 'Error al consultar')
+                })
+
+
     })
 
-    $('body').delegate('.vista_niveles_alarma', 'click', function() {
+    $('body').delegate('.vista_niveles_alarma', 'click', function () {
         $('#body_modal').html('Cargando...');
         var contacto_id = $(this).attr('codigo');
         var campo = $(this).attr('campo');
@@ -241,18 +258,18 @@
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {id_niveles_alarma: contacto_id, campo: campo, tabla: tabla})
-                .done(function(msg) {
+                .done(function (msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
                     $('#body_modal input').attr('disabled', 'disabled');
                     $('#body_modal select').attr('disabled', 'disabled');
-                }).fail(function() {
+                }).fail(function () {
 
         })
 
     })
 
-    $('body').delegate('.eliminar', 'click', function() {
+    $('body').delegate('.eliminar', 'click', function () {
         $(this).parent().parent().remove();
     })
 
@@ -267,21 +284,21 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function(tecla) {
+    $('body').delegate('.number', 'keypress', function (tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('#examen').change(function() {
+    $('#examen').change(function () {
         var id_examen = $('#examen').val();
         if (id_examen == '') {
             return false;
         }
         var url = '<?php echo base_url('index.php/Equipos/traer_variables2') ?>'
         $.post(url, {id_examen: id_examen})
-                .done(function(msg) {
+                .done(function (msg) {
                     $('#cod_variables').html(msg);
                 })
-                .fail(function() {
+                .fail(function () {
                     alerta('rojo', 'Error en la consulta');
                     $('#variable_codigo').val('');
                 })

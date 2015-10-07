@@ -89,6 +89,24 @@ class Tipo_alarma__model extends CI_Model {
 
 //        $this->db->insert_batch('nivel_tipo_alarma', $data);
     }
+    function confirmar_duplicado($post) {
+        $datos=$this->db->query('select * 
+                from niveles_alarma 
+                where 
+                n_repeticiones_minimas <= (select n_repeticiones_minimas from niveles_alarma where id_niveles_alarma='.$post['nuevo'].')
+                and n_repeticiones_maximas >= (select n_repeticiones_minimas from niveles_alarma where id_niveles_alarma='.$post['nuevo'].')
+                and id_niveles_alarma in ('.$post['anteriores'].')');
+        $datos=$datos->result();
+        echo count($datos);
+        $datos=$this->db->query('select * 
+                from niveles_alarma 
+                where 
+                n_repeticiones_minimas <= (select n_repeticiones_maximas from niveles_alarma where id_niveles_alarma='.$post['nuevo'].')
+                and n_repeticiones_maximas >= (select n_repeticiones_maximas from niveles_alarma where id_niveles_alarma='.$post['nuevo'].')
+                and id_niveles_alarma in ('.$post['anteriores'].')');
+        $datos=$datos->result();
+        echo count($datos);
+    }
 
 }
 
