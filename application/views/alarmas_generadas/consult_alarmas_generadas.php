@@ -47,8 +47,8 @@
     </form>
 
     <div class="row">
-        <div class="col-md-12 table-responsive" style="font-size: 8px">
-            <table class="table table-bordered">
+        <div class="col-md-12 table-responsive" >
+            <table class="table datos_alarmas table-bordered" style="font-size: 12px !important">
                 <thead>
                 <th></th>
                 <th>Codigo</th>
@@ -137,6 +137,7 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
+    $('.datos_alarmas').DataTable();
 </script>
 
 <style>
