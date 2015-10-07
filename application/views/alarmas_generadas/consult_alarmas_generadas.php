@@ -4,106 +4,114 @@
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
 </div>
-    <form action="<?php echo base_url('index.php/') . '/Alarmas_generadas/consult_alarmas_generadas'; ?>" method="post" >
-        <div class="row">
-            <div class="col-md-3">
-                <label for="id_niveles_alarma">
-                    Niveles alarma                        </label>
-            </div>
-            <div class="col-md-3">
-
-                <?php echo lista("id_niveles_alarma", "id_niveles_alarma", "form-control obligatorio", "niveles_alarma", "id_niveles_alarma", "descripcion", (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    
-            </div>
-
-            <div class="col-md-3">
-                <label for="descripcion">
-                    Descripción                        </label>
-            </div>
-            <div class="col-md-3">
-
-                <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="id_lectura_equipo">
-                    Lectura equipo                        </label>
-            </div>
-            <div class="col-md-3">
-
-                <?php echo lista("id_lectura_equipo", "id_lectura_equipo", "form-control obligatorio", "lectura_equipo", "id_lectura_equipo", "id_lectura_equipo", (isset($datos[0]->id_lectura_equipo) ? $datos[0]->id_lectura_equipo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                  
-            </div>
-
-            <div class="col-md-3">
-                <label for="analisis_resultado">
-                    Analisis resultado                        </label>
-            </div>
-            <div class="col-md-3">
-
-                <input type="text" value="<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>" class="form-control obligatorio  " id="analisis_resultado" name="analisis_resultado">
-            </div>
-        </div>
-        <button class="btn btn-dcs">Consultar</button>
-    </form>
-
+<form action="<?php echo base_url('index.php/') . '/Alarmas_generadas/consult_alarmas_generadas'; ?>" method="post" >
     <div class="row">
-        <div class="col-md-12 table-responsive" >
-            <table class="table datos_alarmas table-bordered" style="font-size: 12px !important">
-                <thead>
-                <th></th>
-                <th>Codigo</th>
-                <th>Cédula</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Fecha Creacion</th>
-                <th>Descripción alarma</th>
-                <th>Nivel</th>
-                <th>Examen</th>
-                <th>Análisis resultado</th>
-                <th>Valor leido</th>
-                <th>Protocolo</th>
-                <th>Estado</th>
-                <th>Fecha atención</th>
-                <th>Observaciones</th>
-                <th>Acción</th>
-                </thead>
-                <tbody>
-                    <?php
+        <div class="col-md-3">
+            <label for="id_niveles_alarma">
+                Niveles alarma                        </label>
+        </div>
+        <div class="col-md-3">
+
+            <?php echo lista("id_niveles_alarma", "id_niveles_alarma", "form-control obligatorio", "niveles_alarma", "id_niveles_alarma", "descripcion", (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    
+        </div>
+
+        <div class="col-md-3">
+            <label for="descripcion">
+                Descripción                        </label>
+        </div>
+        <div class="col-md-3">
+
+            <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="id_lectura_equipo">
+                Lectura equipo                        </label>
+        </div>
+        <div class="col-md-3">
+
+            <?php echo lista("id_lectura_equipo", "id_lectura_equipo", "form-control obligatorio", "lectura_equipo", "id_lectura_equipo", "id_lectura_equipo", (isset($datos[0]->id_lectura_equipo) ? $datos[0]->id_lectura_equipo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                  
+        </div>
+
+        <div class="col-md-3">
+            <label for="analisis_resultado">
+                Analisis resultado                        </label>
+        </div>
+        <div class="col-md-3">
+
+            <input type="text" value="<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>" class="form-control obligatorio  " id="analisis_resultado" name="analisis_resultado">
+        </div>
+    </div>
+    <button class="btn btn-dcs">Consultar</button>
+</form>
+
+<div class="row">
+    <div class="col-md-12 table-responsive" >
+        <table class="table datos_alarmas table-bordered" style="font-size: 12px !important">
+            <thead>
+            <th></th>
+            <th>Codigo</th>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha Creacion</th>
+            <th>Descripción alarma</th>
+            <th>Nivel</th>
+            <th>Examen</th>
+            <th>Análisis resultado</th>
+            <th>Valor leido</th>
+            <th>Protocolo</th>
+            <th>Estado</th>
+            <th>Fecha atención</th>
+            <th>Observaciones</th>
+            <th>Acción</th>
+            </thead>
+            <tbody>
+                <?php
 //                    echo "<pre>";
 //                    print_r($datos);
 //                    echo "</pre>";
-                    foreach ($datos as $key => $value) {
-                        echo "<tr>";
-                        $i = 0;
+                foreach ($datos as $key => $value) {
+                    echo "<tr>";
+                    $i = 0;
 
-                        foreach ($value as $key2 => $value2) {
-                            if ($i == 0) {
-                                $campo = $key2;
-                                if (empty($value->descrip)) {
-                                    echo '<td><span class="charSelected_' . $value->$key2 . '"><b>O</b></span></td>';
-                                }else{
-                                    echo '<td><span class="charSelecte_' . $value->$key2 . '"><b>O</b></span></td>';
-                                }
-                            } else if ($i == 1) {
-                                $campo = $key2;
-                                $valor = "'" . $value->$key2 . "'";
-                                echo "<td>" . $value->$key2 . "</td>";
+                    foreach ($value as $key2 => $value2) {
+                        if ($i == 0) {
+                            $campo = $key2;
+                            if ($value->$key2 == 'Verde')
+                                $color = '<a href="javascript;" class="fa fa-check-circle fa-2"  style="color: green"></a>';
+                            if ($value->$key2 == 'Naranja')
+                                $color = '<a href="javascript;" class="fa fa-hourglass-half"  style="color: orange"></a>';
+                            if ($value->$key2 == 'Rojo')
+                                $color = '<a href="javascript;" class="fa fa-exclamation-triangle fa-2"  style="color: red"></a>';
+                            if ($value->$key2 == 'Amarillo')
+                                $color = '<a href="javascript;" class="fa fa-hourglass-half fa-2"  style="color: yellow"></a>';
+                            if (empty($value->descrip)) {
+                                echo '<td><span class="charSelected_' . $value->$key2 . '">'.$color.'</span></td>';
                             } else {
-                                echo "<td>" . $value->$key2 ."</td>";
+                                echo '<td><span class="charSelecte_' . $value->$key2 . '">'.$color.'</span></td>';
                             }
-                            $i++;
+                        } else if ($i == 1) {
+                            $campo = $key2;
+                            $valor = "'" . $value->$key2 . "'";
+                            echo "<td>" . $value->$key2 . "</td>";
+                        } else {
+                            echo "<td>" . $value->$key2 . "</td>";
                         }
-                        echo "<td>"
-                        . '<a href="javascript:" class="btn btn-dcs" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
-                        . "</td>";
-                        echo "</tr>";
+                        $i++;
                     }
-                    ?>
+                    echo "<td>"
+                    . '<a href="javascript:" class="btn btn-dcs" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
+                    . "</td>";
+                    echo "</tr>";
+                }
+                ?>
 
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
+</div>
 <div class="row">
     <div class="col-md-12" style="float:right">
         <a href="<?php echo base_url() . "/index.php/Alarmas_generadas/index" ?>" class="btn btn-dcs" >Nuevo</a>
@@ -133,7 +141,7 @@
         $('#delete').submit();
     }
 
-    $('body').delegate('.number', 'keypress', function(tecla) {
+    $('body').delegate('.number', 'keypress', function (tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
@@ -175,7 +183,7 @@
         padding: 1px 3px;
         border-radius: 15px;
     }
-    
+
 
 
     .charSelected_Amarillo{
@@ -189,7 +197,7 @@
         padding: 1px 3px;
         border-radius: 15px;
     }
-    
+
 
 
     .charSelected_Rojo{
@@ -203,7 +211,7 @@
         padding: 1px 3px;
         border-radius: 15px;
     }
-    
+
 
 
     .charSelected_Naranja{
@@ -217,7 +225,7 @@
         padding: 1px 3px;
         border-radius: 15px;
     }
-    
+
     @keyframes parpadeo_orange {
         0% {background-color: white}
         100%{background-color: orange}

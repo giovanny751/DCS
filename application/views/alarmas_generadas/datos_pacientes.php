@@ -248,7 +248,7 @@
                             colo='<i class="fa fa-bell fa-2"  style="color: yellow"></i>'
                         }
                         if(val.color=='Naranja'){
-                            colo='<i class="fa fa-hourglass-half"  style="color: yellow"></i>'
+                            colo='<i class="fa fa-hourglass-half fa-2"  style="color: orange"></i>'
                         }
                         
                         $('.tablee').DataTable().row.add([

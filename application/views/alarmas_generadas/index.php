@@ -99,7 +99,7 @@
                                 <?php echo $datos[0]->descripcion_protocolo; ?>
                             </td>
                             <td>
-                                <textarea name="descripcion" style="width: 100%;height: 100%"><?php echo $datos[0]->descripcion ?></textarea>
+                                <textarea name="descripcion" style="width: 100%;height: 100%"><?php echo $datos[0]->descrip ?></textarea>
                                 <input type="hidden" name="fecha_atencion" value="<?php echo date('Y-m-d H:i:s') ?>">
                                 <input type="hidden" name="estado_id" value="Atendida">
                             </td>
