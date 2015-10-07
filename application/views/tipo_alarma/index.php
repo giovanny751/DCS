@@ -153,7 +153,10 @@
                                                     <td><?php echo $c->n_repeticiones_minimas ?></td>
                                                     <td><?php echo $c->n_repeticiones_maximas ?></td>
                                                     <td><?php echo $c->color ?></td>
-                                                    <td><a class="eliminar" href="javascript:">Eliminar</a></td>
+                                                    <td>
+                                                        <a class="eliminar" href="javascript:">Eliminar</a>
+                                                        <a class="vista_niveles_alarma" data-target="#myModal" data-toggle="modal" codigo="<?php echo $c->id_niveles_alarma ?>" url="Niveles_alarma/edit_niveles_alarma2" campo="id_niveles_alarma" tabla="niveles_alarma" href="javascript:">Vista previa</a>
+                                                    </td>
                                                 </tr>
                                                 <?php
                                             }

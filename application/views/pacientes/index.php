@@ -647,12 +647,16 @@
                                             <tr>
                                                 <td>
                                                     <input type="hidden" value="<?php echo $c->aseguradora_id ?>" class="aseguradora2" name="aseguradora2[]">
-                                                    <?php echo $c->tipo ?></td>
-                                                <?php echo $c->nombre ?></td>
+                                                    <?php echo $c->tipo ?>
+                                                </td>
+                                                <td><?php echo $c->nombre ?></td>
                                                 <td><?php echo $c->direccion ?></td>
                                                 <td><?php echo $c->telefono_fijo ?></td>
                                                 <td><?php echo $c->celular ?></td>
-                                                <td><a class="eliminar" href="javascript:">Eliminar</a></td>
+                                                <td>
+                                                    <a class="eliminar" href="javascript:">Eliminar</a>
+                                                    <a class="vista_aseguradora" data-target="#myModal" data-toggle="modal" codigo="<?php echo $c->aseguradora_id ?>" campo="aseguradora_id" url="Aseguradoras/edit_aseguradoras2" href="javascript:"> Vista previa</a>
+                                                </td>
                                             </tr>
                                             <?php
                                         }

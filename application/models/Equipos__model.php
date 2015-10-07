@@ -92,7 +92,7 @@ class Equipos__model extends CI_Model {
                 $this->db->like('fecha_fabricacion', $post['fecha_fabricacion']);
         if (isset($post['tipo_equipo_cod']))
             if ($post['tipo_equipo_cod'] != "")
-                $this->db->like('tipo_equipo_cod', $post['tipo_equipo_cod']);
+                $this->db->like('equipos.tipo_equipo_cod', $post['tipo_equipo_cod']);
         if (isset($post['imagen']))
             if ($post['imagen'] != "")
                 $this->db->like('imagen', $post['imagen']);
