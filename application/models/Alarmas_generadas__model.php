@@ -101,6 +101,15 @@ class Alarmas_generadas__model extends CI_Model {
         if (isset($post['lectura_id']))
             if ($post['lectura_id'] != "")
                 $this->db->like('lectura_id', $post['lectura_id']);
+        if (isset($post['examen_cod']))
+            if ($post['examen_cod'] != "")
+                $this->db->where('examen_cod', $post['examen_cod']);
+        if (isset($post['cedula']))
+            if ($post['cedula'] != "")
+                $this->db->like('cedula_paciente', $post['cedula']);
+        if (isset($post['estado']))
+            if ($post['estado'] != "")
+                $this->db->where('estado_id', $post['estado']);
         if (isset($post['activo']))
             if ($post['activo'] != "")
                 $this->db->where('activo', $post['activo']);

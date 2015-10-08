@@ -8,39 +8,33 @@
     <div class="row">
         <div class="col-md-3">
             <label for="id_niveles_alarma">
-                Niveles alarma                        </label>
+                Cédula                        </label>
         </div>
         <div class="col-md-3">
 
-            <?php echo lista("id_niveles_alarma", "id_niveles_alarma", "form-control obligatorio", "niveles_alarma", "id_niveles_alarma", "descripcion", (isset($datos[0]->id_niveles_alarma) ? $datos[0]->id_niveles_alarma : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                    
+            <input type="text" name="cedula" id="cedula" class="form-control">
         </div>
 
         <div class="col-md-3">
             <label for="descripcion">
-                Descripción                        </label>
+                Exámen                        </label>
         </div>
         <div class="col-md-3">
 
-            <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
+            <?php echo lista("examen_cod", "examen_cod", "form-control ", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->id_lectura_equipo) ? $datos[0]->id_lectura_equipo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                  
         </div>
     </div>
     <div class="row">
         <div class="col-md-3">
             <label for="id_lectura_equipo">
-                Lectura equipo                        </label>
+                Estado                        </label>
         </div>
         <div class="col-md-3">
-
-            <?php echo lista("id_lectura_equipo", "id_lectura_equipo", "form-control obligatorio", "lectura_equipo", "id_lectura_equipo", "id_lectura_equipo", (isset($datos[0]->id_lectura_equipo) ? $datos[0]->id_lectura_equipo : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                  
-        </div>
-
-        <div class="col-md-3">
-            <label for="analisis_resultado">
-                Analisis resultado                        </label>
-        </div>
-        <div class="col-md-3">
-
-            <input type="text" value="<?php echo (isset($post['analisis_resultado']) ? $post['analisis_resultado'] : '' ) ?>" class="form-control obligatorio  " id="analisis_resultado" name="analisis_resultado">
+            <select id="estado" class="form-control" name="estado">
+                <option value=""></option>
+                <option value="Atendida">Atendida</option>
+                <option value="Sin atender">Sin atender</option>
+            </select>
         </div>
     </div>
     <button class="btn btn-dcs">Consultar</button>

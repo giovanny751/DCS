@@ -32,15 +32,19 @@ class Administrativo extends My_Controller {
         $this->data['tipoaseguradora'] = $this->Tipo_Aseguradora_model->detail();
         $this->data['dimension'] = $this->Dimension_model->detail();
         $this->data['dimension2'] = $this->Dimension2_model->detail();
-
-        $this->layout->view("administrativo/creacionempleados", $this->data);
+//        if ($this->consultaacceso($this->data["usu_id"])) :
+            $this->layout->view("administrativo/creacionempleados", $this->data);
+//        else:
+//            $this->layout->view("permisos");
+//        endif;
     }
 
     function guardarempleado() {
         $this->load->model('Empleado_model');
-       
-        echo $this->input->post('fechadenacimiento');die;
-        
+
+        echo $this->input->post('fechadenacimiento');
+        die;
+
         $data[] = array(
             'Emp_codigo' => $this->input->post('codigo'),
             'Emp_Cedula' => $this->input->post('cedula'),
@@ -95,15 +99,15 @@ class Administrativo extends My_Controller {
     function creacionusuarios() {
 
         $user = $this->input->post('usu_id');
-        if(!isset($user))
-            $est=array(1);
+        if (!isset($user))
+            $est = array(1);
         else
-            $est=array(1,2);
+            $est = array(1, 2);
         $this->load->model('Estados_model');
         $this->load->model('User_model');
         $this->data['estado'] = $this->Estados_model->detail($est);
         $this->data['usuario'] = "";
-        
+
         if (!empty($user)) {
             $this->data['usuario'] = $this->User_model->consultausuarioxid($this->input->post('usu_id'));
 //            var_dump($this->data['usuario']);die;
@@ -143,25 +147,28 @@ class Administrativo extends My_Controller {
             'usu_apellido' => $this->input->post('apellidos'),
             'usu_usuario' => $this->input->post('usuario'),
             'usu_email' => $this->input->post('email'),
-            'usu_fechaCreacion' => date('Y-m-d H:i:s') 
+            'usu_fechaCreacion' => date('Y-m-d H:i:s')
         );
         $data1 = $this->User_model->validaexistencia($this->input->post('cedula'));
-        $cedu=$this->input->post('cedula');
-        if(empty($data1))
-        $this->User_model->create($data);
+        $cedu = $this->input->post('cedula');
+        if (empty($data1))
+            $this->User_model->create($data);
         else
-            $this->User_model->update_user($data,$cedu);
+            $this->User_model->update_user($data, $cedu);
     }
-    function confirm_cedula(){
+
+    function confirm_cedula() {
         $this->load->model('User_model');
-        $datos=$this->User_model->validaexistencia($this->input->post('cedula'));
+        $datos = $this->User_model->validaexistencia($this->input->post('cedula'));
         echo count($datos);
     }
-    function confirm_usuario(){
+
+    function confirm_usuario() {
         $this->load->model('User_model');
-        $datos=$this->User_model->validaexistencia_usuario($this->input->post('usuario'));
+        $datos = $this->User_model->validaexistencia_usuario($this->input->post('usuario'));
         echo count($datos);
     }
+
     function actualizarusuario() {
         $this->load->model('User_model');
         $data = array(
@@ -181,6 +188,7 @@ class Administrativo extends My_Controller {
 
         $this->User_model->update($data, $this->input->post('usuid'));
     }
+
     function cargos() {
         $this->load->model('Cargo_model');
         $this->data["cargo"] = $this->Cargo_model->detail();
@@ -212,13 +220,12 @@ class Administrativo extends My_Controller {
 
         $this->load->model('Cargo_model');
         $consulta = $this->Cargo_model->consultahijos($this->input->post('id'));
-        if($consulta > 0){
+        if ($consulta > 0) {
             echo 1;
-        }else{
+        } else {
             $this->Cargo_model->delete($this->input->post('id'));
             echo 2;
         }
-        
     }
 
     function dimension() {
@@ -261,52 +268,60 @@ class Administrativo extends My_Controller {
 //        var_dump($this->data['informacion']);die;
         $this->layout->view("administrativo/empresa", $this->data);
     }
-    function guardarempresa(){
+
+    function guardarempresa() {
         $this->load->model("Empresa_model");
         $data[] = array(
-            "emp_razonSocial"=>$this->input->post("razonsocial"),
-            "emp_nit"=>$this->input->post("nit"),
-            "emp_direccion"=>$this->input->post("direccion"),
-            "ciu_id"=>$this->input->post("ciudad"),
-            "tam_id"=>$this->input->post("tamano"),
-            "numEmp_id"=>$this->input->post("empleados"),
-            "actEco_id"=>$this->input->post("actividadeconomica"),
-            "Dim_id"=>$this->input->post("dimension1"),
-            "Dimdos_id"=>$this->input->post("dimension2"),
-            "emp_representante"=>$this->input->post("representante")
+            "emp_razonSocial" => $this->input->post("razonsocial"),
+            "emp_nit" => $this->input->post("nit"),
+            "emp_direccion" => $this->input->post("direccion"),
+            "ciu_id" => $this->input->post("ciudad"),
+            "tam_id" => $this->input->post("tamano"),
+            "numEmp_id" => $this->input->post("empleados"),
+            "actEco_id" => $this->input->post("actividadeconomica"),
+            "Dim_id" => $this->input->post("dimension1"),
+            "Dimdos_id" => $this->input->post("dimension2"),
+            "emp_representante" => $this->input->post("representante")
 //            "emp_logo"=>$this->input->post("")
         );
         $datos = $this->Empresa_model->detail();
-        if(count($datos) == 0)
+        if (count($datos) == 0)
             $this->Empresa_model->create($data);
         else
             $this->Empresa_model->update($data[0]);
     }
-    function eliminar_usuarios(){
+
+    function eliminar_usuarios() {
         $this->load->model('User_model');
-        $post=$this->input->post();
+        $post = $this->input->post();
         $this->User_model->eliminar_usuarios($post);
     }
+
     function autocomplete_cedula() {
         $info = auto("user", "usu_id", "usu_cedula", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function autocomplete_nombre() {
         $info = auto("user", "usu_id", "usu_nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function autocomplete_apellido() {
         $info = auto("user", "usu_id", "usu_apellido", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function autocomplete_cedulausuario() {
         $info = auto("user", "usu_id", "usu_contrasena", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function autocomplete_nombreusuario() {
         $info = auto("user", "usu_id", "usu_nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function autocomplete_apellidousuario() {
         $info = auto("user", "usu_id", "usu_apellido", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));

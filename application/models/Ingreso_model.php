@@ -260,4 +260,16 @@ class Ingreso_model extends CI_Model {
     function insertingreso($data){
         $this->db->insert_batch("ingreso",$data);
     }
+    function consultapermisosmenu($usu_id,$controller,$method){
+        
+        $this->db->where("modulo.menu_controlador",$controller);
+        $this->db->where("modulo.menu_accion",$method);
+        $this->db->where("user.usu_id",$usu_id);
+        $this->db->join("permisos","permisos.rol_id = user.rol_id");
+        $this->db->join("permisos_rol","permisos_rol.rol_id = permisos.rol_id");
+        $this->db->join("modulo","permisos_rol.menu_id = modulo.menu_id");
+        $user = $this->db->get("user");
+//        echo $this->db->last_query();die;   
+        return $user->result();
+    }
 }
