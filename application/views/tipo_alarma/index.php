@@ -64,7 +64,8 @@
                     </div>
                     <div class="col-md-3">
                         <label for="analisis_resultados">
-                            Variable                            </label>
+                            Variable                            
+                        </label>
                     </div>
                     <div class="col-md-3">
                         <span id="cod_variables">
@@ -74,14 +75,16 @@
                     </div>
                     <div class="col-md-3">
                         <label for="tiempo">
-                            *         Tiempo                            </label>
+                            *         Tiempo                            
+                        </label>
                     </div>
                     <div class="col-md-3">
                         <input type="text" value="<?php echo (isset($datos[0]->tiempo) ? $datos[0]->tiempo : '' ) ?>" class="form-control obligatorio  number" id="tiempo" name="tiempo">
                     </div>
                     <div class="col-md-3">
                         <label for="frecuencia">
-                            *         Frecuencia                            </label>
+                            *         Frecuencia                            
+                        </label>
                     </div>
                     <div class="col-md-3">
                         <!--<input type="text" value="<?php echo (isset($datos[0]->frecuencia) ? $datos[0]->frecuencia : '' ) ?>" >-->
@@ -132,7 +135,7 @@
                 <div class="row">    
                     <div style="width: 80%;margin: 0 auto;">
                         <div class="row">
-                            <table class="table">
+                            <table class="table ">
                                 <thead>
                                 <th>Descripción</th>
                                 <th>Repeticiones minimas</th>
@@ -140,18 +143,18 @@
                                 <th>Color</th>
                                 <th>Acción</th>
                                 </thead>
-                                <tbody id="tabla_contacto">
+                                <tbody id="tabla_contacto" class="validacionvalores">
                                     <?php
                                     if (isset($tipo_alarma_nivel))
                                         if (!empty($tipo_alarma_nivel)) {
                                             foreach ($tipo_alarma_nivel as $c) {
                                                 ?>
                                                 <tr>
-                                                    <td>
+                                                    <td class="texto">
                                                         <input type="hidden" value="<?php echo $c->id_niveles_alarma ?>" class="equipo_id" name="equipo_id[]">
                                                         <?php echo $c->descripcion ?></td>
-                                                    <td><?php echo $c->n_repeticiones_minimas ?></td>
-                                                    <td><?php echo $c->n_repeticiones_maximas ?></td>
+                                                    <td class="minimo"><?php echo $c->n_repeticiones_minimas ?></td>
+                                                    <td class="maximo"><?php echo $c->n_repeticiones_maximas ?></td>
                                                     <td><?php echo $c->color ?></td>
                                                     <td>
                                                         <a class="eliminar" href="javascript:">Eliminar</a>
@@ -209,6 +212,35 @@
     $('#agregar_equipo').click(function () {
         var info = $('#id_niveles_alarma').val();
         var info2 = info.split(' :: ');
+        var texto = "";
+        var d = 0;
+        $('.validacionvalores tr').each(function(key,val){
+//            console.log($(this).find('.minimo')+"****"+$(this).find('.maximo'))
+            if($(this).find('.minimo').text() < info2[2] && $(this).find('.maximo').text() > info2[3]){
+                texto = $(this).find('.texto').text();
+                d++;
+                return false;
+            }
+            if($(this).find('.minimo').text() > info2[2] && $(this).find('.minimo').text() < info2[3]){
+                texto = $(this).find('.texto').text();
+                d++;
+                return false;
+            }
+            if($(this).find('.minimo').text() < info2[2] && $(this).find('.maximo').text() > info2[3] ){
+                texto = $(this).find('.texto').text();
+                d++;
+                return false;
+            }
+            if($(this).find('.maximo').text() > info2[2] && $(this).find('.maximo').text() < info2[3] ){
+                texto = $(this).find('.texto').text();
+                d++;
+                return false;
+            }
+            
+        });
+        
+        if(d == 0){
+        
         var r = 0;
         var f = "";
         $('.equipo_id').each(function () {
@@ -229,9 +261,9 @@
                     if (msg == 00) {
                         if (info2.length == 5) {
                             var html = "<tr>";
-                            html += "<td><input type='hidden' class='equipo_id' name='equipo_id[]' class='equipo_id' value='" + info2[1] + "'>" + info2[0] + "</td>";
-                            html += "<td>" + info2[2] + "</td>";
-                            html += "<td>" + info2[3] + "</td>";
+                            html += "<td class='texto'><input type='hidden' class='equipo_id' name='equipo_id[]' class='equipo_id' value='" + info2[1] + "'>" + info2[0] + "</td>";
+                            html += "<td class='minimo'>" + info2[2] + "</td>";
+                            html += "<td class='maximo'>" + info2[3] + "</td>";
                             html += "<td>" + info2[4] + "</td>";
                             html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>&nbsp;&nbsp;<a href="javascript:" class="vista_niveles_alarma" tabla="niveles_alarma" campo="id_niveles_alarma" url="Niveles_alarma/edit_niveles_alarma2" codigo="' + info2[1] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
                             html += "</tr>";
@@ -241,16 +273,17 @@
                             alerta('rojo', 'Cadena no valida');
                             $('#id_niveles_alarma').val('');
                         }
-                    }else{
-                        alerta('roja','La repeticiones del nivel ya se encuentran en la tabla');
+                    } else {
+                        alerta('roja', 'La repeticiones del nivel ya se encuentran en la tabla');
                         $('#id_niveles_alarma').val('');
                     }
                 })
                 .fail(function () {
                     alerta('rojo', 'Error al consultar')
                 })
-
-
+                }else{
+                    alerta('roja', 'La repeticiones del nivel ya se encuentran en la tabla');
+                }
     })
 
     $('body').delegate('.vista_niveles_alarma', 'click', function () {
