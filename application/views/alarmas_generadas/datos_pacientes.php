@@ -134,7 +134,7 @@
         <div class="tabContenido">
             <!--Tab Datos -->
             <div id="tabDatos" class="tab active">
-                <table class="table tablee3" >
+                <table class="table tablee3 table-responsive" style="font-size: 12px !important">
                     <thead>
                     <th>Examen</th>
                     <th>Fecha-Registro</th>
@@ -157,7 +157,7 @@
                 <div id="chart_div"></div>
             </div>
             <div id="tabAlarmas" class="tab">
-                <table class="table tablee table-responsive">
+                <table class="table tablee table-responsive" style="font-size: 11px !important">
                     <thead>
                     <th></th>
                     <th>Cédula</th>
@@ -239,17 +239,17 @@
                     $.each(datos, function (key, val) {
                         var colo="";
                         if(val.color=='Verde'){
-                            colo='<i class="fa fa-check-circle fa-2"  style="color: green"></i>'
+                            colo='<img width="20px" src=" <?php echo base_url('img/verde.png') ?> ">'
                         }
                         if(val.color=='Rojo'){
-                            colo='<i class="fa fa-exclamation-triangle fa-2"  style="color: red"></i>'
+                            colo='<img width="20px" src=" <?php echo base_url('img/rojo.png') ?> ">'
                         }
                         if(val.color=='Amarillo'){
-                            colo='<i class="fa fa-bell fa-2"  style="color: yellow"></i>'
+                            colo='<img width="20px" src=" <?php echo base_url('img/amarillo.png') ?> ">'
                         }
-                        if(val.color=='Naranja'){
-                            colo='<i class="fa fa-hourglass-half fa-2"  style="color: orange"></i>'
-                        }
+//                        if(val.color=='Naranja'){
+//                            colo='<i class="fa fa-hourglass-half fa-2"  style="color: orange"></i>'
+//                        }
                         
                         $('.tablee').DataTable().row.add([
                             colo,

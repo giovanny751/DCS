@@ -73,18 +73,19 @@
                     foreach ($value as $key2 => $value2) {
                         if ($i == 0) {
                             $campo = $key2;
-                            if ($value->$key2 == 'Verde')
-                                $color = '<a href="javascript;" class="fa fa-check-circle fa-2"  style="color: green"></a>';
-                            if ($value->$key2 == 'Naranja')
-                                $color = '<a href="javascript;" class="fa fa-hourglass-half"  style="color: orange"></a>';
-                            if ($value->$key2 == 'Rojo')
-                                $color = '<a href="javascript;" class="fa fa-exclamation-triangle fa-2"  style="color: red"></a>';
-                            if ($value->$key2 == 'Amarillo')
-                                $color = '<a href="javascript;" class="fa fa-hourglass-half fa-2"  style="color: yellow"></a>';
+                            $color="";
+                            if ($value->$key2 == '1-Verde')
+                                $color = '<img width="20px" src="' . base_url('img/verde.png') . '">';
+//                            if ($value->$key2 == 'Naranja')
+//                                $color = '<img src="'.  base_url('img/verde.png').'">';
+                            if ($value->$key2 == '3-Rojo')
+                                $color = '<img width="20px" src="' . base_url('img/rojo.png') . '">';
+                            if ($value->$key2 == '2-Amarillo')
+                                $color = '<img width="20px" src="' . base_url('img/amarillo.png') . '">';
                             if (empty($value->descrip)) {
-                                echo '<td><span class="charSelected_' . $value->$key2 . '">'.$color.'</span></td>';
+                                echo '<td><span class="charSelected_' . $value->$key2 . '">' . $color . '</span></td>';
                             } else {
-                                echo '<td><span class="charSelecte_' . $value->$key2 . '">'.$color.'</span></td>';
+                                echo '<td><span>' . $color . '</span></td>';
                             }
                         } else if ($i == 1) {
                             $campo = $key2;
@@ -145,17 +146,17 @@
 <style>
 
 
-    .charSelecte_Verde{
+    .charSelecte_1-Verde{
         background-color: green;
         padding: 1px 3px;
         border-radius: 15px;
     }
-    .charSelecte_Amarillo{
+    .charSelecte_2-Amarillo{
         background-color: yellow;
         padding: 1px 3px;
         border-radius: 15px;
     }
-    .charSelecte_Rojo{
+    .charSelecte_3-Rojo{
         background-color: red;
         padding: 1px 3px;
         border-radius: 15px;
@@ -165,8 +166,9 @@
         padding: 1px 3px;
         border-radius: 15px;
     }
-    ///// de aka para abajo se pintan y desaparecen 
-    .charSelected_Verde{
+   
+
+    .charSelected_1-Verde{
         background-color: green;
         animation: parpadeo 1s;
         -webkit-animation: parpadeo_green 1s;
@@ -174,13 +176,12 @@
         animation-iteration-count:infinite;
         -webkit-animation-iteration-count:infinite;
         -moz-animation-iteration-count:infinite;
-        padding: 1px 3px;
+        padding: 7px 3px;
         border-radius: 15px;
     }
 
 
-
-    .charSelected_Amarillo{
+    .charSelected_2-Amarillo{
         background-color: yellow;
         animation: parpadeo 1s;
         -webkit-animation: parpadeo_yellow 1s;
@@ -188,13 +189,13 @@
         animation-iteration-count:infinite;
         -webkit-animation-iteration-count:infinite;
         -moz-animation-iteration-count:infinite;
-        padding: 1px 3px;
+        padding: 7px 3px;
         border-radius: 15px;
     }
 
 
 
-    .charSelected_Rojo{
+    .charSelected_3-Rojo{
         background-color: red;
         animation: parpadeo 1s;
         -webkit-animation: parpadeo_red 1s;
@@ -202,7 +203,7 @@
         animation-iteration-count:infinite;
         -webkit-animation-iteration-count:infinite;
         -moz-animation-iteration-count:infinite;
-        padding: 1px 3px;
+        padding: 7px 3px;
         border-radius: 15px;
     }
 
@@ -221,7 +222,9 @@
     }
 
     @keyframes parpadeo_orange {
-        0% {background-color: white}
+        0% {
+            background-color: white
+        }
         100%{background-color: orange}
     }
 

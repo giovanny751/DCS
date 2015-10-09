@@ -29,25 +29,28 @@ class MY_Controller extends CI_Controller {
         $this->load->database();
         $this->load->library('layout', 'layout_main');
         $this->load->helper('miscellaneous');
-        $this->data['user']=$this->session->userdata();
+        $this->data['user'] = $this->session->userdata();
         $this->data["usu_id"] = $this->session->userdata('usu_id');
         $existencia = $this->consultaacceso($this->data['user']);
-        
+
 //        if($existencia == false){
 //            echo "No tiene permisos por favor cominicarse con el administrador del sistema";
 //            die;
 //        }
     }
-    public function consultaacceso($usu_id){
+
+    public function consultaacceso($usu_id) {
         $this->load->model('Ingreso_model');
-        $ci =& get_instance();
+        $ci = & get_instance();
         $controller = $ci->router->fetch_class();
         $method = $ci->router->fetch_method();
-        $consulta = $this->Ingreso_model->consultapermisosmenu($usu_id['usu_id'],$controller,$method);
-        if(!empty($consulta)){
-            return true;
-        }else{
-            return false;
+        if (isset($usu_id['usu_id'])) {
+            $consulta = $this->Ingreso_model->consultapermisosmenu($usu_id['usu_id'], $controller, $method);
+            if (!empty($consulta)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 

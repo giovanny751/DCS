@@ -114,7 +114,7 @@ class Alarmas_generadas__model extends CI_Model {
             if ($post['activo'] != "")
                 $this->db->where('activo', $post['activo']);
         $this->db->where('tipo_alarma.analisis_resultados <>', 'Normal');
-        $this->db->select('color,alarmas_generadas.id_alarmas_generadas,cedula_paciente,nombres,apellidos,lectura_equipo.fecha_creacion');
+        $this->db->select('niveles_alarma.color,alarmas_generadas.id_alarmas_generadas,cedula_paciente,nombres,apellidos,lectura_equipo.fecha_creacion');
         $this->db->select('tipo_alarma.descripcion t_descrip,niveles_alarma.descripcion DES_ALAR,examen_nombre,niveles_alarma.analisis_resultado');
         $this->db->select('lectura_numerica,protocolos.nombre nombre_procolo,alarmas_generadas.estado_id,alarmas_generadas.fecha_atencion,alarmas_generadas.descripcion descrip');
         $this->db->where('alarmas_generadas.ACTIVO', 'S');
@@ -124,6 +124,7 @@ class Alarmas_generadas__model extends CI_Model {
         $this->db->join('tipo_alarma', 'alarmas_generadas.id_tipo_alarma=tipo_alarma.id_tipo_alarma', 'left');
         $this->db->join('examenes', 'tipo_alarma.examen=examenes.examen_cod', 'left');
         $this->db->join('protocolos', 'niveles_alarma.id_protocolo=protocolos.id_protocolo', 'left');
+        $this->db->order_by('niveles_alarma.color,lectura_equipo.fecha_creacion','desc');
         $datos = $this->db->get('alarmas_generadas');
         $datos = $datos->result();
         return $datos;

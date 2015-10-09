@@ -34,10 +34,10 @@
         </div>
         <div class="col-md-3">
             <select class="form-control obligatorio  " id="color" name="color"  >
-                <option value="Verde" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Verde' ? 'selected' : '') : '' ) ?> >Verde</option>
-                <option value="Amarillo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Amarillo' ? 'selected' : '') : '' ) ?> >Amarillo</option>
-                <option value="Naranja" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Naranja' ? 'selected' : '') : '' ) ?> >Naranja</option>
-                <option value="Rojo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Rojo' ? 'selected' : '') : '' ) ?> >Rojo</option>
+                <option value="1-Verde" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == '1-Verde' ? 'selected' : '') : '' ) ?> >Verde</option>
+                <option value="2-Amarillo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == '2-Amarillo' ? 'selected' : '') : '' ) ?> >Amarillo</option>
+                <!--<option value="Naranja" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == 'Naranja' ? 'selected' : '') : '' ) ?> >Naranja</option>-->
+                <option value="3-Rojo" <?php echo (isset($datos[0]->color) ? ($datos[0]->color == '3-Rojo' ? 'selected' : '') : '' ) ?> >Rojo</option>
             </select>
         </div>
         <div class="col-md-3">
