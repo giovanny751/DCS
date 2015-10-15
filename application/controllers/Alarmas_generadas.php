@@ -71,8 +71,8 @@ class Alarmas_generadas extends My_Controller {
         foreach ($datos as $value) {
             $s[] = $value->examen_cod;
         }
-        if(count($datos)>0)
-        $this->db->where_in('examen_cod', $s);
+        if (count($datos) > 0)
+            $this->db->where_in('examen_cod', $s);
         echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", null, array("ACTIVO" => "S"), /* readOnly? */ false);
 //        echo json_encode($datos);
     }
@@ -82,19 +82,52 @@ class Alarmas_generadas extends My_Controller {
 //        $this->load->view('alarmas_generadas/graficas', $this->data);
         $datos = $this->Alarmas_generadas__model->busqueda_cedula($post);
 
+//        foreach ($datos as $key => $value) {
+//            $fecha=$value->fecha_creacion;
+//            $data[]=array($value->hl7tag,$value->lectura_numerica);
+//        }
+
+        $fechas = array();
+//        $total = array();
         foreach ($datos as $key => $value) {
-            $data[]=array($value->hl7tag,5);
+            $datop[$value->hl7tag][$value->fecha_creacion] = $value->lectura_numerica;
+            if (!in_array($value->fecha_creacion, $fechas))
+                array_push($fechas, $value->fecha_creacion);
+        }
+
+        foreach ($datos as $value) {
+            for ($i = 0; $i < count($fechas); $i++) {
+                if (!isset($datop[$value->hl7tag][$fechas[$i]])) {
+                    $datop[$value->hl7tag][$fechas[$i]] = 0;
+                }
+            }
+        }
+
+        foreach ($datop as $key => $value) {
+            $o[]=$key;
+            foreach ($value as $key2 => $value2) {
+                if (isset($total[$key2])) {
+                    $total[$key2] = $total[$key2] . ',' . $value2;
+                } else {
+                    $total[$key2] = $value2;
+                }
+            }
+        }
+//        echo "dddd";
+//        print_r();
+
+        foreach ($total as $key => $value) {
+            $value2=  explode(',', $value);
+            $s=array();
+            $s[0]=$key;
+            for($i=0;$i<count($value2);$i++){
+                array_push($s, (int) $value2[$i]);
+            }
+            $data[] = $s;
         }
         
-
-$data[0]=array('6-5',5);	
-$data[1]=array('6-3',5);	
-$data[2]=array('6-6',4);	
-$data[3]=array('6-7',6);	
-$data[4]=array('6-8',8);	
-$data[5]=array('6-9',1);	
-echo json_encode($data);
-
+        
+        echo json_encode(array($data,$o));
     }
 
 }
