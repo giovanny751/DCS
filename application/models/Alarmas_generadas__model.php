@@ -7,6 +7,7 @@ class Alarmas_generadas__model extends CI_Model {
     }
 
     function save_alarmas_generadas($post) {
+        
         if (isset($post['campo'])) {
             $this->db->where($post["campo"], $post[$post["campo"]]);
             $id = $post[$post["campo"]];
@@ -15,6 +16,20 @@ class Alarmas_generadas__model extends CI_Model {
         } else {
             $this->db->insert('alarmas_generadas', $post);
             $id = $this->db->insert_id();
+        }
+        
+        $this->db->select('contacto.email');
+        $this->db->join('lectura_equipo','alarmas_generadas.id_lectura_equipo = lectura_equipo.id_lectura_equipo');
+        $this->db->join('pacientes','lectura_equipo.id_paciente = pacientes.id_paciente');
+        $this->db->join('paciente_contacto','lectura_equipo.id_paciente = paciente_contacto.id_paciente');
+        $this->db->join('contacto','paciente_contacto.contacto_id = contacto.contacto_id');
+        $this->db->where('id_alarmas_generadas');
+        $datos=$this->db->get('alarmas_generadas');
+        $datos=$datos->result();
+        foreach ($datos as $key => $value) {
+            if(!empty($value->email)){
+                mail($value->email, 'asunto', 'pendiente');
+            }
         }
         return $id;
     }
