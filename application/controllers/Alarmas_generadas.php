@@ -82,23 +82,18 @@ class Alarmas_generadas extends My_Controller {
 //        $this->load->view('alarmas_generadas/graficas', $this->data);
         $datos = $this->Alarmas_generadas__model->busqueda_cedula($post);
 
-        $cols = '{"cols": [{"id":"","label":"","pattern":"","type":"string"}, ';
-        $d="";
-        foreach ($datos as $value) {
-            if($d!=$value->examen_nombre){
-                $d=$value->examen_nombre;
-            $cols.='{"id":"","label":"'.$value->examen_nombre.'","pattern":"","type":"number"},';
-            }
+        foreach ($datos as $key => $value) {
+            $data[]=array($value->hl7tag,5);
         }
-        $cols.='],';
-        $cols.= '"rows": [';
-        foreach ($datos as $value) {
-            $fecha=$value->fecha_creacion;
-            $fecha=  explode(' ', $fecha);
-            $cols.='{"c":[{"v":"'.$fecha[0].'","f":null},{"v":'.$value->lectura_numerica.',"f":null}]},';
-        }
-        echo $cols.=']}';
+        
 
+$data[0]=array('6-5',5);	
+$data[1]=array('6-3',5);	
+$data[2]=array('6-6',4);	
+$data[3]=array('6-7',6);	
+$data[4]=array('6-8',8);	
+$data[5]=array('6-9',1);	
+echo json_encode($data);
 
     }
 

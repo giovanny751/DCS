@@ -185,25 +185,25 @@
 </div>
 
 <script>
-// Load the Visualization API and the piechart package.
-    google.load('visualization', '1', {'packages': ['corechart']});
-
-    // Set a callback to run when the Google Visualization API is loaded.
-
-
-    function drawChart() {
-        var jsonData = $.ajax({
-            url: "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>",
-            dataType: "json",
-            async: false
-        }).responseText;
-
-        // Create our data table out of JSON data loaded from server.
-//        var data = new google.visualization.DataTable(jsonData);
-
-        // Instantiate and draw our chart, passing in some options.
-
-    }
+//// Load the Visualization API and the piechart package.
+//    google.load('visualization', '1', {'packages': ['corechart']});
+//
+//    // Set a callback to run when the Google Visualization API is loaded.
+//
+//
+//    function drawChart() {
+//        var jsonData = $.ajax({
+//            url: "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>",
+//            dataType: "json",
+//            async: false
+//        }).responseText;
+//
+//        // Create our data table out of JSON data loaded from server.
+////        var data = new google.visualization.DataTable(jsonData);
+//
+//        // Instantiate and draw our chart, passing in some options.
+//
+//    }
 
 
 
@@ -238,13 +238,13 @@
                     });
                     $.each(datos, function (key, val) {
                         var colo="";
-                        if(val.color=='Verde'){
+                        if(val.color=='1-Verde'){
                             colo='<img width="20px" src=" <?php echo base_url('img/verde.png') ?> ">'
                         }
-                        if(val.color=='Rojo'){
+                        if(val.color=='3-Rojo'){
                             colo='<img width="20px" src=" <?php echo base_url('img/rojo.png') ?> ">'
                         }
-                        if(val.color=='Amarillo'){
+                        if(val.color=='2-Amarillo'){
                             colo='<img width="20px" src=" <?php echo base_url('img/amarillo.png') ?> ">'
                         }
 //                        if(val.color=='Naranja'){
@@ -271,9 +271,43 @@
                     var url = "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>";
                     $.post(url, $('#form1').serialize())
                             .done(function (msg) {
-                                var data = new google.visualization.DataTable(msg);
-                                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-                                chart.draw(data, {width: 1000, height: 400});
+                                var data = new google.visualization.DataTable();
+                                data.addColumn('string', 'X');
+                                data.addColumn('number', 'sssX');
+//                                data.addColumn('number', 'Dogs');
+                                  
+    var content = [
+        [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
+        [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
+        [12, 30, 22], [13, 40, 32], [14, 42, 34], [15, 47, 39], [16, 44, 36], [17, 48, 40],
+        [18, 52, 44], [19, 54, 46], [20, 42, 34], [21, 55, 47], [22, 56, 48], [23, 57, 49],
+        [24, 60, 52], [25, 50, 42], [26, 52, 44], [27, 51, 43], [28, 49, 41], [29, 53, 45],
+        [30, 55, 47], [31, 60, 52], [32, 61, 53], [33, 59, 51], [34, 62, 54], [35, 65, 57],
+        [36, 62, 54], [37, 58, 50], [38, 55, 47], [39, 61, 53], [40, 64, 56], [41, 65, 57],
+        [42, 63, 55], [43, 66, 58], [44, 67, 59], [45, 69, 61], [46, 69, 61], [47, 70, 62],
+        [48, 72, 64], [49, 68, 60], [50, 66, 58], [51, 65, 57], [52, 67, 59], [53, 70, 62],
+        [54, 71, 63], [55, 72, 64], [56, 73, 65], [57, 75, 67], [58, 70, 62], [59, 68, 60],
+        [60, 64, 56], [61, 60, 52], [62, 65, 57], [63, 67, 59], [64, 68, 60], [65, 69, 61],
+        [66, 70, 62], [67, 72, 64], [68, 75, 67], [69, 80, 72]
+      ];
+
+
+                                data.addRows(msg);
+
+                                var options = {
+                                    hAxis: {
+                                        title: 'Time',
+                                        logScale: true
+                                    },
+                                    vAxis: {
+                                        title: 'Popularity',
+                                        logScale: false
+                                    },
+                                    colors: ['#a52714', '#097138']
+                                };
+
+                                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                                chart.draw(data, options);
                             })
                             .fail(function () {
                                 alerta('roja', 'Error al consultar');
