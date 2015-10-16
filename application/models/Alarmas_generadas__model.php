@@ -23,7 +23,7 @@ class Alarmas_generadas__model extends CI_Model {
         $this->db->join('pacientes','lectura_equipo.id_paciente = pacientes.id_paciente');
         $this->db->join('paciente_contacto','lectura_equipo.id_paciente = paciente_contacto.id_paciente');
         $this->db->join('contacto','paciente_contacto.contacto_id = contacto.contacto_id');
-        $this->db->where('id_alarmas_generadas');
+        $this->db->where('id_alarmas_generadas',$id);
         $datos=$this->db->get('alarmas_generadas');
         $datos=$datos->result();
         foreach ($datos as $key => $value) {
