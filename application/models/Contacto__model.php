@@ -47,7 +47,7 @@ class Contacto__model extends CI_Model {
                 $this->db->like('nombre', $post['nombre']);
         if (isset($post['Estado']))
             if ($post['Estado'] != "")
-                $this->db->like('Estado', $post['Estado']);
+                $this->db->where('Estado', $post['Estado']);
         if (isset($post['fecha_creacion']))
             if ($post['fecha_creacion'] != "")
                 $this->db->like('fecha_creacion', $post['fecha_creacion']);
@@ -74,7 +74,7 @@ class Contacto__model extends CI_Model {
                 $this->db->like('cuidador', $post['cuidador']);
         if (isset($post['activo']))
             if ($post['activo'] != "")
-                $this->db->like('activo', $post['activo']);
+                $this->db->where('activo', $post['activo']); 
         $this->db->select('contacto_id');
         $this->db->select('documento');
         $this->db->select('nombre');
@@ -85,10 +85,10 @@ class Contacto__model extends CI_Model {
         $this->db->select('email');
         $this->db->select('parentesco');
         $this->db->select('llaves');
-        $this->db->select('cuidador');
-        $this->db->where('ACTIVO', 'S');
+        $this->db->select('cuidador');   
         if(empty($post))$this->db->where("1",2);
         $datos = $this->db->get('contacto');
+//        echo $this->db->last_query();
         $datos = $datos->result();
         return $datos;
     }

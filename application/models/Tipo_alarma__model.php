@@ -49,13 +49,13 @@ class Tipo_alarma__model extends CI_Model {
                 $this->db->like('id_tipo_alarma', $post['id_tipo_alarma']);
         if (isset($post['descripcion']))
             if ($post['descripcion'] != "")
-                $this->db->like('descripcion', $post['descripcion']);
+                $this->db->like('tipo_alarma.descripcion', $post['descripcion']);
         if (isset($post['fecha_creacion']))
             if ($post['fecha_creacion'] != "")
                 $this->db->like('fecha_creacion', $post['fecha_creacion']);
         if (isset($post['examen']))
             if ($post['examen'] != "")
-                $this->db->like('examen', $post['examen']);
+                $this->db->like('tipo_alarma.examen', $post['examen']);
         if (isset($post['analisis_resultados']))
             if ($post['analisis_resultados'] != "")
                 $this->db->like('analisis_resultados', $post['analisis_resultados']);
@@ -66,11 +66,16 @@ class Tipo_alarma__model extends CI_Model {
             if ($post['activo'] != "")
                 $this->db->like('activo', $post['activo']);
         $this->db->select('id_tipo_alarma');
-        $this->db->select('descripcion');
-//                                $this->db->select('examen');
+        $this->db->select('tipo_alarma.descripcion');
+        $this->db->select('examen_nombre');
+        $this->db->select('hl7tag');
+        $this->db->join('examenes','tipo_alarma.examen=examenes.examen_cod');
+        $this->db->join('variables','tipo_alarma.variable_codigo=variables.variable_codigo');
         $this->db->select('analisis_resultados');
 //                                $this->db->select('id_niveles_alarma');
-        $this->db->where('ACTIVO', 'S');
+        $this->db->where('examenes.ACTIVO', 'S');
+        $this->db->where('variables.ACTIVO', 'S');
+        $this->db->where('tipo_alarma.ACTIVO', 'S');
         if (empty($post))
             $this->db->where("1", 2);
         $datos = $this->db->get('tipo_alarma');

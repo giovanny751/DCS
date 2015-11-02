@@ -44,7 +44,7 @@ class Clientes__model extends CI_Model {
                 $this->db->like('fecha_creacion', $post['fecha_creacion']);
         if (isset($post['id_tipo_cliente']))
             if ($post['id_tipo_cliente'] != "")
-                $this->db->like('id_tipo_cliente', $post['id_tipo_cliente']);
+                $this->db->like('clientes.id_tipo_cliente', $post['id_tipo_cliente']);
         if (isset($post['creado_por']))
             if ($post['creado_por'] != "")
                 $this->db->like('creado_por', $post['creado_por']);

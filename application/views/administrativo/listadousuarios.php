@@ -59,7 +59,7 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align: center">
             <div class="form-group">
-                <label>&nbsp;</label><button type="button" class="btn btn-dcs">Limpiar</button>
+                <label>&nbsp;</label><button type="reset" class="btn btn-dcs">Limpiar</button>
                 <label>&nbsp;</label><button type="button" class="btn btn-dcs consultar">Consultar</button>
             </div>
         </div>

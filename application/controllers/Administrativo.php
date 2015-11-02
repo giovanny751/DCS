@@ -152,7 +152,7 @@ class Administrativo extends My_Controller {
         $data1 = $this->User_model->validaexistencia($this->input->post('cedula'));
         $cedu = $this->input->post('cedula');
         if (empty($data1))
-            $this->User_model->create($data);
+            $this->User_model->create($data,$this->input->post());
         else
             $this->User_model->update_user($data, $cedu);
     }

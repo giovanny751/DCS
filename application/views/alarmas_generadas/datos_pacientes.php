@@ -24,7 +24,7 @@
                             });
                         });
                     </script>
-                    <input type="text" name="cedula" id="cedula" value="52865386" autocomplete="false" class="form-control">
+                    <input type="text" name="cedula" id="cedula" value="" autocomplete="false" class="form-control">
                 </div>
                 <div class="col-md-1">
                     <a href="javascript:" onclick="cl();">Buscar</a>
@@ -186,7 +186,7 @@
 <script type="text/javascript">
     google.load("visualization", "1", {packages: ["corechart"]});
     $('.buscar').click(function () {
-
+        $('.tabLinks a[href="#tabGrafica"]').tab('show')
         var cedula = $('#cedula').val();
         if (cedula == "") {
             alerta('rojo', 'Campo cedula obligatorio');
@@ -269,21 +269,20 @@
                                     data.addColumn('number', val);
                                 })
 //                                data.addColumn('number', 'Dogs');
-                                  
-
-
                                 data.addRows(msg[0]);
 
                                 var options = {
                                     hAxis: {
                                         title: 'Time',
-                                        logScale: true
+                                        logScale: true,
+                                        titleTextStyle: {color: '#FFF'}
                                     },
                                     vAxis: {
                                         title: 'Popularity',
                                         logScale: false
                                     },
-                                    colors: ['#a52714', '#097138']
+                                    colors: ['#a52714', '#097138'],
+                                    pointSize: 5
                                 };
 
                                 var chart = new google.visualization.LineChart(document.getElementById('chart_div'));

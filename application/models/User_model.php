@@ -4,6 +4,11 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class User_model extends CI_Model {
+    function __construct() {
+        $this->db = $this->load->database('default', TRUE);
+        $this->db1 = $this->load->database('parametro', TRUE);
+        parent::__construct();
+    }
 
     public function get_user($username, $pass) {
         $this->db->where('usu_usuario', $username);
@@ -49,11 +54,42 @@ class User_model extends CI_Model {
 //        $this->db->set('usu_cambiocontrasena', 1);
         $this->db->where('usu_email', $mail);
         $this->db->update('user');
+        
+        
+        $this->db1->set('archive',$post['estado']);
+        $this->db1->where('email',$post['email']);
+        $this->db1->set('firstName',$post['nombres']);
+        $this->db1->set('lastName',$post['apellidos']);
+        $this->db1->where('login',$post['usuario']);
+        $this->db1->set('password',sha1($post['contrasena']));
+        $this->db1->update('users');
+        
+        
+        $this->db1->set('name',$post['usuario']);
+        $this->db1->where('email',$post['email']);
+        $this->db1->set('hashedPassword',sha1($post['contrasena']));
+        $this->db1->update('user');
+        
         return $datos;
     }
 
-    function create($data) {
+    function create($data,$post) {
         $this->db->insert('user', $data);
+        $this->db1->set('archive',$post['estado']);
+        $this->db1->set('email',$post['email']);
+        $this->db1->set('firstName',$post['nombres']);
+        $this->db1->set('lastName',$post['apellidos']);
+        $this->db1->set('login',$post['usuario']);
+        $this->db1->set('password',sha1($post['contrasena']));
+        $this->db1->insert('users');
+//        echo $this->db1->last_query();
+        
+        
+        $this->db1->set('name',$post['usuario']);
+        $this->db1->set('email',$post['email']);
+        $this->db1->set('hashedPassword',sha1($post['contrasena']));
+        $this->db1->insert('user');
+        
     }
     function update_user($data,$cedula) {
         $this->db->where('usu_cedula',$cedula);

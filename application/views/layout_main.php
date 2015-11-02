@@ -192,6 +192,10 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     $('.limpiar').click(function () {
         $('select,input').val('');
     });
+    $('input[type="reset"]').click(function () {
+        $('select,input').val('');
+    });
+    
 //    --------------------------------------------------------------------------
 //COLORES DE ALERTAS DE METRONIC
 //    --------------------------------------------------------------------------
@@ -332,3 +336,8 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 });
 //$('.table').DataTable();
 </script>
+<style>
+    .blockOverlay{
+        z-index:10000 !important;
+    }
+</style>

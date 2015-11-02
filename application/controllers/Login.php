@@ -39,10 +39,6 @@ class Login extends My_Controller {
         if (!empty($user) > 0) {
             $this->data['username'] = $user[0]["usu_email"];
             $this->data['password'] = $user[0]["usu_contrasena"];
-            if ($user[0]['usu_politicas'] == 0) {
-                $this->data['inicio'] = $this->user_model->admin_inicio();
-                $this->load->view('login/politicas', $this->data);
-            } else {
                 $this->acceso($user);
                 $data[] = array(
                     'usu_id' => $user[0]['usu_id'],
@@ -54,7 +50,7 @@ class Login extends My_Controller {
                 } else {
                     redirect('index.php/presentacion/rol', 'location');
                 }
-            }
+            
         } else {
             $this->session->set_flashdata(array('message' => 'Su n&uacute;mero de documento no se encuentra registrado en el sistema.', 'message_type' => 'warning'));
             redirect('', 'refresh');

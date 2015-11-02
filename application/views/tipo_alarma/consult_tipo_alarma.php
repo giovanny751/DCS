@@ -60,7 +60,7 @@
             </div>-->
 
         </div>
-        <button type="button" class="btn btn-dcs">Limpiar</button>
+        <button type="reset" class="btn btn-dcs">Limpiar</button>
         <button class="btn btn-dcs">Consultar</button>
     </form>
 
@@ -68,8 +68,10 @@
         <div class="col-md-12">
             <table class="table table-bordered">
                 <thead>
-                <th></th>
+                <th style="display: none"></th>
                 <th>Descripción</th>
+                <th>Examen</th>
+                <th>Variable</th>
                 
                 <th>Análisis resultados</th>
                 
@@ -82,10 +84,13 @@
                         $i = 0;
 
                         foreach ($value as $key2 => $value2) {
-                            echo "<td>" . $value->$key2 . "</td>";
+                            
                             if ($i == 0) {
+                                echo "<td style='display:none'>" . $value->$key2 . "</td>";
                                 $campo = $key2;
                                 $valor = "'" . $value->$key2 . "'";
+                            }else{
+                                echo "<td>" . $value->$key2 . "</td>";
                             }
                             $i++;
                         }

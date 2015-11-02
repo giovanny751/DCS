@@ -77,7 +77,7 @@ class Equipos__model extends CI_Model {
                 $this->db->like('fecha_creacion', $post['fecha_creacion']);
         if (isset($post['estado']))
             if ($post['estado'] != "")
-                $this->db->like('estado', $post['estado']);
+                $this->db->like('tipo_equipo.estado', $post['estado']);
         if (isset($post['ubicacion']))
             if ($post['ubicacion'] != "")
                 $this->db->like('ubicacion', $post['ubicacion']);

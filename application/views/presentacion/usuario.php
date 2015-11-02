@@ -112,9 +112,10 @@
         $.post("<?= base_url('index.php/presentacion/guardarpermisos') ?>", 
                     $('#f15').serialize()
                 ).done(function(){
-                    
+                    alerta('verde','Asignación con éxito')
+                    $('#myModal3').modal('hide');
                 }).fail(function(){
-                    
+                    alerta('rojo','Error en la asignación');
                 })
 
         

@@ -60,7 +60,7 @@
             </div>
 
         </div>
-        <button type="button" class="btn btn-dcs">Limpiar</button>
+        <button type="reset" class="btn btn-dcs">Limpiar</button>
         <button class="btn btn-dcs">Consultar</button>
 </form>
 
