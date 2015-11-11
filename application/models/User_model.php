@@ -75,11 +75,14 @@ class User_model extends CI_Model {
 
     function create($data,$post) {
         $this->db->insert('user', $data);
+        $id=  $this->db->insert_id();
+        
         $this->db1->set('archive',$post['estado']);
         $this->db1->set('email',$post['email']);
         $this->db1->set('firstName',$post['nombres']);
         $this->db1->set('lastName',$post['apellidos']);
         $this->db1->set('login',$post['usuario']);
+        $this->db1->set('usu_id',$id);
         $this->db1->set('password',sha1($post['contrasena']));
         $this->db1->insert('users');
 //        echo $this->db1->last_query();
@@ -87,9 +90,10 @@ class User_model extends CI_Model {
         
         $this->db1->set('name',$post['usuario']);
         $this->db1->set('email',$post['email']);
+        $this->db1->set('usu_id',$id);
         $this->db1->set('hashedPassword',sha1($post['contrasena']));
         $this->db1->insert('user');
-        
+        echo $this->db1->last_query();
     }
     function update_user($data,$cedula) {
         $this->db->where('usu_cedula',$cedula);
@@ -128,10 +132,27 @@ class User_model extends CI_Model {
         $user = $this->db->get("user");
         return $user->result();
     }
-    function update($data,$id){
+    function update($data,$id,$post){
         $this->db->where("usu_id",$id);
-        
         $this->db->update("user",$data);
+        
+        
+        $this->db1->set('archive',$post['estado']);
+        $this->db1->set('email',$post['email']);
+        $this->db1->set('firstName',$post['nombres']);
+        $this->db1->set('lastName',$post['apellidos']);
+        $this->db1->set('login',$post['usuario']);
+        $this->db1->where('usu_id',$id);
+        $this->db1->set('password',sha1($post['contrasena']));
+        $this->db1->update('users');
+//        echo $this->db1->last_query();
+        
+        
+        $this->db1->set('name',$post['usuario']);
+        $this->db1->set('email',$post['email']);
+        $this->db1->where('usu_id',$id);
+        $this->db1->set('hashedPassword',sha1($post['contrasena']));
+        $this->db1->update('user');
     }
     function consultausuarioxcedula($cedula){
         

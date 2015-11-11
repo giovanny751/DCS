@@ -55,14 +55,14 @@
                                 <input type="text" value="<?php echo (isset($datos[0]->apellidos) ? $datos[0]->apellidos : '' ) ?>" class=" form-control obligatorio  " id="apellidos" name="apellidos">
                             </div>
                         </div>
-                        <div class="row">
+<!--                        <div class="row">
                             <div class="col-md-6">
                                 <label for="fecha_afiliacion">* Fecha Afiliación </label>
                             </div>
                             <div class="col-md-6">
                                 <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  fecha  " id="fecha_afiliacion" name="fecha_afiliacion">
                             </div>
-                        </div>
+                        </div>-->
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="direccion">* Dirección </label>
@@ -189,6 +189,14 @@
                         <span class="clientess">
                             <?php echo lista("cliente", "cliente", "form-control obligatorio", "clientes", "id_cliente", "nombre", (isset($datos[0]->cliente) ? $datos[0]->cliente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                         </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="medico">* Especialidad </label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo (isset($datos[0]->especialidad) ? $datos[0]->especialidad : '' ) ?>" class=" form-control obligatorio    " id="especialidad" name="especialidad">
                     </div>
                 </div>
                 <div class="row">

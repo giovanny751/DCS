@@ -10,6 +10,7 @@ if($usuario==""){
     <span class="cuadroH3"></span>
 </div>
     <form id="f3" method="post">
+        
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                 <label for="cedula"><span class="campoobligatorio">*</span>Cédula</label>

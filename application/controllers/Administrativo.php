@@ -110,7 +110,6 @@ class Administrativo extends My_Controller {
 
         if (!empty($user)) {
             $this->data['usuario'] = $this->User_model->consultausuarioxid($this->input->post('usu_id'));
-//            var_dump($this->data['usuario']);die;
         }
         $this->layout->view("administrativo/creacionusuarios", $this->data);
     }
@@ -151,6 +150,7 @@ class Administrativo extends My_Controller {
         );
         $data1 = $this->User_model->validaexistencia($this->input->post('cedula'));
         $cedu = $this->input->post('cedula');
+//        print_r($data1);
         if (empty($data1))
             $this->User_model->create($data,$this->input->post());
         else
@@ -186,7 +186,7 @@ class Administrativo extends My_Controller {
             'usu_fechaCreacion' => date('Y-m-d H:i:s')
         );
 
-        $this->User_model->update($data, $this->input->post('usuid'));
+        $this->User_model->update($data, $this->input->post('usuid'),$this->input->post());
     }
 
     function cargos() {

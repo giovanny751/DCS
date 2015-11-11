@@ -127,6 +127,17 @@
                         <input type="file" value="<?php echo (isset($datos[0]->imagen) ? $datos[0]->imagen : '' ) ?>" class="   " id="imagen" name="imagen">
                     </div>
                 </div>
+                <div class="row">    
+
+                    <div class="col-md-3">
+                        <label for="medico">* IMEI </label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo (isset($datos[0]->IMEI) ? $datos[0]->IMEI : '' ) ?>" class=" form-control obligatorio  number  " id="IMEI" name="IMEI">
+                    </div>
+
+
+                </div>
                 <div class="row">
                     <div class="col-md-3">
                         <label for="observaciones">
@@ -177,7 +188,7 @@
                         if (!empty($id) && $datos[0]->adjuntar_certificado != '') {
                             $s = explode('.', $datos[0]->adjuntar_certificado);
 //                                print_r($s);
-                            if ($s[1] == 'gif' || $s[1] == 'jpg' || $s[1] == 'png') {
+                            if ($s[1] == 'gif' || $s[1] == 'jpg' || $s[1] == 'png' && 1 == 2) {
                                 ?>
                                 <center>
                                     <img class="img-thumbnail" style="width: 250px;" src="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">
@@ -188,7 +199,7 @@
 
 
                             <?php } else { ?>
-                                <a href="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>">Documento</a>
+                                <a href="<?php echo base_url('uploads') ?>/equipos/<?php echo $id . "/" . $datos[0]->adjuntar_certificado ?>" target="_black">Documento</a>
                             <?php } ?>
                         <?php } ?>
                     </div>
@@ -273,9 +284,9 @@
     <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
 <script>
-    $('body').delegate('.variable_codigo', 'change', function() {
+    $('body').delegate('.variable_codigo', 'change', function () {
         var y = new Array();
-        $('.variable_codigo').each(function() {
+        $('.variable_codigo').each(function () {
             if ($.inArray($(this).val(), y) != -1) {
                 $(this).val('')
                 alerta('rojo', 'Existe una variable con este examen.')
@@ -285,7 +296,7 @@
         })
 //        console.log(y)
     })
-    $('#agregar').click(function() {
+    $('#agregar').click(function () {
 
         var examen = $('#examen_cod option:selected').text();
         var id_examen = $('#examen_cod').val();
@@ -295,7 +306,7 @@
         }
         var url = '<?php echo base_url('index.php/Equipos/traer_variables') ?>'
         $.post(url, {id_examen: id_examen})
-                .done(function(msg) {
+                .done(function (msg) {
                     var html = "<tr>";
                     html += "<td>";
                     html += "<input type='hidden' name='examen[]' value='" + id_examen + "'>" + examen + " ";
@@ -308,15 +319,15 @@
                     html += "</td>";
                     html += "</tr>";
                     $('#agregar_examen').append(html)
-                }).fail(function() {
+                }).fail(function () {
 
         })
 
     })
-    $('body').delegate('.eliminar', 'click', function() {
+    $('body').delegate('.eliminar', 'click', function () {
         $(this).parent().parent().remove();
     })
-    $('#myTabs a').click(function(e) {
+    $('#myTabs a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
     })
@@ -329,7 +340,7 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function(tecla) {
+    $('body').delegate('.number', 'keypress', function (tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });

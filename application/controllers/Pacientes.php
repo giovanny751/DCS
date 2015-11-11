@@ -30,13 +30,13 @@ class Pacientes extends My_Controller {
         $this->data['datos'] = $this->Pacientes__model->consult_pacientes($post);
         $this->layout->view('pacientes/consult_pacientes', $this->data);
     }
-
+ 
     function save_pacientes() {
         $post = $this->input->post();
         $post['foto'] = basename($_FILES['foto']['name']);
         $post['documento'] = basename($_FILES['documento']['name']);
         $id = $this->Pacientes__model->save_pacientes($post);
-
+//die();
         $targetPath = "./uploads/pacientes";
         if (!file_exists($targetPath)) {
             mkdir($targetPath, 0777, true);

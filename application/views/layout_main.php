@@ -115,11 +115,14 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
 </header>
 <div id="cssmenu">
         <?php echo modulos('prueba', $id, null); ?>
+   
 </div> 
     <div class="contenidoLayout">
 <div class="container">
         <div class="row contenido" >
             <?php echo $content_for_layout ?>
+            <p><br></p>
+            <img src="<?php echo base_url('img/LogosBarra.PNG') ?>" width="320px">
         </div>
     </div>
 </div>
@@ -127,7 +130,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     <div class="row" style="">
         <div class="container">
             <div class="col-md-4 col-lg-4 col-sm-4 col-sx-4" align="center">
-                
+
             </div>
         </div>  
     </div>  
@@ -193,7 +196,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         $('select,input').val('');
     });
     $('input[type="reset"]').click(function () {
-        $('select,input').val('');
+        $('select,input[type="text"]').val('');
     });
     
 //    --------------------------------------------------------------------------
@@ -341,3 +344,4 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         z-index:10000 !important;
     }
 </style>
+

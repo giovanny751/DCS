@@ -3,6 +3,8 @@
 class Pacientes__model extends CI_Model {
 
     function __construct() {
+        $this->db = $this->load->database('default', TRUE); 
+        $this->db1 = $this->load->database('parametro', TRUE);
         parent::__construct();
     }
 
@@ -82,6 +84,10 @@ class Pacientes__model extends CI_Model {
             $this->db->insert('pacientes', $post);
             $id = $this->db->insert_id();
         }
+
+
+
+
         $this->db->where('id_paciente', $id);
         $this->db->delete('paciente_examen_variable');
         if (isset($variable_codigo))
@@ -133,6 +139,23 @@ class Pacientes__model extends CI_Model {
                 $this->db->insert('paciente_equipo_tipoequipo');
 //                echo $this->db->last_query();
             }
+
+
+        $this->db1->where('id_paciente', $id);
+        $t_db = $this->db1->get('devices');
+        $t_db = $t_db->result();
+        $this->db1->set('id_paciente', $id);
+        $this->db1->set('description', $post['observaciones']);
+        $this->db1->set('name', $post['nombres'] . ' ' . $post['apellidos']);
+        $this->db1->set('phoneNumber', $post['telefono_fijo']);
+        $this->db1->set('plateNumber', $post['cedula_paciente']);
+        if (count($t_db)) {
+            $this->db1->where('plateNumber', $post['cedula_paciente']);
+            $this->db1->update('devices');
+        } else {
+            $this->db1->insert('devices');
+        }
+
 //        die();
         return $id;
     }
