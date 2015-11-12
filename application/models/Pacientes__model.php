@@ -150,11 +150,12 @@ class Pacientes__model extends CI_Model {
         $this->db1->set('phoneNumber', $post['telefono_fijo']);
         $this->db1->set('plateNumber', $post['cedula_paciente']);
         if (count($t_db)) {
-            $this->db1->where('plateNumber', $post['cedula_paciente']);
+            $this->db1->where('id_paciente', $id);
             $this->db1->update('devices');
         } else {
             $this->db1->insert('devices');
         }
+//        echo $this->db1->last_query();
 
 //        die();
         return $id;
