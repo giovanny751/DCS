@@ -31,7 +31,6 @@ class Medicos extends My_Controller {
         $post = $this->input->post();
         $id = $this->Medicos__model->save_medicos($post);
 
-
         redirect('index.php/Medicos/consult_medicos', 'location');
     }
 
@@ -59,11 +58,20 @@ class Medicos extends My_Controller {
         if (!isset($this->data['post']['campo']))
             redirect('index.php/Medicos/consult_medicos', 'location');
         $this->data['datos'] = $this->Medicos__model->edit_medicos($this->data['post']);
+        $this->data['as_medicos_parts'] = $this->Medicos__model->as_medicos_parts($this->data['post']);
         $this->layout->view('medicos/index', $this->data);
     }
 
     function autocomplete_nombre() {
         $info = auto("medicos", "medico_codigo", "nombre", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_paciente() {
+        $info = auto("pacientes", "id_paciente", "nombres", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function autocomplete_matricula_procedimientos() {
+        $info = auto("parts", "id", "descripcion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
     function autocomplete_matricula_profesional() {

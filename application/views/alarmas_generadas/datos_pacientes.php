@@ -129,6 +129,8 @@
             <li class="active"><a href="#tabDatos">Datos</a></li>
             <li><a href="#tabGrafica">Gráfica</a></li>
             <li><a href="#tabAlarmas">Alarmas</a></li>
+            <li><a href="#tabRegistros">Registros Clínicos</a></li>
+            <li><a href="#tabImagenes">Imágenes diagnósticas</a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tabContenido">
@@ -179,6 +181,47 @@
                     </tbody>
                 </table>
             </div>
+            <div id="tabRegistros" class="tab">
+                <div class="row">
+                    <div class="col-md-3">
+                        <select name="estado" id="estado" class="form-control">
+                            <option value="1">Sin atender</option>
+                            <option value="2">Atendido</option>
+                            <option value="3">Anulado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <table class="table table-responsive">
+                            <thead>
+                            <th>Fecha Ingreso</th>
+                            <th>Procedimiento</th>
+                            <th>Estado</th>
+                            <th>Motivos</th>
+                            <th>Fecha de atención</th>
+                            <th>Mpedico</th>
+                            <th>Informe</th>
+                            <th>Imprimir</th>
+                            <th></th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="tabImagenes" class="tab">
+                <div class="container">
+                    <table class="table table-responsive">
+                        <thead>
+                        <th>Fecha Ingreso</th>
+                        <th>Paciente</th>
+                        <th>Nombre Estudio</th>
+                        <th>Estado</th>
+                        <th>Id paciente</th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -215,20 +258,20 @@
                         ]).draw();
                     });
                     $.each(datos, function (key, val) {
-                        var colo="";
-                        if(val.color=='1-Verde'){
-                            colo='<img width="20px" src=" <?php echo base_url('img/verde.png') ?> ">'
+                        var colo = "";
+                        if (val.color == '1-Verde') {
+                            colo = '<img width="20px" src=" <?php echo base_url('img/verde.png') ?> ">'
                         }
-                        if(val.color=='3-Rojo'){
-                            colo='<img width="20px" src=" <?php echo base_url('img/rojo.png') ?> ">'
+                        if (val.color == '3-Rojo') {
+                            colo = '<img width="20px" src=" <?php echo base_url('img/rojo.png') ?> ">'
                         }
-                        if(val.color=='2-Amarillo'){
-                            colo='<img width="20px" src=" <?php echo base_url('img/amarillo.png') ?> ">'
+                        if (val.color == '2-Amarillo') {
+                            colo = '<img width="20px" src=" <?php echo base_url('img/amarillo.png') ?> ">'
                         }
 //                        if(val.color=='Naranja'){
 //                            colo='<i class="fa fa-hourglass-half fa-2"  style="color: orange"></i>'
 //                        }
-                        
+
                         $('.tablee').DataTable().row.add([
                             colo,
                             val.cedula_paciente,
@@ -249,7 +292,7 @@
                     var url = "<?php echo base_url('index.php/Alarmas_generadas/graficas') ?>";
                     $.post(url, $('#form1').serialize())
                             .done(function (msg) {
-                                msg=JSON.parse(msg);
+                                msg = JSON.parse(msg);
 //                                alert(typeof msg);
 //
 //                                var obj = window.JSON.stringify(msg);
@@ -265,7 +308,7 @@
 
                                 var data = new google.visualization.DataTable();
                                 data.addColumn('string', 'X');
-                                $.each(msg[1],function(key,val){
+                                $.each(msg[1], function (key, val) {
                                     data.addColumn('number', val);
                                 })
 //                                data.addColumn('number', 'Dogs');

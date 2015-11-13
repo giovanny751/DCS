@@ -5,6 +5,8 @@ class Medicos__model extends CI_Model {
         parent::__construct();
     }
     function save_medicos($post){
+        $procedimientos_deta=$post['procedimientos_deta'];
+        unset($post['procedimientos_deta']);
         if(isset($post['campo'])){ 
         $this->db->where($post["campo"],$post[$post["campo"]]);
         $id=$post[$post["campo"]];
@@ -14,6 +16,14 @@ class Medicos__model extends CI_Model {
             $this->db->insert('medicos',$post);
             $id=$this->db->insert_id();
         }
+        $this->db->where('id_medico',$id);
+        $this->db->delete('as_medicos_parts');
+        foreach ($procedimientos_deta as $key => $value) {
+            $this->db->set('id_medico',$id);
+            $this->db->set('id_proc_parts',$value);
+            $this->db->insert('as_medicos_parts');
+        }
+        
         return $id;
     }
     function delete_medicos($post){
@@ -24,6 +34,13 @@ class Medicos__model extends CI_Model {
     function edit_medicos($post){
         $this->db->where($post["campo"],$post[$post["campo"]]);
         $datos=$this->db->get('medicos',$post);
+        return $datos=$datos->result();
+    }
+    function as_medicos_parts($post){
+        $this->db->select('parts.*');
+        $this->db->where("id_medico",$post[$post["campo"]]);
+        $datos=$this->db->join('parts','parts.id=as_medicos_parts.id_proc_parts');
+        $datos=$this->db->get('as_medicos_parts');
         return $datos=$datos->result();
     }
     function consult_medicos($post){

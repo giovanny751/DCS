@@ -7,9 +7,9 @@
         <div class="col-md-3" id="datos">
             <select id="tabla" class="form-control" name="tabla">
                 <option value="">::Seleccionar::</option>
-                <?php foreach ($tablas as $value) { ?>
-                    <option value="<?php echo $value->Tables_in_dcs ?>">
-                        <?php echo $value->Tables_in_dcs ?>
+                <?php foreach ($tablas as $key =>$value) { ?>
+                    <option value="<?php echo $value->Tables_in_dcss ?>">
+                        <?php echo $value->Tables_in_dcss ?>
                     </option>
                 <?php } ?>
             </select>
