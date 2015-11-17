@@ -17,6 +17,7 @@ class Medicos extends My_Controller {
 
     function index() {
         $this->data['post'] = $this->input->post();
+        $this->data['as_medicos_parts'] =array();
         $this->layout->view('medicos/index', $this->data);
     }
 

@@ -129,7 +129,7 @@
                         <label>PROCEDIMIENTOS</label>
                     </div>
                     <div class="col-md-3">
-                        <?php echo lista("", "procedimientos", "form-control ", "parts", "id", "descripcion", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                        <?php echo lista("", "procedimientos", "form-control ", "parts", "id", "description", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                     </div>
                     <div class="col-md-3">
                         <a href="javascript:" class="agregar_procedimiento">Agregar</a>
@@ -146,7 +146,7 @@
                                 <tr>
                                     <td>
                                         <input type='hidden' name='procedimientos_deta[]' class='proce' value='<?php echo $value->id ?>'>
-                                        <?php echo $value->descripcion; ?>
+                                        <?php echo $value->description; ?>
                                     </td>
                                     <td>
                                         <a href="javascript:" class="eliminar">Eliminar</a>

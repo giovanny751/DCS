@@ -7,8 +7,12 @@ class Brigadas__model extends CI_Model {
     }
 
     function save_brigadas($post) {
+        if(isset($post['equipos'])){
         $equi=$post['equipos'];
         unset($post['equipos']);
+        }else{
+            $equi=array();
+        }
         if (isset($post['campo'])) {
             $this->db->where($post["campo"], $post[$post["campo"]]);
             $id = $post[$post["campo"]];
@@ -18,6 +22,7 @@ class Brigadas__model extends CI_Model {
             $this->db->insert('brigadas', $post);
             $id = $this->db->insert_id();
         }
+        
         
         $this->db->where('id_brigada',$id);
         $this->db->delete('brigadas_equipo');

@@ -30,8 +30,8 @@ class Brigadas extends My_Controller {
 
     function save_brigadas() {
         $post = $this->input->post();
-        $id = $this->Brigadas__model->save_brigadas($post);
-        redirect('index.php/Brigadas/consult_brigadas', 'location');
+        echo $id = $this->Brigadas__model->save_brigadas($post);
+//        redirect('index.php/Brigadas/consult_brigadas', 'location');
     }
 
     function delete_brigadas() {
