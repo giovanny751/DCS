@@ -86,8 +86,6 @@ class Pacientes__model extends CI_Model {
         }
 
 
-
-
         $this->db->where('id_paciente', $id);
         $this->db->delete('paciente_examen_variable');
         if (isset($variable_codigo))
@@ -138,6 +136,14 @@ class Pacientes__model extends CI_Model {
                 $this->db->set('id_equipo', $equipo_id[$i]);
                 $this->db->insert('paciente_equipo_tipoequipo');
 //                echo $this->db->last_query();
+                
+                $this->db->where('id_equipo',$equipo_id[$i]);
+                $this->db->set('estado','3');
+                $this->db->update('equipos');
+                
+                $this->db->set('equipo_id',$equipo_id[$i]);
+                $this->db->set('id_estado','3');
+                $this->db->insert('historial_equipo_estado');
             }
 
 

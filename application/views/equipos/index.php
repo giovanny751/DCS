@@ -43,13 +43,7 @@
                                     *                             Estado                        </label>
                             </div>
                             <div class="col-md-6" >
-                                <select  class="form-control obligatorio  " id="estado" name="estado" <?php echo (isset($datos[0]->estado) ? '' : 'disabled="disabled"') ?>>
-                                    <option value="DISPONIBLE" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'DISPONIBLE') ? 'selected="selected"' : '') : '' ) ?>>DISPONIBLE</option>
-                                    <option value="EN OPERACIÓN" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN OPERACIÓN') ? 'selected="selected"' : '') : '' ) ?>>EN OPERACIÓN</option>
-                                    <option value="ASIGNADO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'ASIGNADO') ? 'selected="selected"' : '') : '' ) ?>>ASIGNADO</option>
-                                    <option value="EN TRANSITO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'EN TRANSITO') ? 'selected="selected"' : '') : '' ) ?>>EN TRANSITO</option>
-                                    <option value="MANTENIMIENTO" <?php echo (isset($datos[0]->estado) ? (($datos[0]->estado == 'MANTENIMIENTO') ? 'selected="selected"' : '') : '' ) ?>>MANTENIMIENTO</option>
-                                </select>
+                                <?php echo lista("estado", "estado", "form-control obligatorio", "estado_equipos", "id_estado", "estado", (isset($datos[0]->estado) ? $datos[0]->estado : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                             </div>
                         </div>
                         <div class="row">
@@ -337,6 +331,16 @@
         } else {
             $('#boton_guardar').hide();
             $('#boton_cargar').show();
+
+            var id_equipo = $('#id_equipo').val()
+            if (id_equipo == '' && $('#estado').val()!=1) {
+                alerta('rojo','El inicio de un equipo es Disponible');
+                $('#boton_guardar').show();
+            $('#boton_cargar').hide();
+                return false;
+            }
+
+
             return true;
         }
     }
@@ -344,6 +348,8 @@
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
+
+
 
 
 </script>

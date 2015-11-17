@@ -31,14 +31,7 @@
             </div>
             <div class="col-md-3">
 
-                <select  class="form-control obligatorio  " id="estado" name="estado">
-                    <option value=""></option>
-                    <option value="DISPONIBLE">DISPONIBLE</option>
-                    <option value="EN OPERACIÓN">EN OPERACIÓN</option>
-                    <option value="ASIGNADO">ASIGNADO</option>
-                    <option value="EN TRANSITO">EN TRANSITO</option>
-                    <option value="MANTENIMIENTO">MANTENIMIENTO</option>
-                </select>
+                <?php echo lista("estado", "estado", "form-control obligatorio", "estado_equipos", "id_estado", "estado", (isset($post['estado']) ? $post['estado'] : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
             </div>
 
             <div class="col-md-3">

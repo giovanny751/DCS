@@ -10,7 +10,7 @@ class Equipos__model extends CI_Model {
         $variable_codigo = $post['variable_codigo'];
         $examen = $post['examen'];
 //        $estado_examen = $post['estado_examen'];
-        
+
         if (empty($post['imagen']))
             unset($post['imagen']);
         if (empty($post['adjuntar_certificado']))
@@ -39,7 +39,9 @@ class Equipos__model extends CI_Model {
 //            $this->db->set('estado', $estado_examen[$i]);
             $this->db->insert('equipo_examen_variable');
         }
-
+        $this->db->set('equipo_id', $id);
+        $this->db->set('id_estado', $post['estado']);
+        $this->db->insert('historial_equipo_estado');
 
 
 //        die();
@@ -57,10 +59,11 @@ class Equipos__model extends CI_Model {
         $datos = $this->db->get('equipos', $post);
         return $datos = $datos->result();
     }
+
     function equipo_examen_variable($post) {
         $this->db->select('equipo_examen_variable.*,examenes.examen_nombre');
         $this->db->where('id_equipo', $post[$post["campo"]]);
-        $this->db->join('examenes','examenes.examen_cod=equipo_examen_variable.examen_cod');
+        $this->db->join('examenes', 'examenes.examen_cod=equipo_examen_variable.examen_cod');
         $datos = $this->db->get('equipo_examen_variable');
         return $datos = $datos->result();
     }
@@ -131,7 +134,8 @@ class Equipos__model extends CI_Model {
         $this->db->select('responsable');
         $this->db->join('tipo_equipo', 'equipos.tipo_equipo_cod=tipo_equipo.tipo_equipo_cod');
         $this->db->where('equipos.ACTIVO', 'S');
-        if(empty($post))$this->db->where("1",2);
+        if (empty($post))
+            $this->db->where("1", 2);
         $datos = $this->db->get('equipos');
         $datos = $datos->result();
         return $datos;
