@@ -43,7 +43,7 @@
                                     *                             Estado                        </label>
                             </div>
                             <div class="col-md-6" >
-                                <?php echo lista("estado", "estado", "form-control obligatorio", "estado_equipos", "id_estado", "estado", (isset($datos[0]->estado) ? $datos[0]->estado : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                                <?php echo lista("estado", "estado", "form-control obligatorio", "estado_equipos", "id_estado", "estado", (isset($datos[0]->estado) ? $datos[0]->estado : '1'), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
                             </div>
                         </div>
                         <div class="row">
@@ -343,6 +343,54 @@
                 alerta('rojo','Estado no es valido')
                 return false;
             }
+            <?php if(isset($datos[0]->id_equipo)){ ?>
+                var id_equipo=$('#id_equipo').val();
+                var estado=$('#estado').val();
+                var estado_guardado="<?php echo $datos[0]->estado; ?>"
+                if(estado_guardado==1){
+                    if(estado==5 || estado==3){
+                        
+                    }else{
+                        alerta('rojo','Estado no valido');
+                        return false;
+                    }
+                }
+                if(estado_guardado==2){
+                    if(estado==4){
+                        
+                    }else{
+                        alerta('rojo','Estado no valido');
+                        return false;
+                    }
+                }
+                if(estado_guardado==3){
+                    if(estado==1 || estado==4){
+                        
+                    }else{
+                        alerta('rojo','Estado no valido');
+                        return false;
+                    }
+                }
+                if(estado_guardado==4){
+                    if(estado==1 || estado==2 || estado==5 ){
+                        
+                    }else{
+                        alerta('rojo','Estado no valido');
+                        return false;
+                    }
+                }
+                if(estado_guardado==5){
+                    if(estado==1){
+                        
+                    }else{
+                        alerta('rojo','Estado no valido');
+                        return false;
+                    }
+                }
+                
+            <?php }?>
+            
+            
 
 
             return true;

@@ -3,7 +3,7 @@
 class Pacientes__model extends CI_Model {
 
     function __construct() {
-        $this->db = $this->load->database('default', TRUE); 
+        $this->db = $this->load->database('default', TRUE);
         $this->db1 = $this->load->database('parametro', TRUE);
         parent::__construct();
     }
@@ -126,6 +126,19 @@ class Pacientes__model extends CI_Model {
                 $this->db->set('aseguradora_id', $aseguradora2[$i]);
                 $this->db->insert('aseguradora_paciente');
             }
+
+
+        $this->db->select('*');
+        $this->db->where('id_paciente', $id);
+        $datos = $this->db->get('paciente_equipo_tipoequipo');
+        $datos = $datos->result();
+        $array_estado = array();
+        if (count($datos)) {
+            foreach ($datos as $value) {
+                $array_estado[] = $value->id_equipo;
+            }
+        }
+
         $this->db->where('id_paciente', $id);
         $this->db->delete('paciente_equipo_tipoequipo');
 //        echo count($tipo_equipo_cod);
@@ -136,18 +149,37 @@ class Pacientes__model extends CI_Model {
                 $this->db->set('id_equipo', $equipo_id[$i]);
                 $this->db->insert('paciente_equipo_tipoequipo');
 //                echo $this->db->last_query();
-                
-                $this->db->where('id_equipo',$equipo_id[$i]);
-                $this->db->set('estado','3');
-                $this->db->update('equipos');
-                
-                $this->db->set('equipo_id',$equipo_id[$i]);
-                $this->db->set('id_estado','4');
-                $this->db->set('fecha', date('Y-m-j'));
-                $this->db->set('ubicacion', 'TRANSITO');
-                $this->db->set('usuario', $this->session->userdata('usu_id'));
-                $this->db->insert('historial_equipo_estado');
+
+                if (!in_array($equipo_id[$i], $array_estado)) {
+                    $this->db->where('id_equipo', $equipo_id[$i]);
+                    $this->db->set('estado', '3');
+                    $this->db->set('ubicacion', 'ALMACEN');
+                    $this->db->update('equipos');
+
+                    $this->db->set('equipo_id', $equipo_id[$i]);
+                    $this->db->set('id_estado', '3');
+                    $this->db->set('fecha', date('Y-m-j'));
+                    $this->db->set('ubicacion', 'ALMACEN');
+                    $this->db->set('usuario', $this->session->userdata('usu_id'));
+                    $this->db->insert('historial_equipo_estado');
+                }
             }
+            for($i=0;$i<count($array_estado);$i++){
+                if (!in_array($array_estado[$i],$equipo_id)) {
+                    $this->db->where('id_equipo', $array_estado[$i]);
+                    $this->db->set('estado', '4');
+                    $this->db->set('ubicacion', 'En transito');
+                    $this->db->update('equipos');
+
+                    $this->db->set('equipo_id', $array_estado[$i]);
+                    $this->db->set('id_estado', '4');
+                    $this->db->set('fecha', date('Y-m-j'));
+                    $this->db->set('ubicacion', 'En transito');
+                    $this->db->set('usuario', $this->session->userdata('usu_id'));
+                    $this->db->insert('historial_equipo_estado');
+                }
+            }
+            
 
 
         $this->db1->where('id_paciente', $id);
@@ -165,7 +197,6 @@ class Pacientes__model extends CI_Model {
             $this->db1->insert('devices');
         }
 //        echo $this->db1->last_query();
-
 //        die();
         return $id;
     }
