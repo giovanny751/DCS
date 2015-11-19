@@ -142,7 +142,10 @@ class Pacientes__model extends CI_Model {
                 $this->db->update('equipos');
                 
                 $this->db->set('equipo_id',$equipo_id[$i]);
-                $this->db->set('id_estado','3');
+                $this->db->set('id_estado','4');
+                $this->db->set('fecha', date('Y-m-j'));
+                $this->db->set('ubicacion', 'TRANSITO');
+                $this->db->set('usuario', $this->session->userdata('usu_id'));
                 $this->db->insert('historial_equipo_estado');
             }
 

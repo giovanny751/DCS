@@ -333,10 +333,14 @@
             $('#boton_cargar').show();
 
             var id_equipo = $('#id_equipo').val()
-            if (id_equipo == '' && $('#estado').val()!=1) {
-                alerta('rojo','El inicio de un equipo es Disponible');
+            if (id_equipo == '' && $('#estado').val() != 1) {
+                alerta('rojo', 'El inicio de un equipo es Disponible');
                 $('#boton_guardar').show();
-            $('#boton_cargar').hide();
+                $('#boton_cargar').hide();
+                return false;
+            }
+            if($('#estado').val()==2){
+                alerta('rojo','Estado no es valido')
                 return false;
             }
 

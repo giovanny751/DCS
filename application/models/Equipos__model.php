@@ -41,6 +41,9 @@ class Equipos__model extends CI_Model {
         }
         $this->db->set('equipo_id', $id);
         $this->db->set('id_estado', $post['estado']);
+        $this->db->set('fecha', date('Y-m-j'));
+        $this->db->set('ubicacion', $post['ubicacion']);
+        $this->db->set('usuario', $this->session->userdata('usu_id'));
         $this->db->insert('historial_equipo_estado');
 
 
@@ -137,6 +140,43 @@ class Equipos__model extends CI_Model {
         if (empty($post))
             $this->db->where("1", 2);
         $datos = $this->db->get('equipos');
+        $datos = $datos->result();
+        return $datos;
+    }
+    function informacion_tabla1($post){
+        if(!empty($post['estado']))
+        $this->db->where('estado_equipos.id_estado',$post['estado']);
+        if(!empty($post['descripcion']))
+        $this->db->like('equipos.descripcion',$post['descripcion']);
+        if(!empty($post['id_equipo']))
+        $this->db->where('tipo_equipo.tipo_equipo_cod',$post['id_equipo']);
+        $this->db->select("tipo_equipo.referencia,equipos.descripcion,equipos.serial,estado_equipos.estado,equipos.fecha_ultima_calibracion,'1' cantidad",false);
+        $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod=equipos.tipo_equipo_cod');
+        $this->db->join('estado_equipos','estado_equipos.id_estado=equipos.estado');
+        $datos=$this->db->get('equipos');
+        $datos = $datos->result();
+        return $datos;
+    }
+    function informacion_tabla2($post){
+        if(!empty($post['estado']))
+        $this->db->where('estado_equipos.id_estado',$post['estado']);
+//        if(!empty($post['descripcion']))
+//        $this->db->like('equipos.descripcion',$post['descripcion']);
+        if(!empty($post['id_equipo']))
+        $this->db->where('tipo_equipo.tipo_equipo_cod',$post['id_equipo']);
+        
+        if(!empty($post['fecha_ini']))
+        $this->db->where('historial_equipo_estado.fecha >',$post['fecha_ini']);
+        
+        if(!empty($post['fecha_fin']))
+        $this->db->where('historial_equipo_estado.fecha <',$post['fecha_fin']);
+        
+        $this->db->select("tipo_equipo.referencia,equipos.descripcion,equipos.serial,estado_equipos.estado,historial_equipo_estado.ubicacion, historial_equipo_estado.fecha,user.usu_usuario",false);
+        $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod=equipos.tipo_equipo_cod');
+        $this->db->join('estado_equipos','estado_equipos.id_estado=equipos.estado');
+        $this->db->join('historial_equipo_estado','estado_equipos.id_estado=historial_equipo_estado.id_estado and historial_equipo_estado.equipo_id=equipos.id_equipo');
+        $this->db->join('user','user.usu_id=historial_equipo_estado.usuario','left');
+        $datos=$this->db->get('equipos');
         $datos = $datos->result();
         return $datos;
     }

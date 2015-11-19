@@ -19,6 +19,10 @@ class Equipos extends My_Controller {
         $this->data['post'] = $this->input->post();
         $this->layout->view('equipos/index', $this->data);
     }
+    function Informes_estados() {
+        $this->data['post'] = $this->input->post();
+        $this->layout->view('equipos/Informes_estados', $this->data);
+    }
 
     function consult_equipos() {
         $post = $this->input->post();
@@ -95,6 +99,25 @@ class Equipos extends My_Controller {
     function traer_variables2() {
         $post= $this->input->post();
         echo lista("variable_codigo", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S","examen_cod"=>$post['id_examen']), /* readOnly? */ false);
+    }
+function obterner_informe(){
+    $post=$this->input->post();
+    if($post['informe']==1){
+        $this->tabla1();
+    }
+    if($post['informe']==2){
+        $this->tabla2();
+    }
+}
+    function tabla1(){
+        $this->data['post']=$post=$this->input->post();
+        $this->data['array']=$this->Equipos__model->informacion_tabla1($post);
+        $this->load->view('equipos/tabla1', $this->data);
+    }
+    function tabla2(){
+        $this->data['post']=$post=$this->input->post();
+        $this->data['array']=$this->Equipos__model->informacion_tabla2($post);
+        $this->load->view('equipos/tabla2', $this->data);
     }
 
 }
