@@ -19,6 +19,7 @@ class Equipos extends My_Controller {
         $this->data['post'] = $this->input->post();
         $this->layout->view('equipos/index', $this->data);
     }
+
     function Informes_estados() {
         $this->data['post'] = $this->input->post();
         $this->layout->view('equipos/Informes_estados', $this->data);
@@ -79,6 +80,7 @@ class Equipos extends My_Controller {
         $this->data['equipo_examen_variable'] = $this->Equipos__model->equipo_examen_variable($this->data['post']);
         $this->layout->view('equipos/index', $this->data);
     }
+
     function edit_equipos2() {
         $this->data['post'] = $this->input->post();
         if (!isset($this->data['post']['campo']))
@@ -92,31 +94,42 @@ class Equipos extends My_Controller {
         $info = auto("equipos", "id_equipo", "ubicacion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function traer_variables() {
-        $post= $this->input->post();
-        echo lista("variable_codigo[]", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S","examen_cod"=>$post['id_examen']), /* readOnly? */ false);
+        $post = $this->input->post();
+        echo lista("variable_codigo[]", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S", "examen_cod" => $post['id_examen']), /* readOnly? */ false);
     }
+
     function traer_variables2() {
-        $post= $this->input->post();
-        echo lista("variable_codigo", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S","examen_cod"=>$post['id_examen']), /* readOnly? */ false);
+        $post = $this->input->post();
+        echo lista("variable_codigo", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", null, array("ACTIVO" => "S", "examen_cod" => $post['id_examen']), /* readOnly? */ false);
     }
-function obterner_informe(){
-    $post=$this->input->post();
-    if($post['informe']==1){
-        $this->tabla1();
+
+    function obterner_informe() {
+        $post = $this->input->post();
+        if ($post['accion'] == 2) {
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="Documentos.xlsx"');
+            header('Cache-Control: max-age=0');
+            echo '<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">';
+        }
+        if ($post['informe'] == 1) {
+            $this->tabla1();
+        }
+        if ($post['informe'] == 2) {
+            $this->tabla2();
+        }
     }
-    if($post['informe']==2){
-        $this->tabla2();
-    }
-}
-    function tabla1(){
-        $this->data['post']=$post=$this->input->post();
-        $this->data['array']=$this->Equipos__model->informacion_tabla1($post);
+
+    function tabla1() {
+        $this->data['post'] = $post = $this->input->post();
+        $this->data['array'] = $this->Equipos__model->informacion_tabla1($post);
         $this->load->view('equipos/tabla1', $this->data);
     }
-    function tabla2(){
-        $this->data['post']=$post=$this->input->post();
-        $this->data['array']=$this->Equipos__model->informacion_tabla2($post);
+
+    function tabla2() {
+        $this->data['post'] = $post = $this->input->post();
+        $this->data['array'] = $this->Equipos__model->informacion_tabla2($post);
         $this->load->view('equipos/tabla2', $this->data);
     }
 
