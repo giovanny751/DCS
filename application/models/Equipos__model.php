@@ -180,6 +180,12 @@ class Equipos__model extends CI_Model {
         $datos = $datos->result();
         return $datos;
     }
+    function verificar_equipo($post){
+        $this->db->select("count(id_equipo) as id_equipo",false);
+        $this->db->where("id_equipo",$post['id_equipo']);
+        $datos=$this->db->get("paciente_equipo_tipoequipo");
+        return $datos->result();
+    }
 
 }
 

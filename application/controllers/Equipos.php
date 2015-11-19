@@ -132,6 +132,10 @@ class Equipos extends My_Controller {
         $this->data['array'] = $this->Equipos__model->informacion_tabla2($post);
         $this->load->view('equipos/tabla2', $this->data);
     }
+    function verificar_equipo(){
+        $this->data['post'] = $post = $this->input->post();
+        echo $datos = $this->Equipos__model->verificar_equipo($post);
+    }
 
 }
 

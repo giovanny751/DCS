@@ -52,7 +52,7 @@
                                     *                             Ubicación                        </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : '' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
+                                <input type="text" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : 'Almacén' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
                             </div>
                         </div>
                         <div class="row">
@@ -339,61 +339,75 @@
                 $('#boton_cargar').hide();
                 return false;
             }
-            if($('#estado').val()==2){
-                alerta('rojo','Estado no es valido')
+            if ($('#estado').val() == 2) {
+                alerta('rojo', 'Estado no es valido')
                 return false;
             }
-            <?php if(isset($datos[0]->id_equipo)){ ?>
-                var id_equipo=$('#id_equipo').val();
-                var estado=$('#estado').val();
-                var estado_guardado="<?php echo $datos[0]->estado; ?>"
-                if(estado_guardado==1){
-                    if(estado==5 || estado==3){
-                        
-                    }else{
-                        alerta('rojo','Estado no valido');
-                        return false;
-                    }
-                }
-                if(estado_guardado==2){
-                    if(estado==4){
-                        
-                    }else{
-                        alerta('rojo','Estado no valido');
-                        return false;
-                    }
-                }
-                if(estado_guardado==3){
-                    if(estado==1 || estado==4){
-                        
-                    }else{
-                        alerta('rojo','Estado no valido');
-                        return false;
-                    }
-                }
-                if(estado_guardado==4){
-                    if(estado==1 || estado==2 || estado==5 ){
-                        
-                    }else{
-                        alerta('rojo','Estado no valido');
-                        return false;
-                    }
-                }
-                if(estado_guardado==5){
-                    if(estado==1){
-                        
-                    }else{
-                        alerta('rojo','Estado no valido');
-                        return false;
-                    }
-                }
-                
-            <?php }?>
-            
-            
+<?php if (isset($datos[0]->id_equipo)) { ?>
+                var id_equipo = $('#id_equipo').val();
+                var estado = $('#estado').val();
+                var estado_guardado = "<?php echo $datos[0]->estado; ?>"
+                if (estado_guardado == 1) {
+                    if (estado == 5 || estado == 3) {
 
+                    } else {
+                        alerta('rojo', 'Estado no valido');
+                        return false;
+                    }
+                }
+                if (estado_guardado == 2) {
+                    if (estado == 4) {
 
-            return true;
+                    } else {
+                        alerta('rojo', 'Estado no valido');
+                        return false;
+                    }
+                }
+                if (estado_guardado == 3) {
+                    if (estado == 1 || estado == 4) {
+
+                    } else {
+                        alerta('rojo', 'Estado no valido');
+                        return false;
+                    }
+                }
+                if (estado_guardado == 4) {
+                    if (estado == 1 || estado == 2 || estado == 5) {
+
+                    } else {
+                        alerta('rojo', 'Estado no valido');
+                        return false;
+                    }
+                }
+                if (estado_guardado == 5) {
+                    if (estado == 1) {
+
+                    } else {
+                        alerta('rojo', 'Estado no valido');
+                        return false;
+                    }
+                }
+                if (estado_guardado != estado) {
+                    var url = '<?php echo base_url('index.php/Equipos/verificar_equipo') ?>';
+                    $.post(url, {id_equipo: id_equipo})
+                            .done(function (msg) {
+                                if (msg != 0) {
+                                    alerta('rojo', 'El equipo ya se encuentra asignado a un paciente');
+                                    return false
+                                } else {
+                                    return true;
+                                }
+                            })
+                            .fail(function () {
+                                alerta('rojo', 'Error al consultar el equipo');
+                            })
+                }else{
+                    return true;
+                }
+
+<?php } else { ?>
+                return true;
+<?php } ?>
         }
     }
     $('body').delegate('.number', 'keypress', function (tecla) {
