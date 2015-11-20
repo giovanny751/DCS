@@ -13,10 +13,10 @@
             <option value="2">Movimientos Equipos</option>
         </select>
     </div>
-    <div class="col-md-3 tipo_i" >
+    <div class="col-md-3" >
         Descripción
     </div>
-    <div class="col-md-3 tipo_i" >
+    <div class="col-md-3 " >
         <input type="text" name="descripcion" id="descripcion" class="form-control">
     </div>
     

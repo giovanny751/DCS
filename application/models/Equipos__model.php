@@ -161,8 +161,8 @@ class Equipos__model extends CI_Model {
     function informacion_tabla2($post){
         if(!empty($post['estado']))
         $this->db->where('estado_equipos.id_estado',$post['estado']);
-//        if(!empty($post['descripcion']))
-//        $this->db->like('equipos.descripcion',$post['descripcion']);
+        if(!empty($post['descripcion']))
+        $this->db->like('equipos.descripcion',$post['descripcion']);
         if(!empty($post['id_equipo']))
         $this->db->where('tipo_equipo.tipo_equipo_cod',$post['id_equipo']);
         
