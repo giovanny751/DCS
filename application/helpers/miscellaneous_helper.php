@@ -402,13 +402,14 @@ function lista($name, $id, $class, $tabla, $option_value, $option_name, $value, 
     }
     function buscador($tabla,$nombrecampo,$palabra,$campo1=null,$campo2=null,$campo3=null){
         $CI = & get_instance();
-        $CI->db->like($nombrecampo,$palabra);
+        $CI->db->like("(".$nombrecampo,$palabra,false);
         if($campo1!=null)
         $CI->db->or_like($campo1,$palabra);
         if($campo2!=null)
         $CI->db->or_like($campo2,$palabra);
         if($campo3!=null)
         $CI->db->or_like($campo3,$palabra);
+        $CI->db->where(1,"1)",false);
         $CI->db->where($tabla.'.activo','S');
         $user = $CI->db->get($tabla);
 //        echo $CI->db->last_query();

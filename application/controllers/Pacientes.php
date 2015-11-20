@@ -111,8 +111,10 @@ class Pacientes extends My_Controller {
     
     
     function autocomplete_descripcion() {
+        
         $info = $this->auto5("equipos", "id_equipo", "equipos.descripcion", $this->input->get('term'));
         $tipo_equipo_cod=$this->input->get('tipo_equipo_cod');
+//        echo $this->db->last_query();
         if(isset($tipo_equipo_cod))
         if(!empty($tipo_equipo_cod)){
             $this->db->where('tipo_equipo_cod',$this->input->get('tipo_equipo_cod'));
@@ -121,6 +123,7 @@ class Pacientes extends My_Controller {
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
     function auto5($tabla,$idcampo,$nombrecampo,$letra) {
+        $this->db->where('tipo_equipo.activo','S');
         $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod='.$tabla.'.tipo_equipo_cod');
             $search = buscador($tabla,$nombrecampo,$letra,'serial');
 //            print_r($search);

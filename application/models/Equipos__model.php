@@ -153,6 +153,7 @@ class Equipos__model extends CI_Model {
         $this->db->select("tipo_equipo.referencia,equipos.descripcion,equipos.serial,estado_equipos.estado,equipos.fecha_ultima_calibracion,'1' cantidad",false);
         $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod=equipos.tipo_equipo_cod');
         $this->db->join('estado_equipos','estado_equipos.id_estado=equipos.estado');
+        $this->db->order_by('equipos.id_equipo');
         $datos=$this->db->get('equipos');
         $datos = $datos->result();
         return $datos;
@@ -173,10 +174,12 @@ class Equipos__model extends CI_Model {
         
         $this->db->select("tipo_equipo.referencia,equipos.descripcion,equipos.serial,estado_equipos.estado,historial_equipo_estado.ubicacion, historial_equipo_estado.fecha,user.usu_usuario",false);
         $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod=equipos.tipo_equipo_cod');
-        $this->db->join('estado_equipos','estado_equipos.id_estado=equipos.estado');
-        $this->db->join('historial_equipo_estado','estado_equipos.id_estado=historial_equipo_estado.id_estado and historial_equipo_estado.equipo_id=equipos.id_equipo');
+        $this->db->join('historial_equipo_estado',' historial_equipo_estado.equipo_id=equipos.id_equipo');
+        $this->db->join('estado_equipos','estado_equipos.id_estado=historial_equipo_estado.id_estado');
         $this->db->join('user','user.usu_id=historial_equipo_estado.usuario','left');
+        $this->db->order_by('id_historico');
         $datos=$this->db->get('equipos');
+//        echo $this->db->last_query();
         $datos = $datos->result();
         return $datos;
     }

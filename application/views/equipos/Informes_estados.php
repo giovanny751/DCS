@@ -26,7 +26,7 @@
         Tipo
     </div>
     <div class="col-md-3">
-        <?php echo lista("id_equipo", "id_equipo", "form-control", "equipos", "id_equipo", "descripcion", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+        <?php echo lista("id_equipo", "id_equipo", "form-control", "tipo_equipo", "tipo_equipo_cod", "referencia", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
     </div>
     <div class="col-md-3" >
         Estado
