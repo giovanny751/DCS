@@ -369,7 +369,7 @@
                 var estado = $('#estado').val();
                 var estado_guardado = "<?php echo $datos[0]->estado; ?>"
                 if (estado_guardado == 1) {
-                    if (estado == 5 || estado == 3) {
+                    if (estado == 5 ) {
 
                     } else {
                         alerta('rojo', 'Estado no valido');
