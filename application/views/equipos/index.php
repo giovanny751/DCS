@@ -52,7 +52,7 @@
                                     *                             Ubicación                        </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : 'Almacén' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
+                                <input type="text" readonly="readonly" value="<?php echo (isset($datos[0]->ubicacion) ? $datos[0]->ubicacion : 'Almacén' ) ?>" class=" form-control obligatorio  " id="ubicacion" name="ubicacion">
                             </div>
                         </div>
                         <div class="row">
@@ -278,6 +278,25 @@
     <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
 <script>
+    $('#estado').change(function(){
+        switch($(this).val()){
+            case '1':
+                $('#ubicacion').val('ALMACEN')
+                break;
+            case '2':
+                
+                break;
+            case '3':
+                $('#ubicacion').val('ALMACEN')
+                break;
+            case '4':
+                $('#ubicacion').val('EN TRANSITO')
+                break;
+            case '5':
+                $('#ubicacion').val('MANTENIMIENTO')
+                break;
+        }
+    })
     $('body').delegate('.variable_codigo', 'change', function () {
         var y = new Array();
         $('.variable_codigo').each(function () {
@@ -341,6 +360,8 @@
             }
             if ($('#estado').val() == 2) {
                 alerta('rojo', 'Estado no es valido')
+                $('#boton_guardar').show();
+                $('#boton_cargar').hide();
                 return false;
             }
 <?php if (isset($datos[0]->id_equipo)) { ?>
@@ -352,6 +373,8 @@
 
                     } else {
                         alerta('rojo', 'Estado no valido');
+                        $('#boton_guardar').show();
+                        $('#boton_cargar').hide();
                         return false;
                     }
                 }
@@ -360,6 +383,8 @@
 
                     } else {
                         alerta('rojo', 'Estado no valido');
+                        $('#boton_guardar').show();
+                        $('#boton_cargar').hide();
                         return false;
                     }
                 }
@@ -368,6 +393,8 @@
 
                     } else {
                         alerta('rojo', 'Estado no valido');
+                        $('#boton_guardar').show();
+                        $('#boton_cargar').hide();
                         return false;
                     }
                 }
@@ -376,6 +403,8 @@
 
                     } else {
                         alerta('rojo', 'Estado no valido');
+                        $('#boton_guardar').show();
+                        $('#boton_cargar').hide();
                         return false;
                     }
                 }
@@ -384,24 +413,32 @@
 
                     } else {
                         alerta('rojo', 'Estado no valido');
+                        $('#boton_guardar').show();
+                        $('#boton_cargar').hide();
                         return false;
                     }
                 }
                 if (estado_guardado != estado) {
                     var url = '<?php echo base_url('index.php/Equipos/verificar_equipo') ?>';
-                    $.post(url, {id_equipo: id_equipo})
-                            .done(function (msg) {
-                                if (msg != 0) {
-                                    alerta('rojo', 'El equipo ya se encuentra asignado a un paciente');
-                                    return false
-                                } else {
-                                    return true;
-                                }
-                            })
-                            .fail(function () {
-                                alerta('rojo', 'Error al consultar el equipo');
-                            })
-                }else{
+
+                    $.ajax({
+                        url: url,
+                        cache: false,
+                        data: {id_equipo: id_equipo},
+                        async: true,
+                        type: 'POST',
+                        success: function (msg, status) {
+                            if (msg != 0) {
+                                $('#boton_guardar').show();
+                                $('#boton_cargar').hide();
+                                alerta('rojo', 'El equipo ya se encuentra asignado a un paciente');
+                                return false
+                            } else {
+                                return true;
+                            }
+                        }
+                    });
+                } else {
                     return true;
                 }
 
