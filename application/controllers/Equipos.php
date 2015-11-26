@@ -94,6 +94,10 @@ class Equipos extends My_Controller {
         $info = auto("equipos", "id_equipo", "ubicacion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+    function autocomplete_descripcion() {
+        $info = auto("equipos", "id_equipo", "descripcion", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
 
     function traer_variables() {
         $post = $this->input->post();
@@ -109,7 +113,7 @@ class Equipos extends My_Controller {
         $post = $this->input->post();
         if ($post['accion'] == 2) {
             header('Content-Type: application/vnd.ms-excel');
-            header('Content-Disposition: attachment;filename="Documentos.xlsx"');
+            header('Content-Disposition: attachment;filename="Documentos.xls"');
             header('Cache-Control: max-age=0');
             echo '<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">';
         }

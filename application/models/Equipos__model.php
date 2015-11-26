@@ -144,8 +144,8 @@ class Equipos__model extends CI_Model {
         return $datos;
     }
     function informacion_tabla1($post){
-        if(!empty($post['estado']))
-        $this->db->where('estado_equipos.id_estado',$post['estado']);
+        if(!empty($post['id_estado']))
+        $this->db->where('estado_equipos.id_estado',$post['id_estado']);
         if(!empty($post['descripcion']))
         $this->db->like('equipos.descripcion',$post['descripcion']);
         if(!empty($post['id_equipo']))
@@ -159,18 +159,18 @@ class Equipos__model extends CI_Model {
         return $datos;
     }
     function informacion_tabla2($post){
-        if(!empty($post['estado']))
-        $this->db->where('estado_equipos.id_estado',$post['estado']);
+        if(!empty($post['id_estado']))
+        $this->db->where('estado_equipos.id_estado',$post['id_estado']);
         if(!empty($post['descripcion']))
         $this->db->like('equipos.descripcion',$post['descripcion']);
         if(!empty($post['id_equipo']))
         $this->db->where('tipo_equipo.tipo_equipo_cod',$post['id_equipo']);
         
         if(!empty($post['fecha_ini']))
-        $this->db->where('historial_equipo_estado.fecha >',$post['fecha_ini']);
+        $this->db->where('historial_equipo_estado.fecha >=',$post['fecha_ini'].' 00:00:00');
         
         if(!empty($post['fecha_fin']))
-        $this->db->where('historial_equipo_estado.fecha <',$post['fecha_fin']);
+        $this->db->where('historial_equipo_estado.fecha <=',$post['fecha_fin'].' 23:59:59');
         
         $this->db->select("tipo_equipo.referencia,equipos.descripcion,equipos.serial,estado_equipos.estado,historial_equipo_estado.ubicacion, historial_equipo_estado.fecha,user.usu_usuario",false);
         $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod=equipos.tipo_equipo_cod');
@@ -187,7 +187,8 @@ class Equipos__model extends CI_Model {
         $this->db->select("count(id_equipo) as id_equipo",false);
         $this->db->where("id_equipo",$post['id_equipo']);
         $datos=$this->db->get("paciente_equipo_tipoequipo");
-        return $datos->result();
+        $datos=$datos->result();
+        return $datos[0]->id_equipo;
     }
 
 }

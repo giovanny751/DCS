@@ -278,13 +278,13 @@
     <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
 <script>
-    $('#estado').change(function(){
-        switch($(this).val()){
+    $('#estado').change(function () {
+        switch ($(this).val()) {
             case '1':
                 $('#ubicacion').val('ALMACEN')
                 break;
             case '2':
-                
+
                 break;
             case '3':
                 $('#ubicacion').val('ALMACEN')
@@ -296,6 +296,39 @@
                 $('#ubicacion').val('MANTENIMIENTO')
                 break;
         }
+<?php if (isset($datos[0]->id_equipo)) { ?>
+                            
+            var estado = $(this).val();
+            var estado_guardado = <?php echo $datos[0]->estado; ?>;
+            var ubicacion = "<?php echo $datos[0]->ubicacion; ?>";
+            if(estado_guardado==3 && estado==4){
+                return true;
+            }
+            if (estado_guardado != estado) {
+                var url = '<?php echo base_url('index.php/Equipos/verificar_equipo') ?>';
+                var id_equipo = $('#id_equipo').val();
+                $.ajax({
+                    url: url,
+                    cache: false,
+                    data: {id_equipo: id_equipo},
+                    async: true,
+                    type: 'POST',
+                    success: function (msg, status) {
+                        if (msg != 0) {
+                            $('#boton_guardar').show();
+                            $('#boton_cargar').hide();
+                            alerta('rojo', 'El equipo ya se encuentra asignado a un paciente');
+                            $('#estado').val(estado_guardado);
+                            $('#ubicacion').val(ubicacion);
+                        } else {
+                            
+                        }
+                    }
+                });
+            } else {
+                return true;
+            }
+<?php } ?>
     })
     $('body').delegate('.variable_codigo', 'change', function () {
         var y = new Array();
@@ -369,7 +402,7 @@
                 var estado = $('#estado').val();
                 var estado_guardado = "<?php echo $datos[0]->estado; ?>"
                 if (estado_guardado == 1) {
-                    if (estado == 5 ) {
+                    if (estado == 5) {
 
                     } else {
                         alerta('rojo', 'Estado no valido');
@@ -418,30 +451,8 @@
                         return false;
                     }
                 }
-                if (estado_guardado != estado) {
-                    var url = '<?php echo base_url('index.php/Equipos/verificar_equipo') ?>';
-
-                    $.ajax({
-                        url: url,
-                        cache: false,
-                        data: {id_equipo: id_equipo},
-                        async: true,
-                        type: 'POST',
-                        success: function (msg, status) {
-                            if (msg != 0) {
-                                $('#boton_guardar').show();
-                                $('#boton_cargar').hide();
-                                alerta('rojo', 'El equipo ya se encuentra asignado a un paciente');
-                                return false
-                            } else {
-                                return true;
-                            }
-                        }
-                    });
-                } else {
-                    return true;
-                }
-
+                
+                return true;
 <?php } else { ?>
                 return true;
 <?php } ?>

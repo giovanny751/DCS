@@ -17,6 +17,14 @@
         Descripción
     </div>
     <div class="col-md-3 " >
+        <script>
+                    $('document').ready(function () {
+                        $('#descripcion').autocomplete({
+                            source: "<?php echo base_url("index.php//Equipos/autocomplete_descripcion") ?>",
+                            minLength: 3
+                        });
+                    });
+                </script>
         <input type="text" name="descripcion" id="descripcion" class="form-control">
     </div>
     
@@ -37,7 +45,7 @@
 </div>
 <div class="row tipo_ii" style="display:none">
     <div class="col-md-3">
-        Fecha Incio
+        Fecha Inicio
     </div>
     <div class="col-md-3">
         <input type="text" name="fecha_ini" id="fecha_ini" class="fecha form-control">

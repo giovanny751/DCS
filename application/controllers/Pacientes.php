@@ -124,6 +124,7 @@ class Pacientes extends My_Controller {
     }
     function auto5($tabla,$idcampo,$nombrecampo,$letra) {
         $this->db->where('tipo_equipo.activo','S');
+        $this->db->where('equipos.estado','1');
         $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod='.$tabla.'.tipo_equipo_cod');
             $search = buscador($tabla,$nombrecampo,$letra,'serial');
 //            print_r($search);

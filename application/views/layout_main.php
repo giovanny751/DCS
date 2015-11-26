@@ -1,7 +1,7 @@
 <title></title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="<?= base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
+<script src="<?php  echo  base_url('js/jquery-1.10.2.js') ?>" type="text/javascript"></script>
 
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -12,16 +12,16 @@
 
 
 <!--<script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>-->
-<!--<script src="<?= base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>-->
-<!--<link href="<?= base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>-->
+<!--<script src="<?php  echo  base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>-->
+<!--<link href="<?php  echo  base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>-->
 <link href="<?php // echo base_url('img/blanco.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
-<script src="<?= base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
-<!--<script src="<?= base_url('js/validCampoFranz.js') ?>" type="text/javascript"></script>-->
-<script src="<?= base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
-<script src="<?= base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
-<link href="<?= base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
-<link href="<?= base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
-<link href="<?= base_url('css/jquery.smartmenus.bootstrap.css') ?>" rel="stylesheet">
+<script src="<?php  echo  base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
+<!--<script src="<?php  echo  base_url('js/validCampoFranz.js') ?>" type="text/javascript"></script>-->
+<script src="<?php  echo  base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
+<script src="<?php  echo  base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
+<link href="<?php  echo  base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php  echo  base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php  echo  base_url('css/jquery.smartmenus.bootstrap.css') ?>" rel="stylesheet">
 <script src="<?php echo base_url('/assets/global/scripts/metronic.js'); ?>" type="text/javascript"></script>
 <!--<script src="<?php echo base_url('/assets/admin/pages/scripts/ui-blockui.js'); ?>"></script>-->
 <!--<script src="<?php echo base_url('/assets/global/plugins/jquery.blockui.min.js'); ?>" type="text/javascript"></script>-->
@@ -51,16 +51,16 @@
 <!--<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js'); ?>" type="text/javascript"></script>-->
 <!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>"></script>-->
 <!--<script src="<?php echo base_url('/assets/admin/pages/scripts/components-pickers.js'); ?>"></script>-->
-<script src="<?= base_url('js/jquery.blockUI.js') ?>" type="text/javascript"></script>
+<script src="<?php  echo  base_url('js/jquery.blockUI.js') ?>" type="text/javascript"></script>
 
 <!-- Estilos principales de botones y/o elementos -->
-<link rel="stylesheet" href="<?= base_url('css/DCSestilos.css') ?>" />
+<link rel="stylesheet" href="<?php  echo  base_url('css/DCSestilos.css') ?>" />
 
-<link rel="stylesheet" href="<?= base_url('css/menuVertical.css') ?>" />
-<script type="text/javascript" src="<?= base_url('js/menuVertical.js') ?>"></script>
+<link rel="stylesheet" href="<?php  echo  base_url('css/menuVertical.css') ?>" />
+<script type="text/javascript" src="<?php  echo  base_url('js/menuVertical.js') ?>"></script>
 
-<link rel="stylesheet" href="<?= base_url('css/tabs.css') ?>" />
-<script type="text/javascript" src="<?= base_url('js/tabs.js') ?>"></script>
+<link rel="stylesheet" href="<?php  echo  base_url('css/tabs.css') ?>" />
+<script type="text/javascript" src="<?php  echo  base_url('js/tabs.js') ?>"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
  
 <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
@@ -110,7 +110,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
 <!--    <h1>
-        <img src="<?= base_url('img/homeCare.PNG') ?>" alt="Logo" />
+        <img src="<?php  echo  base_url('img/homeCare.PNG') ?>" alt="Logo" />
     </h1>-->
 </header>
 <div id="cssmenu">
