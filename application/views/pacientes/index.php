@@ -33,10 +33,26 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
+                        <label for="medico">Tipo documento</label>
+                    </div>
+                    <div class="col-md-6">
+                        <select id="tipo_documento" name="tipo_documento" class="form-control">
+                            <option value=""></option>
+                            <option value="PA" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='PE'?'selected':'') : '' ) ?>>Pasaporte</option>
+                            <option value="RC" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='RC'?'selected':'') : '' ) ?>>Registro Civil</option>
+                            <option value="CE" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='CE'?'selected':'') : '' ) ?>>Cédula Extranjera</option>
+                            <option value="CC" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='CC'?'selected':'') : '' ) ?>>Cédula de Ciudadanía</option>
+                            <option value="NU" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='NU'?'selected':'') : '' ) ?>>Núm. único de ident.</option>
+                            <option value="TI" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='TI'?'selected':'') : '' ) ?>>Tarjeta de Identidad</option>
+                        </select>
+                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <label for="cedula_paciente">* Cédula paciente </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->cedula_paciente) ? $datos[0]->cedula_paciente : '' ) ?>" class=" form-control obligatorio  number" id="cedula_paciente" name="cedula_paciente">
+                                <input type="text" value="<?php echo (isset($datos[0]->cedula_paciente) ? $datos[0]->cedula_paciente : '' ) ?>" class=" form-control obligatorio  " id="cedula_paciente" name="cedula_paciente">
                             </div>
                         </div>
                         <div class="row">
@@ -55,14 +71,14 @@
                                 <input type="text" value="<?php echo (isset($datos[0]->apellidos) ? $datos[0]->apellidos : '' ) ?>" class=" form-control obligatorio  " id="apellidos" name="apellidos">
                             </div>
                         </div>
-<!--                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="fecha_afiliacion">* Fecha Afiliación </label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  fecha  " id="fecha_afiliacion" name="fecha_afiliacion">
-                            </div>
-                        </div>-->
+                        <!--                        <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="fecha_afiliacion">* Fecha Afiliación </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" value="<?php echo (isset($datos[0]->fecha_afiliacion) ? $datos[0]->fecha_afiliacion : '' ) ?>" class="form-control obligatorio  fecha  " id="fecha_afiliacion" name="fecha_afiliacion">
+                                                    </div>
+                                                </div>-->
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="direccion">* Dirección </label>
@@ -112,7 +128,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="foto">Foto </label>
+                        <label for="foto">Foto (8 Mb) Máximo</label>
                     </div>
                     <div class="col-md-3">
                         <input type="file" value="<?php echo (isset($datos[0]->foto) ? $datos[0]->foto : '' ) ?>" class="   " id="foto" name="foto">
@@ -198,6 +214,33 @@
                     <div class="col-md-3">
                         <input type="text" value="<?php echo (isset($datos[0]->especialidad) ? $datos[0]->especialidad : '' ) ?>" class=" form-control obligatorio    " id="especialidad" name="especialidad">
                     </div>
+                    <div class="col-md-3">
+                        <label for="medico">Sexo</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="sexo" name="sexo" class="form-control">
+                            <option value=""></option>
+                            <option value="1" <?php echo (isset($datos[0]->sexo) ? ($datos[0]->sexo==1?'selected':'') : '' ) ?>>F</option>
+                            <option value="2" <?php echo (isset($datos[0]->sexo) ? ($datos[0]->sexo==2?'selected':'') : '' ) ?>>M</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="medico">RH </label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo (isset($datos[0]->rh) ? $datos[0]->rh : '' ) ?>" class=" form-control     " id="rh" name="rh">
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="medico">Estrato </label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo (isset($datos[0]->estrato) ? $datos[0]->estrato : '' ) ?>" class=" form-control     " id="estrato" name="estrato">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -235,7 +278,7 @@
                     </div>
                     <div class="col-md-3">
                         <script>
-                            $('document').ready(function() {
+                            $('document').ready(function () {
                                 $('#nom_paciente').autocomplete({
                                     source: "<?php echo base_url("index.php//Pacientes/autocomplete_nom_paciente") ?>",
                                     minLength: 3
@@ -256,8 +299,8 @@
                             <th>Variable</th>
                             <th>Frecuencia</th>
                             <th>Valor frecuencia</th>
-                            <th>Valor minimo</th>
-                            <th>Valor maximo</th>
+                            <th>Valor mínimo</th>
+                            <th>Valor máxímo</th>
                             <th>Acción</th>
                             </thead>
                             <tbody id="agregar_examen">
@@ -268,7 +311,7 @@
                                             ?>
                                             <tr>
                                                 <td>
-                                                    <input type='hidden' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
+                                                    <input type='hidden' class='examen_clas' name='examen[]' value='<?php echo $value->examen_cod; ?>'><?php echo $value->examen_nombre; ?>
                                                 </td>
                                                 <td>
                                                     <?php echo lista("variable_codigo[]", "1", "form-control obligatorio variable_codigo", "variables", "variable_codigo", "hl7tag", $value->variable_codigo, array("ACTIVO" => "S", "examen_cod" => $value->examen_cod), /* readOnly? */ false); ?>
@@ -345,7 +388,7 @@
                     </div>
                     <div class="col-md-3">
                         <script>
-                            $('document').ready(function() {
+                            $('document').ready(function () {
                                 $('#contacto_id2').autocomplete({
                                     source: "<?php echo base_url("index.php//Pacientes/autocomplete_contacto_id") ?>",
                                     minLength: 3
@@ -389,7 +432,7 @@
                                                 <td><?php echo $c->parentesco ?></td>
                                                 <td><?php echo $c->llaves ?></td>
                                                 <td>
-                                                    <a class="eliminar" href="javascript:">Eliminar</a>
+                                                    <a class="eliminar" target="_black" href="javascript:">Eliminar</a>
                                                     &nbsp;&nbsp;<a href="javascript:" class="vista_contacto" tabla="contacto" campo="contacto_id" url="Contacto/edit_contacto2" codigo="<?php echo $c->contacto_id ?>" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>
                                                 </td>
                                             </tr>
@@ -406,16 +449,16 @@
                 </div>
             </div>
             <script>
-                $('body').delegate(".eliminarcontacto", "click", function() {
+                $('body').delegate(".eliminarcontacto", "click", function () {
 
                     var propio = $(this);
                     if (confirm("Esta seguro de eliminar el contacto")) {
                         $.post("<?php echo base_url("index.php/pacientes/eliminarcontacto") ?>",
                                 {con_id: $(this).attr('con_id')}
-                        ).done(function(msg) {
+                        ).done(function (msg) {
                             propio.parents('tr').remove();
                             alerta("verde", "Eliminado con Exito")
-                        }).fail(function(msg) {
+                        }).fail(function (msg) {
 
                         });
                     }
@@ -446,11 +489,15 @@
                     <div class="col-md-3">
                         <script>
 
-                            $('document').ready(function() {
-                                $('.tipo_equipo_cod').change(function() {
-
+                            $('document').ready(function () {
+                                $('.tipo_equipo_cod').change(function () {
+                                    var examen="";
+                                    $('.examen_clas').each(function(){
+                                        examen+=$(this).val()+",";
+                                    })
+                                    
                                     $('#descripcion').autocomplete({
-                                        source: "<?php echo base_url("index.php/Pacientes/autocomplete_descripcion") ?>?tipo_equipo_cod=" + $('#tipo_equipo_cod').val() + "",
+                                        source: "<?php echo base_url("index.php/Pacientes/autocomplete_descripcion") ?>?examen="+examen+"&tipo_equipo_cod=" + $('#tipo_equipo_cod').val() + "",
                                         minLength: 3
                                     });
                                 });
@@ -476,12 +523,15 @@
                                 <th>Serial N°</th>
                                 <th>Fecha última Calibración</th>
                                 <th>Acción</th>
+                                <th>Imprimir equipo</th>
                                 </thead>
                                 <tbody  id="tabla_equipo">
                                     <?php
+                                    $i = 0;
                                     if (isset($paciente_equipo_tipoEquipo))
                                         if (count($paciente_equipo_tipoEquipo) > 0) {
                                             foreach ($paciente_equipo_tipoEquipo as $value) {
+                                                $i++;
                                                 ?>
                                                 <tr>
                                                     <td>
@@ -501,12 +551,34 @@
                                                         <a href="javascript:" class="eliminar">Eliminar</a> &nbsp; 
                                                         <a href="javascript:" class="vista_equipo" tabla="equipos" campo="id_equipo" url="Equipos/edit_Equipos2" codigo="<?php echo $value->id_equipo; ?>" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>
                                                     </td>
-                                                </tr>
-                                                <?php
-                                            }
+                                                    <td>
+                                            <center>
+                                                <a target="_black" href="<?php echo base_url('index.php/Equipos/imprimir_acta'); ?>?id_equipo=<?php echo $value->id_equipo; ?>&id_paciente=<?php echo (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>" title="Imprimir Acta">
+                                                    <i class="fa fa-print"></i>
+                                                </a>
+
+                                            </center>
+                                            </td>
+                                            </tr>
+                                            <?php
                                         }
-                                    ?>
+                                    } ?>
+                                
                                 </tbody>
+                                <tfoot>
+                                    <?php if (isset($datos[0]->id_paciente) && $i > 0) {
+                                    ?>
+                                    <tr>
+                                        <td colspan="6">
+                                    <cneter>
+                                        Imprimir lista equipos: <a target="_black" href="<?php echo base_url('index.php/Equipos/imprimir_acta'); ?>?id_paciente=<?php echo (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : '' ) ?>" title="Imprimir Acta">
+                                            <i class="fa fa-print"></i>
+                                        </a>
+                                    </cneter>
+                                    </td>
+                                    </tr>
+                                <?php } ?>
+                                </tfoot>
                             </table>
                         </div>
                         <div class="row">
@@ -540,7 +612,7 @@
                         <a href="javascript:" id="agregar_contacto2">Agregar</a>
                     </div>
                     <script>
-                        $('document').ready(function() {
+                        $('document').ready(function () {
                             $('#hospitales').autocomplete({
                                 source: "<?php echo base_url("index.php//Pacientes/autocomplete_hospitales") ?>",
                                 minLength: 3
@@ -594,16 +666,16 @@
                     </div>
                 </div>
                 <script>
-                    $('body').delegate(".eliminarhospital", "click", function() {
+                    $('body').delegate(".eliminarhospital", "click", function () {
 
                         var propio = $(this);
                         if (confirm("Esta seguro de eliminar")) {
                             $.post("<?php echo base_url("index.php/pacientes/eliminar_hospitalpaciente") ?>",
                                     {id: $(this).attr('tid')}
-                            ).done(function(msg) {
+                            ).done(function (msg) {
                                 propio.parents('tr').remove();
                                 alerta("verde", "Eliminado con Exito")
-                            }).fail(function(msg) {
+                            }).fail(function (msg) {
 
                             });
                         }
@@ -626,7 +698,7 @@
                         <a href="javascript:" id="agregar_contacto3">Agregar</a>
                     </div>
                     <script>
-                        $('document').ready(function() {
+                        $('document').ready(function () {
                             $('#aseguradora').autocomplete({
                                 source: "<?php echo base_url("index.php//Pacientes/autocomplete_aseguradora") ?>",
                                 minLength: 3
@@ -678,16 +750,16 @@
                     </div>
                 </div>
                 <script>
-                    $('body').delegate(".eliminaraseguradora", "click", function() {
+                    $('body').delegate(".eliminaraseguradora", "click", function () {
 
                         var propio = $(this);
                         if (confirm("Esta seguro de eliminar")) {
                             $.post("<?php echo base_url("index.php/pacientes/eliminar_aseguradorapaciente") ?>",
                                     {id: $(this).attr('tid')}
-                            ).done(function(msg) {
+                            ).done(function (msg) {
                                 propio.parents('tr').remove();
                                 alerta("verde", "Eliminado con Exito")
-                            }).fail(function(msg) {
+                            }).fail(function (msg) {
 
                             });
                         }
@@ -731,21 +803,55 @@
     </div>
 </div>
 <script>
-    $('#tipo_cliente').change(function() {
+    $('#cedula_paciente').change(function() {
+        var documento = $('#cedula_paciente').val();
+        var id_paciente = $('#id_paciente').val();
+        $('#boton_cargar').show();
+        $('#boton_guardar').hide();
+        $.post('<?php echo base_url('index.php/Pacientes/referencia') ?>', {documento: documento, id_paciente: id_paciente})
+                .done(function(msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'documento valido')
+                    } else {
+                        alerta('rojo', 'documento no valido')
+                        $('#cedula_paciente').val('');
+                    }
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+                .fail(function(msg) {
+                    $('#boton_cargar').hide();
+                    $('#boton_guardar').show();
+                })
+    })
+    $('#tipo_cliente').change(function () {
         var url = "<?php echo base_url('index.php/Pacientes/cliente') ?>"
         $.post(url, {id_tipo_cliente: $(this).val()})
-                .done(function(msg) {
+                .done(function (msg) {
                     $('.clientess').html(msg);
                 })
-                .fail(function() {
+                .fail(function () {
                     alerta('rojo', 'Error al consultar');
                     $('#tipo_cliente').val('');
                     $('.clientess').html('');
                 })
     })
-    $('#agregar_equipo').click(function() {
+    $('#agregar_equipo').click(function () {
+        
         var info = $('#descripcion').val();
         var info2 = info.split(' :: ');
+        var u=0;
+        var tt=info2[3];
+        $('.equipo_id').each(function(){
+           if($(this).val()==tt)
+               u++;
+        });
+        if(u!=0){
+            alerta('rojo','Equipo ya ha sido ingresado ')
+            $('#descripcion').val('');
+            return false;
+        }
+        
         if (info2.length == 5) {
             var html = "<tr>";
             html += "<td><input type='hidden' name='equipo_id[]' class='equipo_id' value='" + info2[3] + "'>" + info2[4] + "</td>";
@@ -760,12 +866,12 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('#agregar_contacto').click(function() {
+    $('#agregar_contacto').click(function () {
 
         var info = $('#contacto_id2').val();
         var info2 = info.split(' :: ');
         var r = 0;
-        $('.contacto_id').each(function() {
+        $('.contacto_id').each(function () {
             if ($(this).val() == info2[7]) {
                 alerta('rojo', 'Contacto ya existe');
                 $('#contacto_id2').val('');
@@ -792,11 +898,11 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('#agregar_contacto2').click(function() {
+    $('#agregar_contacto2').click(function () {
         var info = $('#hospitales').val();
         var info2 = info.split(' :: ');
         var r = 0;
-        $('.hospitales2').each(function() {
+        $('.hospitales2').each(function () {
             if ($(this).val() == info2[5]) {
                 alerta('rojo', 'Hospitales ya existe');
                 $('#contacto_id2').val('');
@@ -822,10 +928,10 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('body').delegate('.prioridad', 'change', function() {
+    $('body').delegate('.prioridad', 'change', function () {
         var prioridad = $(this).val()
         var r = 0;
-        $('.prioridad').each(function() {
+        $('.prioridad').each(function () {
             if ($(this).val() == prioridad) {
                 r++;
             }
@@ -835,11 +941,11 @@
             $(this).val('')
         }
     });
-    $('#agregar_contacto3').click(function() {
+    $('#agregar_contacto3').click(function () {
         var info = $('#aseguradora').val();
         var info2 = info.split(' :: ');
         var r = 0;
-        $('.aseguradora2').each(function() {
+        $('.aseguradora2').each(function () {
             if ($(this).val() == info2[5]) {
                 alerta('rojo', 'Aseguradora ya existe');
                 $('#contacto_id2').val('');
@@ -864,9 +970,9 @@
             alerta('rojo', 'Cadena no valida');
         }
     })
-    $('body').delegate('.variable_codigo', 'change', function() {
+    $('body').delegate('.variable_codigo', 'change', function () {
         var y = new Array();
-        $('.variable_codigo').each(function() {
+        $('.variable_codigo').each(function () {
             if ($.inArray($(this).val(), y) != -1) {
                 $(this).val('')
                 alerta('rojo', 'Existe una variable con este examen.')
@@ -876,9 +982,9 @@
         })
         //        console.log(y)
     })
-    $('body').delegate('.tipo_equipo_cod', 'change', function() {
+    $('body').delegate('.tipo_equipo_cod', 'change', function () {
         var y = new Array();
-        $('.tipo_equipo_cod').each(function() {
+        $('.tipo_equipo_cod').each(function () {
             if ($.inArray($(this).val() + "-" + $(this).prev().val(), y) != -1) {
                 $(this).val('El Tipo ya existe con el equipo')
                 alerta('rojo', '')
@@ -888,7 +994,7 @@
         })
         //        console.log(y)
     })
-    $('#agregar').click(function() {
+    $('#agregar').click(function () {
 
         var examen = $('#examen_cod option:selected').text();
         var id_examen = $('#examen_cod').val();
@@ -898,10 +1004,10 @@
         }
         var url = '<?php echo base_url('index.php/Equipos/traer_variables') ?>'
         $.post(url, {id_examen: id_examen})
-                .done(function(msg) {
+                .done(function (msg) {
                     var html = "<tr>";
                     html += "<td>";
-                    html += "<input type='hidden' name='examen[]' value='" + id_examen + "'>" + examen + " ";
+                    html += "<input type='hidden' class='examen_clas' name='examen[]' value='" + id_examen + "'>" + examen + " ";
                     html += "</td>";
                     html += "<td>";
                     html += msg;
@@ -930,11 +1036,11 @@
                     html += "</tr>";
                     $('#examen_cod').val('');
                     $('#agregar_examen').append(html)
-                }).fail(function() {
+                }).fail(function () {
 
         })
     })
-    $('#copiar').click(function() {
+    $('#copiar').click(function () {
 
         //        var examen = $('#examen_cod option:selected').text();
         var nom_paciente = $('#nom_paciente').val();
@@ -947,10 +1053,10 @@
         if (info2.length == 3) {
             var url = '<?php echo base_url('index.php/Pacientes/copiar_paciente') ?>'
             $.post(url, {id_paciente: info2[2], campo: 'id_paciente'})
-                    .done(function(msg) {
+                    .done(function (msg) {
                         $('#agregar_examen').html(msg);
                         $('#nom_paciente').val('')
-                    }).fail(function() {
+                    }).fail(function () {
             })
         } else {
             alerta('rojo', 'Cadena no valida');
@@ -958,28 +1064,28 @@
 
 
     })
-    $('body').delegate('.eliminar', 'click', function() {
+    $('body').delegate('.eliminar', 'click', function () {
         $(this).parent().parent().remove();
     })
 
-    $('body').delegate('.vista', 'click', function() {
+    $('body').delegate('.vista', 'click', function () {
         var codigo_hospital = $(this).attr('codigo');
         var campo = $(this).attr('campo');
         var tabla = $(this).attr('tabla');
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {codigo_hospital: codigo_hospital, campo: campo, tabla: tabla})
-                .done(function(msg) {
+                .done(function (msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
-                    $('#body_modal input').attr('disabled','disabled');
-                    $('#body_modal select').attr('disabled','disabled');
-                }).fail(function() {
+                    $('#body_modal input').attr('disabled', 'disabled');
+                    $('#body_modal select').attr('disabled', 'disabled');
+                }).fail(function () {
             alerta('rojo', 'Error al consultar');
         })
 
     })
-    $('body').delegate('.vista_aseguradora', 'click', function() {
+    $('body').delegate('.vista_aseguradora', 'click', function () {
         $('#body_modal').html('Cargando...');
         var aseguradora_id = $(this).attr('codigo');
         var campo = $(this).attr('campo');
@@ -987,17 +1093,17 @@
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {aseguradora_id: aseguradora_id, campo: campo, tabla: tabla})
-                .done(function(msg) {
+                .done(function (msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove()
-                    $('#body_modal input').attr('disabled','disabled');
-                    $('#body_modal select').attr('disabled','disabled');
-                }).fail(function() {
+                    $('#body_modal input').attr('disabled', 'disabled');
+                    $('#body_modal select').attr('disabled', 'disabled');
+                }).fail(function () {
             alerta('rojo', 'Error al consultar');
         })
 
     })
-    $('body').delegate('.vista_equipo', 'click', function() {
+    $('body').delegate('.vista_equipo', 'click', function () {
         $('#body_modal').html('Cargando...');
         var id_equipo = $(this).attr('codigo');
         var campo = $(this).attr('campo');
@@ -1005,17 +1111,17 @@
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {id_equipo: id_equipo, campo: campo, tabla: tabla})
-                .done(function(msg) {
+                .done(function (msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove();
-                    $('#body_modal input').attr('disabled','disabled');
-                    $('#body_modal select').attr('disabled','disabled');
-                }).fail(function() {
+                    $('#body_modal input').attr('disabled', 'disabled');
+                    $('#body_modal select').attr('disabled', 'disabled');
+                }).fail(function () {
             alerta('rojo', 'Error al consultar');
         })
 
     })
-    $('body').delegate('.vista_contacto', 'click', function() {
+    $('body').delegate('.vista_contacto', 'click', function () {
         $('#body_modal').html('Cargando...');
         var contacto_id = $(this).attr('codigo');
         var campo = $(this).attr('campo');
@@ -1023,18 +1129,18 @@
         var url2 = $(this).attr('url');
         var url = '<?php echo base_url('index.php/') ?>' + "/" + url2
         $.post(url, {contacto_id: contacto_id, campo: campo, tabla: tabla})
-                .done(function(msg) {
+                .done(function (msg) {
                     $('#body_modal').html(msg);
                     $('#body_modal #boton_guardar').remove();
-                    $('#body_modal input').attr('disabled','disabled');
-                    $('#body_modal select').attr('disabled','disabled');
-                    
-                }).fail(function() {
+                    $('#body_modal input').attr('disabled', 'disabled');
+                    $('#body_modal select').attr('disabled', 'disabled');
+
+                }).fail(function () {
             alerta('rojo', 'Error al consultar');
         })
 
     })
-    $('#myTabs a').click(function(e) {
+    $('#myTabs a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
     })
@@ -1052,7 +1158,7 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function(tecla) {
+    $('body').delegate('.number', 'keypress', function (tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });

@@ -3,6 +3,14 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Alarmas_generadas extends My_Controller {
 
     function __construct() {
@@ -24,14 +32,18 @@ class Alarmas_generadas extends My_Controller {
         $post = $this->input->post();
         $this->data['post'] = $this->input->post();
         $this->data['datos'] = $this->Alarmas_generadas__model->consult_alarmas_generadas($post);
+
+        $this->db->select('*');
+        $this->db->order_by('id', 'desc');
+        $datos = $this->db->get('configuracion');
+        $this->data['configuracion'] = $datos->result();
+
         $this->layout->view('alarmas_generadas/consult_alarmas_generadas', $this->data);
     }
 
     function save_alarmas_generadas() {
         $post = $this->input->post();
         $id = $this->Alarmas_generadas__model->save_alarmas_generadas($post);
-
-
         redirect('index.php/Alarmas_generadas/consult_alarmas_generadas', 'location');
     }
 
@@ -43,8 +55,37 @@ class Alarmas_generadas extends My_Controller {
 
     function busqueda_cedula() {
         $post = $this->input->post();
-        $datos = $this->Alarmas_generadas__model->busqueda_cedula($post);
-        echo json_encode($datos);
+        $tipo_usuario = $this->session->userdata('tipo_usuario');
+
+        if ($tipo_usuario == 2) {//medico
+            $this->db->join('medicos', 'pacientes.medico=medicos.medico_codigo');
+            $this->db->where('medicos.cedula', $this->session->userdata('usu_cedula'));
+        }
+        if ($tipo_usuario == 3) {//paciente
+            $this->db->where('cedula_paciente', $this->session->userdata('usu_cedula'));
+        }
+
+        $datos = $this->Alarmas_generadas__model->busqueda_cedula2($post);
+        $this->output->set_content_type('application/json')->set_output(json_encode($datos));
+//        echo json_encode($datos);
+    }
+    function busqueda_cedulaDatos() {
+        $post = $this->input->post();
+        $tipo_usuario = $this->session->userdata('tipo_usuario');
+
+        if ($tipo_usuario == 2) {//medico
+            $this->db->join('medicos', 'pacientes.medico=medicos.medico_codigo');
+            $this->db->where('medicos.cedula', $this->session->userdata('usu_cedula'));
+        }
+        if ($tipo_usuario == 3) {//paciente
+            $this->db->where('cedula_paciente', $this->session->userdata('usu_cedula'));
+        }
+
+        $data['data'] = $this->Alarmas_generadas__model->busqueda_cedula2Datos($post, $this->input->post("length"), $this->input->post("start"));
+        $data['recordsFiltered'] = count($this->Alarmas_generadas__model->Contadorbusqueda_cedula2Datos($post));
+        $data['recordsTotal'] = $data['recordsFiltered'];
+        echo json_encode($data);
+        
     }
 
     function edit_alarmas_generadas() {
@@ -77,57 +118,79 @@ class Alarmas_generadas extends My_Controller {
 //        echo json_encode($datos);
     }
 
+    function busqueda_variable() {
+        $this->db->where('examen_cod', $this->input->post('examen'));
+        $datos = $this->db->get('variables');
+        $datos = $datos->result();
+        $this->output->set_content_type('application/json')->set_output(json_encode($datos));
+    }
+
     function graficas() {
         $post = $this->input->post();
 //        $this->load->view('alarmas_generadas/graficas', $this->data);
         $datos = $this->Alarmas_generadas__model->busqueda_cedula($post);
 
-//        foreach ($datos as $key => $value) {
-//            $fecha=$value->fecha_creacion;
-//            $data[]=array($value->hl7tag,$value->lectura_numerica);
-//        }
+        if (count($datos)) {
 
-        $fechas = array();
+            $fechas = array();
 //        $total = array();
-        foreach ($datos as $key => $value) {
-            $datop[$value->hl7tag][$value->fecha_creacion] = $value->lectura_numerica;
-            if (!in_array($value->fecha_creacion, $fechas))
-                array_push($fechas, $value->fecha_creacion);
-        }
+            foreach ($datos as $key => $value) {
+                $fecha = substr($value->mi_fecha, 0, -3);
+                $datop[$value->hl7tag][$fecha] = $value->lectura_numerica;
+                if (!in_array($fecha, $fechas))
+                    array_push($fechas, $fecha);
+            }
 
-        foreach ($datos as $value) {
-            for ($i = 0; $i < count($fechas); $i++) {
-                if (!isset($datop[$value->hl7tag][$fechas[$i]])) {
-                    $datop[$value->hl7tag][$fechas[$i]] = 0;
+
+            $fecha_array = array();
+            foreach ($datos as $value) {
+                for ($i = 0; $i < count($fechas); $i++) {
+                    if (!isset($datop[$value->hl7tag][$fechas[$i]])) {
+                        $fecha_array[$value->hl7tag][$fechas[$i]] = $datop[$value->hl7tag][$fechas[$i]] = 0;
+                    } else {
+                        $fecha_array[$value->hl7tag][$fechas[$i]] = $datop[$value->hl7tag][$fechas[$i]];
+                    }
                 }
             }
-        }
-
-        foreach ($datop as $key => $value) {
-            $o[]=$key;
-            foreach ($value as $key2 => $value2) {
-                if (isset($total[$key2])) {
-                    $total[$key2] = $total[$key2] . ',' . $value2;
-                } else {
-                    $total[$key2] = $value2;
+//            print_y($fecha_array);
+            foreach ($fecha_array as $key => $value) {
+                $o[] = $key;
+                foreach ($value as $key2 => $value2) {
+                    if ($key2 != 0)
+                        if (isset($total[$key2])) {
+                            $total[$key2] = $total[$key2] . ',' . $value2;
+                        } else {
+                            $total[$key2] = $value2;
+                        }
                 }
             }
-        }
-//        echo "dddd";
-//        print_r();
-
-        foreach ($total as $key => $value) {
-            $value2=  explode(',', $value);
-            $s=array();
-            $s[0]=$key;
-            for($i=0;$i<count($value2);$i++){
-                array_push($s, (int) $value2[$i]);
+            foreach ($total as $key => $value) {
+                $value2 = explode(',', $value);
+                $s = array();
+                $s[0] = $key;
+                for ($i = 0; $i < count($value2); $i++) {
+                    array_push($s, (int) $value2[$i]);
+                }
+                $data[] = $s;
             }
-            $data[] = $s;
+            $this->output->set_content_type('application/json')->set_output(json_encode(array($data, $o)));
+        } else {
+            echo 1;
         }
-        
-        
-        echo json_encode(array($data,$o));
+    }
+
+    function configuracion() {
+        $post = $this->input->post();
+        if (isset($post['tiempo'])) {
+            $this->db->set('fecha', date('Y-m-d'));
+            $this->db->set('tiempo', $post['tiempo']);
+            $this->db->insert('configuracion');
+        }
+        $this->db->select('*');
+        $this->db->order_by('id', 'desc');
+        $datos = $this->db->get('configuracion');
+        $this->data['datos'] = $datos->result();
+        $this->layout->view('alarmas_generadas/configuracion', $this->data);
     }
 
 }

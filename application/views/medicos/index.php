@@ -38,11 +38,20 @@
 
                         <div class="col-md-3">
                             <label for="nombre">
+                                *                             Cedula                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo (isset($datos[0]->cedula) ? $datos[0]->cedula : '' ) ?>" class=" form-control obligatorio  " id="cedula" name="cedula">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="nombre">
                                 *                             Nombre                        </label>
                         </div>
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->nombre) ? $datos[0]->nombre : '' ) ?>" class=" form-control obligatorio  " id="nombre" name="nombre">
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <label for="Estado">
                                 *                             Estado                        </label>
@@ -55,8 +64,7 @@
                             </select>
                         </div>
 
-                    </div>
-                    <div class="row">
+
                         <div class="col-md-3">
                             <label for="matricula_profesional">
                                 *                             Matrícula profesional                        </label>
@@ -64,6 +72,8 @@
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->matricula_profesional) ? $datos[0]->matricula_profesional : '' ) ?>" class=" form-control obligatorio  " id="matricula_profesional" name="matricula_profesional">
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <label for="direccion">
                                 *                             Dirección                        </label>
@@ -71,8 +81,7 @@
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->direccion) ? $datos[0]->direccion : '' ) ?>" class=" form-control obligatorio  " id="direccion" name="direccion">
                         </div>
-                    </div>
-                    <div class="row">
+
                         <div class="col-md-3">
                             <label for="telefono_fijo">
                                 *                             Teléfono fijo                        </label>
@@ -81,8 +90,8 @@
                             <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo) ? $datos[0]->telefono_fijo : '' ) ?>" class=" form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
                         </div>
 
-
-
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <label for="celular">
                                 Celular                        </label>
@@ -90,8 +99,7 @@
                         <div class="col-md-3">
                             <input type="text" value="<?php echo (isset($datos[0]->celular) ? $datos[0]->celular : '' ) ?>" class=" form-control   number" id="celular" name="celular">
                         </div>
-                    </div>
-                    <div class="row">
+
                         <div class="col-md-3">
                             <label for="email">
                                 Email                        </label>
@@ -104,11 +112,14 @@
                         <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
                         <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
                     <?php } ?>
+
                     <div class="row">
                         <div class="mis_procedimientos"></div>
                         <span id="boton_guardar">
-                            <button class="btn btn-dcs enviar">Guardar</button> 
-                            <input class="btn btn-dcs" type="reset" value="Limpiar">
+                            <?php if ($tipo_usuario != 2) { ?>
+                                <button class="btn btn-dcs enviar">Guardar</button> 
+                                <input class="btn btn-dcs" type="reset" value="Limpiar">
+                            <?php } ?>
                             <a href="<?php echo base_url('index.php') . "/Medicos/consult_medicos" ?>" class="btn btn-dcs">Listado </a>
                         </span>
                         <span id="boton_cargar" style="display: none">
@@ -158,44 +169,51 @@
                 </div>
             </div>
             <div id="tabAlarmas" class="tab">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Estado</label>
+                <form id="form_consulta" onsubmit="return false">
+                    <input type="hidden" value="<?php echo (isset($datos[0]->medico_codigo) ? $datos[0]->medico_codigo : '' ) ?>" class=" form-control "  name="medico_codigo">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Estado</label>
+                        </div> 
+                        <div class="col-md-3">
+                            <select name="estado" id="estado" class="form-control">
+                                <option value="1">Sin atender</option>
+                                <option value="3">Atendido</option>
+                                <option value="4">Anulado</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <label>Paciente</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" name="paciente" id="paciente" class="form-control">
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <select name="estado" id="estado" class="form-control">
-                            <option value="1">Sin atender</option>
-                            <option value="2">Atendido</option>
-                            <option value="3">Anulado</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Procedimientos</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="procedimientos_form" id="procedimientos_form" class="form-control">
+                        </div>
+                        <div class="col-md-1">
+                            <label>Fecha inicial</label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" name="fecha_ini" id="fecha_ini" class="form-control fecha">
+                        </div>
+                        <div class="col-md-1">
+                            <label>Fecha final</label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" name="fecha_fin" id="fecha_fin" class="form-control fecha">
+                        </div>
                     </div>
-                    <div class="col-md-1">
-                        <label>Paciente</label>
+                    <div class="row">
+                        <input class="btn btn-dcs" type="reset" value="Limpiar">
+                        <button class="btn btn-dcs consultar">Consultar</button>
                     </div>
-                    <div class="col-md-5">
-                        <input type="text" name="paciente" id="paciente" class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Procedimientos</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" name="procedimientos_form" id="procedimientos_form" class="form-control">
-                    </div>
-                    <div class="col-md-1">
-                        <label>Fecha inicial</label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" name="fecha_ini" id="fecha_ini" class="form-control fecha">
-                    </div>
-                    <div class="col-md-1">
-                        <label>Fecha final</label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" name="fecha_fin" id="fecha_fin" class="form-control fecha">
-                    </div>
-                </div>
+                </form>
                 <div class="row">
                     <div class="container">
                         <table class="table table-responsive">
@@ -206,10 +224,11 @@
                             <th>Estado</th>
                             <th>Motivos</th>
                             <th>Fecha de atención</th>
-                            <th>Cliente</th>
+                            <!--<th>Cliente</th>-->
                             <th>Informe</th>
                             <th>Imprimir</th>
                             </thead>
+                            <tbody id="mi_inform"></tbody>
                         </table>
                     </div>
                 </div>
@@ -219,19 +238,47 @@
 
 </div>
 <script>
-                    $('document').ready(function() {
-                        $('#paciente').autocomplete({
-                            source: "<?php echo base_url("index.php//Medicos/autocomplete_paciente") ?>",
-                            minLength: 3
-                        });
-                    });
-                    $('document').ready(function() {
-                        $('#procedimientos_form').autocomplete({
-                            source: "<?php echo base_url("index.php//Medicos/autocomplete_matricula_procedimientos") ?>",
-                            minLength: 3
-                        });
-                    });
-                </script>
+    $('.consultar').click(function () {
+        var url = "<?php echo base_url("index.php/Medicos/form_consulta") ?>";
+        $.post(url, $('#form_consulta').serialize())
+                .done(function (msg) {
+                    $('#mi_inform').html('');
+                    var html = '';
+                    $.each(msg, function (key, val) {
+                        html += "<tr>";
+                        html += "<td>" + val.fecha_ingreso + "</td>"
+                        html += "<td>" + val.nombres + " " + val.apellidos + "</td>"
+                        html += "<td>" + val.description + "</td>"
+                        html += "<td>" + val.estado + "</td>"
+                        html += "<td>" + val.motivo + "</td>"
+                        html += "<td>" + val.fecha_atencion + "</td>"
+                        html += "<td>"
+                        html += '<center><a href="<?php echo base_url('index.php/ingreso/informe'); ?>?id_registro=' + val.id_informe + '"><i class="fa fa-search"></i></a></center>'
+                        html += "</td>"
+                        html += "<td>"
+                        html += '<center><a href="<?php echo base_url('index.php/ingreso/imprimir_informe'); ?>?id_informe=' + val.id_informe + '" target="_blank"><i class="fa fa-print"></i></a></center>'
+                        html += "</td>"
+                        html += "</tr>";
+                    })
+                    $('#mi_inform').html(html);
+                })
+                .fail(function () {
+                    alerta('rojo', 'Error al consultar')
+                })
+    })
+    $('document').ready(function () {
+        $('#paciente').autocomplete({
+            source: "<?php echo base_url("index.php//Medicos/autocomplete_paciente") ?>",
+            minLength: 3
+        });
+    });
+    $('document').ready(function () {
+        $('#procedimientos_form').autocomplete({
+            source: "<?php echo base_url("index.php//Medicos/autocomplete_matricula_procedimientos") ?>",
+            minLength: 3
+        });
+    });
+</script>
 
 
 

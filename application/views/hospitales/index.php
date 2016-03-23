@@ -18,7 +18,7 @@
     <div class="row">
 
         <div class="col-md-3">
-            *         Nombre Hospital                  </div>
+            <label>*         Nombre Hospital</label>                  </div>
         <div class="col-md-3">
             <input type="text" value="<?php echo (isset($datos[0]->nombre) ? $datos[0]->nombre : '' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
         </div>
@@ -26,7 +26,7 @@
 
 
         <div class="col-md-3">
-            *         Estado                    </div>
+            <label>*         Estado</label>                    </div>
         <div class="col-md-3">
             <select  class="form-control obligatorio  " id="estado" name="estado">
                 <option value=""></option>
@@ -37,7 +37,7 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            *         Dirección                    </div>
+            <label>*         Dirección </label>                   </div>
         <div class="col-md-3">
             <input type="text" value="<?php echo (isset($datos[0]->direccion) ? $datos[0]->direccion : '' ) ?>" class="form-control obligatorio  " id="direccion" name="direccion">
         </div>
@@ -45,7 +45,7 @@
 
 
         <div class="col-md-3">
-            *         Teléfono fijo                    </div>
+            <label>*         Teléfono fijo </label>                   </div>
         <div class="col-md-3">
             <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo) ? $datos[0]->telefono_fijo : '' ) ?>" class="form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
         </div>
@@ -53,12 +53,12 @@
     <div class="row">
 
         <div class="col-md-3">
-            Celular                    </div>
+            <label>Celular</label>                    </div>
         <div class="col-md-3">
             <input type="text" value="<?php echo (isset($datos[0]->celular) ? $datos[0]->celular : '' ) ?>" class="form-control   number" id="celular" name="celular">
         </div>
         <div class="col-md-3">
-            Email                    </div>
+            <label>Email</label>                    </div>
         <div class="col-md-3">
             <input type="email" value="<?php echo (isset($datos[0]->email) ? $datos[0]->email : '' ) ?>" class="form-control   " id="email" name="email">
         </div>

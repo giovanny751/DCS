@@ -4,7 +4,7 @@
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
 </div>
-<form id="form1_alarma" action="<?php echo base_url('index.php/') . "/Niveles_alarma/save_niveles_alarma"; ?>" method="post" onsubmit="return campos()">
+<form id="form1_alarma"  action="<?php echo base_url('index.php/') . "/Niveles_alarma/save_niveles_alarma"; ?>" method="post" onsubmit="return campos()">
 
     <div class="row">
 
@@ -63,27 +63,43 @@
         <input type="hidden" name="<?php echo $post['campo'] ?>" value="<?php echo $post[$post['campo']] ?>">
         <input type="hidden" name="campo" value="<?php echo $post['campo'] ?>">
     <?php } ?>
-    <div class="row">
-        <span id="boton_guardar">
-            <button class="btn btn-dcs" >Guardar</button> 
-            <input class="btn btn-dcs" type="reset" value="Limpiar">
-            <a href="<?php echo base_url('index.php') . "/Niveles_alarma/consult_niveles_alarma" ?>" class="btn btn-dcs">Listado </a>
-        </span>
-        <span id="boton_cargar" style="display: none">
-            <h2>Cargando ...</h2>
-        </span>
-    </div>
-    <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 </form>
-<script>
+<div class="row">
+    <span id="boton_guardar">
+        <button class="btn btn-dcs" id="guardar">Guardar</button> 
+        <input class="btn btn-dcs" type="reset" value="Limpiar">
+        <a href="<?php echo base_url('index.php') . "/Niveles_alarma/consult_niveles_alarma" ?>" class="btn btn-dcs">Listado </a>
+    </span>
+    <span id="boton_cargar" style="display: none">
+        <h2>Cargando ...</h2>
+    </span>
+</div>
+<div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
 
-    $('#examen_cod').change(function() {
+<script>
+    $('#guardar').click(function () {
+        var url = "<?php echo base_url('index.php/') . "/Niveles_alarma/buscar_niveles_alarma"; ?>";
+        $.post(url, $('#form1_alarma').serialize())
+                .done(function (msg) {
+                    if (msg == 0) {
+                        var r = campos();
+                        if (r == true)
+                            $('#form1_alarma').submit();
+                    } else {
+                        alerta('rojo', 'Ya existe un nivel de alarma con los mismos datos');
+                    }
+                })
+                .fail(function () {
+                    alerta('rojo', 'Error en la conexión')
+                })
+    })
+    $('#examen_cod').change(function () {
         var url = "<?php echo base_url('index.php/Niveles_alarma/tipo_alarma') ?>"
         $.post(url, {examen_cod: $(this).val()})
-                .done(function(msg) {
+                .done(function (msg) {
                     $('#traer_tipo_alarma').html(msg);
                 })
-                .fail(function() {
+                .fail(function () {
                     alerta('rojo', 'Error al consultar');
                     $('#id_tipo_alarma').val('');
                 })
@@ -100,7 +116,7 @@
             return true;
         }
     }
-    $('body').delegate('.number', 'keypress', function(tecla) {
+    $('body').delegate('.number', 'keypress', function (tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });

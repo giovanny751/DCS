@@ -70,7 +70,7 @@
             <th></th>
             <th>Descripción</th>
             <!--<th>Examen</th>-->
-            <th>Analisis resultado</th>
+            <!--<th>Analisis resultado</th>-->
             <th>N° repeticiones mínimas</th>
             <th>N° repeticiones máximas</th>
             <th>Color</th>

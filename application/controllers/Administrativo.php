@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Administrativo extends My_Controller {
 
     function __construct() {
@@ -33,7 +40,7 @@ class Administrativo extends My_Controller {
         $this->data['dimension'] = $this->Dimension_model->detail();
         $this->data['dimension2'] = $this->Dimension2_model->detail();
 //        if ($this->consultaacceso($this->data["usu_id"])) :
-            $this->layout->view("administrativo/creacionempleados", $this->data);
+        $this->layout->view("administrativo/creacionempleados", $this->data);
 //        else:
 //            $this->layout->view("permisos");
 //        endif;
@@ -105,7 +112,7 @@ class Administrativo extends My_Controller {
             $est = array(1, 2);
         $this->load->model('Estados_model');
         $this->load->model('User_model');
-        $this->data['estado'] = $this->Estados_model->detail($est);
+//        $this->data['estado'] = $this->Estados_model->detail($est);
         $this->data['usuario'] = "";
 
         if (!empty($user)) {
@@ -118,8 +125,8 @@ class Administrativo extends My_Controller {
         $this->load->model('Tipo_documento_model');
         $this->load->model('Estados_model');
         $this->load->model('User_model');
-        $this->data["tipodocumento"] = $this->Tipo_documento_model->detail();
-        $this->data["estados"] = $this->Estados_model->detail();
+//        $this->data["tipodocumento"] = $this->Tipo_documento_model->detail();
+//        $this->data["estados"] = $this->Estados_model->detail();
         $this->data["usuarios"] = $this->User_model->consultageneral();
         $this->layout->view("administrativo/listadousuarios", $this->data);
     }
@@ -138,28 +145,44 @@ class Administrativo extends My_Controller {
     function guardarusuario() {
         $this->load->model('User_model');
         $data = array(
-            'usu_contrasena' => $this->input->post('contrasena'),
+            'usu_contrasena' => sha1($this->input->post('contrasena')),
             'est_id' => $this->input->post('estado'),
             'usu_politicas' => '0',
             'usu_cedula' => $this->input->post('cedula'),
             'usu_nombre' => $this->input->post('nombres'),
             'usu_apellido' => $this->input->post('apellidos'),
             'usu_usuario' => $this->input->post('usuario'),
+            'tipo_usuario' => $this->input->post('tipo_usuario'),
             'usu_email' => $this->input->post('email'),
+            'rol_id' => $this->input->post('rol_id'),
             'usu_fechaCreacion' => date('Y-m-d H:i:s')
         );
         $data1 = $this->User_model->validaexistencia($this->input->post('cedula'));
         $cedu = $this->input->post('cedula');
 //        print_r($data1);
-        if (empty($data1))
-            $this->User_model->create($data,$this->input->post());
-        else
+        if (empty($data1)) {
+            $id=$this->User_model->create($data, $this->input->post());
+            $this->db->set('rol_id', $this->input->post('rol_id'));
+            $this->db->set('usu_id', $id);
+            $this->db->insert('permisos');
+        } else
             $this->User_model->update_user($data, $cedu);
     }
 
     function confirm_cedula() {
         $this->load->model('User_model');
         $datos = $this->User_model->validaexistencia($this->input->post('cedula'));
+        echo count($datos);
+    }
+    function confirm_nombre() {
+        $this->load->model('User_model');
+        $datos = $this->User_model->validaexistencia_brigada($this->input->post('nombre'));
+        echo count($datos);
+    }
+
+    function email() {
+        $this->load->model('User_model');
+        $datos = $this->User_model->email($this->input->post('email'));
         echo count($datos);
     }
 
@@ -172,7 +195,7 @@ class Administrativo extends My_Controller {
     function actualizarusuario() {
         $this->load->model('User_model');
         $data = array(
-            'usu_contrasena' => $this->input->post('contrasena'),
+            'usu_contrasena' => sha1($this->input->post('contrasena')),
             'est_id' => $this->input->post('estado'),
             'usu_cedula' => $this->input->post('cedula'),
             'usu_nombre' => $this->input->post('nombres'),
@@ -182,11 +205,22 @@ class Administrativo extends My_Controller {
             'sex_id' => $this->input->post('genero'),
             'car_id' => $this->input->post('cargo'),
             'emp_id' => $this->input->post('empleado'),
+            'rol_id' => $this->input->post('rol_id'),
 //            'usu_cambiocontrasena' => $this->input->post('cambiocontrasena'),
             'usu_fechaCreacion' => date('Y-m-d H:i:s')
         );
 
-        $this->User_model->update($data, $this->input->post('usuid'),$this->input->post());
+        $this->User_model->update($data, $this->input->post('usuid'), $this->input->post());
+
+        
+        
+        $this->db->where('rol_id', $this->input->post('rol_id'));
+        $this->db->where('usu_id', $this->input->post('usuid'));
+        $this->db->delete('permisos');
+        
+        $this->db->set('rol_id', $this->input->post('rol_id'));
+        $this->db->set('usu_id', $this->input->post('usuid'));
+        $this->db->insert('permisos');
     }
 
     function cargos() {

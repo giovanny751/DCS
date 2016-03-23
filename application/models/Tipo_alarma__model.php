@@ -1,16 +1,23 @@
 <?php
 
 class Tipo_alarma__model extends CI_Model {
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
     function __construct() {
         parent::__construct();
     }
 
     function save_tipo_alarma($post) {
         if (isset($post['equipo_id'])) {
-                $equipo_id = $post['equipo_id'];
-                unset($post['equipo_id']);
-            }
+            $equipo_id = $post['equipo_id'];
+            unset($post['equipo_id']);
+        }
         if (isset($post['campo'])) {
             $this->db->where($post["campo"], $post[$post["campo"]]);
             $id = $post[$post["campo"]];
@@ -26,7 +33,7 @@ class Tipo_alarma__model extends CI_Model {
         if (isset($equipo_id))
             for ($i = 0; $i < count($equipo_id); $i++) {
                 $this->db->set('id_tipo_alarma', $id);
-                $this->db->set('id_niveles_alarma',$equipo_id[$i]);
+                $this->db->set('id_niveles_alarma', $equipo_id[$i]);
                 $this->db->insert('tipo_alarma_nivel');
             }
     }
@@ -69,8 +76,8 @@ class Tipo_alarma__model extends CI_Model {
         $this->db->select('tipo_alarma.descripcion');
         $this->db->select('examen_nombre');
         $this->db->select('hl7tag');
-        $this->db->join('examenes','tipo_alarma.examen=examenes.examen_cod');
-        $this->db->join('variables','tipo_alarma.variable_codigo=variables.variable_codigo');
+        $this->db->join('examenes', 'tipo_alarma.examen=examenes.examen_cod');
+        $this->db->join('variables', 'tipo_alarma.variable_codigo=variables.variable_codigo');
         $this->db->select('analisis_resultados');
 //                                $this->db->select('id_niveles_alarma');
         $this->db->where('examenes.ACTIVO', 'S');
@@ -82,6 +89,7 @@ class Tipo_alarma__model extends CI_Model {
         $datos = $datos->result();
         return $datos;
     }
+
     function tipo_alarma_nivel($post) {
 
         $this->db->where("tipo_alarma_nivel.id_tipo_alarma", $post[$post["campo"]]);
@@ -94,22 +102,41 @@ class Tipo_alarma__model extends CI_Model {
 
 //        $this->db->insert_batch('nivel_tipo_alarma', $data);
     }
+
+    function buscar_tipo_alarma($data) {
+        $this->db->select('count(*) gtg', false);
+        $this->db->where('descripcion', $data['descripcion']);
+        $this->db->where('examen', $data['examen']);
+        $this->db->where('analisis_resultados', $data['analisis_resultados']);
+        $this->db->where('variable_codigo', $data['variable_codigo']);
+        $this->db->where('tiempo', $data['tiempo']);
+        $this->db->where('frecuencia', $data['frecuencia']);
+        $datos = $this->db->get('tipo_alarma');
+        $datos = $datos->result();
+        if (count($datos)) {
+            return $datos[0]->gtg;
+        }else{
+            return 0;
+        }
+//        $this->db->insert_batch('nivel_tipo_alarma', $data);
+    }
+
     function confirmar_duplicado($post) {
-        $datos=$this->db->query('select * 
+        $datos = $this->db->query('select * 
                 from niveles_alarma 
                 where 
-                n_repeticiones_minimas <= (select n_repeticiones_minimas from niveles_alarma where id_niveles_alarma='.$post['nuevo'].')
-                and n_repeticiones_maximas >= (select n_repeticiones_minimas from niveles_alarma where id_niveles_alarma='.$post['nuevo'].')
-                and id_niveles_alarma in ('.$post['anteriores'].')');
-        $datos=$datos->result();
+                n_repeticiones_minimas <= (select n_repeticiones_minimas from niveles_alarma where id_niveles_alarma=' . $post['nuevo'] . ')
+                and n_repeticiones_maximas >= (select n_repeticiones_minimas from niveles_alarma where id_niveles_alarma=' . $post['nuevo'] . ')
+                and id_niveles_alarma in (' . $post['anteriores'] . ')');
+        $datos = $datos->result();
         echo count($datos);
-        $datos=$this->db->query('select * 
+        $datos = $this->db->query('select * 
                 from niveles_alarma 
                 where 
-                n_repeticiones_minimas <= (select n_repeticiones_maximas from niveles_alarma where id_niveles_alarma='.$post['nuevo'].')
-                and n_repeticiones_maximas >= (select n_repeticiones_maximas from niveles_alarma where id_niveles_alarma='.$post['nuevo'].')
-                and id_niveles_alarma in ('.$post['anteriores'].')');
-        $datos=$datos->result();
+                n_repeticiones_minimas <= (select n_repeticiones_maximas from niveles_alarma where id_niveles_alarma=' . $post['nuevo'] . ')
+                and n_repeticiones_maximas >= (select n_repeticiones_maximas from niveles_alarma where id_niveles_alarma=' . $post['nuevo'] . ')
+                and id_niveles_alarma in (' . $post['anteriores'] . ')');
+        $datos = $datos->result();
         echo count($datos);
     }
 

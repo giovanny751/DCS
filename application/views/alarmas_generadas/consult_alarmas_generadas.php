@@ -4,7 +4,7 @@
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
 </div>
-<form action="<?php echo base_url('index.php/') . '/Alarmas_generadas/consult_alarmas_generadas'; ?>" method="post" >
+<form id="form1" action="<?php echo base_url('index.php/') . '/Alarmas_generadas/consult_alarmas_generadas'; ?>" method="post" >
     <div class="row">
         <div class="col-md-3">
             <label for="id_niveles_alarma">
@@ -37,7 +37,7 @@
             </select>
         </div>
     </div>
-    <button class="btn btn-dcs">Consultar</button>
+    <button class="btn btn-dcs" >Consultar</button>
 </form>
 
 <div class="row">
@@ -73,7 +73,7 @@
                     foreach ($value as $key2 => $value2) {
                         if ($i == 0) {
                             $campo = $key2;
-                            $color="";
+                            $color = "";
                             if ($value->$key2 == '1-Verde')
                                 $color = '<img width="20px" src="' . base_url('img/verde.png') . '">';
 //                            if ($value->$key2 == 'Naranja')
@@ -107,11 +107,7 @@
         </table>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12" style="float:right">
-        <a href="<?php echo base_url() . "/index.php/Alarmas_generadas/index" ?>" class="btn btn-dcs" >Nuevo</a>
-    </div>
-</div>
+
 <?php if (isset($campo)) { ?>
     <form action="<?php echo base_url('index.php/') . "/Alarmas_generadas/edit_alarmas_generadas"; ?>" method="post" id="editar">
         <input type="hidden" name="<?php echo $campo ?>" id="<?php echo $campo ?>2">
@@ -141,6 +137,21 @@
             return false;
     });
     $('.datos_alarmas').DataTable();
+    $(document).ready(function () {
+        var refreshId = setInterval(refrescarTablaEstadoSala, <?php echo (isset($configuracion[0]->tiempo) ? $configuracion[0]->tiempo : 5) ?>000);
+//        $.ajaxSetup({cache: false});
+    });
+    
+    function refrescarTablaEstadoSala(){
+        $('#form1').submit()
+    }
+//    setInterval($('#form1').submit(), '<?php echo (isset($configuracion[0]->tiempo) ? $configuracion[0]->tiempo : 5000) ?>') 
+////    $(document).on('ready', function () {
+//        setTimeout(dd(), 500); //Se llamará cada 5 segundos y se refrescarán los datos de dicha tabla que se cargan mediante la función LOAD de JQuery.
+////    });
+//    function dd(){
+//        console.log('d')
+//    }
 </script>
 
 <style>
@@ -166,7 +177,7 @@
         padding: 1px 3px;
         border-radius: 15px;
     }
-   
+
 
     .charSelected_1-Verde{
         background-color: green;

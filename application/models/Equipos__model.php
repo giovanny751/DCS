@@ -1,7 +1,14 @@
 <?php
 
 class Equipos__model extends CI_Model {
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
     function __construct() {
         parent::__construct();
     }
@@ -83,7 +90,7 @@ class Equipos__model extends CI_Model {
                 $this->db->like('fecha_creacion', $post['fecha_creacion']);
         if (isset($post['estado']))
             if ($post['estado'] != "")
-                $this->db->like('tipo_equipo.estado', $post['estado']);
+                $this->db->like('equipos.estado', $post['estado']);
         if (isset($post['ubicacion']))
             if ($post['ubicacion'] != "")
                 $this->db->like('ubicacion', $post['ubicacion']);
@@ -128,7 +135,7 @@ class Equipos__model extends CI_Model {
                 $this->db->like('variable_codigo', $post['variable_codigo']);
         $this->db->select('id_equipo');
         $this->db->select('descripcion');
-        $this->db->select('tipo_equipo.estado');
+        $this->db->select('estado_equipos.estado');
         $this->db->select('ubicacion');
         $this->db->select('serial');
         $this->db->select('fabricante');
@@ -136,6 +143,7 @@ class Equipos__model extends CI_Model {
         $this->db->select('referencia');
         $this->db->select('responsable');
         $this->db->join('tipo_equipo', 'equipos.tipo_equipo_cod=tipo_equipo.tipo_equipo_cod');
+        $this->db->join('estado_equipos', 'estado_equipos.id_estado=equipos.estado');
         $this->db->where('equipos.ACTIVO', 'S');
         if (empty($post))
             $this->db->where("1", 2);
@@ -189,6 +197,18 @@ class Equipos__model extends CI_Model {
         $datos=$this->db->get("paciente_equipo_tipoequipo");
         $datos=$datos->result();
         return $datos[0]->id_equipo;
+    }
+    function buscar_serial($data) {
+        $this->db->select('count(*) gtg', false);
+        $this->db->where('serial', $data['serial']);
+        $datos = $this->db->get('equipos');
+        $datos = $datos->result();
+        if (count($datos)) {
+            return $datos[0]->gtg;
+        }else{
+            return 0;
+        }
+//        $this->db->insert_batch('nivel_tipo_alarma', $data);
     }
 
 }

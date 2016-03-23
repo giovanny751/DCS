@@ -59,19 +59,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-
+ 
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-//	'hostname' => 'localhost', 
-//        'username' => 'root',
-//        'password' => '',
-	'hostname' => '192.186.204.164', 
-	'username' => 'nygsoft',
-	'password' => ']4sCrQt5e+O+',
-	'database' => 'dcss', 
+	'hostname' => '127.0.0.1',
+	'username' => 'root',
+	'password' => 'C0l0mb14$2011',
+	'database' => 'telemetriacliente2', 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -90,15 +87,10 @@ $db['default'] = array(
 );
 $db['parametro'] = array(
 	'dsn'	=> '',
-
-//	'hostname' => '192.186.204.164', 
-//	'username' => 'nygsoft',
-//    'password' => ']4sCrQt5e+O+',
-    	'hostname' => 'localhost', 
+	'hostname' => '127.0.0.1',
 	'username' => 'root',
-	'password' => '',
-	'database' => 'traccarr', 
-//    'database' => 'dcss',
+	'password' => 'C0l0mb14$2011',
+	'database' => 'traccar', 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -110,7 +102,29 @@ $db['parametro'] = array(
 	'swap_pre' => '',
 	'autoinit' => TRUE,
 	'encrypt' => FALSE,
-	'compress' => FALSE,
+	'compress' => FALSE, 
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+$db['pacsdb'] = array(
+	'dsn'	=> '',
+	'hostname' => '127.0.0.1',
+	'username' => 'root',
+	'password' => 'C0l0mb14$2011',
+	'database' => 'pacsdb', 
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => TRUE,
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'autoinit' => TRUE,
+	'encrypt' => FALSE,
+	'compress' => FALSE, 
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE

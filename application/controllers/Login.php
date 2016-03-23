@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Login extends My_Controller {
 
     public function __construct() {
@@ -35,7 +42,7 @@ class Login extends My_Controller {
 
 //        echo $this->input->post('username')."***".$this->input->post('password');die;
 
-        $user = $this->user_model->get_user($this->input->post('username'), $this->input->post('password'));
+        $user = $this->user_model->get_user($this->input->post('username'), $this->input->post('password'));  
         if (!empty($user) > 0) {
             $this->data['username'] = $user[0]["usu_email"];
             $this->data['password'] = $user[0]["usu_contrasena"];
@@ -82,9 +89,11 @@ class Login extends My_Controller {
         $datos = $this->user_model->confirmar($mail);
         if (count($datos) > 0) {
             $password = $this->user_model->reset($mail);
-            $actualizar = $this->user_model->actualizar($mail);
+            $this->user_model->actualizar2($mail,$password);
             $data = mail($mail, "Actualizacion de Contraseña", 'clave: ' . $password);
             $this->session->set_flashdata(array('message' => 'Correo enviado.', 'message_type' => 'warning'));
+            
+            redirect('index.php', 'location');
         }else{
             $this->session->set_flashdata(array('message' => 'Correo no existe.', 'message_type' => 'warning'));
             redirect('index.php', 'location');

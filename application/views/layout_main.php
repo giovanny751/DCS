@@ -5,52 +5,24 @@
 
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   
   
 
 
-<!--<script src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js'></script>-->
-<!--<script src="<?php  echo  base_url('js/dataTables.responsive.js') ?>" type="text/javascript"></script>-->
-<!--<link href="<?php  echo  base_url('css/dataTables.responsive.css') ?>" rel="stylesheet" type="text/css"/>-->
-<link href="<?php // echo base_url('img/blanco.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
+<link href="<?php echo base_url('img/blanco.jpg'); ?>" rel="shortcut icon" type="image/x-icon">
 <script src="<?php  echo  base_url('js/jquery.smartmenus.js') ?>" type="text/javascript"></script>
-<!--<script src="<?php  echo  base_url('js/validCampoFranz.js') ?>" type="text/javascript"></script>-->
 <script src="<?php  echo  base_url('js/jquery.smartmenus.bootstrap.js') ?>" type="text/javascript"></script>
 <script src="<?php  echo  base_url('js/bootstrap.js') ?>" type="text/javascript"></script>
 <link href="<?php  echo  base_url('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?php  echo  base_url('css/style.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?php  echo  base_url('css/jquery.smartmenus.bootstrap.css') ?>" rel="stylesheet">
 <script src="<?php echo base_url('/assets/global/scripts/metronic.js'); ?>" type="text/javascript"></script>
-<!--<script src="<?php echo base_url('/assets/admin/pages/scripts/ui-blockui.js'); ?>"></script>-->
-<!--<script src="<?php echo base_url('/assets/global/plugins/jquery.blockui.min.js'); ?>" type="text/javascript"></script>-->
-<!--<link href="<?php echo base_url('/assets/global/css/plugins.css'); ?>" rel="stylesheet" type="text/css"/>-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/jquery-notific8/jquery.notific8.min.css'); ?>"/>
 <script src="<?php echo base_url('/assets/global/plugins/jquery-notific8/jquery.notific8.min.js'); ?>"></script>
 <script src="<?php echo base_url('/assets/admin/pages/scripts/ui-notific8.js'); ?>"></script>
-<!--<link href="<?php echo base_url('/assets/global/plugins/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>-->
 <link href="<?php echo base_url('/assets/global/plugins/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css"/>
-<!--<link href="<?php echo base_url('/css/font_google.css'); ?>" rel="stylesheet" type="text/css"/>-->
-<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css'); ?>"/>-->
-<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css'); ?>"/>-->
-<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'); ?>"/>-->  
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/estilos.css'); ?>"/>  
-<!--<link href="<?php echo base_url('/assets/global/plugins/bootstrap-select/bootstrap-select.min.css'); ?>" rel="stylesheet">-->
-<!--<link href="<?php echo base_url('/assets/global/plugins/select2/select2.css'); ?>" rel="stylesheet">-->
-<!--<link href="<?php echo base_url('/assets/global/plugins/jquery-multi-select/css/multi-select.css'); ?>" rel="stylesheet">-->
-<!--<link href="<?php echo base_url('/assets/global/css/components.css'); ?>" rel="stylesheet" type="text/css"/>-->
-<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>-->
-<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js'); ?>"></script>-->
-<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js'); ?>"></script>-->
-<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js'); ?>"></script>-->
-<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js'); ?>"></script>-->
-<!--<script src="<?php echo base_url('/assets/global/scripts/datatable.js'); ?>"></script>-->
-<!--<script type="text/javascript" src="<?php echo base_url('/assets/admin/pages/scripts/table-ajax.js'); ?>"></script>-->
-<!--<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/moment.min.js'); ?>" type="text/javascript"></script>-->
-<!--<script src="<?php echo base_url('/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js'); ?>" type="text/javascript"></script>-->
-<!--<script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>"></script>-->
-<!--<script src="<?php echo base_url('/assets/admin/pages/scripts/components-pickers.js'); ?>"></script>-->
 <script src="<?php  echo  base_url('js/jquery.blockUI.js') ?>" type="text/javascript"></script>
 
 <!-- Estilos principales de botones y/o elementos -->
@@ -97,7 +69,6 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
                 echo "</ul>";
             echo "</li>";
             echo "<li><a href='". base_url('index.php/login/logout')."'>CERRAR SESION</a></li>";
-//            echo "<li><a href='#'> strtoupper($nombre) </a></li>";
     }
     echo "</ul>";
 }
@@ -109,9 +80,6 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     <span class="cuadroH1"></span>
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
-<!--    <h1>
-        <img src="<?php  echo  base_url('img/homeCare.PNG') ?>" alt="Logo" />
-    </h1>-->
 </header>
 <div id="cssmenu">
         <?php echo modulos('prueba', $id, null); ?>
@@ -293,7 +261,8 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
         monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ],
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        yearRange: '1950:<?php echo date('Y')?>'
     });
     
     
@@ -338,6 +307,18 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
     $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 });
 //$('.table').DataTable();
+
+
+    $('body').delegate('input[type="file"]','change', function () {
+
+        //this.files[0].size gets the size of your file.
+        if (this.files[0].size > 8300000) {
+            alerta('rojo', 'El tama&ntilde;o del archivo debe ser inferior a 8mb', false);
+            $(this).val('');
+            return false;
+        }
+
+    });
 </script>
 <style>
     .blockOverlay{

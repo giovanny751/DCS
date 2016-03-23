@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Niveles_alarma extends My_Controller {
 
     function __construct() {
@@ -51,6 +58,10 @@ class Niveles_alarma extends My_Controller {
     function tipo_alarma(){
         $this->data['post']=$this->input->post();
         echo lista("id_tipo_alarma", "id_tipo_alarma", "form-control obligatorio", "tipo_alarma", "id_tipo_alarma", "descripcion", null, array("ACTIVO" => "S",'examen'=>$this->data['post']['examen_cod']), /* readOnly? */ false); 
+    }
+    function buscar_niveles_alarma(){
+        $this->data['post']=$this->input->post();
+        echo $this->data['datos']=$this->Niveles_alarma__model->buscar_niveles_alarma($this->data['post']);
     }
 }
 ?>

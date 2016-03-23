@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class User_model extends CI_Model {
     function __construct() {
         $this->db = $this->load->database('default', TRUE);
@@ -12,16 +19,16 @@ class User_model extends CI_Model {
 
     public function get_user($username, $pass) {
         $this->db->where('usu_usuario', $username);
-        $this->db->where('usu_contrasena', $pass);
+        $this->db->where('usu_contrasena', sha1($pass));
         $this->db->where('est_id', 1);
-        $query = $this->db->get('user');
+        $query = $this->db->get('user'); 
         return $query->result_array();
     }
 
     public function listo_politica($username, $pass) {
         $this->db->set('usu_politicas', '1');
         $this->db->where('usu_email', $username);
-        $this->db->where('usu_contrasena', $pass);
+        $this->db->where('usu_contrasena', sha1($pass));
         $this->db->update('user');
     }
 
@@ -39,7 +46,7 @@ class User_model extends CI_Model {
 
     function reset($mail) {
         $datos = rand(1000000, 8155555);
-        $this->db->set('usu_contrasena', $datos);
+        $this->db->set('usu_contrasena', sha1($datos));
         $this->db->where('usu_email', $mail);
         $this->db->get('user');
         return $datos;
@@ -72,9 +79,25 @@ class User_model extends CI_Model {
         
         return $datos;
     }
+    function actualizar2($mail,$password) {
+
+        $this->db->where('usu_email', $mail);
+        $this->db->set('usu_contrasena', sha1($password));
+        $this->db->update('user');
+        
+        $this->db1->where('email',$mail);
+        $this->db1->set('password',sha1($password));
+        $this->db1->update('users');
+        
+        $this->db1->where('email',$mail);
+        $this->db1->set('hashedPassword',sha1($password));
+        $this->db1->update('user');
+//        echo $this->db->last_query();
+    }
 
     function create($data,$post) {
         $this->db->insert('user', $data);
+//        echo $this->db->last_query();
         $id=  $this->db->insert_id();
         
         $this->db1->set('archive',$post['estado']);
@@ -93,7 +116,8 @@ class User_model extends CI_Model {
         $this->db1->set('usu_id',$id);
         $this->db1->set('hashedPassword',sha1($post['contrasena']));
         $this->db1->insert('user');
-        echo $this->db1->last_query();
+//        echo $this->db1->last_query();
+        return $id;
     }
     function update_user($data,$cedula) {
         $this->db->where('usu_cedula',$cedula);
@@ -173,14 +197,31 @@ class User_model extends CI_Model {
         $data = $this->db->get('user');
         return $data->result();
     }
+    function validaexistencia_brigada($cc){
+        $this->db->where("nombre",$cc);
+        $data = $this->db->get('brigadas');
+//        $this->db->last_query();
+        return $data->result();
+    }
+    function email($email){
+        $this->db->where("usu_email",$email);
+        $data = $this->db->get('user');
+        return $data->result();
+    }
     function validaexistencia_usuario($user){
         $this->db->where("usu_usuario",$user);
         $data = $this->db->get('user');
         return $data->result();
     }
     function eliminar_usuarios($post){
+        $this->db->set('est_id','2');
         $this->db->set('activo','N');
+        $this->db->set('rol_id','0');
         $this->db->where('usu_id',$post['usu_id']);
         $this->db->update('user');
+        
+
+        $this->db->where('usu_id',$post['usu_id']);
+        $this->db->delete('user');
     }
 }

@@ -111,14 +111,14 @@
         var idrol = $('#roles').val();
         var textrol = $('#roles option:selected').text();
         $('.permisomenu *').remove();
-        $.post("<?= base_url('index.php/presentacion/permisosporrol') ?>", {idrol: idrol, idusuario: idusuario}, function (data) {
+        $.post("<?php echo  base_url('index.php/presentacion/permisosporrol') ?>", {idrol: idrol, idusuario: idusuario}, function (data) {
             $('.permisomenu').append(data);
         });
     });
 
     $('.modificar').click(function () {
         $('.obligatorio').val('');
-        $.post("<?= base_url('index.php/presentacion/consultausuario') ?>",
+        $.post("<?php echo  base_url('index.php/presentacion/consultausuario') ?>",
                 {id: $(this).attr('idpadre')},
         function (data) {
             $('#usuario').val(data.usu_nombres_apellido);

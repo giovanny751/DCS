@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Presentacion extends My_Controller {
 
     function __construct() {
@@ -10,9 +17,9 @@ class Presentacion extends My_Controller {
         $this->load->database();
         $this->load->model('Ingreso_model');
         $this->load->model('Roles_model');
+        $this->load->model('Parts__model');
         $this->load->helper('miscellaneous');
         $this->load->helper('security');
-//        echo $this->session->userdata('usu_id')."****";die;
         validate_login($this->session->userdata('usu_id'));
     }
 
@@ -50,6 +57,12 @@ class Presentacion extends My_Controller {
 
     function administracionmenu() {
         $this->load->view('presentacion/menu', $this->data);
+    }
+    function edit_rol(){
+        $post= $this->input->post();
+        $this->db->set('rol_nombre',$post['nombre']);
+        $this->db->where('rol_id',$post['rol']);
+        $this->db->update('roles');
     }
 
     function consultadatosmenu() {
@@ -109,6 +122,19 @@ class Presentacion extends My_Controller {
 
     function usuario() {
         $this->data['roles'] = $this->Roles_model->roles();
+        $this->data['post'] = $post = $this->input->post();
+        if (isset($post['nombre']))
+            if (!empty($post['nombre']))
+                $this->db->where('usu_nombre', $post['nombre']);
+        if (isset($post['email']))
+            if (!empty($post['email']))
+                $this->db->where('usu_email', $post['email']);
+        if (isset($post['estado'])) {
+            if (!empty($post['estado']))
+                $this->db->where('est_id', $post['estado']);
+        }else {
+            $this->db->where('est_id', 1);
+        }
         $this->data['usaurios'] = $this->Ingreso_model->totalusuarios();
         $this->layout->view('presentacion/usuario', $this->data);
     }
@@ -193,7 +219,7 @@ class Presentacion extends My_Controller {
         $guardarpermisos = $this->Ingreso_model->permisosmodulo($datos);
     }
 
-    function permisoroles($datosmodulos, $html = null,$s=null) {
+    function permisoroles($datosmodulos, $html = null, $s = null) {
         $menu = $this->Ingreso_model->permisoroles($datosmodulos);
         $i = array();
         foreach ($menu as $modulo)
@@ -204,9 +230,9 @@ class Presentacion extends My_Controller {
             foreach ($nombrepapa as $nombrepapa => $menuidpadre)
                 foreach ($menuidpadre as $modulos => $menu)
                     foreach ($menu as $submenus):
-                        $html .= "<tr><td>".($s==null?'':'&nbsp;&nbsp;&nbsp;')."<input type='checkbox' class='seleccionados ".($s==null?'':$s)."'  atr='".str_replace(' ','',strtoupper($nombrepapa))."' name='permisorol[]' value='" . $padre . "'></td><td>".($s==null?'<br><b>':'')."<li>" . strtoupper($nombrepapa) . "";
+                        $html .= "<tr><td>" . ($s == null ? '' : '&nbsp;&nbsp;&nbsp;') . "<input type='checkbox' class='seleccionados " . ($s == null ? '' : $s) . "'  atr='" . str_replace(' ', '', strtoupper($nombrepapa)) . "' name='permisorol[]' value='" . $padre . "'></td><td>" . ($s == null ? '<br><b>' : '') . "<li>" . strtoupper($nombrepapa) . "";
                         if (!empty($submenus[0]))
-                            $html .=$this->permisoroles($submenus[0],' ',  str_replace(' ','',strtoupper($nombrepapa)));
+                            $html .=$this->permisoroles($submenus[0], ' ', str_replace(' ', '', strtoupper($nombrepapa)));
                         $html .= "</li></td></tr>";
                     endforeach;
         $html.="</ul>";
@@ -214,7 +240,7 @@ class Presentacion extends My_Controller {
     }
 
     function roles() {
-        $this->data['content'] = "<table border='0' width='100%'>".$this->permisoroles('prueba', null)."</table>";
+        $this->data['content'] = "<table border='0' width='100%'>" . $this->permisoroles('prueba', null) . "</table>";
         $this->data['roles'] = $this->Roles_model->roles();
         $this->layout->view('presentacion/roles', $this->data);
     }
@@ -359,6 +385,54 @@ class Presentacion extends My_Controller {
         $rol = $this->input->post("rol");
         $usu_id = $this->session->userdata('usu_id');
         $this->User_model->rolxdefecto($rol, $usu_id);
+    }
+
+    function getprocedimientos() {
+        $link = mysql_connect("localhost", "root", "C0l0mb14$2011") or die(mysql_error());
+        mysql_select_db("telemetria", $link) or die(mysql_error());
+
+        $query = "select * from parts order by id desc";
+        $this->procedimientos = mysql_query($query, $link);
+        if ($this->procedimientos) {
+            $this->layout->view("presentacion/ingreso", $this->procedimientos);
+        } else {
+            echo "Database Error: " . mysql_error() . "<br><b>$query</b>";
+            die();
+        }
+    }
+
+    function getMedicos() {
+        $id_proc_parts = $this->input->post('procedimientos');
+        $this->layout->view("presentacion/ingreso");
+    }
+
+    function autocomplete_procedimiento() {
+        $info = auto("parts", "id", "description", $this->input->get('term'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+
+    function ingreso() {
+        //consulta de procedimientos existentes 		
+        $datos['parts'] = $this->Parts__model->getProcedimientos();
+        $datos['inicio'] = 'hola mundo';
+        $procedimiento = $this->input->post('procedimientos');
+        $this->layout->view("presentacion/ingreso", $datos);
+    }
+
+    function buscar_medicos() {
+        echo $this->input->post('informacion');
+    }
+
+    function guardar_registro_clinico() {
+        var_dump($_POST);
+        print "hello";
+        exit;
+    }
+
+    function permisosRol() {
+
+        $data = $this->Ingreso_model->consultaRoles($this->input->post('id'));
+        $this->output->set_content_type('application/json')->set_output(json_encode($data));
     }
 
 }

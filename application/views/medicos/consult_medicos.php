@@ -93,10 +93,12 @@
                         }
                         $i++;
                     }
-                    echo "<td>"
-                    . '<a href="javascript:" class="btn btn-dcs" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
-                    . '<a href="javascript:" class="btn btn-danger" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>'
-                    . "</td>";
+                    echo "<td>";
+                    echo '<a href="javascript:" class="btn btn-dcs" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>';
+                    if ($tipo_usuario != 2) { 
+                    echo '<a href="javascript:" class="btn btn-danger" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>';
+                    }
+                    echo "</td>";
                     echo "</tr>";
                 }
                 ?>

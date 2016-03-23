@@ -11,4 +11,4 @@
     </h5>
 </div>-->
 <div style="border: 2px solid #CCC;padding: 15px;margin-top:3px;" class="">
-        Pendiente    </div>
+        <?php echo $this->session->userdata('usu_nombre') ?> <?php echo $this->session->userdata('usu_apellido') ?>    </div>

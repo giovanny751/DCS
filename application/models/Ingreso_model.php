@@ -1,7 +1,14 @@
 <?php
 
 class Ingreso_model extends CI_Model {
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
     function __construct() {
         parent::__construct();
     }
@@ -259,14 +266,19 @@ class Ingreso_model extends CI_Model {
     }
     function consultapermisosmenu($usu_id,$controller,$method){
         
-        $this->db->where("modulo.menu_controlador",$controller);
+        $this->db->where("modulo.menu_controlador",$controller); 
         $this->db->where("modulo.menu_accion",$method);
         $this->db->where("user.usu_id",$usu_id);
         $this->db->join("permisos","permisos.rol_id = user.rol_id");
         $this->db->join("permisos_rol","permisos_rol.rol_id = permisos.rol_id");
         $this->db->join("modulo","permisos_rol.menu_id = modulo.menu_id");
         $user = $this->db->get("user");
-//        echo $this->db->last_query();die;   
+//        echo $this->db->last_query();die;    
         return $user->result();
+    }
+    function consultaRoles($id){
+        $this->db->where("usu_id",$id);
+        $data = $this->db->get("permisos");
+        return $data->result();
     }
 }

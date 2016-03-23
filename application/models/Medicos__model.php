@@ -1,7 +1,14 @@
 <?php
 
 class Medicos__model extends CI_Model {
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
     function __construct() {
         parent::__construct();
     }
@@ -25,6 +32,24 @@ class Medicos__model extends CI_Model {
             $this->db->set('id_proc_parts', $value);
             $this->db->insert('as_medicos_parts');
         }
+        
+        
+        $this->db->select('count(*) datos');
+        $this->db->where('usu_cedula',$post['cedula_paciente']);
+        $datos=$this->db->get('user');
+        $datos=$datos->result();
+//        echo $datos[0]->datos;
+        if($datos[0]->datos==0){
+            $this->db->set('usu_cedula',$post['cedula']);
+            $this->db->set('usu_usuario',$post['cedula']);
+            $this->db->set('usu_contrasena',sha1($post['cedula']));
+            $this->db->set('usu_nombre',$post['nombre']);
+            $this->db->set('usu_email',$post['email']);
+            $this->db->set('est_id',1);
+            $this->db->set('tipo_usuario',2);
+            $this->db->insert('user');
+        }
+        
 
         return $id;
     }
@@ -115,6 +140,54 @@ class Medicos__model extends CI_Model {
         $datos = $datos->result();
 //        echo $this->db->last_query();
         return count($datos);
+    }
+
+    function form_consulta($post) {
+        if (!empty($post['estado'])) {
+            if ($post['estado'] == 1) {
+                $this->db->where('(c.estado', $post['estado'], false);
+                $this->db->or_where('c.estado', "2)", false);
+            } else {
+                $this->db->where('c.estado', $post['estado']);
+            }
+        }
+        if (!empty($post['paciente'])) {
+            $this->db->like('(pac.apellidos', $post['paciente'], false);
+            $this->db->or_like('pac.nombres', $post['paciente']);
+            $this->db->where('1', '1)', false);
+        }
+        if (!empty($post['Procedimientos'])) {
+            $this->db->like('p.description', $post['Procedimientos']);
+        }
+        if (!empty($post['fecha_ini'])) {
+            $this->db->where('c.fecha >', $post['fecha_ini'].' 00:00:00');
+        }
+        if (!empty($post['fecha_fin'])) {
+            $this->db->where('c.fecha <', $post['fecha_fin'].' 23:59:59');
+        }
+        if (!empty($post['procedimientos_form'])) {
+            $this->db->like('p.description',$post['procedimientos_form'] );
+        }
+        $this->db->where('m.medico_codigo', $post['medico_codigo']);
+
+        $this->db->select(" a.id_cita,i.id as id_informe,pac.id_paciente,i.id, c.fecha  as fecha_ingreso , 
+pac.nombres, pac.apellidos, p.description,
+case 
+  when(c.estado=1 or c.estado=2 ) then 'Sin Atender' 
+  when(c.estado=3 ) then 'Atendido' 
+  else 'Anulado' end  as estado  ,concepto as motivo ,
+i.fecha as fecha_atencion,m.nombre,pac.cedula_paciente", false);
+        $this->db->join('pacientes pac ', 'pac.cedula_paciente = c.cedula', 'inner', false);
+        $this->db->join('parts p  ', 'p.id=c.id_proc_parts', 'inner', false);
+        $this->db->join('medicos m  ', 'm.medico_codigo=c.id_medico', 'inner', false);
+        $this->db->join('as_atencion_pacientes a  ', 'c.id=a.id_cita', 'inner', false);
+        $this->db->join('as_informe i  ', 'a.id=i.id_atencion', 'inner', false);
+        $this->db->join('as_detalle_informe di', 'i.id=di.id_informe', 'inner', false);
+        $this->db->join('as_plantillas pl', 'pl.id=di.id_plantilla ', 'inner', false);
+        $this->db->where('pl.nombre_campo', 'motivo');
+        $datos = $this->db->get('as_citas c');
+//        echo $this->db->last_query();
+        return $datos->result();
     }
 
 }

@@ -15,7 +15,7 @@
                 *                             Paciente                        </label>
         </div>
         <div class="col-md-3">
-            <?php echo lista("id_paciente", "id_paciente", "form-control obligatorio", "pacientes", "id_paciente", "nombres", (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                       
+            <?php echo lista("id_paciente", "id_paciente", "form-control ", "pacientes", "id_paciente", "nombres", (isset($datos[0]->id_paciente) ? $datos[0]->id_paciente : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>                       
         </div>
 
         <div class="col-md-3">

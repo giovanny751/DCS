@@ -8,19 +8,19 @@
     
         <div class="row">   
             <div class="col-md-3">
-                Código hospital                </div>
+                <label>Código hospital   </label>             </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['codigo_hospital']) ? $post['codigo_hospital'] : '' ) ?>" class="form-control obligatorio  " id="codigo_hospital" name="codigo_hospital">
             </div>
             <div class="col-md-3">
-                Nombre Hospital               </div>
+                <label>Nombre Hospital</label>               </div>
             <div class="col-md-3">
                 <input type="text" value="<?php echo (isset($post['nombre']) ? $post['nombre'] : '' ) ?>" class="form-control obligatorio  " id="nombre" name="nombre">
             </div>
         </div>
         <div class="row">    
             <div class="col-md-3">
-                Estado                </div>
+                <label>Estado </label>               </div>
             <div class="col-md-3">
                 <select  class="form-control obligatorio  " id="estado" name="estado">
                     <option value=""></option>

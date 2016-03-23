@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Pacientes extends My_Controller {
 
     function __construct() {
@@ -30,7 +37,14 @@ class Pacientes extends My_Controller {
         $this->data['datos'] = $this->Pacientes__model->consult_pacientes($post);
         $this->layout->view('pacientes/consult_pacientes', $this->data);
     }
- 
+
+    function referencia() {
+        $post = $this->input->post();
+        $this->data['post'] = $this->input->post();
+        echo $datos = $this->Pacientes__model->referencia($post);
+//        $this->layout->view('clientes/consult_clientes', $this->data);
+    }
+
     function save_pacientes() {
         $post = $this->input->post();
         $post['foto'] = basename($_FILES['foto']['name']);
@@ -75,167 +89,201 @@ class Pacientes extends My_Controller {
         $this->data['paciente_equipo_tipoEquipo'] = $this->Pacientes__model->paciente_equipo_tipoEquipo($this->data['post']);
         $this->layout->view('pacientes/index', $this->data);
     }
-    function copiar_paciente(){
+
+    function copiar_paciente() {
         $this->data['post'] = $this->input->post();
         $this->data['paciente_examen_variable'] = $this->Pacientes__model->paciente_examen_variable($this->data['post']);
-        echo $d=$this->load->view('pacientes/copiar_paciente', $this->data,true);
+        echo $d = $this->load->view('pacientes/copiar_paciente', $this->data, true);
     }
-    function eliminarcontacto(){
-        
+
+    function eliminarcontacto() {
+
         $this->data['datos'] = $this->Pacientes__model->eliminar_pacientes($this->input->post("con_id"));
-
     }
-    function eliminar_hospitalpaciente(){
-        
+
+    function eliminar_hospitalpaciente() {
+
         $this->data['datos'] = $this->Pacientes__model->eliminar_hospitalpaciente($this->input->post("id"));
-
     }
-    function eliminar_aseguradorapaciente(){
-        
-        $this->data['datos'] = $this->Pacientes__model->eliminar_aseguradorapaciente($this->input->post("id"));
 
+    function eliminar_aseguradorapaciente() {
+
+        $this->data['datos'] = $this->Pacientes__model->eliminar_aseguradorapaciente($this->input->post("id"));
     }
 
     function autocomplete_cedula_paciente() {
+        $tipo_usuario = $this->session->userdata('tipo_usuario');
+        if ($tipo_usuario == 2) {//medico
+            $this->db->join('medicos','pacientes.medico=medicos.medico_codigo');
+            $this->db->where('medicos.cedula', $this->session->userdata('usu_cedula'));
+        }
+        if ($tipo_usuario == 3) {//paciente
+            $this->db->where('cedula_paciente', $this->session->userdata('usu_cedula'));
+        }
         $info = auto("pacientes", "id_paciente", "cedula_paciente", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function autocomplete_hospitales() {
+        $tipo_usuario = $this->session->userdata('tipo_usuario');
+
+//        if ($tipo_usuario == 2) {//medico
+//            $this->db->where('cedula_paciente', $this->session->userdata('usu_cedula'));
+//        }
+        if ($tipo_usuario == 3) {//paciente
+            $this->db->where('cedula_paciente', $this->session->userdata('usu_cedula'));
+        }
         $info = $this->auto4("hospitales", "codigo_hospital", "nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function autocomplete_aseguradora() {
         $info = $this->auto3("aseguradoras", "aseguradora_id", "nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
-    
-    
+
     function autocomplete_descripcion() {
-        
-        $info = $this->auto5("equipos", "id_equipo", "equipos.descripcion", $this->input->get('term'));
-        $tipo_equipo_cod=$this->input->get('tipo_equipo_cod');
-//        echo $this->db->last_query();
-        if(isset($tipo_equipo_cod))
-        if(!empty($tipo_equipo_cod)){
-            $this->db->where('tipo_equipo_cod',$this->input->get('tipo_equipo_cod'));
+        $get=$this->input->get();
+        if(isset($get['examen'])){
+            if(!empty($get['examen'])){
+            $examen=explode(',', $get['examen']);
+            $this->db->where_in('equipo_examen_variable.examen_cod',$examen);
+            }
         }
-        
+        if (isset($get['tipo_equipo_cod']))
+            if (!empty($get['tipo_equipo_cod'])) {
+                $this->db->where('tipo_equipo.tipo_equipo_cod', $this->input->get('tipo_equipo_cod'));
+            }
+        $info = $this->auto5("equipos", "id_equipo", "equipos.descripcion", $this->input->get('term'));
+//        $tipo_equipo_cod=$this->input->get('tipo_equipo_cod');
+
+
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
-    function auto5($tabla,$idcampo,$nombrecampo,$letra) {
-        $this->db->where('tipo_equipo.activo','S');
-        $this->db->where('equipos.estado','1');
-        $this->db->join('tipo_equipo','tipo_equipo.tipo_equipo_cod='.$tabla.'.tipo_equipo_cod');
-            $search = buscador($tabla,$nombrecampo,$letra,'serial');
+
+    function auto5($tabla, $idcampo, $nombrecampo, $letra) {
+        $this->db->where('tipo_equipo.activo', 'S');
+        $this->db->where('equipos.estado', '1');
+        $this->db->join('tipo_equipo', 'tipo_equipo.tipo_equipo_cod=' . $tabla . '.tipo_equipo_cod');
+        $this->db->join('equipo_examen_variable', 'equipo_examen_variable.id_equipo=' . $tabla . '.id_equipo');
+        $search = buscador($tabla, $nombrecampo, $letra, 'serial');
 //            print_r($search);
-            $h = 0;
-            foreach($search as $result){
-                $data[$h] = array(
-                    'id' => $result->$idcampo,
-                       'label' => $result->descripcion,
-                       'value' => $result->descripcion." :: ".$result->serial." :: ".$result->fecha_ultima_calibracion." :: ".$result->id_equipo." :: ".$result->referencia
-                );
-                $h++;
-            }
-            return $data;
+        $h = 0;
+        foreach ($search as $result) {
+            $data[$h] = array(
+                'id' => $result->$idcampo,
+                'label' => $result->descripcion,
+                'value' => $result->descripcion . " :: " . $result->serial . " :: " . $result->fecha_ultima_calibracion . " :: " . $result->id_equipo . " :: " . $result->referencia
+            );
+            $h++;
+        }
+        return $data;
     }
+
     function autocomplete_nivel() {
         $info = $this->auto6("niveles_alarma", "id_niveles_alarma", "descripcion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+
     function autocomplete_nivel2() {
         $info = $this->auto8("niveles_alarma", "id_niveles_alarma", "descripcion", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
-    function auto8($tabla,$idcampo,$nombrecampo,$letra) {
-            $search = buscador($tabla,$nombrecampo,$letra);
-            $h = 0;
-            foreach($search as $result){
-                $data[$h] = array(
-                    'id' => $result->$idcampo,
-                       'label' => $result->$nombrecampo,
-                       'value' => $result->descripcion." :: ".$result->id_niveles_alarma." :: ".$result->n_repeticiones_minimas." :: ".$result->n_repeticiones_maximas." :: ".$result->color
-                );
-                $h++;
-            }
-            return $data;
+
+    function auto8($tabla, $idcampo, $nombrecampo, $letra) {
+        $search = buscador($tabla, $nombrecampo, $letra);
+        $h = 0;
+        foreach ($search as $result) {
+            $data[$h] = array(
+                'id' => $result->$idcampo,
+                'label' => $result->$nombrecampo,
+                'value' => $result->descripcion . " :: " . $result->id_niveles_alarma . " :: " . $result->n_repeticiones_minimas . " :: " . $result->n_repeticiones_maximas . " :: " . $result->color
+            );
+            $h++;
+        }
+        return $data;
     }
+
     function autocomplete_nom_paciente() {
         $info = $this->auto7("pacientes", "id_paciente", "nombres", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
-    function auto7($tabla,$idcampo,$nombrecampo,$letra) {
-            $search = buscador($tabla,$nombrecampo,$letra,'cedula_paciente');
-            $h = 0;
-            foreach($search as $result){
-                $data[$h] = array(
-                    'id' => $result->$idcampo,
-                       'label' => $result->$nombrecampo,
-                       'value' => $result->cedula_paciente." :: ".$result->nombres." :: ".$result->id_paciente
-                );
-                $h++;
-            }
-            return $data;
+
+    function auto7($tabla, $idcampo, $nombrecampo, $letra) {
+        $search = buscador($tabla, $nombrecampo, $letra, 'cedula_paciente');
+        $h = 0;
+        foreach ($search as $result) {
+            $data[$h] = array(
+                'id' => $result->$idcampo,
+                'label' => $result->$nombrecampo,
+                'value' => $result->cedula_paciente . " :: " . $result->nombres . " :: " . $result->id_paciente
+            );
+            $h++;
+        }
+        return $data;
     }
-    
-    function auto6($tabla,$idcampo,$nombrecampo,$letra) {
-            $search = buscador($tabla,$nombrecampo,$letra);
-            $h = 0;
-            foreach($search as $result){
-                $data[$h] = array(
-                    'id' => $result->$idcampo,
-                       'label' => $result->$nombrecampo,
-                       'value' => $result->descripcion." :: ".$result->id_niveles_alarma
-                );
-                $h++;
-            }
-            return $data;
+
+    function auto6($tabla, $idcampo, $nombrecampo, $letra) {
+        $search = buscador($tabla, $nombrecampo, $letra);
+        $h = 0;
+        foreach ($search as $result) {
+            $data[$h] = array(
+                'id' => $result->$idcampo,
+                'label' => $result->$nombrecampo,
+                'value' => $result->descripcion . " :: " . $result->id_niveles_alarma
+            );
+            $h++;
+        }
+        return $data;
     }
-    function auto3($tabla,$idcampo,$nombrecampo,$letra) {
-            $search = buscador($tabla,$nombrecampo,$letra);
-            $h = 0;
-            foreach($search as $result){
-                $data[$h] = array(
-                    'id' => $result->$idcampo,
-                       'label' => $result->$nombrecampo,
-                       'value' => $result->tipo." :: ".$result->nombre." :: ".$result->direccion." :: ".$result->telefono_fijo." :: ".$result->celular." :: ".$result->aseguradora_id
-                );
-                $h++;
-            }
-            return $data;
+
+    function auto3($tabla, $idcampo, $nombrecampo, $letra) {
+        $search = buscador($tabla, $nombrecampo, $letra);
+        $h = 0;
+        foreach ($search as $result) {
+            $data[$h] = array(
+                'id' => $result->$idcampo,
+                'label' => $result->$nombrecampo,
+                'value' => $result->tipo . " :: " . $result->nombre . " :: " . $result->direccion . " :: " . $result->telefono_fijo . " :: " . $result->celular . " :: " . $result->aseguradora_id
+            );
+            $h++;
+        }
+        return $data;
     }
-    
-    function auto4($tabla,$idcampo,$nombrecampo,$letra) {
-            $search = buscador($tabla,$nombrecampo,$letra);
-            $h = 0;
-            foreach($search as $result){
-                $data[$h] = array(
-                    'id' => $result->$idcampo,
-                       'label' => $result->$nombrecampo,
-                       'value' => $result->nombre." :: ".$result->direccion." :: ".$result->telefono_fijo." :: ".$result->celular." :: ".$result->email." :: ".$result->codigo_hospital
-                );
-                $h++;
-            }
-            
-            
-            return $data;
+
+    function auto4($tabla, $idcampo, $nombrecampo, $letra) {
+        $search = buscador($tabla, $nombrecampo, $letra);
+        $h = 0;
+        foreach ($search as $result) {
+            $data[$h] = array(
+                'id' => $result->$idcampo,
+                'label' => $result->$nombrecampo,
+                'value' => $result->nombre . " :: " . $result->direccion . " :: " . $result->telefono_fijo . " :: " . $result->celular . " :: " . $result->email . " :: " . $result->codigo_hospital
+            );
+            $h++;
+        }
+
+
+        return $data;
     }
+
     function autocomplete_contacto_id() {
         $info = $this->auto2("contacto", "contacto_id", "nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
-    function auto2($tabla,$idcampo,$nombrecampo,$letra) {
-            $search = buscador($tabla,$nombrecampo,$letra);
-            $h = 0;
-            foreach($search as $result){
-                $data[$h] = array(
-                    'id' => $result->$idcampo,
-                       'label' => $result->documento." ".$result->$nombrecampo,
-                       'value' => $result->$nombrecampo." :: ".$result->direccion." :: ".$result->telefono_fijo." :: ".$result->celular." :: ".$result->email." :: ".$result->parentesco." :: ".$result->llaves." :: ".$result->contacto_id
-                );
-                $h++;
-            }
-            return $data;
+
+    function auto2($tabla, $idcampo, $nombrecampo, $letra) {
+        $search = buscador($tabla, $nombrecampo, $letra);
+        $h = 0;
+        foreach ($search as $result) {
+            $data[$h] = array(
+                'id' => $result->$idcampo,
+                'label' => $result->documento . " " . $result->$nombrecampo,
+                'value' => $result->$nombrecampo . " :: " . $result->direccion . " :: " . $result->telefono_fijo . " :: " . $result->celular . " :: " . $result->email . " :: " . $result->parentesco . " :: " . $result->llaves . " :: " . $result->contacto_id
+            );
+            $h++;
+        }
+        return $data;
     }
 
     function autocomplete_nombres() {
@@ -247,9 +295,10 @@ class Pacientes extends My_Controller {
         $info = auto("pacientes", "id_paciente", "apellidos", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
-    function cliente(){
-        $post=$this->input->post();
-        echo lista("cliente", "cliente", "form-control obligatorio", "clientes", "id_cliente", "nombre", null, array("ACTIVO" => "S",'id_tipo_cliente'=>$post['id_tipo_cliente']), /* readOnly? */ false);
+
+    function cliente() {
+        $post = $this->input->post();
+        echo lista("cliente", "cliente", "form-control obligatorio", "clientes", "id_cliente", "nombre", null, array("ACTIVO" => "S", 'id_tipo_cliente' => $post['id_tipo_cliente']), /* readOnly? */ false);
     }
 
 }

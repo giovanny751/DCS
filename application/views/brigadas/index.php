@@ -49,7 +49,7 @@
                                 Dirección                        </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo (isset($datos[0]->Direccion) ? $datos[0]->Direccion : '' ) ?>" class=" form-control   " id="Direccion" name="Direccion">
+                            <input type="text" value="<?php echo (isset($datos[0]->direccion) ? $datos[0]->direccion : '' ) ?>" class=" form-control   " id="Direccion" name="Direccion">
                             <br>
                         </div>
                         <div class="col-md-3">
@@ -69,16 +69,51 @@
                 </div>
                 <div id="tabEquipos" class="tab">
                     <div class="row">
-                        <div class="col-md-3">
-                            <label>Equipos</label>
+                        <div class="col-md-2">
+                            <label for="tipo_equipo_cod">
+                                Tipo                        </label>
                         </div>
                         <div class="col-md-3">
-                            <?php echo lista("", "new_equipo", "form-control ", "equipos", "id_equipo", "descripcion", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="javascript:" class="agregar_procedimiento">Agregar</a>
+                            <?php echo lista("tipo_equipo_cod[]", "tipo_equipo_cod", "form-control  tipo_equipo_cod tipo_equipo_cod3", "tipo_equipo", "tipo_equipo_cod", "referencia", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>   
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="descripcion">
+                                Descripción/Serial                        </label>
+                        </div>
+                        <div class="col-md-3">
+                            <script>
+
+                                $('document').ready(function () {
+                                    $('.tipo_equipo_cod').change(function () {
+
+                                        $('#descripcion').autocomplete({
+                                            source: "<?php echo base_url("index.php/Pacientes/autocomplete_descripcion") ?>?tipo_equipo_cod=" + $('#tipo_equipo_cod').val() + "",
+                                            minLength: 3
+                                        });
+                                    });
+
+
+                                });
+                            </script>
+                            <input type="text" id="descripcion"  class="form-control ">
+                        </div>
+                        <div class="col-md-3">
+                            <a href="javascript:" id="agregar_equipo">Agregar</a>
+                        </div>
+                    </div>
+                    <!--                    <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Equipos</label>
+                                            </div>
+                                            <div class="col-md-3">
+                    <?php echo lista("", "new_equipo", "form-control ", "equipos", "id_equipo", "descripcion", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="javascript:" class="agregar_procedimiento">Agregar</a>
+                                            </div>
+                                        </div>-->
                     <div class="row">
                         <div class="container">
                             <table class="table">
@@ -114,7 +149,7 @@
                     <a href="<?php echo base_url('index.php') . "/Brigadas/consult_brigadas" ?>" class="btn btn-dcs">Listado </a>
                 </span>
                 <span style="float: right">
-                    <a href="javascript:" class="btn btn-dcs lecturas" style="display: none" data-toggle="modal" data-target="#myModal">Iniciar lectura</a>
+                    <a href="javascript:" class="btn btn-dcs lecturas" style="display: none"   data-toggle="modal" data-target="#myModal">Iniciar lectura</a>
                 </span>
                 <span id="boton_cargar" style="display: none">
                     <h2>Cargando ...</h2>
@@ -127,7 +162,7 @@
 </div>
 
 <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -149,73 +184,115 @@
                         N° Brigada
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="modal_brigada">
+                        <label><span class="modal_brigada"></span></label>
+                        <input type="text" style="display: none" class="form-control" id="modal_brigada">
                     </div>
                     <div class="col-md-3">
                         Nombre Brigada
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="modal_nombre_brigada">
+                        <label><span class="modal_nombre_brigada"></span></label>
+                        <input type="text" style="display: none" class="form-control" id="modal_nombre_brigada">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        Cédula
+                        Tipo documento
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="modal_cedula">
+                        <select id="tipo_documento" name="tipo_documento" class="form-control">
+                            <option value=""></option>
+                            <option value="PA" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='PE'?'selected':'') : '' ) ?>>Pasaporte</option>
+                            <option value="RC" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='RC'?'selected':'') : '' ) ?>>Registro Civil</option>
+                            <option value="CE" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='CE'?'selected':'') : '' ) ?>>Cédula Extranjera</option>
+                            <option value="CC" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='CC'?'selected':'') : '' ) ?>>Cédula de Ciudadanía</option>
+                            <option value="NU" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='NU'?'selected':'') : '' ) ?>>Núm. único de ident.</option>
+                            <option value="TI" <?php echo (isset($datos[0]->tipo_documento) ? ($datos[0]->tipo_documento=='TI'?'selected':'') : '' ) ?>>Tarjeta de Identidad</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        * Cédula
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control " id="modal_cedula">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        Nombre
+                        * Nombre
                     </div>
                     <div class="col-md-3">
                         <input type="text" class="form-control" id="modal_nombre">
                     </div>
                     <div class="col-md-3">
-                        Fecha de nacimiento
+                        * Fecha de nacimiento
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="modal_fecha">
+                        <input type="text" class="form-control fecha" id="modal_fecha">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        Apellidos
+                        * Apellidos
                     </div>
                     <div class="col-md-3">
                         <input type="text" class="form-control" id="modal_apellidos">
                     </div>
                     <div class="col-md-3">
-                        Sexo
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" id="modal_sexo">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        Estatura
+                        * Estatura
                     </div>
                     <div class="col-md-3">
                         <input type="text" class="form-control" id="modal_estatura">
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-3">
+                        Sexo
+                    </div>
+                    <div class="col-md-3">
+                        <select id="sexo" name="sexo" class="form-control">
+                            <option value=""></option>
+                            <option value="1" <?php echo (isset($datos[0]->sexo) ? ($datos[0]->sexo==1?'selected':'') : '' ) ?>>F</option>
+                            <option value="2" <?php echo (isset($datos[0]->sexo) ? ($datos[0]->sexo==2?'selected':'') : '' ) ?>>M</option>
+                        </select>
+                    </div>
+                
+                    <div class="col-md-3">
+                        RH 
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo (isset($datos[0]->rh) ? $datos[0]->rh : '' ) ?>" class=" form-control     " id="rh" name="rh">
+                    </div>
+                    </div>
+                <div class="row">
+                    
+                
+                    <div class="col-md-3">
+                        Estrato 
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo (isset($datos[0]->estrato) ? $datos[0]->estrato : '' ) ?>" class=" form-control     " id="estrato" name="estrato">
+                    </div>
+                </div>
+                <div class="row">
                     <table class="table table-responsive">
                         <thead>
-                        <th>Serial</th>
-                        <th>Examen</th>
-                        <th>Variable</th>
-                        <th>Lectura</th>
+                            <tr>
+                                <th></th>
+                                <th>Serial</th>
+                                <th>Examen</th>
+                                <th>Variable</th>
+                                <th>Lectura</th>
+                            </tr>
                         </thead>
+                        <tbody class="datos_table"></tbody>
                     </table>
                 </div>
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-dcs guardar_paciente">Guardar</button>
+                <button type="button" class="btn btn-dcs" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
 
@@ -223,13 +300,96 @@
 </div>
 
 <script>
+    $('#nombre').change(function () {
+        var nombre = $('#nombre').val();
+        $.post('<?php echo base_url('index.php/administrativo/confirm_nombre') ?>', {nombre: nombre})
+                .done(function (msg) {
+                    if (msg == 0) {
+                        alerta('verde', 'nombre valido')
+                    } else {
+                        alerta('rojo', 'nombre ya se encuentra registrada')
+                        $('#nombre').val('');
+                    }
+                })
+                .fail(function (msg) {
+                })
+    })
+    
+    $('.guardar_paciente').click(function () {
 
-    $()
+        var u = "";
+        $('input[type="checkbox"]:checked').each(function(){
+            u+=$(this).val()+",";
+        })
+        if (u=='') {
+            alerta('rojo', 'Seleccione una lectura');
+            return false;
+        }
+        var modal_cedula = $('#modal_cedula').val();
+        var modal_nombre = $('#modal_nombre').val();
+        var modal_fecha = $('#modal_fecha').val();
+        var modal_apellidos = $('#modal_apellidos').val();
+        var sexo = $('#sexo').val();
+        var rh = $('#rh').val();
+        var tipo_documento = $('#tipo_documento').val();
+        var estrato = $('#estrato').val();
+//        var modal_sexo = $('#modal_sexo').val();
+        var modal_estatura = $('#modal_estatura').val();
+        if (modal_cedula == '' ||
+                modal_nombre == '' ||
+                modal_fecha == '' ||
+                modal_apellidos == '' ||
+//                modal_sexo == '' ||
+                modal_estatura == ''
+                ) {
+            alerta('rojo', 'todos los campos son obligatorios');
+            return false;
+        }
 
-    $('body').delegate('.eliminar', 'click', function() {
+        var url = "<?php echo base_url('index.php/') . "/Brigadas/save_pacientes"; ?>";
+        $.post(url, {
+            modal_cedula: modal_cedula,
+            modal_nombre: modal_nombre,
+            modal_fecha: modal_fecha,
+            modal_apellidos: modal_apellidos,
+//            modal_sexo: modal_sexo,
+            modal_estatura: modal_estatura,
+            id_lectura: u,
+            sexo:sexo,
+            rh:rh,
+            tipo_documento:tipo_documento,
+            estrato:estrato
+        })
+                .done(function (msg) {
+                    alerta('verde', 'los datos fueron ingresados con exito')
+                    $('#modal_cedula').val('');
+                    $('#modal_nombre').val('');
+                    $('#modal_fecha').val('');
+                    $('#modal_apellidos').val('');
+//        $('#modal_sexo').val();
+                   $('#modal_estatura').val('');
+                    $('.lecturas').trigger('click')
+                })
+                .fail(function () {
+
+                })
+
+    })
+
+    $('#agregar_equipo').click(function () {
+        var descripcion = $('#descripcion').val();
+        if (descripcion == "")
+            return false;
+        var r = descripcion.split(' :: ');
+        var html = "<tr><td><input type='hidden' name='equipos[]' class='proce' value='" + r[3] + "'> " + r[0] + "</td><td><a href='javascript:' class='eliminar'>Eliminar</a></td><tr>"
+        $('#new_proce').append(html)
+
+    })
+
+    $('body').delegate('.eliminar', 'click', function () {
         $(this).parent().parent().remove();
     })
-    $('.agregar_procedimiento').click(function() {
+    $('.agregar_procedimiento').click(function () {
         var procedimientos = $('#new_equipo').val();
         if (procedimientos != "") {
             var html = "<tr><td><input type='hidden' name='equipos[]' class='proce' value='" + procedimientos + "'> " + $('#new_equipo option:selected').text() + "</td><td><a href='javascript:' class='eliminar'>Eliminar</a></td><tr>"
@@ -237,7 +397,7 @@
         }
     })
     function campos() {
-        $('input[type="file"]').each(function(key, val) {
+        $('input[type="file"]').each(function (key, val) {
             var img = $(this).val();
             if (img != "") {
                 var r = (img.indexOf('jpg') != -1) ? '' : ((img.indexOf('png') != -1) ? '' : ((img.indexOf('gif') != -1) ? '' : false))
@@ -254,26 +414,50 @@
             $('#boton_cargar').show();
             var url = "<?php echo base_url('index.php/') . "/Brigadas/save_brigadas"; ?>";
             $.post(url, $('#form1').serialize())
-                    .done(function(msg) {
+                    .done(function (msg) {
                         $('#id_brigada').val(msg)
                         $('#boton_guardar').show();
                         $('#boton_cargar').hide();
                         $('.lecturas').show()
                         alerta('verde', 'Datos Duardados')
                     })
-                    .fail(function() {
+                    .fail(function () {
                         alerta('rojo', 'Datos No Guardados')
                     })
             return false;
         }
     }
-    $('body').delegate('.number', 'keypress', function(tecla) {
+    $('body').delegate('.number', 'keypress', function (tecla) {
         if (tecla.charCode > 0 && tecla.charCode < 48 || tecla.charCode > 57)
             return false;
     });
-    $('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
-
 <?php if (isset($datos[0]->id_brigada)) { ?>
         $('.lecturas').show()
+        $('.lecturas').click(function () {
+            $('.datos_table *').remove()
+            $.post("<?php echo base_url('index.php/') . "/Brigadas/buscar_alarmas"; ?>")
+                    .done(function (msg) {
+                        var html = "";
+                        $.each(msg, function (key, val) {
+                            html += '<tr>' +
+                                    '<td><input type="checkbox" name="gu" value="' + val.id_lectura_equipo + '"></td>' +
+                                    '<td>' + val.serial_equipo + '</td>' +
+                                    '<td>' + val.examen_nombre + '</td>' +
+                                    '<td>' + val.hl7tag + '</td>' +
+                                    '<td>' + val.lectura_numerica + '</td>' +
+                                    '</tr>'
+                        })
+                        $('.datos_table').append(html)
+                        console.log($('.datos_table').html())
+                    })
+                    .fail(function () {
+
+                    })
+            $('#modal_brigada').val('<?php echo $datos[0]->id_brigada ?>');
+            $('#modal_nombre_brigada').val('<?php echo $datos[0]->nombre ?>');
+            $('.modal_brigada').html('<?php echo $datos[0]->id_brigada ?>');
+            $('.modal_nombre_brigada').html('<?php echo $datos[0]->nombre ?>');
+
+        });
 <?php } ?>
 </script>

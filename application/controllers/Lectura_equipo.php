@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Lectura_equipo extends My_Controller {
 
     function __construct() {
@@ -18,11 +25,29 @@ class Lectura_equipo extends My_Controller {
         $this->data['post']=$this->input->post();
         $this->layout->view('lectura_equipo/index', $this->data);
     }
+	function formulario(){
+        $this->data['post']=$this->input->post();
+        $this->layout->view('lectura_equipo/formulario', $this->data);
+    }
+	function prueba(){
+        $this->data['post']=$this->input->post();
+        $this->layout->view('lectura_equipo/soap/prueba', $this->data);
+    }
+	function soap_prueba(){
+        $this->data['post']=$this->input->post();
+        $this->layout->view('lectura_equipo/soap/soap_prueba', $this->data);
+    }
     function consult_lectura_equipo(){
         $post=$this->input->post();
         $this->data['post']=$this->input->post();
         $this->data['datos']=$this->Lectura_equipo__model->consult_lectura_equipo($post);
         $this->layout->view('lectura_equipo/consult_lectura_equipo', $this->data);
+    }
+	function soap_ws(){
+        $post=$this->input->post();
+        $id=$this->Lectura_equipo__model->soap_ws($post);
+                           
+        redirect('index.php/Lectura_equipo/formulario', 'location');
     }
     function save_lectura_equipo(){
         $post=$this->input->post();

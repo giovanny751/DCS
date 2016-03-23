@@ -45,7 +45,7 @@
                     *                             Examen                        </label>
             </div>
             <div class="col-md-3">
-                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", null, array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                <?php echo lista("examen_cod", "examen_cod", "form-control obligatorio", "examenes", "examen_cod", "examen_nombre", (isset($datos[0]->examen_cod) ? $datos[0]->examen_cod : '' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
             </div>
 
         </div>

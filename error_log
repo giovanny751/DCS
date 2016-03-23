@@ -26,3 +26,36 @@
 [15-Mar-2015 00:18:06 UTC] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/giovanny751/public_html/application/libraries/tcpdf/fonts/dejavusansb.php on line 15
 [15-Mar-2015 00:19:32 UTC] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/giovanny751/public_html/application/libraries/tcpdf/fonts/dejavusansb.php on line 15
 [15-Mar-2015 00:19:34 UTC] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/giovanny751/public_html/application/libraries/tcpdf/fonts/dejavusansb.php on line 15
+[01-Sep-2015 01:30:47 UTC] PHP Fatal error:  Call to undefined function phpdefined() in /home/giovanny751/public_html/dcs/application/config/database.php on line 1
+[01-Sep-2015 01:30:50 UTC] PHP Fatal error:  Call to undefined function phpdefined() in /home/giovanny751/public_html/dcs/application/config/database.php on line 1
+[01-Sep-2015 03:19:23 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:23 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:25 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:26 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:27 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:28 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:29 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:29 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:30 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:31 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:32 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:32 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:34 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:34 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:35 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:35 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:37 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:44 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:46 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:19:47 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[01-Sep-2015 03:21:11 UTC] PHP Fatal error:  Call to undefined function auto() in /home/giovanny751/public_html/dcs/application/controllers/Contacto.php on line 47
+[03-Sep-2015 05:31:59 UTC] PHP Fatal error:  Call to undefined method User_model::create() in /home/giovanny751/public_html/dcs/application/controllers/Administrativo.php on line 140
+[03-Sep-2015 05:32:18 UTC] PHP Fatal error:  Call to undefined method User_model::create() in /home/giovanny751/public_html/dcs/application/controllers/Administrativo.php on line 140
+[03-Sep-2015 05:48:18 UTC] PHP Fatal error:  Call to undefined method User_model::validaexistencia() in /home/giovanny751/public_html/dcs/application/controllers/Administrativo.php on line 143
+[03-Sep-2015 14:20:22 UTC] PHP Fatal error:  Call to undefined method Ingreso_model::eliminarpermisosusuario() in /home/giovanny751/public_html/dcs/application/controllers/Presentacion.php on line 314
+[03-Sep-2015 14:32:19 UTC] PHP Fatal error:  Call to undefined method Ingreso_model::eliminarpermisosusuario() in /home/giovanny751/public_html/dcs/application/controllers/Presentacion.php on line 314
+[25-Sep-2015 04:18:22 UTC] PHP Warning:  include(/home/giovanny751/public_html/dcs/application/views/errors/html/error_php.php): failed to open stream: No such file or directory in /home/giovanny751/public_html/dcs/system/core/Exceptions.php on line 269
+[25-Sep-2015 04:18:22 UTC] PHP Warning:  include(): Failed opening '/home/giovanny751/public_html/dcs/application/views/errors/html/error_php.php' for inclusion (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/giovanny751/public_html/dcs/system/core/Exceptions.php on line 269
+[25-Sep-2015 04:18:22 UTC] PHP Warning:  include(/home/giovanny751/public_html/dcs/application/views/errors/html/error_php.php): failed to open stream: No such file or directory in /home/giovanny751/public_html/dcs/system/core/Exceptions.php on line 269
+[25-Sep-2015 04:18:22 UTC] PHP Warning:  include(): Failed opening '/home/giovanny751/public_html/dcs/application/views/errors/html/error_php.php' for inclusion (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/giovanny751/public_html/dcs/system/core/Exceptions.php on line 269
+[09-Oct-2015 04:41:09 UTC] PHP Fatal error:  Class 'My_Controller' not found in /home/giovanny751/public_html/dcs/application/controllers/Alarmas_generadas.php on line 6

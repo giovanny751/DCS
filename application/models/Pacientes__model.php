@@ -1,11 +1,27 @@
 <?php
 
 class Pacientes__model extends CI_Model {
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
     function __construct() {
-        $this->db = $this->load->database('default', TRUE);
+        $this->db = $this->load->database('default', TRUE); 
         $this->db1 = $this->load->database('parametro', TRUE);
         parent::__construct();
+    }
+    public function referencia($post) {
+        if(!empty($post['id_paciente']))
+        $this->db->where_not_in('id_paciente', $post['id_paciente']);
+        $this->db->where('cedula_paciente', $post['documento']);
+        $this->db->where('ACTIVO', 'S');
+        $datos = $this->db->get('pacientes');
+        $datos =$datos->result();
+        return count($datos);
     }
 
     function save_pacientes($post) {
@@ -196,8 +212,24 @@ class Pacientes__model extends CI_Model {
         } else {
             $this->db1->insert('devices');
         }
-//        echo $this->db1->last_query();
-//        die();
+        
+        $this->db->select('count(*) datos');
+        $this->db->where('usu_cedula',$post['cedula_paciente']);
+        $datos=$this->db->get('user');
+        $datos=$datos->result();
+//        echo $datos[0]->datos;
+        if($datos[0]->datos==0){
+            $this->db->set('usu_cedula',$post['cedula_paciente']);
+            $this->db->set('usu_usuario',$post['cedula_paciente']);
+            $this->db->set('usu_contrasena',sha1($post['cedula_paciente']));
+            $this->db->set('usu_nombre',$post['nombres']);
+            $this->db->set('usu_apellido',$post['apellidos']);
+            $this->db->set('usu_email',$post['email']);
+            $this->db->set('est_id',1);
+            $this->db->set('tipo_usuario',3);
+            $this->db->insert('user');
+        }
+        
         return $id;
     }
 

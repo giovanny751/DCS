@@ -7,20 +7,27 @@
     <form action="<?php echo base_url('index.php/') . '/Equipos/consult_equipos'; ?>" method="post" >
         <div class="row">
             <div class="col-md-3">
-                <label for="id_equipo">Código equipo
+                <label for="id_equipo">Serial N° 
                 </label>
             </div>
             <div class="col-md-3">
 
-                <input type="text" value="<?php echo (isset($post['id_equipo']) ? $post['id_equipo'] : '' ) ?>" class="form-control   " id="id_equipo" name="id_equipo">
+                <input type="text" value="<?php echo (isset($post['serial']) ? $post['serial'] : '' ) ?>" class="form-control   " id="serial" name="serial">
             </div>
 
             <div class="col-md-3">
+                <script>
+                    $('document').ready(function () {
+                        $('#descripcion').autocomplete({
+                            source: "<?php echo base_url("index.php//Equipos/autocomplete_descripcion") ?>",
+                            minLength: 3
+                        });
+                    });
+                </script>
                 <label for="descripcion">
                     Descripción                        </label>
             </div>
             <div class="col-md-3">
-
                 <input type="text" value="<?php echo (isset($post['descripcion']) ? $post['descripcion'] : '' ) ?>" class="form-control obligatorio  " id="descripcion" name="descripcion">
             </div>
         </div>
@@ -30,8 +37,7 @@
                     Estado                        </label>
             </div>
             <div class="col-md-3">
-
-                <?php echo lista("estado", "estado", "form-control obligatorio", "estado_equipos", "id_estado", "estado", (isset($post['estado']) ? $post['estado'] : ''), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
+                <?php echo lista("estado", "estado", "form-control obligatorio", "estado_equipos", "id_estado", "estado", (isset($post['estado']) ? $post['estado'] : '' ), array("ACTIVO" => "S"), /* readOnly? */ false); ?>
             </div>
 
             <div class="col-md-3">
@@ -72,7 +78,7 @@
                 <input type="text" value="<?php echo (isset($post['responsable']) ? $post['responsable'] : '' ) ?>" class="form-control   " id="responsable" name="responsable">
             </div>
         </div>
-        <button type="reset" class="btn btn-dcs">Limpiar</button>
+        <a href="javascript:" class="btn btn-dcs limpiar">Limpiar</a>
         <button class="btn btn-dcs">Consultar</button>
     </form>
 
@@ -105,10 +111,12 @@
                             }
                             $i++;
                         }
+                        
                         echo "<td>"
-                        . '<a href="javascript:" class="btn btn-dcs" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>'
-                        . '<a href="javascript:" class="btn btn-danger" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>'
-                        . "</td>";
+                         .'<a href="javascript:" class="btn btn-dcs" onclick="editar(' . $valor . ')"><i class="fa fa-pencil"></i></a>';
+                        if($value->estado=='DISPONIBLE')
+                         echo '<a href="javascript:" class="btn btn-danger" onclick="delete_(' . $valor . ')"><i class="fa fa-trash-o"></i></a>';
+                        echo  "</td>";
                         echo "</tr>";
                     }
                     ?>
@@ -133,8 +141,12 @@
     </form>
 <?php } ?>
 <script>
+    $('.limpiar').click(function(){
+        $('input[type="text"]').val('')
+        $('select').val('')
+    })
     function editar(num) {
-            $('#<?php echo $campo ?>2').val(num);
+            $('#<?php echo (isset($campo)?$campo:'') ?>2').val(num);
           $('#editar').submit();
     }
             function delete_(num) {
@@ -142,7 +154,7 @@
         if(r==false){
             return false;
         }
-        $('#<?php echo $campo ?>3').val(num);
+        $('#<?php echo (isset($campo)?$campo:'') ?>3').val(num);
                 $('#delete').submit();
     }
 

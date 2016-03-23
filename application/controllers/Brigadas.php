@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Brigadas extends My_Controller {
 
     function __construct() {
@@ -53,6 +60,17 @@ class Brigadas extends My_Controller {
         $info = auto("brigadas", "id_brigada", "nombre", $this->input->get('term'));
         $this->output->set_content_type('application/json')->set_output(json_encode($info));
     }
+    function buscar_alarmas() {
+        $this->data['post'] = $this->input->post();
+        $info = $this->Brigadas__model->buscar_alarmas($this->data['post']);
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    function save_pacientes() {
+        $this->data['post'] = $this->input->post();
+        $info = $this->Brigadas__model->save_pacientes($this->data['post']);
+        $this->output->set_content_type('application/json')->set_output(json_encode($info));
+    }
+    
 
 }
 

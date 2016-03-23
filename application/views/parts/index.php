@@ -62,7 +62,7 @@
                     if (msg == 0) {
                         alerta('verde', ' Procedimiento valido')
                     } else {
-                        alerta('rojo', ' Procedimiento ya se encuentra registrada')
+                        alerta('rojo', ' Procedimiento ya se encuentra registrado')
                         $('#description').val('');
                     }
                 })

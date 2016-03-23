@@ -1,6 +1,15 @@
 <?php 
-class Lectura_equipo__model extends CI_Model {
+require_once("lib/nusoap.php");
 
+class Lectura_equipo__model extends CI_Model {
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
     function __construct() {
         parent::__construct();
     }
@@ -27,6 +36,45 @@ class Lectura_equipo__model extends CI_Model {
         $datos=$this->db->get('lectura_equipo',$post);
         return $datos=$datos->result();
     }
+	
+	function soap_ws($post){
+		//echo 'Hola mundo';
+		//var_dump($post);
+		//$cedula=$post["cedula"];
+		//var_dump('HOLAAAAA',$cedula);
+		//exit;
+		
+		$client = new soapclient("http://telemetria.sgm.com.co/soap_prueba.php?wsdl");
+		$versoap = $client->getProxy();
+
+		try{
+		
+			$cedula='' ;
+			$lectura='' ;
+			$serial='' ;
+			$variable='' ;
+			  
+			if(isset($post["cedula"])){ $cedula=$post["cedula"];} 
+			if(isset($post["variable"])){ $variable=$post["variable"];} 
+			if(isset($post["serial"])){ $serial=$post["serial"]; }
+			if(isset($post["lectura"])){ $lectura=$post["lectura"]; } 
+			$fecha=date("Y-m-d H:i:s");
+			
+			//$result = $client->getinsertlectura($fecha,$serial,$cedula,$variable,$lectura);
+			$result = $versoap->getinsertlectura($fecha,$serial,$cedula,$variable,$lectura);
+			
+			
+		}catch (SoapFault $exception) 
+		{
+				trigger_error("SOAP Fault: (faultcode: {$exception->faultcode}, faultstring:
+				{$exception->faultstring})");
+
+				var_dump($exception);
+				//	echo 'EXCEPTION='.$exception; 
+		}  
+		
+			
+	}
     function consult_lectura_equipo($post){
             if(isset($post['id_lectura_equipo']))
         if($post['id_lectura_equipo']!="")

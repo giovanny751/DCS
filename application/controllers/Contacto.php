@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Contacto extends My_Controller {
 
     function __construct() {
@@ -30,8 +37,6 @@ class Contacto extends My_Controller {
     function save_contacto() {
         $post = $this->input->post();
         $id = $this->Contacto__model->save_contacto($post);
-
-
         redirect('index.php/Contacto/consult_contacto', 'location');
     }
 

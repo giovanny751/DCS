@@ -1,7 +1,14 @@
 <?php
 
 class Niveles_alarma__model extends CI_Model {
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
     function __construct() {
         parent::__construct();
     }
@@ -68,7 +75,7 @@ class Niveles_alarma__model extends CI_Model {
         $this->db->select('id_niveles_alarma');
         $this->db->select('descripcion');
 
-        $this->db->select('analisis_resultado');
+//        $this->db->select('analisis_resultado');
         $this->db->select('n_repeticiones_minimas');
         $this->db->select('n_repeticiones_maximas');
         $this->db->select('color');
@@ -79,6 +86,22 @@ class Niveles_alarma__model extends CI_Model {
         $datos = $this->db->get('niveles_alarma');
         $datos = $datos->result();
         return $datos;
+    }
+    function buscar_niveles_alarma($data) {
+        $this->db->select('count(*) gtg', false);
+        $this->db->where('descripcion', $data['descripcion']);
+        $this->db->where('n_repeticiones_minimas', $data['n_repeticiones_minimas']);
+        $this->db->where('color', $data['color']);
+        $this->db->where('n_repeticiones_maximas', $data['n_repeticiones_maximas']);
+        $this->db->where('id_protocolo', $data['id_protocolo']);
+        $datos = $this->db->get('niveles_alarma');
+        $datos = $datos->result();
+        if (count($datos)) {
+            return $datos[0]->gtg;
+        }else{
+            return 0;
+        }
+//        $this->db->insert_batch('nivel_tipo_alarma', $data);
     }
 
 }

@@ -4,15 +4,16 @@
     <span class="cuadroH2"></span>
     <span class="cuadroH3"></span>
 </div>
-<form action="<?php echo base_url('index.php/') . "/Tipo_alarma/save_tipo_alarma"; ?>" method="post" onsubmit="return campos()">
-    <div class="tabContainter">
-        <!-- Nav tabs -->
-        <ul class="tabLinks">
-            <li class="active"><a href="#tabGeneral">General</a></li>
-            <li><a href="#tabNiveles">Niveles</a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tabContenido">
+
+<div class="tabContainter">
+    <!-- Nav tabs -->
+    <ul class="tabLinks">
+        <li class="active"><a href="#tabGeneral">General</a></li>
+        <li><a href="#tabNiveles">Niveles</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tabContenido">
+        <form action="<?php echo base_url('index.php/') . "/Tipo_alarma/save_tipo_alarma"; ?>" method="post" id="form1" onsubmit="return campos()">
             <!--Tab General -->
             <div id="tabGeneral" class="tab active">
                 <div class="row">
@@ -172,24 +173,25 @@
 
                 </div>
             </div>
-        </div>
-        <div style="width: 80%;margin: 0 auto">
+        </form>
+    </div>
+    <div style="width: 80%;margin: 0 auto">
+        <div class="row">
             <div class="row">
-                <div class="row">
-                    <span id="boton_guardar">
-                        <button class="btn btn-dcs" >Guardar</button> 
-                        <input class="btn btn-dcs" type="reset" value="Limpiar">
-                        <a href="<?php echo base_url('index.php') . "/Tipo_alarma/consult_tipo_alarma" ?>" class="btn btn-dcs">Listado </a>
-                    </span>
-                    <span id="boton_cargar" style="display: none">
-                        <h2>Cargando ...</h2>
-                    </span>
-                </div>
-                <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
+                <span id="boton_guardar">
+                    <button class="btn btn-dcs" id="guardar">Guardar</button> 
+                    <input class="btn btn-dcs" type="reset" value="Limpiar">
+                    <a href="<?php echo base_url('index.php') . "/Tipo_alarma/consult_tipo_alarma" ?>" class="btn btn-dcs">Listado </a>
+                </span>
+                <span id="boton_cargar" style="display: none">
+                    <h2>Cargando ...</h2>
+                </span>
             </div>
+            <div class="row"><div style="float: right"><b>Los campos en * son obligatorios</b></div></div>
         </div>
     </div>
-</form>
+</div>
+
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -209,81 +211,119 @@
     </div>
 </div>
 <script>
+
+    $('#guardar').click(function () {
+        var descripcion = $('#descripcion').val();
+        var examen = $('#examen').val();
+        var analisis_resultados = $('#analisis_resultados').val();
+        var variable_codigo = $('#variable_codigo').val();
+        var tiempo = $('#tiempo').val();
+        var frecuencia = $('#frecuencia').val();
+
+<?php if (isset($datos[0]->id_tipo_alarma)) { ?>
+            if (
+                    descripcion == '<?php echo $datos[0]->descripcion; ?>' &&
+                    examen == '<?php echo $datos[0]->examen; ?>' &&
+                    analisis_resultados == '<?php echo $datos[0]->analisis_resultados; ?>' &&
+                    variable_codigo == '<?php echo $datos[0]->variable_codigo; ?>' &&
+                    tiempo == '<?php echo $datos[0]->tiempo; ?>' &&
+                    frecuencia == '<?php echo $datos[0]->frecuencia; ?>'
+                    ) {
+                $('#form1').submit();
+            }
+<?php } ?>
+        var url = "<?php echo base_url('index.php/') . "/Tipo_alarma/buscar_tipo_alarma"; ?>";
+        $.post(url, $('#form1').serialize())
+                .done(function (msg) {
+                    if (msg == 0) {
+                        var r = campos();
+                        if (r == true)
+                            $('#form1').submit();
+                    } else {
+                        alerta('rojo', 'Ya existe un tipo de alarma con los mismos datos');
+                    }
+                })
+                .fail(function () {
+                    alerta('rojo', 'Error en la conexión')
+                })
+    })
+
+
     $('#agregar_equipo').click(function () {
         var info = $('#id_niveles_alarma').val();
         var info2 = info.split(' :: ');
         var texto = "";
         var d = 0;
-        $('.validacionvalores tr').each(function(key,val){
+        $('.validacionvalores tr').each(function (key, val) {
 //            console.log($(this).find('.minimo')+"****"+$(this).find('.maximo'))
-            if($(this).find('.minimo').text() < info2[2] && $(this).find('.maximo').text() > info2[3]){
+            if ($(this).find('.minimo').text() < info2[2] && $(this).find('.maximo').text() > info2[3]) {
                 texto = $(this).find('.texto').text();
                 d++;
                 return false;
             }
-            if($(this).find('.minimo').text() > info2[2] && $(this).find('.minimo').text() < info2[3]){
+            if ($(this).find('.minimo').text() > info2[2] && $(this).find('.minimo').text() < info2[3]) {
                 texto = $(this).find('.texto').text();
                 d++;
                 return false;
             }
-            if($(this).find('.minimo').text() < info2[2] && $(this).find('.maximo').text() > info2[3] ){
+            if ($(this).find('.minimo').text() < info2[2] && $(this).find('.maximo').text() > info2[3]) {
                 texto = $(this).find('.texto').text();
                 d++;
                 return false;
             }
-            if($(this).find('.maximo').text() > info2[2] && $(this).find('.maximo').text() < info2[3] ){
+            if ($(this).find('.maximo').text() > info2[2] && $(this).find('.maximo').text() < info2[3]) {
                 texto = $(this).find('.texto').text();
                 d++;
                 return false;
             }
-            
-        });
-        
-        if(d == 0){
-        
-        var r = 0;
-        var f = "";
-        $('.equipo_id').each(function () {
-            f += $(this).val() + ",";
-            if ($(this).val() == info2[1]) {
-                alerta('rojo', 'Nivel ya existe');
-                $('#contacto_id2').val('');
-                r = 1;
-            }
-        });
-        if (r == 1) {
-            return false;
-        }
 
-        var url = '<?php echo base_url('index.php/Tipo_alarma/confirmar_duplicado') ?>'
-        $.post(url, {anteriores: f, nuevo: info2[1]})
-                .done(function (msg) {
-                    if (msg == 00) {
-                        if (info2.length == 5) {
-                            var html = "<tr>";
-                            html += "<td class='texto'><input type='hidden' class='equipo_id' name='equipo_id[]' class='equipo_id' value='" + info2[1] + "'>" + info2[0] + "</td>";
-                            html += "<td class='minimo'>" + info2[2] + "</td>";
-                            html += "<td class='maximo'>" + info2[3] + "</td>";
-                            html += "<td>" + info2[4] + "</td>";
-                            html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>&nbsp;&nbsp;<a href="javascript:" class="vista_niveles_alarma" tabla="niveles_alarma" campo="id_niveles_alarma" url="Niveles_alarma/edit_niveles_alarma2" codigo="' + info2[1] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
-                            html += "</tr>";
-                            $('#tabla_contacto').append(html);
-                            $('#id_niveles_alarma').val('');
+        });
+
+        if (d == 0) {
+
+            var r = 0;
+            var f = "";
+            $('.equipo_id').each(function () {
+                f += $(this).val() + ",";
+                if ($(this).val() == info2[1]) {
+                    alerta('rojo', 'Nivel ya existe');
+                    $('#contacto_id2').val('');
+                    r = 1;
+                }
+            });
+            if (r == 1) {
+                return false;
+            }
+
+            var url = '<?php echo base_url('index.php/Tipo_alarma/confirmar_duplicado') ?>'
+            $.post(url, {anteriores: f, nuevo: info2[1]})
+                    .done(function (msg) {
+                        if (msg == 00) {
+                            if (info2.length == 5) {
+                                var html = "<tr>";
+                                html += "<td class='texto'><input type='hidden' class='equipo_id' name='equipo_id[]' class='equipo_id' value='" + info2[1] + "'>" + info2[0] + "</td>";
+                                html += "<td class='minimo'>" + info2[2] + "</td>";
+                                html += "<td class='maximo'>" + info2[3] + "</td>";
+                                html += "<td>" + info2[4] + "</td>";
+                                html += "<td>" + '<a href="javascript:" class="eliminar">Eliminar</a>&nbsp;&nbsp;<a href="javascript:" class="vista_niveles_alarma" tabla="niveles_alarma" campo="id_niveles_alarma" url="Niveles_alarma/edit_niveles_alarma2" codigo="' + info2[1] + '" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vista previa</a>' + "</td>";
+                                html += "</tr>";
+                                $('#tabla_contacto').append(html);
+                                $('#id_niveles_alarma').val('');
+                            } else {
+                                alerta('rojo', 'Cadena no valida');
+                                $('#id_niveles_alarma').val('');
+                            }
                         } else {
-                            alerta('rojo', 'Cadena no valida');
+                            alerta('roja', 'La repeticiones del nivel ya se encuentran en la tabla');
                             $('#id_niveles_alarma').val('');
                         }
-                    } else {
-                        alerta('roja', 'La repeticiones del nivel ya se encuentran en la tabla');
-                        $('#id_niveles_alarma').val('');
-                    }
-                })
-                .fail(function () {
-                    alerta('rojo', 'Error al consultar')
-                })
-                }else{
-                    alerta('roja', 'La repeticiones del nivel ya se encuentran en la tabla');
-                }
+                    })
+                    .fail(function () {
+                        alerta('rojo', 'Error al consultar')
+                    })
+        } else {
+            alerta('roja', 'La repeticiones del nivel ya se encuentran en la tabla');
+        }
     })
 
     $('body').delegate('.vista_niveles_alarma', 'click', function () {

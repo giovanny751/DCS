@@ -2,7 +2,14 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ *
+ * @package     NYGSOFT
+ * @author      Gerson J Barbosa / Nelson G Barbosa
+ * @copyright   www.nygsoft.com
+ * @celular     301 385 9952 - 312 421 2513
+ * @email       javierbr12@hotmail.com    
+ */
 class Tipo_alarma extends My_Controller {
 
     function __construct() {
@@ -58,6 +65,10 @@ class Tipo_alarma extends My_Controller {
         }else{
             echo '00';
         }
+    }
+    function buscar_tipo_alarma(){
+        $this->data['post']=$this->input->post();
+        echo $this->data['datos']=$this->Tipo_alarma__model->buscar_tipo_alarma($this->data['post']);
     }
 }
 ?>

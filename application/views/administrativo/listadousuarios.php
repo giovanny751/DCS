@@ -8,28 +8,8 @@
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <div class="form-group">
-                <label for="cedula">Cedula</label><input type="text" name="cedula" id="cedula" class="form-control">
+                <label for="cedula">Cédula</label><input type="text" name="cedula" id="cedula" class="form-control">
             </div>
-            <script>
-                $('document').ready(function() {
-                    $('#cedula').autocomplete({
-                        source: "<?php echo base_url("index.php//Administrativo/autocomplete_cedula") ?>",
-                        minLength: 3
-                    });
-                });
-                $('document').ready(function() {
-                    $('#nombre').autocomplete({
-                        source: "<?php echo base_url("index.php//Administrativo/autocomplete_nombre") ?>",
-                        minLength: 3
-                    });
-                });
-                $('document').ready(function() {
-                    $('#apellido').autocomplete({
-                        source: "<?php echo base_url("index.php//Administrativo/autocomplete_apellido") ?>",
-                        minLength: 3
-                    });
-                });
-            </script>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <div class="form-group">
@@ -49,9 +29,8 @@
                 <label for="estado">Estado</label>
                 <select name="estado" id="estado" class="form-control">
                     <option value="">::Seleccionar::</option>
-                    <?php foreach ($estados as $e) { ?>
-                        <option value="<?php echo $e->est_id ?>"><?php echo $e->est_nombre ?></option>
-                    <?php } ?>
+                    <option value="1">Activo</option>
+                    <option value="2">Inactivo</option>
                 </select>
             </div>
         </div>
@@ -76,7 +55,6 @@
         <th>Estado</th>
         <th>Fecha actualización</th>
         <th>Fecha creación</th>
-        <th>Último Ingreso</th>
         <th>Opciones</th>
         </thead>
         <tbody id="bodyuser">
@@ -89,10 +67,9 @@
                     <td><?php echo ($u->est_id == 1) ? "Activo" : "Inactivo"; ?></td>
                     <td><?php echo $u->usu_fechaActualizacion ?></td>
                     <td><?php echo $u->usu_fechaCreacion ?></td>
-                    <td><?php echo $u->ingreso ?></td>
                     <td>
-                        <i class="fa fa-trash-o eliminar btn btn-danger" title="Eliminar" usu_id="<?php echo $u->id ?>"></i>
                         <i class="fa fa-pencil modificar btn btn-info" title="Modificar" usu_id="<?php echo $u->id ?>"  data-toggle="modal" data-target="#myModal"></i>
+                        <i class="fa fa-trash-o eliminar btn btn-danger" title="Eliminar" usu_id="<?php echo $u->id ?>"></i>
                     </td>
                 </tr>
             <?php } ?>
@@ -105,8 +82,25 @@
     <input type="hidden" value="" name="usu_id" id="usu_id">
 </form>
 <script>
-
-    $('document').ready(function() {
+    $('document').ready(function () {
+        $('#cedula').autocomplete({
+            source: "<?php echo base_url("index.php//Administrativo/autocomplete_cedula") ?>",
+            minLength: 3
+        });
+    });
+    $('document').ready(function () {
+        $('#nombre').autocomplete({
+            source: "<?php echo base_url("index.php//Administrativo/autocomplete_nombre") ?>",
+            minLength: 3
+        });
+    });
+    $('document').ready(function () {
+        $('#apellido').autocomplete({
+            source: "<?php echo base_url("index.php//Administrativo/autocomplete_apellido") ?>",
+            minLength: 3
+        });
+    });
+    $('document').ready(function () {
         $('#cedula').autocomplete({
             source: "<?php echo base_url("index.php/administrativo/autocomplete_cedulausuario") ?>",
             minLength: 3
@@ -121,13 +115,13 @@
         });
     });
 
-    $('.eliminar').click(function() {
+    $('body').delegate(".eliminar","click",function () {
         var r = confirm('Desea eliminar el usuario');
         if (r == false)
             return false;
         var url = "<?php echo base_url("index.php/administrativo/eliminar_usuarios") ?>";
         $.post(url, {usu_id: $(this).attr('usu_id')})
-                .done(function(msg) {
+                .done(function (msg) {
                     alerta('verde', 'Eliminado con exito');
                     location.reload();
                 })
@@ -144,21 +138,21 @@
         source: "<?php echo base_url("index.php/administrativo/autocompletaruapellido") ?>",
         minLength: 3
     });
-    $('body').delegate(".modificar", "click", function() {
+    $('body').delegate(".modificar", "click", function () {
         $("#usu_id").val($(this).attr("usu_id"));
         $("#f10").submit();
     });
-    $('.limpiar').click(function() {
+    $('.limpiar').click(function () {
         $('select,input').val('');
     });
-    $('.consultar').click(function() {
+    $('.consultar').click(function () {
         $.post(
                 "<?php echo base_url("index.php/administrativo/consultarusuario") ?>",
                 $("#f4").serialize()
-                ).done(function(msg) {
+                ).done(function (msg) {
             $('#bodyuser *').remove();
             var body = "";
-            $.each(msg, function(key, val) {
+            $.each(msg, function (key, val) {
                 body += "<tr>";
                 body += "<td>" + val.usu_cedula + "</td>";
                 body += "<td>" + val.usu_usuario + "</td>";
@@ -167,12 +161,14 @@
                 body += "<td>" + ((val.est_id == 1) ? 'Activo' : 'Inactivo') + "</td>";
                 body += "<td>" + val.usu_fechaActualizacion + "</td>";
                 body += "<td>" + val.usu_fechaCreacion + "</td>";
-                body += "<td>" + val.Ing_id + "</td>";
-                body += "<td></td>";
+                body += '<td>\n\
+                    <i class="fa fa-pencil modificar btn btn-info" title="Modificar" usu_id="'+val.usu_id+'"  data-toggle="modal" data-target="#myModal"></i>\n\
+                    <i class="fa fa-trash-o eliminar btn btn-danger" title="Eliminar" usu_id="'+val.usu_id+'"></i>\n\
+                </td>';
                 body += "</tr>";
             });
             $('#bodyuser').append(body);
-        }).fail(function(msg) {
+        }).fail(function (msg) {
 
         });
     });
