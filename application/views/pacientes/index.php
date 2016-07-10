@@ -137,13 +137,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="estatura">* Estatura </label>
+                        <label for="estatura">* Estatura (CM) </label>
                     </div>
                     <div class="col-md-3">
                         <input type="text" value="<?php echo (isset($datos[0]->estatura) ? $datos[0]->estatura : '' ) ?>" class=" form-control obligatorio  " id="estatura" name="estatura">
                     </div>
                     <div class="col-md-3">
-                        <label for="peso">* Peso </label>
+                        <label for="peso">* Peso (KG) </label>
                     </div>
                     <div class="col-md-3">
                         <input type="text" value="<?php echo (isset($datos[0]->peso) ? $datos[0]->peso : '' ) ?>" class=" form-control obligatorio  number" id="peso" name="peso">
@@ -151,10 +151,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="telefono_fijo">* Teléfono fijo </label>
+                        <label for="telefono_fijo"> Teléfono fijo </label>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo) ? $datos[0]->telefono_fijo : '' ) ?>" class=" form-control obligatorio  number" id="telefono_fijo" name="telefono_fijo">
+                        <input type="text" value="<?php echo (isset($datos[0]->telefono_fijo) ? $datos[0]->telefono_fijo : '' ) ?>" class=" form-control  number" id="telefono_fijo" name="telefono_fijo">
                     </div>
                     <div class="col-md-3">
                         <label for="celular"> Celular </label>

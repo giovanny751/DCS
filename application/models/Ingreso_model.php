@@ -1,14 +1,15 @@
 <?php
 
 class Ingreso_model extends CI_Model {
-/**
- *
- * @package     NYGSOFT
- * @author      Gerson J Barbosa / Nelson G Barbosa
- * @copyright   www.nygsoft.com
- * @celular     301 385 9952 - 312 421 2513
- * @email       javierbr12@hotmail.com    
- */
+
+    /**
+     *
+     * @package     NYGSOFT
+     * @author      Gerson J Barbosa / Nelson G Barbosa
+     * @copyright   www.nygsoft.com
+     * @celular     301 385 9952 - 312 421 2513
+     * @email       javierbr12@hotmail.com    
+     */
     function __construct() {
         parent::__construct();
     }
@@ -23,31 +24,31 @@ class Ingreso_model extends CI_Model {
 
         $this->db->where('menu_estado', 1);
         $this->db->where('user.usu_id', $idusuario);
-        
+
         $this->db->select('modulo.menu_id,modulo.menu_idpadre,modulo.menu_nombrepadre,modulo.menu_idhijo,'
                 . 'modulo.menu_controlador,modulo.menu_accion,modulo.menu_estado,permisos_rol.menu_id menudos');
-       
-            $this->db->join("permisos", "user.rol_id = permisos.rol_id and user.usu_id = permisos.usu_id");
-            $this->db->join('permisos_rol',' permisos_rol.rol_id = permisos.rol_id');
-            $this->db->join("modulo", "modulo.menu_id = permisos_rol.menu_id");
+
+        $this->db->join("permisos", "user.rol_id = permisos.rol_id and user.usu_id = permisos.usu_id");
+        $this->db->join('permisos_rol', ' permisos_rol.rol_id = permisos.rol_id');
+        $this->db->join("modulo", "modulo.menu_id = permisos_rol.menu_id");
 
         $dato = $this->db->get('user');
-        
+
 //        echo $this->db->last_query();die; 
-        
+
         $envio = $dato->result_array();
 
 //        echo $this->db->last_query();die;
 
         return $envio;
     }
-    
+
     function permisoroles($padre = null) {
 
 //        echo $padre."****";die;
 //        echo $padre."*****"."<br>";
 //        $idusuario = $idusuario->id;
-        
+
         $idusuario = 1;
 
         if ($padre != "prueba") {
@@ -185,12 +186,28 @@ class Ingreso_model extends CI_Model {
         $this->db->update('modulo');
     }
 
-    function totalusuarios() {
+    function totalusuarios($cantidad = null, $inicio = null) {
 
-//        $this->db->where();
+        $post = $this->input->post();
+        if (isset($post['nombre']))
+            if (!empty($post['nombre']))
+                $this->db->where('usu_nombre', $post['nombre']);
+        if (isset($post['email']))
+            if (!empty($post['email']))
+                $this->db->where('usu_email', $post['email']);
+        if (isset($post['estado'])) {
+            if (!empty($post['estado']))
+                $this->db->where('est_id', $post['estado']);
+        }else {
+            $this->db->where('est_id', 1);
+        }
         $this->db->where('user.activo', 'S');
-        $usuarios = $this->db->get('user');
-        return $usuarios->result_array();
+        $this->db->order_by('usu_apellido,usu_nombre');
+        if ($cantidad != null)
+            $usuarios = $this->db->get('user', $cantidad, $inicio);
+        else
+            $usuarios = $this->db->get('user');
+        return $usuarios->result();
     }
 
     function consultausuario($id) {
@@ -218,67 +235,75 @@ class Ingreso_model extends CI_Model {
     function permisosusuariomenu($data) {
         $this->db->insert_batch('permisos', $data);
     }
-    function eliminarpermisosusuario($id){
-        
-        $this->db->where("usu_id",$id);
+
+    function eliminarpermisosusuario($id) {
+
+        $this->db->where("usu_id", $id);
         $this->db->delete("permisos");
     }
-    function actualizausuariorol($id){
-        
-        $this->db->where("usu_id",$id);
-        $this->db->set("rol_id","");
+
+    function actualizausuariorol($id) {
+
+        $this->db->where("usu_id", $id);
+        $this->db->set("rol_id", "");
         $this->db->update("user");
     }
-    function eliminarpermisosrol($idrol,$usu_id) {
-        $this->db->where("rol_id",$idrol);
-        $this->db->where("usu_id",$usu_id);
+
+    function eliminarpermisosrol($idrol, $usu_id) {
+        $this->db->where("rol_id", $idrol);
+        $this->db->where("usu_id", $usu_id);
         $this->db->delete('permisos');
     }
-    function rolesasignados($id){
+
+    function rolesasignados($id) {
         $this->db->select('permisos_rol.menu_id');
-        $this->db->where('rol_id',$id);
+        $this->db->where('rol_id', $id);
         $rol = $this->db->get('permisos_rol');
         return $rol->result_array();
     }
-    function eliminapermisosusuario($rol,$usuario){
-        
-        $this->db->where('rol_id',$rol);
-        $this->db->where('usu_id',$usuario);
+
+    function eliminapermisosusuario($rol, $usuario) {
+
+        $this->db->where('rol_id', $rol);
+        $this->db->where('usu_id', $usuario);
         $this->db->delete('permisos');
-        
     }
-    function guardarcontrasena($contrasena,$id){
-        
-        $this->db->where('usu_id',$id);
-        $this->db->set('usu_password',$contrasena);
+
+    function guardarcontrasena($contrasena, $id) {
+
+        $this->db->where('usu_id', $id);
+        $this->db->set('usu_password', $contrasena);
         $this->db->update('user');
-        
     }
 
     function admin_inicio_emp($id) {
         $this->db->set('emp_inicio,emp_id');
-        $this->db->where('emp_id',$id);
+        $this->db->where('emp_id', $id);
         $dato = $this->db->get('empresa');
         return $dato->result();
     }
-    function insertingreso($data){
-        $this->db->insert_batch("ingreso",$data);
+
+    function insertingreso($data) {
+        $this->db->insert_batch("ingreso", $data);
     }
-    function consultapermisosmenu($usu_id,$controller,$method){
-        
-        $this->db->where("modulo.menu_controlador",$controller); 
-        $this->db->where("modulo.menu_accion",$method);
-        $this->db->where("user.usu_id",$usu_id);
-        $this->db->join("permisos","permisos.rol_id = user.rol_id");
-        $this->db->join("permisos_rol","permisos_rol.rol_id = permisos.rol_id");
-        $this->db->join("modulo","permisos_rol.menu_id = modulo.menu_id");
+
+    function consultapermisosmenu($usu_id, $controller, $method) {
+
+        $this->db->where("modulo.menu_controlador", $controller);
+        $this->db->where("modulo.menu_accion", $method);
+        $this->db->where("user.usu_id", $usu_id);
+        $this->db->join("permisos", "permisos.rol_id = user.rol_id");
+        $this->db->join("permisos_rol", "permisos_rol.rol_id = permisos.rol_id");
+        $this->db->join("modulo", "permisos_rol.menu_id = modulo.menu_id");
         $user = $this->db->get("user");
 //        echo $this->db->last_query();die;    
         return $user->result();
     }
-    function consultaRoles($id){
-        $this->db->where("usu_id",$id);
+
+    function consultaRoles($id) {
+        $this->db->where("usu_id", $id);
         $data = $this->db->get("permisos");
         return $data->result();
     }
+
 }

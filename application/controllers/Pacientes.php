@@ -37,6 +37,14 @@ class Pacientes extends My_Controller {
         $this->data['datos'] = $this->Pacientes__model->consult_pacientes($post);
         $this->layout->view('pacientes/consult_pacientes', $this->data);
     }
+    function consult_pacientes2() {
+        $post = $this->input->post();
+        $this->data['post'] = $this->input->post();
+        $data['data'] = $this->Pacientes__model->consult_pacientes($post, $this->input->post("length"), $this->input->post("start"));
+        $data['recordsFiltered'] = count($this->Pacientes__model->consult_pacientes($post));
+        $data['recordsTotal'] = $data['recordsFiltered'];
+        echo json_encode($data);
+    }
 
     function referencia() {
         $post = $this->input->post();

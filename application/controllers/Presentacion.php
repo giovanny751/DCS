@@ -123,20 +123,15 @@ class Presentacion extends My_Controller {
     function usuario() {
         $this->data['roles'] = $this->Roles_model->roles();
         $this->data['post'] = $post = $this->input->post();
-        if (isset($post['nombre']))
-            if (!empty($post['nombre']))
-                $this->db->where('usu_nombre', $post['nombre']);
-        if (isset($post['email']))
-            if (!empty($post['email']))
-                $this->db->where('usu_email', $post['email']);
-        if (isset($post['estado'])) {
-            if (!empty($post['estado']))
-                $this->db->where('est_id', $post['estado']);
-        }else {
-            $this->db->where('est_id', 1);
-        }
-        $this->data['usaurios'] = $this->Ingreso_model->totalusuarios();
         $this->layout->view('presentacion/usuario', $this->data);
+    }
+    function usuario2() {
+//        $this->data['roles'] = $this->Roles_model->roles();
+        $data['data'] = $this->Ingreso_model->totalusuarios($this->input->post("length"), $this->input->post("start"));
+//        print_y($data['data']);
+        $data['recordsFiltered'] = count($this->Ingreso_model->totalusuarios());
+        $data['recordsTotal'] = $data['recordsFiltered'];
+        echo json_encode($data);
     }
 
     function permisosporrol() {

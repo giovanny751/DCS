@@ -46,7 +46,7 @@
 </form>
 <hr>
 <div class="row">
-    <table class="table table-bordered table-hover">
+    <table id="tablee33" class="table table-bordered table-hover">
         <thead>
         <th>Cédula</th>
         <th>Usuario</th>
@@ -58,21 +58,7 @@
         <th>Opciones</th>
         </thead>
         <tbody id="bodyuser">
-            <?php foreach ($usuarios as $u) { ?>
-                <tr>
-                    <td><?php echo $u->usu_cedula ?></td>
-                    <td><?php echo $u->usu_usuario ?></td>
-                    <td><?php echo $u->usu_nombre ?></td>
-                    <td><?php echo $u->usu_apellido ?></td>
-                    <td><?php echo ($u->est_id == 1) ? "Activo" : "Inactivo"; ?></td>
-                    <td><?php echo $u->usu_fechaActualizacion ?></td>
-                    <td><?php echo $u->usu_fechaCreacion ?></td>
-                    <td>
-                        <i class="fa fa-pencil modificar btn btn-info" title="Modificar" usu_id="<?php echo $u->id ?>"  data-toggle="modal" data-target="#myModal"></i>
-                        <i class="fa fa-trash-o eliminar btn btn-danger" title="Eliminar" usu_id="<?php echo $u->id ?>"></i>
-                    </td>
-                </tr>
-            <?php } ?>
+            
         </tbody>
     </table>
     <br>
@@ -82,6 +68,9 @@
     <input type="hidden" value="" name="usu_id" id="usu_id">
 </form>
 <script>
+
+
+
     $('document').ready(function () {
         $('#cedula').autocomplete({
             source: "<?php echo base_url("index.php//Administrativo/autocomplete_cedula") ?>",
@@ -115,7 +104,7 @@
         });
     });
 
-    $('body').delegate(".eliminar","click",function () {
+    $('body').delegate(".eliminar", "click", function () {
         var r = confirm('Desea eliminar el usuario');
         if (r == false)
             return false;
@@ -146,30 +135,55 @@
         $('select,input').val('');
     });
     $('.consultar').click(function () {
-        $.post(
-                "<?php echo base_url("index.php/administrativo/consultarusuario") ?>",
-                $("#f4").serialize()
-                ).done(function (msg) {
-            $('#bodyuser *').remove();
-            var body = "";
-            $.each(msg, function (key, val) {
-                body += "<tr>";
-                body += "<td>" + val.usu_cedula + "</td>";
-                body += "<td>" + val.usu_usuario + "</td>";
-                body += "<td>" + val.usu_nombre + "</td>";
-                body += "<td>" + val.usu_apellido + "</td>";
-                body += "<td>" + ((val.est_id == 1) ? 'Activo' : 'Inactivo') + "</td>";
-                body += "<td>" + val.usu_fechaActualizacion + "</td>";
-                body += "<td>" + val.usu_fechaCreacion + "</td>";
-                body += '<td>\n\
-                    <i class="fa fa-pencil modificar btn btn-info" title="Modificar" usu_id="'+val.usu_id+'"  data-toggle="modal" data-target="#myModal"></i>\n\
-                    <i class="fa fa-trash-o eliminar btn btn-danger" title="Eliminar" usu_id="'+val.usu_id+'"></i>\n\
-                </td>';
-                body += "</tr>";
-            });
-            $('#bodyuser').append(body);
-        }).fail(function (msg) {
-
-        });
+        table()
     });
+    function table() {
+            $('#tablee33').DataTable().destroy();
+            $('#tablee33').DataTable({
+                "lengthMenu": [[10, 40, 50], [10, 40, 50]],
+                "bFilter": false,
+                "bInfo": false,
+                "processing": true,
+                "serverSide": true,
+                "bSort" : false,
+                "ajax": {
+                    "url": "<?php echo base_url('index.php/administrativo/consultarusuario') ?>",
+                    "type": "POST",
+                    "data": {
+                        cedula: $('#cedula').val(),
+                        nombre: $('#nombre').val(),
+                        apellido: $('#apellido').val(),
+                        estado: $('#estado').val(),
+                    },
+                },
+                "columns": [
+                    {"data": "usu_cedula"},
+                    {"data": "usu_usuario"},
+                    {"data": "usu_nombre"},
+                    {"data": "usu_nombre"},
+                    {
+                        sortable: false,
+                        "render": function (data, type, full, meta) {
+                            return (full.est_id == 1) ? "Activo" : "Inactivo";
+                        }
+                    },
+                    {"data": "usu_fechaActualizacion"},
+                    {"data": "usu_fechaCreacion"},
+                    {
+                        sortable: false,
+                        "render": function (data, type, full, meta) {
+                            return '<i class="fa fa-pencil modificar btn btn-info" title="Modificar" usu_id="'+full.usu_id+'"  data-toggle="modal" data-target="#myModal"></i>' +
+                                    '<i class="fa fa-trash-o eliminar btn btn-danger" title="Eliminar" usu_id="'+full.usu_id+'"></i>';
+                        }
+                    },
+                ],
+                "drawCallback": function (nRow, aaData, iDataIndex) {
+                    info = nRow.json.data;
+                    var html = ""
+                    $.each(info, function (key, val) {
+                        html += val.id_alarmas_generadas + ","
+                    })
+                }
+            });
+        }
 </script>

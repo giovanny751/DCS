@@ -262,7 +262,7 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ],
         changeMonth: true,
         changeYear: true,
-        yearRange: '1950:<?php echo date('Y')?>'
+        yearRange: '1950:<?php echo date('Y', strtotime('+5 years'))?>'
     });
     
     
@@ -319,6 +319,17 @@ function modulos($datosmodulos, $idusuario, $dato = null) {
         }
 
     });
+    
+    if(datata){
+    $('#table_action').DataTable({
+        "bFilter": false,
+        "bInfo": false,
+    });
+    }
+    $('.limpiar').click(function(){
+        $('input').val('')
+        $('select').val('')
+    })
 </script>
 <style>
     .blockOverlay{

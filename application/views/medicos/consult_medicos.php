@@ -61,13 +61,14 @@
             </div>
 
         </div>
-        <button type="reset" class="btn btn-dcs">Limpiar</button>
+        <button type="reset" class="btn btn-dcs limpiar">Limpiar</button>
         <button class="btn btn-dcs">Consultar</button>
 </form>
 
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <div class="table-responsive">
+        <table id="table_action" class="table table-bordered">
             <thead>
             <th>Código</th>
             <th>Nombre</th>
@@ -106,6 +107,7 @@
             </tbody>
         </table>
     </div>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-12" style="float:right">
@@ -123,6 +125,7 @@
     </form>
 <?php } ?>
 <script>
+    datata=1
     function editar(num) {
         $('#<?php echo $campo ?>2').val(num);
         $('#editar').submit();

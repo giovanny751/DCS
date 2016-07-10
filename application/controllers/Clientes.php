@@ -31,6 +31,14 @@ class Clientes extends My_Controller {
         $this->data['datos']=$this->Clientes__model->consult_clientes($post);
         $this->layout->view('clientes/consult_clientes', $this->data);
     }
+    function consult_clientes2(){
+        $post=$this->input->post();
+        $this->data['post']=$this->input->post();
+        $data['data'] = $this->Clientes__model->consult_clientes($post, $this->input->post("length"), $this->input->post("start"));
+        $data['recordsFiltered'] = count($this->Clientes__model->consult_clientes($post));
+        $data['recordsTotal'] = $data['recordsFiltered'];
+        echo json_encode($data);
+    }
     function buscar_nombre(){
         $post=$this->input->post();
         $this->data['post']=$this->input->post();

@@ -1,14 +1,15 @@
 <?php
 
 class Clientes__model extends CI_Model {
-/**
- *
- * @package     NYGSOFT
- * @author      Gerson J Barbosa / Nelson G Barbosa
- * @copyright   www.nygsoft.com
- * @celular     301 385 9952 - 312 421 2513
- * @email       javierbr12@hotmail.com    
- */
+
+    /**
+     *
+     * @package     NYGSOFT
+     * @author      Gerson J Barbosa / Nelson G Barbosa
+     * @copyright   www.nygsoft.com
+     * @celular     301 385 9952 - 312 421 2513
+     * @email       javierbr12@hotmail.com    
+     */
     function __construct() {
         parent::__construct();
     }
@@ -38,7 +39,7 @@ class Clientes__model extends CI_Model {
         return $datos = $datos->result();
     }
 
-    function consult_clientes($post) {
+    function consult_clientes($post, $cantidad=null, $inicio=null) {
 //        print_y($post);
         if (isset($post['id_cliente']))
             if ($post['id_cliente'] != "")
@@ -77,12 +78,15 @@ class Clientes__model extends CI_Model {
         $this->db->select('fecha_fin_contrato');
         $this->db->select('estado');
         $this->db->select('email');
-        $this->db->join('tipo_cliente', 'clientes.id_tipo_cliente=tipo_cliente.id_tipo_cliente','left');
+        $this->db->join('tipo_cliente', 'clientes.id_tipo_cliente=tipo_cliente.id_tipo_cliente', 'left');
         $this->db->where('clientes.ACTIVO', 'S');
 //        $this->db->where('tipo_cliente.ACTIVO', 'S');
         if (empty($post))
             $this->db->where("1", 2);
-        $datos = $this->db->get('clientes');
+        if ($cantidad != null)
+            $datos = $this->db->get('clientes', $cantidad, $inicio);
+        else
+            $datos = $this->db->get('clientes');
         $datos = $datos->result();
         return $datos;
     }

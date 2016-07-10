@@ -33,10 +33,19 @@ class Equipos extends My_Controller {
     }
 
     function consult_equipos() {
+//        $post = $this->input->post();
+//        $this->data['post'] = $this->input->post();
+//        $this->data['datos'] = $this->Equipos__model->consult_equipos($post);
+        $this->layout->view('equipos/consult_equipos', $this->data);
+    }
+    function consult_equipos2() {
         $post = $this->input->post();
         $this->data['post'] = $this->input->post();
-        $this->data['datos'] = $this->Equipos__model->consult_equipos($post);
-        $this->layout->view('equipos/consult_equipos', $this->data);
+        $data['data'] = $this->Equipos__model->consult_equipos($post,$this->input->post("length"), $this->input->post("start"));
+        $data['recordsFiltered'] = count($this->Equipos__model->consult_equipos($post));
+        $data['recordsTotal'] = $data['recordsFiltered'];
+        echo json_encode($data);
+//        $this->layout->view('equipos/consult_equipos', $this->data);
     }
 
     function save_equipos() {

@@ -186,7 +186,7 @@ class Alarmas_generadas__model extends CI_Model {
         $this->db->join('examenes', 'variables.examen_cod=examenes.examen_cod', 'left');
         $this->db->join('protocolos', 'niveles_alarma.id_protocolo=protocolos.id_protocolo', 'left');
         $this->db->join('paciente_examen_variable', 'paciente_examen_variable.id_paciente=pacientes.id_paciente and variables.variable_codigo=paciente_examen_variable.variable_codigo', 'left');
-        $this->db->order_by('alarmas_generadas.fecha_creacion');
+        $this->db->order_by('alarmas_generadas.fecha_creacion', 'desc');
         $datos = $this->db->get('pacientes',$cantidad,$inicio);
 //                echo $this->db->last_query();
         return $datos->result();

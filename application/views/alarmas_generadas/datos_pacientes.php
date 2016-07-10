@@ -292,6 +292,7 @@
         "bInfo": false,
         "processing": true,
         "serverSide": true,
+        "bSort" : false,
         "ajax": {
             "url": "<?php echo base_url('index.php/Alarmas_generadas/busqueda_cedulaDatos') ?>",
             "type": "POST",

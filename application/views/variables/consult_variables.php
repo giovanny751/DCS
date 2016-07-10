@@ -46,7 +46,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <table id='table_action' class=" table table-bordered">
             <thead>
             <th>Código</th>
             <th>HL7TAG</th>
@@ -96,6 +96,7 @@
     </form>
 <?php } ?>
 <script>
+    datata=1 
     function editar(num) {
         $('#<?php echo $campo ?>2').val(num);
         $('#editar').submit();

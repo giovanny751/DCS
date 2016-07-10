@@ -21,56 +21,43 @@
     });
 </script>
 
-<form action="<?php echo base_url('index.php/presentacion/usuario') ?>" method="post">
-    <div class="row">
-        <div class="col-md-3">Nombre</div>
-        <div class="col-md-3">
-            <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo (isset($post['nombre'])?$post['nombre']:'') ?>">
-        </div>
-        <div class="col-md-3">Correo</div>
-        <div class="col-md-3">
-            <input type="text" class="form-control" name="email" id="email" value="<?php echo (isset($post['email'])?$post['email']:'') ?>">
-            <br>
-        </div>
-        <div class="col-md-3">Estado</div>
-        <div class="col-md-3">
-            <select id="estado" name="estado" class="form-control">
-                <option value=""></option>
-                <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
-            </select><br>
-        </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <button class="btn btn-dcs">Consultar</button>
-        </div>
+<!--<form action="<?php echo base_url('index.php/presentacion/usuario') ?>" method="post">-->
+<div class="row">
+    <div class="col-md-3">Nombre</div>
+    <div class="col-md-3">
+        <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo (isset($post['nombre']) ? $post['nombre'] : '') ?>">
     </div>
-</form>
+    <div class="col-md-3">Correo</div>
+    <div class="col-md-3">
+        <input type="text" class="form-control" name="email" id="email" value="<?php echo (isset($post['email']) ? $post['email'] : '') ?>">
+        <br>
+    </div>
+    <div class="col-md-3">Estado</div>
+    <div class="col-md-3">
+        <select id="estado" name="estado" class="form-control">
+            <option value=""></option>
+            <option value="1">Activo</option>
+            <option value="2">Inactivo</option>
+        </select><br>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <button class="btn btn-dcs " id="Consultar">Consultar</button>
+    </div>
+</div>
+<!--</form>-->
 <div class="row">
     <div class="table-responsive ">
-        <table class="table table-responsive table-striped table-bordered">
+        <table id="tablee33" class="table table-responsive table-striped table-bordered">
             <thead>
-            <th style="width: 220px">Usuario</th>
-            <th style="width: 220px">Email</th>
-            <th style="width: 220px">Estado</th>
-            <th style="width: 220px">Roles</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th >Email</th>
+            <th >Estado</th>
+            <th >Roles</th>
             </thead>
             <tbody>
-                <?php foreach ($usaurios as $todosusuarios) { ?>
-                    <tr>
-                        <td><?php echo $todosusuarios['usu_nombre'] . " " . $todosusuarios['usu_apellido']; ?></td>
-                        <td><?php echo $todosusuarios['usu_email']; ?></td>
 
-                        <td><?php
-                            if ($todosusuarios['est_id'] == 1)
-                                echo "Activo";
-                            else {
-                                echo "Inactivo";
-                            }
-                            ?></td>
-                        <td align="center"><button type="button"  data-toggle="modal" data-target="#myModal3"   class="btn btn-info permiso" usuarioid="<?php echo $todosusuarios['usu_id']; ?>">Roles</button></td>
-                    </tr>
-                <?php } ?>
             </tbody>
         </table>
         <div id="alerta"></div>
@@ -167,11 +154,11 @@
         $('.obligatorio').val('');
         $.post("<?php echo base_url('index.php/presentacion/consultausuario') ?>",
                 {id: $(this).attr('idpadre')},
-                function (data) {
-                    $('#usuario').val(data.usu_nombres_apellido);
-                    $('#email').val(data.usu_correo);
-                    $('#celular').val(data.usu_telF);
-                });
+        function (data) {
+            $('#usuario').val(data.usu_nombres_apellido);
+            $('#email').val(data.usu_correo);
+            $('#celular').val(data.usu_telF);
+        });
     });
 
     $('body').delegate('.permiso', 'click', function () {
@@ -209,5 +196,52 @@
         $('.obligatorio').val('');
     });
 
-
+    $('#Consultar').click(function () {
+        table()
+    })
+    function table() {
+        $('#tablee33').DataTable().destroy();
+        $('#tablee33').DataTable({
+            "lengthMenu": [[10, 40, 50], [10, 40, 50]],
+            "bFilter": false,
+            "bInfo": false,
+            "processing": true,
+            "serverSide": true,
+            "bSort" : false,
+            "ajax": {
+                "url": "<?php echo base_url('index.php/presentacion/usuario2') ?>",
+                "type": "POST",
+                "data": {
+                    nombre: $('#nombre').val(),
+                    email: $('#email').val(),
+                    estado: $('#estado').val(),
+                },
+            },
+            "columns": [
+                {"data": "usu_nombre"},
+                {"data": "usu_apellido"},
+                {"data": "usu_email"},
+                {
+                    sortable: false,
+                    "render": function (data, type, full, meta) {
+                        return (full.est_id == 1) ? "Activo" : "Inactivo";
+                    }
+                },
+                {
+                    sortable: false,
+                    "render": function (data, type, full, meta) {
+                        return '<button class="btn btn-info permiso" usuarioid="' + full.usu_id + '" data-target="#myModal3" data-toggle="modal" type="button">Roles</button>';
+                    }
+                },
+            ],
+            "drawCallback": function (nRow, aaData, iDataIndex) {
+                info = nRow.json.data;
+                var html = ""
+                $.each(info, function (key, val) {
+                    html += val.id_alarmas_generadas + ","
+                })
+            }
+        });
+    }
+table()
 </script>    

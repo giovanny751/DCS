@@ -133,13 +133,20 @@ class Administrativo extends My_Controller {
 
     function consultarusuario() {
         $this->load->model('User_model');
-        $this->data['usuarios'] = $this->User_model->filteruser(
+        $data['data']  = $this->User_model->filteruser(
                 $this->input->post('apellido')
                 , $this->input->post('cedula')
                 , $this->input->post('estado')
                 , $this->input->post('nombre')
+                ,$this->input->post("length"), $this->input->post("start")
         );
-        $this->output->set_content_type('application/json')->set_output(json_encode($this->data['usuarios']));
+        $data['recordsFiltered'] = count($this->User_model->filteruser($this->input->post('apellido')
+                , $this->input->post('cedula')
+                , $this->input->post('estado')
+                , $this->input->post('nombre')));
+        $data['recordsTotal'] = $data['recordsFiltered'];
+        echo json_encode($data);
+//        $this->output->set_content_type('application/json')->set_output(json_encode($this->data['usuarios']));
     }
 
     function guardarusuario() {

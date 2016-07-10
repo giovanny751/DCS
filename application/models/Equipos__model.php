@@ -78,7 +78,7 @@ class Equipos__model extends CI_Model {
         return $datos = $datos->result();
     }
 
-    function consult_equipos($post) {
+    function consult_equipos($post,$cantidad=null, $inicio=null) {
         if (isset($post['id_equipo']))
             if ($post['id_equipo'] != "")
                 $this->db->like('id_equipo', $post['id_equipo']);
@@ -135,6 +135,7 @@ class Equipos__model extends CI_Model {
                 $this->db->like('variable_codigo', $post['variable_codigo']);
         $this->db->select('id_equipo');
         $this->db->select('descripcion');
+        $this->db->order_by('descripcion');
         $this->db->select('estado_equipos.estado');
         $this->db->select('ubicacion');
         $this->db->select('serial');
@@ -147,7 +148,11 @@ class Equipos__model extends CI_Model {
         $this->db->where('equipos.ACTIVO', 'S');
         if (empty($post))
             $this->db->where("1", 2);
+        if ($cantidad != null)
+        $datos = $this->db->get('equipos',$cantidad, $inicio);
+        else
         $datos = $this->db->get('equipos');
+
         $datos = $datos->result();
         return $datos;
     }

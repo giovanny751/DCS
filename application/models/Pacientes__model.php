@@ -1,26 +1,28 @@
 <?php
 
 class Pacientes__model extends CI_Model {
-/**
- *
- * @package     NYGSOFT
- * @author      Gerson J Barbosa / Nelson G Barbosa
- * @copyright   www.nygsoft.com
- * @celular     301 385 9952 - 312 421 2513
- * @email       javierbr12@hotmail.com    
- */
+
+    /**
+     *
+     * @package     NYGSOFT
+     * @author      Gerson J Barbosa / Nelson G Barbosa
+     * @copyright   www.nygsoft.com
+     * @celular     301 385 9952 - 312 421 2513
+     * @email       javierbr12@hotmail.com    
+     */
     function __construct() {
-        $this->db = $this->load->database('default', TRUE); 
+        $this->db = $this->load->database('default', TRUE);
         $this->db1 = $this->load->database('parametro', TRUE);
         parent::__construct();
     }
+
     public function referencia($post) {
-        if(!empty($post['id_paciente']))
-        $this->db->where_not_in('id_paciente', $post['id_paciente']);
+        if (!empty($post['id_paciente']))
+            $this->db->where_not_in('id_paciente', $post['id_paciente']);
         $this->db->where('cedula_paciente', $post['documento']);
         $this->db->where('ACTIVO', 'S');
         $datos = $this->db->get('pacientes');
-        $datos =$datos->result();
+        $datos = $datos->result();
         return count($datos);
     }
 
@@ -180,22 +182,22 @@ class Pacientes__model extends CI_Model {
                     $this->db->insert('historial_equipo_estado');
                 }
             }
-            for($i=0;$i<count($array_estado);$i++){
-                if (!in_array($array_estado[$i],$equipo_id)) {
-                    $this->db->where('id_equipo', $array_estado[$i]);
-                    $this->db->set('estado', '4');
-                    $this->db->set('ubicacion', 'En transito');
-                    $this->db->update('equipos');
+        for ($i = 0; $i < count($array_estado); $i++) {
+            if (!in_array($array_estado[$i], $equipo_id)) {
+                $this->db->where('id_equipo', $array_estado[$i]);
+                $this->db->set('estado', '4');
+                $this->db->set('ubicacion', 'En transito');
+                $this->db->update('equipos');
 
-                    $this->db->set('equipo_id', $array_estado[$i]);
-                    $this->db->set('id_estado', '4');
-                    $this->db->set('fecha', date('Y-m-j'));
-                    $this->db->set('ubicacion', 'En transito');
-                    $this->db->set('usuario', $this->session->userdata('usu_id'));
-                    $this->db->insert('historial_equipo_estado');
-                }
+                $this->db->set('equipo_id', $array_estado[$i]);
+                $this->db->set('id_estado', '4');
+                $this->db->set('fecha', date('Y-m-j'));
+                $this->db->set('ubicacion', 'En transito');
+                $this->db->set('usuario', $this->session->userdata('usu_id'));
+                $this->db->insert('historial_equipo_estado');
             }
-            
+        }
+
 
 
         $this->db1->where('id_paciente', $id);
@@ -212,24 +214,24 @@ class Pacientes__model extends CI_Model {
         } else {
             $this->db1->insert('devices');
         }
-        
+
         $this->db->select('count(*) datos');
-        $this->db->where('usu_cedula',$post['cedula_paciente']);
-        $datos=$this->db->get('user');
-        $datos=$datos->result();
+        $this->db->where('usu_cedula', $post['cedula_paciente']);
+        $datos = $this->db->get('user');
+        $datos = $datos->result();
 //        echo $datos[0]->datos;
-        if($datos[0]->datos==0){
-            $this->db->set('usu_cedula',$post['cedula_paciente']);
-            $this->db->set('usu_usuario',$post['cedula_paciente']);
-            $this->db->set('usu_contrasena',sha1($post['cedula_paciente']));
-            $this->db->set('usu_nombre',$post['nombres']);
-            $this->db->set('usu_apellido',$post['apellidos']);
-            $this->db->set('usu_email',$post['email']);
-            $this->db->set('est_id',1);
-            $this->db->set('tipo_usuario',3);
+        if ($datos[0]->datos == 0) {
+            $this->db->set('usu_cedula', $post['cedula_paciente']);
+            $this->db->set('usu_usuario', $post['cedula_paciente']);
+            $this->db->set('usu_contrasena', sha1($post['cedula_paciente']));
+            $this->db->set('usu_nombre', $post['nombres']);
+            $this->db->set('usu_apellido', $post['apellidos']);
+            $this->db->set('usu_email', $post['email']);
+            $this->db->set('est_id', 1);
+            $this->db->set('tipo_usuario', 3);
             $this->db->insert('user');
         }
-        
+
         return $id;
     }
 
@@ -270,7 +272,7 @@ class Pacientes__model extends CI_Model {
         return $datos = $datos->result();
     }
 
-    function consult_pacientes($post) {
+    function consult_pacientes($post, $cantidad=null, $inicio=null) {
         if (isset($post['id_paciente']))
             if ($post['id_paciente'] != "")
                 $this->db->like('id_paciente', $post['id_paciente']);
@@ -389,42 +391,19 @@ class Pacientes__model extends CI_Model {
         $this->db->select('cedula_paciente');
         $this->db->select('nombres');
         $this->db->select('apellidos');
+        $this->db->order_by('apellidos,nombres');
         $this->db->select('fecha_afiliacion');
         $this->db->select('direccion');
         $this->db->select('barrio');
         $this->db->select('ciudad');
         $this->db->select('fecha_nacimiento');
-//        $this->db->select('estatura');
-//        $this->db->select('peso');
-//        $this->db->select('telefono_fijo');
-//        $this->db->select('celular');
-//        $this->db->select('email');
-//        $this->db->select('fecha_inicio_contrato');
-//        $this->db->select('fecha_fin_contrato');
-//        $this->db->select('tipo_cliente');
-//        $this->db->select('cliente');
-//        $this->db->select('medico');
-//        $this->db->select('observaciones');
-//        $this->db->select('examen_cod');
-//        $this->db->select('hl7tag');
-//        $this->db->select('variable_codigo');
-//        $this->db->select('valor_frecuencia');
-//        $this->db->select('frecuencia');
-//        $this->db->select('valor_minimo');
-//        $this->db->select('valor_maximo');
-//        $this->db->select('observaciones_programas');
-//        $this->db->select('contacto_id');
-//        $this->db->select('tipo_equipo_cod');
-//        $this->db->select('descripcion');
-//        $this->db->select('estado');
-//        $this->db->select('prioridad');
-//        $this->db->select('codigo_hospital');
-//        $this->db->select('tipo');
-//        $this->db->select('aseguradora_id');
         if (empty($post))
             $this->db->where("1", 2);
         $this->db->where('ACTIVO', 'S');
-        $datos = $this->db->get('pacientes');
+        if ($cantidad != null)
+            $datos = $this->db->get('pacientes', $cantidad, $inicio);
+        else
+            $datos = $this->db->get('pacientes');
         $datos = $datos->result();
         return $datos;
     }
